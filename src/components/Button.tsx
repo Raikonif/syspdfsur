@@ -1,12 +1,15 @@
 import React from "react";
 
-// interface Iprops: {
-//   const textButton: string;
-// }
-function Button(): JSX.Element {
+type BtnType = "button" | "submit" | "reset";
+interface IProps {
+  textButton: string;
+  action?: () => void;
+  btnType: BtnType;
+}
+function Button({ btnType, textButton, action }: IProps): JSX.Element {
   return (
-    <button type="button" className="btn btn-primary">
-      <h1>Button</h1>
+    <button type={btnType} className="bg-violet-500 rounded-md p-2" onClick={action}>
+      <h1 className="text-white font-semibold">{textButton}</h1>
     </button>
   );
 }
