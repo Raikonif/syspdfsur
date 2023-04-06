@@ -11,7 +11,7 @@ const GenericRoutes = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/auth" element={<AuthLayout />}>
-            <Route path="/auth/login" index element={<Login />} />
+            <Route path="/auth" index element={<Login />} />
           </Route>
           <Route path="/" element={<GeneralLayout />}>
             <Route path="/" element={<Home />} />
