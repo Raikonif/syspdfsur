@@ -2,15 +2,20 @@ import React from "react";
 import { GiMicroscope } from "react-icons/gi";
 import { RiLockPasswordFill } from "react-icons/ri";
 import Button from "~/components/Button";
+import { useNavigate } from "react-router-dom";
 import loginOption from "~/constants/options/login.option";
-
+import toast, { Toaster } from "react-hot-toast";
 function LoginCard(): JSX.Element {
+  const navigate = useNavigate();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    navigate("/home");
+    toast.success("Login success");
     console.log("submit");
   };
   return (
     <div className="h-70 w-80">
+      <Toaster />
       <form onSubmit={handleSubmit}>
         <div className=" bg-slate-50 shadow-2xl rounded-lg">
           <h1 className="p-5 border-b font-bold bg-violet-500 rounded-t-lg text-center text-white shadow">
