@@ -1,9 +1,9 @@
 import React from "react";
 import LoginCard from "../components/LoginCard";
 
-function Login() {
+function Login(): JSX.Element {
   return (
-    <div className="bg-slate-700 h-screen items-center justify-center ">
+    <div className="flex justify-center items-center h-screen w-full">
       <LoginCard />
     </div>
   );

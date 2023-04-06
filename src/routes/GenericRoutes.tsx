@@ -9,9 +9,10 @@ const GenericRoutes = () => {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<AuthLayout />} />
-          <Route path="/login" index element={<Login />} />
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<AuthLayout />}>
+            <Route path="/login" index element={<Login />} />
+          </Route>
+          {/*<Route path="/" element={<Home />} />*/}
         </Routes>
       </BrowserRouter>
     </>
