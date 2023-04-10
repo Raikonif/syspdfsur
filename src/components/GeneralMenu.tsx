@@ -14,7 +14,7 @@ interface IProps {
 function GeneralMenu({ itemList }: IProps): JSX.Element {
   const listItems: JSX.Element[] = itemList.map((item: IMenuProps) => (
     <li
-      className="text-slate-50 pt-10 pb-10 pl-4 border-b pr-3 hover:bg-violet-400 rounded-r-2xl hover:shadow-2xl hover:border-2"
+      className="text-slate-50 pt-10 pb-10 pl-4 shadow active:bg-violet-400 hover:text-slate-200 hover:bg-violet-600 hover:shadow-lg hover:border-2 hover:rounded-r-lg"
       key={item.id}
     >
       {item.title}

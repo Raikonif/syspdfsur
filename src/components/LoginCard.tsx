@@ -27,7 +27,7 @@ function LoginCard(): JSX.Element {
               <div className="flex">
                 <GiMicroscope className="mt-2 text-xl text-violet-500" />
                 <input
-                  className="m-2 bg-slate-50 border-2 rounded-lg border-violet-500 hover:border-violet-300 active:bg-violet-400 focus:outline-violet-700"
+                  className="m-2 bg-slate-50 border rounded-lg border-violet-500 hover:border-violet-300 active:bg-violet-400 focus:outline-violet-700"
                   id="email"
                   name="email"
                 />
@@ -38,7 +38,7 @@ function LoginCard(): JSX.Element {
               <div className="flex">
                 <RiLockPasswordFill className="mt-2 text-xl text-violet-500" />
                 <input
-                  className="m-2 bg-slate-50 border-2 rounded-lg border-violet-500 hover:border-violet-300 active:bg-violet-400 focus:outline-violet-700"
+                  className="m-2 bg-slate-50 border rounded-lg border-violet-500 hover:border-violet-300 active:bg-violet-400 focus:outline-violet-700"
                   id="pass"
                   name="pass"
                 />
