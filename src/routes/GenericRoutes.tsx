@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import AuthLayout from "../layouts/AuthLayout";
 import GeneralLayout from "~/layouts/GeneralLayout";
+import NotFound from "~/pages/NotFound";
 
 const GenericRoutes = () => {
   return (
@@ -15,6 +16,7 @@ const GenericRoutes = () => {
           </Route>
           <Route path="/" element={<GeneralLayout />}>
             <Route path="/" element={<Home />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>
