@@ -4,7 +4,7 @@ import homeOptions from "~/constants/options/home.options";
 
 function Home(): JSX.Element {
   return (
-    <div className="bg-emerald-700 h-screen w-full">
+    <div className="bg-slate-500 h-screen w-full">
       <GeneralMenu itemList={homeOptions.menuOptions} />
     </div>
   );

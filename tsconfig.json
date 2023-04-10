@@ -20,7 +20,14 @@
       "~/*": ["src/*"]
     }
   },
-  "include": ["src, **/*.ts", "**/*.tsx", "typed-css.d.ts", "vite.config.ts"],
-  "exclude": ["node_modules", "dist", "build", "public", "scripts", "coverage", "index.d.ts"],
+  "include": ["src", "assets", "**/*.ts", "**/*.tsx", "typed-css.d.ts", "vite.config.ts"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "public",
+    "scripts",
+    "coverage",
+    "index.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
