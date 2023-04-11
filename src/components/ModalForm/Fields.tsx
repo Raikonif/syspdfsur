@@ -1,16 +1,11 @@
 import React from "react";
 
-interface IFieldProps {
-  id: number;
-  name: string;
-  type: string;
-  placeholder: string;
-}
+import IFieldProps from "~/interfaces/fieldInterface";
 
 interface IProps {
   itemFields: IFieldProps[];
 }
-function Field({ itemFields }: IProps): JSX.Element {
+function Fields({ itemFields }: IProps): JSX.Element {
   const listFields: JSX.Element[] = itemFields.map((item: IFieldProps) => (
     <label className="relative cursor-pointer" id={item.name} key={item.id}>
       <input
@@ -27,4 +22,4 @@ function Field({ itemFields }: IProps): JSX.Element {
   return <>{listFields}</>;
 }
 
-export default Field;
+export default Fields;

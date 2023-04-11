@@ -1,9 +1,12 @@
+import IFieldProps from "~/interfaces/fieldInterface";
+
 type BtnType = "submit" | "button" | "reset";
+
 interface IFormOption {
   buttonName: string;
   handleClick: () => void;
   btnType: BtnType;
-  fields: any[];
+  fields: IFieldProps[];
 }
 const formOption: IFormOption = {
   buttonName: "Ingresar",
