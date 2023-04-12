@@ -17,11 +17,11 @@ function LoginCard(): JSX.Element {
     <div className="h-70 w-80">
       <Toaster />
       <form onSubmit={handleSubmit}>
-        <div className=" bg-slate-50 shadow-2xl rounded-lg">
-          <h1 className="p-5 border-b font-bold bg-violet-500 rounded-t-lg text-center text-white shadow">
-            PANDY LOGIN
+        <div className=" bg-white shadow-2xl rounded-lg">
+          <h1 className="p-5 border-b text-xl font-semibold bg-violet-500 rounded-t-lg text-center text-white">
+            Bienvenida! Pandy Goma
           </h1>
-          <div className="flex flex-col items-center justify-center mt-4 ">
+          <div className="flex flex-col items-center justify-center mt-4">
             <label className="block" id="email">
               <span className="font-sans ml-7 text-slate-500">E-mail</span>
               <div className="flex">
@@ -44,9 +44,9 @@ function LoginCard(): JSX.Element {
                 />
               </div>
             </label>
-            <div className="p-3 mt-2 mb-4">
-              <Button btnType={loginOption.btnType} textButton={loginOption.buttonName} />
-            </div>
+          </div>
+          <div className="p-1">
+            <Button btnType={loginOption.btnType} textButton={loginOption.buttonName} />
           </div>
         </div>
       </form>
