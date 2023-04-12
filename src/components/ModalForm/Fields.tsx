@@ -7,11 +7,11 @@ interface IProps {
   onInputChange: (name: string, value: string) => void;
 }
 function Fields({ itemFields, onInputChange }: IProps): JSX.Element {
-  const [inputValue, setInputValue] = useState<string[]>(new Array(itemFields.length).fill(""));
+  const [inputValues, setInputValuess] = useState<string[]>(new Array(itemFields.length).fill(""));
   const handleInputChange = (index: number, name: string, value: string) => {
-    const newInputValues: string[] = [...inputValue];
+    const newInputValues: string[] = [...inputValues];
     newInputValues[index] = value;
-    setInputValue(newInputValues);
+    setInputValuess(newInputValues);
     onInputChange(name, value);
   };
 
@@ -32,7 +32,7 @@ function Fields({ itemFields, onInputChange }: IProps): JSX.Element {
           name={item.name}
           type={item.type}
           // placeholder={item.placeholder}
-          value={inputValue[index]}
+          value={inputValues[index]}
           onChange={(e) => handleInputChange(index, item.name, e.target.value)}
         />
       </div>

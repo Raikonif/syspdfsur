@@ -4,7 +4,7 @@ import modalOptions from "~/constants/options/modal.options";
 import Fields from "~/components/ModalForm/Fields";
 
 function GeneralForm(): JSX.Element {
-  const [submitData, setSubmitData] = useState({});
+  const [submitData, setSubmitData] = useState<object>({});
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
