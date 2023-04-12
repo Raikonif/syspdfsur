@@ -17,7 +17,7 @@ function GeneralForm(): JSX.Element {
   return (
     <form onSubmit={handleSubmit}>
       <div className="flex flex-col justify-center items-center ">
-        <div>
+        <div className="pb-4">
           <h1>Form Example</h1>
         </div>
         <div>
