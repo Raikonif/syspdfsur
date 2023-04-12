@@ -2,7 +2,7 @@ import React from "react";
 
 function PatientCard(): JSX.Element {
   return (
-    <div>
+    <div className="hover:scale-110 duration-300">
       <article className="container bg-white shadow-2xl rounded-2xl p-5">
         <h1 className="font-bold text-fuchsia-600">Patient Card</h1>
         <p className="font-light text-gray-500">This is a Description</p>
