@@ -16,9 +16,13 @@ function GeneralForm(): JSX.Element {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex flex-col justify-center items-center">
-        <h1>First Part Form</h1>
-        <Fields itemFields={modalOptions.fields} onInputChange={handleInputChange} />
+      <div className="flex flex-col justify-center items-center ">
+        <div>
+          <h1>Form Example</h1>
+        </div>
+        <div>
+          <Fields itemFields={modalOptions.fields} onInputChange={handleInputChange} />
+        </div>
         <div>
           <Button textButton={modalOptions.buttonName} btnType={modalOptions.btnType} />
         </div>
