@@ -5,8 +5,8 @@ import GeneralForm from "~/components/ModalForm/GeneralForm";
 
 function GeneralModal(): JSX.Element {
   return (
-    <div className="flex bg-slate-500 justify-center items-center">
-      <div className="bg-white rounded-xl w-auto p-10 opacity-100">
+    <div className="flex items-center justify-center bg-slate-500">
+      <div className="w-auto rounded-xl bg-white p-10 opacity-100">
         <GeneralForm />
       </div>
     </div>
