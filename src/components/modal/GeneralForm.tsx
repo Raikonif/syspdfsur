@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "~/components/Button";
 import modalOptions from "~/constants/options/modal.options";
-import Fields from "~/components/ModalForm/Fields";
+import Fields from "~/components/modal/Fields";
 
 function GeneralForm(): JSX.Element {
   const [submitData, setSubmitData] = useState<object>({});

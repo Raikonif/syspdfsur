@@ -4,7 +4,7 @@ import PatientCard from "~/components/PatientCard";
 function Patients(): JSX.Element {
   return (
     <div>
-      <div className="m-10 mb-10 grid h-auto grid-cols-5 justify-between gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
+      <div className="m-10 mb-10 mt-14 grid h-auto grid-cols-5 justify-between gap-6 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md2:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         <PatientCard />
         <PatientCard />
         <PatientCard />

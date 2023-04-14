@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "~/components/Button";
 import loginOption from "~/constants/options/login.option";
-import GeneralForm from "~/components/ModalForm/GeneralForm";
+import GeneralForm from "~/components/modal/GeneralForm";
 
 function GeneralModal(): JSX.Element {
   return (
