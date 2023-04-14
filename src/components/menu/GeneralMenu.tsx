@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Button from "~/components/Button";
 import { BsFillSearchHeartFill, GiHamburgerMenu } from "react-icons/all";
 import ButtonMenu from "~/components/menu/ButtonMenu";
+import SearchField from "~/components/menu/SearchField";
 
 interface IMenuProps {
   id: number;
@@ -17,9 +18,15 @@ interface IProps {
 
 function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
   const [showMenu, setShowMenu] = useState<boolean>(false);
-  const handleClick = () => {
+  const [showSearch, setShowSearch] = useState<boolean>(false);
+  const handleClickMenu = () => {
     setShowMenu(!showMenu);
-    console.log("click");
+    setShowSearch(false);
+  };
+
+  const handleClickSearch = () => {
+    setShowSearch(!showSearch);
+    setShowMenu(false);
   };
   const listItems: JSX.Element[] = itemList.map((item: IMenuProps) =>
     isMobileMode ? (
@@ -44,7 +51,7 @@ function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
         <div className="h-15 fixed w-full bg-fuchsia-600 opacity-90">
           <div className="flex justify-between">
             <ButtonMenu
-              handleClick={handleClick}
+              handleClick={handleClickMenu}
               iconType={<GiHamburgerMenu className="m-2 h-7 w-8" />}
             />
 
@@ -55,9 +62,9 @@ function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
                 </ul>
               </div>
             )}
-
+            {showSearch && <SearchField />}
             <ButtonMenu
-              handleClick={handleClick}
+              handleClick={handleClickSearch}
               iconType={<BsFillSearchHeartFill className="m-2 h-7 w-8" />}
             />
           </div>
