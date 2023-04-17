@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Button from "~/components/Button";
 import { BsFillSearchHeartFill, GiHamburgerMenu } from "react-icons/all";
 import ButtonMenu from "~/components/menu/ButtonMenu";
-import SearchField from "~/components/menu/SearchField";
+import SearchField from "~/components/menu/search/SearchButton";
 
 interface IMenuProps {
   id: number;
@@ -62,11 +62,6 @@ function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
                 </ul>
               </div>
             )}
-            {showSearch && <SearchField />}
-            <ButtonMenu
-              handleClick={handleClickSearch}
-              iconType={<BsFillSearchHeartFill className="m-2 h-7 w-8" />}
-            />
           </div>
         </div>
       ) : (
