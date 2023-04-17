@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ButtonMenu from "~/components/menu/ButtonMenu";
-import { BsFillSearchHeartFill } from "react-icons/all";
-import SearchButton from "~/components/menu/search/SearchButton";
 
 function Header(): JSX.Element {
   const [mobileMode, setMobileMode] = useState<boolean>(false);

@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/all";
 import ButtonMenu from "~/components/menu/ButtonMenu";
-import SearchField from "~/components/menu/search/SearchButton";
 
 interface IMenuProps {
   id: number;
