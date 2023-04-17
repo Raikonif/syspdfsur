@@ -1,5 +1,4 @@
 import React from "react";
-import { GiHamburgerMenu } from "react-icons/all";
 
 interface IProps {
   handleClick: () => void;

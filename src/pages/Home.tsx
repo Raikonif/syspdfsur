@@ -2,10 +2,7 @@ import React, { useEffect, useState } from "react";
 import GeneralMenu from "~/components/menu/GeneralMenu";
 import homeOptions from "~/constants/options/home.options";
 import GeneralModal from "~/components/modal/Modal";
-import PatientCard from "~/components/PatientCard";
 import Patients from "~/pages/Patients";
-import Button from "~/components/Button";
-import { BsFillSearchHeartFill } from "react-icons/all";
 import Header from "~/components/menu/Header";
 import SearchButton from "~/components/menu/search/SearchButton";
 

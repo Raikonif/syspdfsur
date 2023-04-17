@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Button from "~/components/Button";
-import { BsFillSearchHeartFill, GiHamburgerMenu } from "react-icons/all";
+import { GiHamburgerMenu } from "react-icons/all";
 import ButtonMenu from "~/components/menu/ButtonMenu";
 import SearchField from "~/components/menu/search/SearchButton";
 
@@ -18,16 +17,10 @@ interface IProps {
 
 function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
   const [showMenu, setShowMenu] = useState<boolean>(false);
-  const [showSearch, setShowSearch] = useState<boolean>(false);
   const handleClickMenu = () => {
     setShowMenu(!showMenu);
-    setShowSearch(false);
   };
 
-  const handleClickSearch = () => {
-    setShowSearch(!showSearch);
-    setShowMenu(false);
-  };
   const listItems: JSX.Element[] = itemList.map((item: IMenuProps) =>
     isMobileMode ? (
       <li
