@@ -20,10 +20,10 @@ function PatientCard({ description }: IProps): JSX.Element {
         <p className="font-light text-gray-500 active:text-gray-400">{currentDescription}</p>
         <h6 className="mb-5 text-sm text-gray-300 active:text-gray-200">Date 12/04/2023</h6>
         <div className="flex justify-between">
-          <button className="h-8 w-7 hover:scale-110">
+          <button className="h-6 w-6 hover:scale-110">
             <MdEditSquare className="h-full w-full text-fuchsia-600 hover:text-fuchsia-500" />
           </button>
-          <button className="h-8 w-7 hover:scale-110">
+          <button className="h-6 w-6 hover:scale-110">
             <RiDeleteBinFill className="h-full w-full text-fuchsia-600 hover:text-fuchsia-500" />
           </button>
         </div>
