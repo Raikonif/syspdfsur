@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PatientCard from "~/components/PatientCard";
-import ModalCard from "~/components/ModalCard";
+import GeneralModal from "~/components/modal/GeneralModal";
 
 function Patients(): JSX.Element {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -28,9 +28,9 @@ function Patients(): JSX.Element {
       </div>
       {showModal && (
         <div>
-          <ModalCard onClose={() => setShowModal(false)}>
+          <GeneralModal onClose={() => setShowModal(false)}>
             <h1>Soy un modal</h1>
-          </ModalCard>
+          </GeneralModal>
         </div>
       )}
     </div>

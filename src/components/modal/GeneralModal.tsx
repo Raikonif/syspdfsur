@@ -7,14 +7,14 @@ interface ModalProps {
   children: ReactNode;
 }
 
-function ModalCard({ onClose, children }: ModalProps): JSX.Element {
+function GeneralModal({ onClose, children }: ModalProps): JSX.Element {
   const [childState, setChildState] = useState<string>("");
 
   return (
-    <div className="fixed inset-0 z-30 flex h-60 w-60 items-center justify-center bg-fuchsia-600 transition-colors">
+    <div className="fixed inset-0 z-30 flex h-5/6 w-5/6 items-center justify-center bg-white transition-colors">
       <button
         onClick={onClose}
-        className="absolute right-2 top-2 rounded-lg bg-white p-1 text-gray-400 hover:bg-gray-50 hover:text-gray-600"
+        className="absolute right-2 top-2 rounded-lg bg-slate-50 p-1 text-gray-400 hover:bg-gray-50 hover:text-gray-600"
       >
         x
       </button>
@@ -45,4 +45,4 @@ function ModalCard({ onClose, children }: ModalProps): JSX.Element {
   );
 }
 
-export default ModalCard;
+export default GeneralModal;
