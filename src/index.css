@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 @layer components {
-    .btn {
-        @apply bg-violet-500 rounded-md p-2 active:bg-violet-400 hover:bg-violet-600 focus:outline-none text-white
-    }
-    input[type="text"]:focus ~ .input-text,
-    input[type="text"]:not(:placeholder-shown) ~ .input-text{
-        @apply text-violet-500 transform -translate-y-10 -translate-x-2 scale-75;
-    }
+  .btn {
+    @apply rounded-md bg-violet-500 p-2 text-white hover:bg-violet-600 focus:outline-none active:bg-violet-400;
+  }
+  /*input[type="text"]:focus ~ .input-text,*/
+  /*input[type="text"]:not(:placeholder-shown) ~ .input-text{*/
+  /*    @apply text-violet-500 transform -translate-y-10 -translate-x-2 scale-75;*/
+  /*}*/
 }

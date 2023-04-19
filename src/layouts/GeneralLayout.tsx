@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 function GeneralLayout(): JSX.Element {
   return (
-    <div className="bg-blue-600 h-screen flex justify-center items-center ">
+    <div className="flex h-screen items-center justify-center bg-blue-600 ">
       <Outlet />
     </div>
   );

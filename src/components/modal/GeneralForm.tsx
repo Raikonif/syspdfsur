@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "~/components/Button";
 import modalOptions from "~/constants/options/modal.options";
-import Fields from "~/components/ModalForm/Fields";
+import Fields from "~/components/modal/Fields";
 
 function GeneralForm(): JSX.Element {
   const [submitData, setSubmitData] = useState<object>({});
@@ -16,8 +16,8 @@ function GeneralForm(): JSX.Element {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex flex-col justify-center items-center ">
-        <div>
+      <div className="flex flex-col items-center justify-center ">
+        <div className="pb-4">
           <h1>Form Example</h1>
         </div>
         <div>
