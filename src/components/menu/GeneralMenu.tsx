@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/all";
 import ButtonMenu from "~/components/menu/ButtonMenu";
+import Profile from "~/components/menu/Profile";
 
 interface IMenuProps {
   id: number;
@@ -41,7 +42,7 @@ function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
     <>
       {isMobileMode ? (
         <div className="h-15 fixed w-full bg-fuchsia-600 opacity-90">
-          <div className="flex justify-between">
+          <div className="flex flex-col">
             <ButtonMenu
               handleClick={handleClickMenu}
               iconType={<GiHamburgerMenu className="m-2 h-7 w-8" />}
@@ -49,15 +50,14 @@ function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
 
             {showMenu && (
               <div>
-                <ul className="flex flex-col items-center justify-center text-white">
-                  {listItems}
-                </ul>
+                <ul className="flex flex-col items-center justify-center">{listItems}</ul>
               </div>
             )}
           </div>
         </div>
       ) : (
         <div className="h-screen w-40 rounded-r-2xl bg-fuchsia-600">
+          <Profile />
           <ul className="text-white">{listItems}</ul>
         </div>
       )}
