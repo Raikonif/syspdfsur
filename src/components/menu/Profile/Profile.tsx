@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import ProfileCard from "~/components/menu/Profile/ProfileCard";
 
-function Profile(): JSX.Element {
+interface IProps {
+  openModalSignOut: () => void;
+}
+function Profile({ openModalSignOut }: IProps): JSX.Element {
   const [openProfile, setOpenProfile] = useState<boolean>(false);
   return (
     <>
       <button
-        className="flex items-center justify-center border-b p-2 pb-4 hover:rounded-tr-2xl hover:bg-violet-600 active:bg-violet-400"
+        className="flex items-center justify-center border-b p-2 pb-4 pr-3 hover:rounded-tr-2xl hover:bg-violet-600 active:bg-violet-400"
         onClick={() => setOpenProfile(!openProfile)}
       >
         <div className="flex flex-col items-center justify-center">
@@ -15,12 +18,12 @@ function Profile(): JSX.Element {
             src="https://placeimg.com/400/400/animals"
             alt="..."
           />
-          <h1 className="text-white">Nandy</h1>
+          <h1 className="pt-2 text-white">Nandy</h1>
         </div>
       </button>
       {openProfile && (
-        <div className="ml-10 mt-2">
-          <ProfileCard />
+        <div className="fixed left-2 top-2 ml-40">
+          <ProfileCard openModal={openModalSignOut} />
         </div>
       )}
     </>

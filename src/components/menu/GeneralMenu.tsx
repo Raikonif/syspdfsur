@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/all";
 import ButtonMenu from "~/components/menu/ButtonMenu";
 import Profile from "~/components/menu/Profile/Profile";
+import SignOutModal from "~/components/menu/Profile/SignOutModal";
 
 interface IMenuProps {
   id: number;
@@ -17,6 +18,7 @@ interface IProps {
 
 function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  const [openSignOut, setopenSignOut] = useState<boolean>(false);
   const handleClickMenu = () => {
     setShowMenu(!showMenu);
   };
@@ -57,7 +59,12 @@ function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
         </div>
       ) : (
         <div className="fixed h-screen w-40 rounded-r-2xl bg-fuchsia-600">
-          <Profile />
+          <Profile openModalSignOut={() => setopenSignOut(true)} />
+          {openSignOut && (
+            <div className="fixed inset-0 z-20 flex items-center justify-center bg-gray-400 bg-opacity-50 backdrop-blur-sm">
+              <SignOutModal onClose={() => setopenSignOut(false)} />
+            </div>
+          )}
           <ul className="text-white">{listItems}</ul>
         </div>
       )}
