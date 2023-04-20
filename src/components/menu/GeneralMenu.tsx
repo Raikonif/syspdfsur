@@ -24,7 +24,7 @@ function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
   const listItems: JSX.Element[] = itemList.map((item: IMenuProps) =>
     isMobileMode ? (
       <li
-        className="m-1 rounded-lg p-2 text-white duration-300 hover:scale-110 active:scale-110 active:border-2 active:border-white"
+        className="m-1 p-2 text-white duration-300 hover:scale-125 active:scale-125 active:border-l-2"
         key={item.id}
       >
         {item.title}
