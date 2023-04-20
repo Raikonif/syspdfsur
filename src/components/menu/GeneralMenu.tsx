@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/all";
 import ButtonMenu from "~/components/menu/ButtonMenu";
+import Profile from "~/components/menu/Profile";
 
 interface IMenuProps {
   id: number;
@@ -58,6 +59,7 @@ function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
         </div>
       ) : (
         <div className="h-screen w-40 rounded-r-2xl bg-fuchsia-600">
+          <Profile />
           <ul className="text-white">{listItems}</ul>
         </div>
       )}

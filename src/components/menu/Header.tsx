@@ -11,7 +11,7 @@ function Header(): JSX.Element {
     <>
       <div className="flex w-full">
         {mobileMode && (
-          <div className="h-20 w-full rounded-lg bg-slate-100">
+          <div className="flex h-20 w-full items-center justify-center rounded-lg bg-slate-100">
             <div>Header</div>
           </div>
         )}
