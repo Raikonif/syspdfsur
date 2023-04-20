@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/all";
 import ButtonMenu from "~/components/menu/ButtonMenu";
-import Profile from "~/components/menu/Profile";
+import Profile from "~/components/menu/Profile/Profile";
 
 interface IMenuProps {
   id: number;
@@ -31,7 +31,7 @@ function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
       </li>
     ) : (
       <li
-        className="pb-10 pl-4 pt-10 text-white shadow hover:rounded-r-lg hover:bg-violet-600 hover:text-slate-200 hover:shadow-lg active:bg-violet-400"
+        className="pb-10 pl-4 pt-10 text-white shadow hover:bg-violet-600 hover:text-slate-200 hover:shadow-lg active:bg-violet-400"
         key={item.id}
       >
         {item.title}
@@ -56,7 +56,7 @@ function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
           </div>
         </div>
       ) : (
-        <div className="h-screen w-40 rounded-r-2xl bg-fuchsia-600">
+        <div className="fixed h-screen w-40 rounded-r-2xl bg-fuchsia-600">
           <Profile />
           <ul className="text-white">{listItems}</ul>
         </div>

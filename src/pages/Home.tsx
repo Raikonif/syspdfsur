@@ -6,7 +6,6 @@ import Header from "~/components/menu/Header";
 import SearchButton from "~/components/menu/search/SearchButton";
 
 function Home(): JSX.Element {
-  const [showModal, setShowModal] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<string>("patients");
   const [mobileMode, setMobileMode] = useState<boolean>(false);
 
@@ -33,12 +32,14 @@ function Home(): JSX.Element {
   return (
     <div
       className={`${
-        mobileMode ? "flex h-screen w-full flex-col bg-white" : "flex h-screen w-full bg-white"
+        mobileMode ? "flex h-screen w-full flex-col bg-white" : "flex h-screen w-screen bg-white"
       }`}
     >
       <SearchButton isMobileMode={mobileMode} />
-      <GeneralMenu itemList={homeOptions.menuOptions} isMobileMode={mobileMode} />
-      <div className="flex w-screen flex-col">
+      <div className="w-40">
+        <GeneralMenu itemList={homeOptions.menuOptions} isMobileMode={mobileMode} />
+      </div>
+      <div className="flex h-full w-full flex-col">
         <div className="flex">
           <Header />
         </div>

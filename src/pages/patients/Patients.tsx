@@ -22,8 +22,8 @@ function Patients(): JSX.Element {
   const description =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae nisl vi elit. Lorem Ipsum dolor sit amet";
   return (
-    <div className="flex items-center justify-center">
-      <div className="m-10 mb-10 mt-14 grid h-auto grid-cols-5 justify-between gap-6 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md2:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+    <div className="flex w-full items-center justify-center">
+      <div className="mx-10 mb-5 mt-5 grid h-auto grid-cols-5 justify-between gap-6 xs:mt-20 xs:grid-cols-1 sm:mt-20 sm:grid-cols-2 md:grid-cols-3 md2:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         <PatientCard description={description} setModalBool={handleChildStateChange} />
         <PatientCard description={description} setModalBool={handleChildStateChange} />
         <PatientCard description={description} setModalBool={handleChildStateChange} />
