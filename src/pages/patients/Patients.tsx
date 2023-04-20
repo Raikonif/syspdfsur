@@ -38,7 +38,7 @@ function Patients(): JSX.Element {
         <PatientCard description={description} setModalBool={handleChildStateChange} />
       </div>
       {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-400 bg-opacity-50 backdrop-blur-sm">
+        <div className="fixed inset-0 z-20 flex items-center justify-center bg-gray-400 bg-opacity-50 backdrop-blur-sm">
           <GeneralModal onClose={() => setShowModal(false)} refModal={refModal}>
             <h1>Soy un modal</h1>
           </GeneralModal>
