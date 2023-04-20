@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import GeneralMenu from "~/components/menu/GeneralMenu";
 import homeOptions from "~/constants/options/home.options";
-import Patients from "~/pages/Patients";
+import Patients from "~/pages/patients/Patients";
 import Header from "~/components/menu/Header";
 import SearchButton from "~/components/menu/search/SearchButton";
 

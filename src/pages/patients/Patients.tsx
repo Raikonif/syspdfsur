@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import PatientCard from "~/components/PatientCard";
+import PatientCard from "~/pages/patients/components/PatientCard";
 import GeneralModal from "~/components/modal/GeneralModal";
 
 function Patients(): JSX.Element {
@@ -38,11 +38,8 @@ function Patients(): JSX.Element {
         <PatientCard description={description} setModalBool={handleChildStateChange} />
       </div>
       {showModal && (
-        <div
-          className="fixed h-screen content-center items-center justify-center bg-slate-50"
-          ref={refModal}
-        >
-          <GeneralModal onClose={() => setShowModal(false)}>
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-400 bg-opacity-50 backdrop-blur-sm">
+          <GeneralModal onClose={() => setShowModal(false)} refModal={refModal}>
             <h1>Soy un modal</h1>
           </GeneralModal>
         </div>
