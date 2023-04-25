@@ -15,19 +15,14 @@ import Home from "~/pages/home/Home";
 const GenericRoutes = () => {
   return (
     <>
-      <Routes>
-        <Route path="auth" element={<AuthLayout />}>
-          <Route path="auth" index element={<Login />} />
-        </Route>
-        <Route path="/" element={<GeneralLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="patients" element={<Patients />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="patients_history" element={<PatientsHistory />} />
-          <Route path="settings" element={<Settings />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
+      <Route path="/" element={<GeneralLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="patients" element={<Patients />} />
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="patients_history" element={<PatientsHistory />} />
+        <Route path="settings" element={<Settings />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
     </>
   );
 };
