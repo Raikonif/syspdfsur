@@ -42,7 +42,6 @@ function Admin(): JSX.Element {
       <div className="w-40">
         <GeneralMenu itemList={homeOptions.menuOptions} isMobileMode={mobileMode} />
       </div>
-      <div></div>
       <SearchButton isMobileMode={mobileMode} />
       {modalProfile && <ProfileCard openModal={() => setModalSignOut(true)} />}
       {modalSignOut && (

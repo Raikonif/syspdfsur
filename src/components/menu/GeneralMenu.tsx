@@ -36,14 +36,13 @@ function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
       </NavLink>
     ) : (
       <NavLink
-        className={`${({ isActive }: any) =>
-          isActive
-            ? active
-            : ""}flex flex-col pb-10 pl-4 pt-10 text-white shadow hover:bg-violet-600 hover:text-slate-200 hover:shadow-lg active:bg-violet-400`}
+        className={`${({ isActive }: any) => (isActive ? active : "")}`}
         key={item.id}
         to={item.link}
       >
-        {item.title}
+        <li className="flex flex-col pb-10 pl-4 pt-10 text-white shadow hover:bg-violet-600 hover:text-slate-200 hover:shadow-lg active:bg-violet-400">
+          {item.title}
+        </li>
       </NavLink>
     ),
   );
