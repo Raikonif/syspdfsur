@@ -23,17 +23,28 @@ function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
   const handleClickMenu = () => {
     setShowMenu(!showMenu);
   };
-  const active = "bg-violet-400 text-slate-200 border-l-2 border-slate-200";
+  const active =
+    "flex justify-center bg-fuchsia-500 text-slate-200 rounded w-full border-slate-200";
+  const activeDesktop =
+    "flex flex-col bg-fuchsia-500 text-slate-200 rounded w-full border-slate-200";
 
   const listItems: JSX.Element[] = itemList.map((item: IMenuProps) =>
     isMobileMode ? (
-      <NavLink key={item.id} to={item.link} className={({ isActive }) => (isActive ? active : "")}>
-        <li className="m-1 p-2 text-white duration-300 hover:scale-125 active:scale-125 active:border-l-2">
+      <NavLink
+        key={item.id}
+        to={item.link}
+        className={({ isActive }): string => (isActive ? active : "flex justify-center")}
+      >
+        <li className=" m-1 flex w-full justify-center p-2 text-white duration-300 hover:scale-125 active:scale-125 active:border-l-2">
           {item.title}
         </li>
       </NavLink>
     ) : (
-      <NavLink key={item.id} to={item.link} className={({ isActive }) => (isActive ? active : "")}>
+      <NavLink
+        key={item.id}
+        to={item.link}
+        className={({ isActive }) => (isActive ? activeDesktop : "")}
+      >
         <li className="flex flex-col pb-10 pl-4 pt-10 text-white shadow hover:bg-violet-600 hover:text-slate-200 hover:shadow-lg active:bg-violet-400">
           {item.title}
         </li>
@@ -65,7 +76,9 @@ function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
               <SignOutModal onClose={() => setopenSignOut(false)} />
             </div>
           )}
-          <ul className="text-white">{listItems}</ul>
+          <div>
+            <ul className="text-white">{listItems}</ul>
+          </div>
         </div>
       )}
     </>
