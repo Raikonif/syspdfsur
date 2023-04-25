@@ -23,23 +23,17 @@ function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
   const handleClickMenu = () => {
     setShowMenu(!showMenu);
   };
-  const active = "bg-violet-600 text-slate-200 border-l-2 border-slate-200";
+  const active = "bg-violet-400 text-slate-200 border-l-2 border-slate-200";
 
   const listItems: JSX.Element[] = itemList.map((item: IMenuProps) =>
     isMobileMode ? (
-      <NavLink
-        className="m-1 p-2 text-white duration-300 hover:scale-125 active:scale-125 active:border-l-2"
-        key={item.id}
-        to={item.link}
-      >
-        {item.title}
+      <NavLink key={item.id} to={item.link} className={({ isActive }) => (isActive ? active : "")}>
+        <li className="m-1 p-2 text-white duration-300 hover:scale-125 active:scale-125 active:border-l-2">
+          {item.title}
+        </li>
       </NavLink>
     ) : (
-      <NavLink
-        className={`${({ isActive }: any) => (isActive ? active : "")}`}
-        key={item.id}
-        to={item.link}
-      >
+      <NavLink key={item.id} to={item.link} className={({ isActive }) => (isActive ? active : "")}>
         <li className="flex flex-col pb-10 pl-4 pt-10 text-white shadow hover:bg-violet-600 hover:text-slate-200 hover:shadow-lg active:bg-violet-400">
           {item.title}
         </li>

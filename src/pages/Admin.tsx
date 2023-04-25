@@ -42,6 +42,12 @@ function Admin(): JSX.Element {
       <div className="w-40">
         <GeneralMenu itemList={homeOptions.menuOptions} isMobileMode={mobileMode} />
       </div>
+      <div className="flex h-full w-full flex-col">
+        <div className="flex">
+          <Header />
+        </div>
+        <GenericRoutes />
+      </div>
       <SearchButton isMobileMode={mobileMode} />
       {modalProfile && <ProfileCard openModal={() => setModalSignOut(true)} />}
       {modalSignOut && (
@@ -49,12 +55,6 @@ function Admin(): JSX.Element {
           <SignOutModal onClose={() => setModalSignOut(false)} />
         </div>
       )}
-      <div className="flex h-full w-full flex-col">
-        <div className="flex">
-          <Header />
-        </div>
-        <GenericRoutes />
-      </div>
     </div>
   );
 }
