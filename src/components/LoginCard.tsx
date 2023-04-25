@@ -1,7 +1,7 @@
 import React from "react";
 import { GiMicroscope } from "react-icons/gi";
 import { RiLockPasswordFill } from "react-icons/ri";
-import Button from "~/components/Button";
+import GeneralButton from "~/components/GeneralButton";
 import { useNavigate } from "react-router-dom";
 import loginOption from "~/constants/options/login.option";
 import toast, { Toaster } from "react-hot-toast";
@@ -46,7 +46,7 @@ function LoginCard(): JSX.Element {
             </label>
           </div>
           <div className="p-1">
-            <Button btnType={loginOption.btnType} textButton={loginOption.buttonName} />
+            <GeneralButton btnType={loginOption.btnType} textButton={loginOption.buttonName} />
           </div>
         </div>
       </form>

@@ -6,7 +6,7 @@ interface IProps {
   action?: () => void;
   btnType: BtnType;
 }
-function Button({ btnType, textButton, action }: IProps): JSX.Element {
+function GeneralButton({ btnType, textButton, action }: IProps): JSX.Element {
   return (
     <button type={btnType} className="btn min-w-full" onClick={action}>
       <h1 className="font-semibold text-white">{textButton}</h1>
@@ -14,4 +14,4 @@ function Button({ btnType, textButton, action }: IProps): JSX.Element {
   );
 }
 
-export default Button;
+export default GeneralButton;

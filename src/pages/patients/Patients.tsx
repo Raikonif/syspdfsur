@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import PatientCard from "~/pages/patients/components/PatientCard";
 import GeneralModal from "~/components/modal/GeneralModal";
 import GeneralField from "~/components/GeneralField";
+import GeneralButton from "~/components/GeneralButton";
 
 function Patients(): JSX.Element {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -31,33 +32,52 @@ function Patients(): JSX.Element {
     placeholder: "description",
   };
   return (
-    <div className="flex w-full items-center justify-center">
-      <div className="mx-10 grid h-auto grid-cols-5 justify-between gap-6 py-4 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md2:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-        <PatientCard description={description} setModalBool={handleChildStateChange} />
-        <PatientCard description={description} setModalBool={handleChildStateChange} />
-        <PatientCard description={description} setModalBool={handleChildStateChange} />
-        <PatientCard description={description} setModalBool={handleChildStateChange} />
-        <PatientCard description={description} setModalBool={handleChildStateChange} />
-        <PatientCard description={description} setModalBool={handleChildStateChange} />
-        <PatientCard description={description} setModalBool={handleChildStateChange} />
-        <PatientCard description={description} setModalBool={handleChildStateChange} />
-        <PatientCard description={description} setModalBool={handleChildStateChange} />
-        <PatientCard description={description} setModalBool={handleChildStateChange} />
-        <PatientCard description={description} setModalBool={handleChildStateChange} />
-        <PatientCard description={description} setModalBool={handleChildStateChange} />
+    <>
+      <div className="flex w-full items-center justify-center">
+        <div className="mx-10 grid h-auto grid-cols-5 justify-between gap-6 py-4 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md2:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+          <PatientCard description={description} setModalBool={handleChildStateChange} />
+          <PatientCard description={description} setModalBool={handleChildStateChange} />
+          <PatientCard description={description} setModalBool={handleChildStateChange} />
+          <PatientCard description={description} setModalBool={handleChildStateChange} />
+          <PatientCard description={description} setModalBool={handleChildStateChange} />
+          <PatientCard description={description} setModalBool={handleChildStateChange} />
+          <PatientCard description={description} setModalBool={handleChildStateChange} />
+          <PatientCard description={description} setModalBool={handleChildStateChange} />
+          <PatientCard description={description} setModalBool={handleChildStateChange} />
+          <PatientCard description={description} setModalBool={handleChildStateChange} />
+          <PatientCard description={description} setModalBool={handleChildStateChange} />
+          <PatientCard description={description} setModalBool={handleChildStateChange} />
+        </div>
       </div>
       {showModal && (
-        <div className="fixed inset-0 z-20 flex items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
+        <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
           <GeneralModal onClose={() => setShowModal(false)} refModal={refModal}>
-            <div className="flex justify-center">
-              <h1>Editar Paciente</h1>
-              <div></div>
+            <div className="flex h-full w-full flex-col items-center">
+              <h1 className="pb-10 text-3xl font-bold">Edit Patient</h1>
               <GeneralField fieldObj={objField} />
+              <GeneralField fieldObj={objField} />
+              <GeneralField fieldObj={objField} />
+              <div className="flex w-full">
+                <GeneralField fieldObj={objField} />
+                <GeneralField fieldObj={objField} />
+              </div>
+              <div className="flex w-full">
+                <GeneralField fieldObj={objField} />
+                <GeneralField fieldObj={objField} />
+                <GeneralField fieldObj={objField} />
+              </div>
+              <div className="absolute bottom-7 right-7">
+                <GeneralButton
+                  textButton={"Save Changes"}
+                  btnType={"submit"}
+                  action={() => setShowModal(false)}
+                />
+              </div>
             </div>
           </GeneralModal>
         </div>
       )}
-    </div>
+    </>
   );
 }
 

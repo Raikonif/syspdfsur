@@ -11,7 +11,7 @@ function GeneralModal({ onClose, children, refModal }: ModalProps): JSX.Element 
     <>
       <div
         ref={refModal}
-        className="fixed flex h-5/6 w-5/6 items-center justify-center rounded-xl bg-white shadow-2xl transition-colors"
+        className="fixed flex h-5/6 w-5/6 justify-center rounded-xl bg-white shadow-2xl transition-colors"
       >
         <button
           onClick={onClose}
@@ -19,7 +19,7 @@ function GeneralModal({ onClose, children, refModal }: ModalProps): JSX.Element 
         >
           X
         </button>
-        <div>{children}</div>
+        <div className="flex w-full justify-center px-10 py-10 xs:px-4 xs:py-8">{children}</div>
       </div>
     </>
   );
