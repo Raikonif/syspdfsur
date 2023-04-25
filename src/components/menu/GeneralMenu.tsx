@@ -3,6 +3,7 @@ import { GiHamburgerMenu } from "react-icons/all";
 import ButtonMenu from "~/components/menu/ButtonMenu";
 import Profile from "~/components/menu/Profile/Profile";
 import SignOutModal from "~/components/menu/Profile/SignOutModal";
+import { Link, NavLink } from "react-router-dom";
 
 interface IMenuProps {
   id: number;
@@ -22,22 +23,28 @@ function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
   const handleClickMenu = () => {
     setShowMenu(!showMenu);
   };
+  const active = "bg-violet-600 text-slate-200 border-l-2 border-slate-200";
 
   const listItems: JSX.Element[] = itemList.map((item: IMenuProps) =>
     isMobileMode ? (
-      <li
+      <NavLink
         className="m-1 p-2 text-white duration-300 hover:scale-125 active:scale-125 active:border-l-2"
         key={item.id}
+        to={item.link}
       >
         {item.title}
-      </li>
+      </NavLink>
     ) : (
-      <li
-        className="pb-10 pl-4 pt-10 text-white shadow hover:bg-violet-600 hover:text-slate-200 hover:shadow-lg active:bg-violet-400"
+      <NavLink
+        className={`${({ isActive }: any) =>
+          isActive
+            ? active
+            : ""}flex flex-col pb-10 pl-4 pt-10 text-white shadow hover:bg-violet-600 hover:text-slate-200 hover:shadow-lg active:bg-violet-400`}
         key={item.id}
+        to={item.link}
       >
         {item.title}
-      </li>
+      </NavLink>
     ),
   );
   return (
