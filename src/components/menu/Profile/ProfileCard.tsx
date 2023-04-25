@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "~/components/Button";
+import GeneralButton from "~/components/GeneralButton";
 import { FaUserEdit } from "react-icons/all";
 
 interface IProps {
@@ -21,7 +21,7 @@ function ProfileCard({ openModal }: IProps): JSX.Element {
           <span className="text-gray-400 active:text-gray-300">Edit Information</span>
         </button>
       </div>
-      <Button textButton={"Sign Out"} btnType={"button"} action={() => openModal(true)} />
+      <GeneralButton textButton={"Sign Out"} btnType={"button"} action={() => openModal(true)} />
     </div>
   );
 }

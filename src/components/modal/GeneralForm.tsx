@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "~/components/Button";
+import GeneralButton from "~/components/GeneralButton";
 import modalOptions from "~/constants/options/modal.options";
 import Fields from "~/components/modal/Fields";
 
@@ -24,7 +24,7 @@ function GeneralForm(): JSX.Element {
           <Fields itemFields={modalOptions.fields} onInputChange={handleInputChange} />
         </div>
         <div>
-          <Button textButton={modalOptions.buttonName} btnType={modalOptions.btnType} />
+          <GeneralButton textButton={modalOptions.buttonName} btnType={modalOptions.btnType} />
         </div>
       </div>
     </form>
