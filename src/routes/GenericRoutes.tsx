@@ -14,7 +14,7 @@ import Home from "~/pages/home/Home";
 
 const GenericRoutes = () => {
   return (
-    <>
+    <Routes>
       <Route path="/" element={<GeneralLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="patients" element={<Patients />} />
@@ -23,7 +23,7 @@ const GenericRoutes = () => {
         <Route path="settings" element={<Settings />} />
         <Route path="*" element={<NotFound />} />
       </Route>
-    </>
+    </Routes>
   );
 };
 
