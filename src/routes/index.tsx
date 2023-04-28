@@ -1,7 +1,7 @@
 import { useRoutes } from "react-router";
 
-import GenericRoutes from "./GenericRoutes2";
-import AuthRoutes from "./AuthRoutes2";
+import GenericRoutes from "./GenericRoutes";
+import AuthRoutes from "./AuthRoutes";
 // import AuthRoutes from "./AuthRoutes";
 
 function RoutesApp() {
