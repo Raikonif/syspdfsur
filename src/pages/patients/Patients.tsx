@@ -6,6 +6,7 @@ import GeneralButton from "~/components/GeneralButton";
 
 function Patients(): JSX.Element {
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [showModalShow, setShowModalShow] = useState<boolean>(false);
   const refModal = useRef<HTMLDivElement>(null);
   const handleChildStateChange = (newState: boolean) => {
     setShowModal(newState);
@@ -75,6 +76,17 @@ function Patients(): JSX.Element {
               </div>
             </div>
           </GeneralModal>
+        </div>
+      )}
+      {showModalShow && (
+        <div>
+          <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
+            <GeneralModal onClose={() => setShowModalShow(false)} refModal={refModal}>
+              <div className="flex h-full w-full flex-col items-center">
+                <h1 className="pb-10 text-3xl font-bold">Show Patient</h1>
+              </div>
+            </GeneralModal>
+          </div>
         </div>
       )}
     </>
