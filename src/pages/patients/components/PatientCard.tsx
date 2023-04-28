@@ -9,7 +9,7 @@ interface IProps {
 function PatientCard({ description, setModalBool }: IProps): JSX.Element {
   const [currentDescription, setCurrentDescription] = useState<string>(description);
   // const refModal = useRef<HTMLDivElement>(null);
-  const maxLength = 40;
+  const maxLength = 60;
 
   useEffect(() => {
     if (maxLength < currentDescription.length) {
