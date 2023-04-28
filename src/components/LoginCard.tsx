@@ -9,7 +9,7 @@ function LoginCard(): JSX.Element {
   const navigate = useNavigate();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate("/");
+    navigate("/dashboard");
     toast.success("Login success");
     console.log("submit");
   };

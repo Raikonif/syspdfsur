@@ -7,7 +7,7 @@ import Settings from "~/pages/Settings";
 import NotFound from "~/pages/NotFound";
 
 const GenericRoutes = {
-  path: "/",
+  path: "",
   element: <GeneralLayout />,
   children: [
     {
