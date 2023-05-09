@@ -4,10 +4,14 @@ import { FaUserEdit } from "react-icons/all";
 
 interface IProps {
   openModal: (open: boolean) => void;
+  ref: React.RefObject<HTMLDivElement>;
 }
 function ProfileCard({ openModal }: IProps): JSX.Element {
   return (
-    <div className=" fixed z-20 flex h-60 w-60 flex-col items-center justify-center rounded-lg border border-gray-300 bg-white shadow-2xl">
+    <div
+      // ref={ref}
+      className="fixed z-20 flex h-60 w-60 flex-col items-center justify-center rounded-lg border border-gray-300 bg-white shadow-2xl"
+    >
       <img
         className="h-30 w-30 rounded-full shadow-xl"
         src="https://placeimg.com/100/100/animals"
