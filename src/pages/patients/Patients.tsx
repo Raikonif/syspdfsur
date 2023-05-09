@@ -11,6 +11,9 @@ function Patients(): JSX.Element {
   const handleChildStateChange = (newState: boolean) => {
     setShowModal(newState);
   };
+  const handleChildShowStateChange = (newState: boolean) => {
+    setShowModalShow(newState);
+  };
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (refModal.current && !refModal.current.contains(event.target as Node)) {
@@ -22,6 +25,12 @@ function Patients(): JSX.Element {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [refModal]);
+
+  useEffect(() => {
+    if (showModal && showModalShow) {
+      setShowModalShow(false);
+    }
+  }, [showModalShow]);
   const description =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae nisl vi elit. Lorem Ipsum dolor sit amet";
 
@@ -36,18 +45,66 @@ function Patients(): JSX.Element {
     <>
       <div className="flex w-full items-center justify-center">
         <div className="mx-10 grid h-auto grid-cols-5 justify-between gap-6 py-4 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md2:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-          <PatientCard description={description} setModalBool={handleChildStateChange} />
-          <PatientCard description={description} setModalBool={handleChildStateChange} />
-          <PatientCard description={description} setModalBool={handleChildStateChange} />
-          <PatientCard description={description} setModalBool={handleChildStateChange} />
-          <PatientCard description={description} setModalBool={handleChildStateChange} />
-          <PatientCard description={description} setModalBool={handleChildStateChange} />
-          <PatientCard description={description} setModalBool={handleChildStateChange} />
-          <PatientCard description={description} setModalBool={handleChildStateChange} />
-          <PatientCard description={description} setModalBool={handleChildStateChange} />
-          <PatientCard description={description} setModalBool={handleChildStateChange} />
-          <PatientCard description={description} setModalBool={handleChildStateChange} />
-          <PatientCard description={description} setModalBool={handleChildStateChange} />
+          <PatientCard
+            description={description}
+            setModalBool={handleChildStateChange}
+            setShowModalBool={handleChildShowStateChange}
+          />
+          <PatientCard
+            description={description}
+            setModalBool={handleChildStateChange}
+            setShowModalBool={handleChildShowStateChange}
+          />
+          <PatientCard
+            description={description}
+            setModalBool={handleChildStateChange}
+            setShowModalBool={handleChildShowStateChange}
+          />
+          <PatientCard
+            description={description}
+            setModalBool={handleChildStateChange}
+            setShowModalBool={handleChildShowStateChange}
+          />
+          <PatientCard
+            description={description}
+            setModalBool={handleChildStateChange}
+            setShowModalBool={handleChildShowStateChange}
+          />
+          <PatientCard
+            description={description}
+            setModalBool={handleChildStateChange}
+            setShowModalBool={handleChildShowStateChange}
+          />
+          <PatientCard
+            description={description}
+            setModalBool={handleChildStateChange}
+            setShowModalBool={handleChildShowStateChange}
+          />
+          <PatientCard
+            description={description}
+            setModalBool={handleChildStateChange}
+            setShowModalBool={handleChildShowStateChange}
+          />
+          <PatientCard
+            description={description}
+            setModalBool={handleChildStateChange}
+            setShowModalBool={handleChildShowStateChange}
+          />
+          <PatientCard
+            description={description}
+            setModalBool={handleChildStateChange}
+            setShowModalBool={handleChildShowStateChange}
+          />
+          <PatientCard
+            description={description}
+            setModalBool={handleChildStateChange}
+            setShowModalBool={handleChildShowStateChange}
+          />
+          <PatientCard
+            description={description}
+            setModalBool={handleChildStateChange}
+            setShowModalBool={handleChildShowStateChange}
+          />
         </div>
       </div>
       {showModal && (

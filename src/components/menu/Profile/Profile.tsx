@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ProfileCard from "~/components/menu/Profile/ProfileCard";
 
 interface IProps {
@@ -6,6 +6,18 @@ interface IProps {
 }
 function Profile({ openModalSignOut }: IProps): JSX.Element {
   const [openProfile, setOpenProfile] = useState<boolean>(false);
+  const refModal = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (refModal.current && !refModal.current.contains(event.target as Node)) {
+        setOpenProfile(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [refModal]);
   return (
     <>
       <button
@@ -23,7 +35,7 @@ function Profile({ openModalSignOut }: IProps): JSX.Element {
       </button>
       {openProfile && (
         <div className="fixed left-2 top-2 ml-40">
-          <ProfileCard openModal={openModalSignOut} />
+          <ProfileCard openModal={openModalSignOut} ref={refModal} />
         </div>
       )}
     </>
