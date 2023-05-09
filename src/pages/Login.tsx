@@ -12,12 +12,12 @@ function Login(): JSX.Element {
     if (isAuth) {
       navigate("/patients");
     }
-  }, [Toaster]);
+  }, [isAuth]);
 
   const handleSubmitLoginCard = (data: ILoginProps) => {
     if (data.email === "raikonif@gmail.com" && data.password === "admin") {
       setIsAuth(true);
-      toast.success("Welcome!");
+      // navigate("/patients");
     } else {
       setIsAuth(false);
       toast.error("User or Password incorrect!");
