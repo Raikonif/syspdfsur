@@ -3,7 +3,7 @@ import AuthLayout from "~/layouts/AuthLayout";
 import Login from "~/pages/Login";
 
 const AuthRoutes = {
-  path: "/auth",
+  path: "auth",
   element: <AuthLayout />,
   children: [
     {

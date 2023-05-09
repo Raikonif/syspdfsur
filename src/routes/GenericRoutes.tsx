@@ -11,24 +11,20 @@ const GenericRoutes = {
   element: <GeneralLayout />,
   children: [
     {
-      path: "/dashboard",
+      path: "dashboard",
       element: <Dashboard />,
     },
     {
-      path: "/patients",
+      path: "patients",
       element: <Patients />,
     },
     {
-      path: "/patients_history",
+      path: "patients_history",
       element: <PatientsHistory />,
     },
     {
-      path: "/settings",
+      path: "settings",
       element: <Settings />,
-    },
-    {
-      path: "*",
-      element: <NotFound />,
     },
   ],
 };

@@ -9,13 +9,11 @@ function LoginCard(): JSX.Element {
   const navigate = useNavigate();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate("/dashboard");
-    toast.success("Login success");
+    navigate("/patients");
     console.log("submit");
   };
   return (
     <div className="h-70 w-80">
-      <Toaster />
       <form onSubmit={handleSubmit}>
         <div className=" rounded-lg bg-white shadow-2xl">
           <h1 className="rounded-t-lg border-b bg-violet-500 p-5 text-center text-xl font-semibold text-white">
