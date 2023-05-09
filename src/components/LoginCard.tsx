@@ -36,6 +36,7 @@ function LoginCard({ onSubmit }: IProps): JSX.Element {
                   className="m-2 rounded-lg border border-violet-500 bg-slate-50 hover:border-violet-300 focus:outline-violet-700 active:bg-violet-400"
                   id="email"
                   name="email"
+                  type="email"
                   value={data.email}
                   onChange={(event) => setData({ ...data, email: event.target.value })}
                 />
@@ -49,6 +50,7 @@ function LoginCard({ onSubmit }: IProps): JSX.Element {
                   className="m-2 rounded-lg border border-violet-500 bg-slate-50 hover:border-violet-300 focus:outline-violet-700 active:bg-violet-400"
                   id="pass"
                   name="pass"
+                  type="password"
                   value={data.password}
                   onChange={(event) => setData({ ...data, password: event.target.value })}
                 />
