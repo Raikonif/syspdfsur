@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import LoginCard from "~/components/LoginCard";
 import bgCells from "~/assets/bg-cells.jpg";
 import toast, { Toaster } from "react-hot-toast";
@@ -8,6 +8,7 @@ import ILoginProps from "~/interfaces/loginInterface";
 function Login(): JSX.Element {
   const [isAuth, setIsAuth] = useState(false);
   const navigate = useNavigate();
+
   useEffect(() => {
     if (isAuth) {
       navigate("/patients");
