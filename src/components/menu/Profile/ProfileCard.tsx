@@ -4,7 +4,7 @@ import { FaUserEdit } from "react-icons/all";
 
 interface IProps {
   openModal: (open: boolean) => void;
-  ref: React.RefObject<HTMLDivElement>;
+  // ref: React.RefObject<HTMLDivElement>;
 }
 function ProfileCard({ openModal }: IProps): JSX.Element {
   return (
