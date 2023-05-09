@@ -4,31 +4,26 @@ import Dashboard from "~/pages/Dashboard";
 import Patients from "~/pages/patients/Patients";
 import PatientsHistory from "~/pages/PatientsHistory";
 import Settings from "~/pages/Settings";
-import NotFound from "~/pages/NotFound";
 
 const GenericRoutes = {
   path: "",
   element: <GeneralLayout />,
   children: [
     {
-      path: "/dashboard",
+      path: "dashboard",
       element: <Dashboard />,
     },
     {
-      path: "/patients",
+      path: "patients",
       element: <Patients />,
     },
     {
-      path: "/patients_history",
+      path: "patients_history",
       element: <PatientsHistory />,
     },
     {
-      path: "/settings",
+      path: "settings",
       element: <Settings />,
-    },
-    {
-      path: "*",
-      element: <NotFound />,
     },
   ],
 };
