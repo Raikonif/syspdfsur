@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { GiMicroscope } from "react-icons/gi";
 import { RiLockPasswordFill } from "react-icons/ri";
 import GeneralButton from "~/components/GeneralButton";
 import { useNavigate } from "react-router-dom";
 import loginOption from "~/constants/options/login.option";
-import toast, { Toaster } from "react-hot-toast";
-function LoginCard(): JSX.Element {
-  const navigate = useNavigate();
+import toast from "react-hot-toast";
+import ILoginProps from "~/interfaces/loginInterface";
+interface IProps {
+  onSubmit: (data: ILoginProps) => void;
+}
+function LoginCard({ onSubmit }: IProps): JSX.Element {
+  const [data, setData] = useState<ILoginProps>({
+    email: "",
+    password: "",
+  });
+  const [isLogged, setIsLogged] = useState<boolean>(false);
+  // const navigate = useNavigate();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate("/patients");
-    console.log("submit");
+    onSubmit(data);
   };
   return (
     <div className="h-70 w-80">
@@ -28,6 +36,8 @@ function LoginCard(): JSX.Element {
                   className="m-2 rounded-lg border border-violet-500 bg-slate-50 hover:border-violet-300 focus:outline-violet-700 active:bg-violet-400"
                   id="email"
                   name="email"
+                  value={data.email}
+                  onChange={(event) => setData({ ...data, email: event.target.value })}
                 />
               </div>
             </label>
@@ -39,6 +49,8 @@ function LoginCard(): JSX.Element {
                   className="m-2 rounded-lg border border-violet-500 bg-slate-50 hover:border-violet-300 focus:outline-violet-700 active:bg-violet-400"
                   id="pass"
                   name="pass"
+                  value={data.password}
+                  onChange={(event) => setData({ ...data, password: event.target.value })}
                 />
               </div>
             </label>
