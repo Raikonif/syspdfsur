@@ -2,7 +2,7 @@ import React from "react";
 
 import { Outlet } from "react-router-dom";
 
-function ClientRoutes(): JSX.Element {
+function ClientLayout(): JSX.Element {
   return (
     <div className="flex h-screen items-center justify-center">
       <Outlet />
@@ -10,4 +10,4 @@ function ClientRoutes(): JSX.Element {
   );
 }
 
-export default ClientRoutes;
+export default ClientLayout;

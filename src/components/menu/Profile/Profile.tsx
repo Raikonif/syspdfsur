@@ -35,7 +35,7 @@ function Profile({ openModalSignOut }: IProps): JSX.Element {
       </button>
       {openProfile && (
         <div className="fixed left-2 top-2 ml-40">
-          <ProfileCard openModal={openModalSignOut} ref={refModal} />
+          <ProfileCard openModal={openModalSignOut} />
         </div>
       )}
     </>
