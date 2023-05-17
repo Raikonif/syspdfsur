@@ -4,10 +4,15 @@ import Dashboard from "~/pages/Dashboard";
 import Patients from "~/pages/patients/Patients";
 import PatientsHistory from "~/pages/PatientsHistory";
 import Settings from "~/pages/Settings";
+import { AuthProvider } from "~/pages/login/context/AuthContext";
 
 const GenericRoutes = {
   path: "",
-  element: <GeneralLayout />,
+  element: (
+    <AuthProvider>
+      <GeneralLayout />
+    </AuthProvider>
+  ),
   children: [
     {
       path: "dashboard",
@@ -15,7 +20,11 @@ const GenericRoutes = {
     },
     {
       path: "patients",
-      element: <Patients />,
+      element: (
+        <AuthProvider>
+          <Patients />
+        </AuthProvider>
+      ),
     },
     {
       path: "patients_history",

@@ -23,6 +23,17 @@ function useAuth() {
 function AuthProvider({ children }: IProps): JSX.Element {
   const [user, setUser] = useState<ILoginProps>({} as ILoginProps);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  // useEffect(() => {
+  //   const suscribe = AuthService.suscribe((user) => {
+  //     if (user) {
+  //       setUser(user);
+  //       setIsLoggedIn(true);
+  //     } else {
+  //       setUser({} as ILoginProps);
+  //       setIsLoggedIn(false);
+  //     }
+  //   });
+  // }, [user, isLoggedIn]);
   const value = {
     user,
     setUser,
