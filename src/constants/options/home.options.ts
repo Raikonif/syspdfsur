@@ -25,6 +25,44 @@ const homeOptions = {
       link: "/settings",
     },
   ],
+  blogOptions: [
+    {
+      id: 1,
+      title: "Blogs",
+      icon: "fas fa-blog",
+      link: "/blogs",
+    },
+    {
+      id: 2,
+      title: "Categories",
+      icon: "fas fa-list",
+      link: "/categories",
+    },
+    {
+      id: 3,
+      title: "Recents",
+      icon: "fas fa-tags",
+      link: "/recents",
+    },
+    {
+      id: 4,
+      title: "Resources",
+      icon: "fas fa-tags",
+      link: "/resources",
+    },
+    {
+      id: 5,
+      title: "About Me",
+      icon: "fas fa-user",
+      link: "/about_me",
+    },
+    {
+      id: 6,
+      title: "Contact Me",
+      icon: "fas fa-phone",
+      link: "/contact_me",
+    },
+  ],
 };
 
 export default homeOptions;

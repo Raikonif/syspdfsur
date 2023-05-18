@@ -1,9 +1,13 @@
 import React from "react";
+import HomeMenu from "~/components/blog_menu/HomeMenu";
 
 function Home(): JSX.Element {
   return (
     <>
-      <div className="flex flex-col h-screen w-full items-center justify-center bg-slate-700">Home</div>
+      <div className="flex h-screen w-full flex-col items-center bg-slate-700">
+        <HomeMenu />
+        Home
+      </div>
     </>
   );
 }
