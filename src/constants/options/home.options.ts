@@ -34,33 +34,15 @@ const homeOptions = {
     },
     {
       id: 2,
-      title: "Categories",
-      icon: "fas fa-list",
-      link: "/categories",
-    },
-    {
-      id: 3,
-      title: "Recents",
-      icon: "fas fa-tags",
-      link: "/recents",
-    },
-    {
-      id: 4,
       title: "Resources",
       icon: "fas fa-tags",
       link: "/resources",
     },
     {
-      id: 5,
-      title: "About Me",
+      id: 3,
+      title: "About",
       icon: "fas fa-user",
       link: "/about_me",
-    },
-    {
-      id: 6,
-      title: "Contact Me",
-      icon: "fas fa-phone",
-      link: "/contact_me",
     },
   ],
 };
