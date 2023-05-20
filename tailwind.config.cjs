@@ -28,6 +28,9 @@ module.exports = {
       // => @media (min-width: 1536px) { ... }
       // ...defaultTheme.screens,
     },
+    fontFamily: {
+      sans: ["Ubuntu", ...defaultTheme.fontFamily.sans]
+    },
     extend: {
     },
   },

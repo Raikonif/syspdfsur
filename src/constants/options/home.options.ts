@@ -3,7 +3,7 @@ const homeOptions = {
     {
       id: 1,
       title: "Dashboard",
-      icon: "fas fa-home",
+      icon: "fas fa-ClientBlogs",
       link: "/dashboard",
     },
     {
