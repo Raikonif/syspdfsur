@@ -7,7 +7,7 @@ interface IProps {
   image: string;
   date: string;
 }
-function PostItem({ title, description, image, date, key }: IProps) {
+function PostCard({ title, description, image, date, key }: IProps) {
   return (
     <li
       className="m-1 flex w-full flex-col rounded-lg border bg-slate-50 p-1 shadow-xl hover:bg-violet-50 active:bg-violet-200"
@@ -22,4 +22,4 @@ function PostItem({ title, description, image, date, key }: IProps) {
   );
 }
 
-export default PostItem;
+export default PostCard;
