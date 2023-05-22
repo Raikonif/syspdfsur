@@ -5,8 +5,8 @@ const textsConstants = {
   },
   body: {
     listTypes: [
-      { id: 1, name: "Todos", link: "/all" },
-      { id: 2, name: "Recientes", link: "/recent" },
+      { id: 1, name: "Recientes", link: "/recent" },
+      { id: 2, name: "Todos", link: "/all" },
       { id: 3, name: "Histopatologicos", link: "/histopathology" },
       { id: 4, name: "Citologicos", link: "/cytology" },
       { id: 5, name: "PAP" },
@@ -52,6 +52,14 @@ const textsConstants = {
         date: "2020-01-01",
         link: "/posts/5",
       },
+      // {
+      //   id: 6,
+      //   title: "Caso 6",
+      //   description: "Descripcion del Caso 6",
+      //   image: "https://picsum.photos/200/300",
+      //   date: "2020-01-01",
+      //   link: "/posts/6",
+      // },
     ],
   },
 };

@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import PostsList from "~/components/posts/PostsList";
 import PostPreviewCard from "~/components/posts/PostPreviewCard";
 import { BiSearchAlt } from "react-icons/all";
+import PostFooter from "~/components/posts/PostFooter";
 function HomeBody(): JSX.Element {
   const article_selected_desktop = "bg-slate-100 text-fuchsia-500 border-b-2 border-fuchsia-500";
   const article_selected_mobile = "bg-slate-100 text-fuchsia-500";
@@ -33,7 +34,10 @@ function HomeBody(): JSX.Element {
             </NavLink>
           ))}
         </ul>
-        <PostsList />
+        <div className="flex w-full flex-col">
+          <PostsList />
+          <PostFooter />
+        </div>
       </div>
       <div className="flex w-1/3 flex-col">
         <PostPreviewCard
