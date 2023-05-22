@@ -11,6 +11,7 @@ interface IProps {
 }
 function LoginCard({ onSubmit }: IProps): JSX.Element {
   const [data, setData] = useState<ILoginProps>({
+    id: 0,
     email: "",
     password: "",
   });

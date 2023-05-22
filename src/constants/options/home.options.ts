@@ -3,7 +3,7 @@ const homeOptions = {
     {
       id: 1,
       title: "Dashboard",
-      icon: "fas fa-home",
+      icon: "fas fa-ClientBlogs",
       link: "/dashboard",
     },
     {
@@ -23,6 +23,26 @@ const homeOptions = {
       title: "Settings",
       icon: "fas fa-cog",
       link: "/settings",
+    },
+  ],
+  blogOptions: [
+    {
+      id: 1,
+      title: "Blogs",
+      icon: "fas fa-blog",
+      link: "/blogs",
+    },
+    {
+      id: 2,
+      title: "Resources",
+      icon: "fas fa-tags",
+      link: "/resources",
+    },
+    {
+      id: 3,
+      title: "About",
+      icon: "fas fa-user",
+      link: "/about",
     },
   ],
 };
