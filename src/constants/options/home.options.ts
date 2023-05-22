@@ -42,7 +42,7 @@ const homeOptions = {
       id: 3,
       title: "About",
       icon: "fas fa-user",
-      link: "/about_me",
+      link: "/about",
     },
   ],
 };
