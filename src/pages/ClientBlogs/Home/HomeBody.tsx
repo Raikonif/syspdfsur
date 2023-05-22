@@ -35,13 +35,15 @@ function HomeBody(): JSX.Element {
         </ul>
         <PostsList />
       </div>
-      <PostPreviewCard
-        key={1}
-        title={"test"}
-        description={"description test"}
-        image={"https://picsum.photos/200/300"}
-        date={"01-01-2023"}
-      />{" "}
+      <div className="flex w-1/3 flex-col">
+        <PostPreviewCard
+          key={1}
+          title={"TITLE TEST"}
+          description={"description test"}
+          image={"https://picsum.photos/200/300"}
+          date={"01-01-2023"}
+        />
+      </div>
     </div>
   );
 }
