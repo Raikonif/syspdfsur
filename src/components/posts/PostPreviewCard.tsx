@@ -1,14 +1,8 @@
 import React from "react";
 import GeneralButton from "~/components/GeneralButton";
+import IPostInterface from "~/interfaces/IPostInterface";
 
-interface IProps {
-  key: number;
-  title: string;
-  description: string;
-  image: string;
-  date: string;
-}
-function PostPreviewCard({ key, title, description, image, date }: IProps) {
+function PostPreviewCard({ key, title, description, image, date }: IPostInterface) {
   return (
     <div className="flex h-full flex-col rounded-lg bg-slate-50" key={key}>
       <span className="my-1 ml-2 font-semibold text-violet-700">{title}</span>
