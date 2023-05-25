@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { useState } from "react";
 import textsConstants from "~/pages/ClientBlogs/Home/constants/texts.constants";
 import { NavLink } from "react-router-dom";
 import PostsList from "~/components/posts/PostsList";
@@ -7,10 +7,7 @@ import { BiSearchAlt } from "react-icons/all";
 import PostFooter from "~/components/posts/PostFooter";
 import IPostInterface from "~/interfaces/IPostInterface";
 import PostContext from "~/pages/ClientBlogs/Home/context";
-// interface IPostContext {
-//   setPostSelected: (post: IPostInterface) => void;
-// }
-// const PostContext = createContext<IPostContext | null>(null);
+import { IMenuArticle } from "~/interfaces/menuInterface";
 function HomeBody(): JSX.Element {
   const [currentPost, setCurrentPost] = useState<IPostInterface>({} as IPostInterface);
   const handleCurrentPost = (updatePost: IPostInterface) => {
@@ -38,10 +35,10 @@ function HomeBody(): JSX.Element {
           </div>
         </div>
         <ul className="flex pt-2">
-          {textsConstants.body.listTypes.map((item: any) => (
+          {textsConstants.body.listTypes.map((item: IMenuArticle) => (
             <NavLink key={item.id} to={item.link} className={""}>
               <li className="rounded-full px-3 text-violet-500 hover:bg-slate-100 hover:text-fuchsia-500">
-                {item.name}
+                {item.title}
               </li>
             </NavLink>
           ))}
