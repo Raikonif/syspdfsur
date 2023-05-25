@@ -5,4 +5,9 @@ interface IMenuInterface {
   link: string;
 }
 
+export interface IMenuArticle {
+  id: number;
+  title: string;
+  link: string;
+}
 export default IMenuInterface;

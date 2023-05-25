@@ -5,11 +5,11 @@ const textsConstants = {
   },
   body: {
     listTypes: [
-      { id: 1, name: "Recientes", link: "/recent" },
-      { id: 2, name: "Todos", link: "/all" },
-      { id: 3, name: "Histopatologicos", link: "/histopathology" },
-      { id: 4, name: "Citologicos", link: "/cytology" },
-      { id: 5, name: "PAP" },
+      { id: 1, title: "Recientes", link: "/recent" },
+      { id: 2, title: "Todos", link: "/all" },
+      { id: 3, title: "Histopatologicos", link: "/histopathology" },
+      { id: 4, title: "Citologicos", link: "/cytology" },
+      { id: 5, title: "PAP", link: "/pap" },
     ],
     postsList: [
       {
