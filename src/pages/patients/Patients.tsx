@@ -45,6 +45,7 @@ function Patients(): JSX.Element {
     <>
       <div className="flex w-full items-center justify-center">
         <div className="mx-10 grid h-auto grid-cols-5 justify-between gap-6 py-4 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md2:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+          {}
           <PatientCard
             description={description}
             setModalBool={handleChildStateChange}
