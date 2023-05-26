@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import homeOptions from "~/constants/options/home.options";
 import IMenuInterface from "~/interfaces/menuInterface";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -8,11 +8,13 @@ function HomeMenu(): JSX.Element {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [goHome, setGoHome] = useState(false);
   const navigateHome = useNavigate();
-  const activeDesktop = "bg-violet-500 rounded-full duration-500";
-  const activeMobile = "bg-violet-500 rounded-full duration-500";
+  const activeDesktop = "bg-slate-100 rounded-full duration-500";
+  const activeMobile = "bg-slate-100 rounded-full duration-500";
   const listMenu: JSX.Element[] = homeOptions.blogOptions.map((item: IMenuInterface) => (
     <NavLink
-      className="hover:rounded-lg hover:bg-slate-200 hover:duration-500"
+      className={({ isActive }): string =>
+        isActive ? activeDesktop : "hover:rounded-lg hover:bg-slate-200 hover:duration-500"
+      }
       key={item.id}
       to={item.link}
     >
@@ -35,7 +37,7 @@ function HomeMenu(): JSX.Element {
           alt="..."
         />
       </button>
-
+      {/*TODO: Change the behavior option selected from menu*/}
       <ul className="flex">{listMenu}</ul>
       {isDarkMode ? (
         <BsFillSunFill className="h-9 w-9 text-slate-100" onClick={handleDarkMode} />
