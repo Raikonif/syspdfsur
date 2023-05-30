@@ -32,11 +32,6 @@ function Patients(): JSX.Element {
     };
   }, [refModal]);
 
-  useEffect(() => {
-    if (showModal && showModalShow) {
-      setShowModalShow(false);
-    }
-  }, [showModalShow, showModal]);
   const description =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae nisl vi elit. Lorem Ipsum dolor sit amet";
 
