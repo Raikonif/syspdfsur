@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import PatientCard from "~/pages/patients/components/PatientCard";
 import GeneralModal from "~/components/modal/GeneralModal";
 import GeneralField from "~/components/GeneralField";
 import GeneralButton from "~/components/GeneralButton";
-import DeleteModal from "~/components/modal/DeleteModal";
 
 function Patients(): JSX.Element {
   const [showModalEdit, setShowModalEdit] = useState<boolean>(false);
