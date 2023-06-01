@@ -3,14 +3,18 @@ import { useNavigate } from "react-router-dom";
 
 interface IProps {
   onClose: (change: boolean) => void;
+  refModal: React.RefObject<HTMLDivElement>;
 }
-function DeleteModal({ onClose }: IProps): JSX.Element {
+function DeleteModal({ onClose, refModal }: IProps): JSX.Element {
   const confirmDelete = () => {
     console.log("Borrado");
   };
   // TODO: Add the OutsideClickHandler
   return (
-    <div className=" fixed z-20 flex h-60 w-80 flex-col items-center justify-center rounded-xl border border-gray-300 bg-white shadow-2xl">
+    <div
+      className=" fixed z-20 flex h-60 w-80 flex-col items-center justify-center rounded-xl border border-gray-300 bg-white shadow-2xl"
+      ref={refModal}
+    >
       <h1 className="text-sans-serif text-bold mb-12 text-2xl">
         Estas Segura de borrar esta Dato?
       </h1>

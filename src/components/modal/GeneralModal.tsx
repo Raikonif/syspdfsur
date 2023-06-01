@@ -1,17 +1,27 @@
 import React, { ReactNode } from "react";
+import useOutsideClick from "~/hooks/useOutsideClick";
 
 interface ModalProps {
   onClose: () => void;
   children: ReactNode;
   refModal: React.RefObject<HTMLDivElement>;
+  customWidth?: string;
+  customHeight?: string;
 }
 
-function GeneralModal({ onClose, children, refModal }: ModalProps): JSX.Element {
+function GeneralModal({
+  onClose,
+  children,
+  refModal,
+  customWidth = "w=5/6",
+  customHeight = "h-5/6",
+}: ModalProps): JSX.Element {
+  useOutsideClick({ ref: refModal, onOutsideClick: onClose });
   return (
     <>
       <div
         ref={refModal}
-        className="fixed flex h-5/6 w-5/6 justify-center rounded-xl bg-white shadow-2xl transition-colors"
+        className={`fixed flex ${customWidth} ${customHeight} justify-center rounded-xl bg-white shadow-2xl transition-colors`}
       >
         <button
           onClick={onClose}
