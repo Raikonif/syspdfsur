@@ -8,9 +8,11 @@ function Patients(): JSX.Element {
   const [showModalEdit, setShowModalEdit] = useState<boolean>(false);
   const [showModalShow, setShowModalShow] = useState<boolean>(false);
   const [showModalDelete, setShowModalDelete] = useState<boolean>(false);
+  const [showModalAdd, setShowModalAdd] = useState<boolean>(false);
   const refModalShow = useRef<HTMLDivElement>(null);
   const refModalEdit = useRef<HTMLDivElement>(null);
   const refModalDelete = useRef<HTMLDivElement>(null);
+  const refModalAdd = useRef<HTMLDivElement>(null);
   const handleModalEdit = (newState: boolean) => {
     setShowModalEdit(newState);
   };
