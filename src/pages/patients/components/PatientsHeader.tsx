@@ -4,7 +4,7 @@ import { BiPlusMedical } from "react-icons/all";
 import GeneralModal from "~/components/modal/GeneralModal";
 import GeneralField from "~/components/GeneralField";
 
-function Header(): JSX.Element {
+function PatientsHeader(): JSX.Element {
   const [desktopMode, setDesktopMode] = useState<boolean>(false);
   const [modalAddPatient, setModalAddPatient] = useState<boolean>(false);
   const refModalAddPatient = useRef<HTMLDivElement>(null);
@@ -20,6 +20,7 @@ function Header(): JSX.Element {
     value: description,
     placeholder: "description",
   };
+
   return (
     <>
       <div className="flex w-full">
@@ -68,4 +69,4 @@ function Header(): JSX.Element {
   );
 }
 
-export default Header;
+export default PatientsHeader;

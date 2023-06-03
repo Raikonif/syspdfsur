@@ -3,6 +3,7 @@ import PatientCard from "~/pages/patients/components/PatientCard";
 import GeneralModal from "~/components/modal/GeneralModal";
 import GeneralField from "~/components/GeneralField";
 import GeneralButton from "~/components/GeneralButton";
+import PatientsHeader from "~/pages/patients/components/PatientsHeader";
 
 function Patients(): JSX.Element {
   const [showModalEdit, setShowModalEdit] = useState<boolean>(false);
@@ -35,6 +36,7 @@ function Patients(): JSX.Element {
   };
   return (
     <>
+      {/*<PatientsHeader />*/}
       <div className="flex w-full items-center justify-center">
         <div className="mx-10 grid h-auto grid-cols-5 justify-between gap-6 py-4 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md2:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
           <PatientCard
