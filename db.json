@@ -401,7 +401,7 @@
       "email": "avery.hill@example.com,"
     }
   ],
-  "study_type": [
+  "diagnoses": [
     {
       "id": 1,
       "person_id": 1,
