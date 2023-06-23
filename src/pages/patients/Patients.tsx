@@ -1,11 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { ReactElement, useEffect, useRef, useState } from "react";
 import PatientCard from "~/pages/patients/components/PatientCard";
 import GeneralModal from "~/components/modal/GeneralModal";
 import GeneralField from "~/components/GeneralField";
 import GeneralButton from "~/components/GeneralButton";
-import PatientsHeader from "~/pages/patients/components/PatientsHeader";
+import Diagnosis from "~/interfaces/Diagnosis.type";
+import { getDiagnoses } from "~/service/diagnosis.service";
+import { VITE_BASE_URL_MOCK } from "~/service/service.constants";
 
-function Patients(): JSX.Element {
+function Patients(): ReactElement {
   const [showModalEdit, setShowModalEdit] = useState<boolean>(false);
   const [showModalShow, setShowModalShow] = useState<boolean>(false);
   const [showModalDelete, setShowModalDelete] = useState<boolean>(false);
@@ -14,6 +16,7 @@ function Patients(): JSX.Element {
   const refModalEdit = useRef<HTMLDivElement>(null);
   const refModalDelete = useRef<HTMLDivElement>(null);
   const refModalAdd = useRef<HTMLDivElement>(null);
+  const [diagnoses, setDiagnoses] = useState<Diagnosis[]>([] as Diagnosis[]);
   const handleModalEdit = (newState: boolean) => {
     setShowModalEdit(newState);
   };
@@ -23,10 +26,17 @@ function Patients(): JSX.Element {
   const handleModalDelete = (newState: boolean) => {
     setShowModalDelete(newState);
   };
+  const getAllDiagnoses = async () => {
+    setDiagnoses(await getDiagnoses());
+  };
+
+  useEffect(() => {
+    getAllDiagnoses().then(() => console.log("Diagnoses", diagnoses));
+  }, []);
 
   const description =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae nisl vi elit. Lorem Ipsum dolor sit amet";
-
+  const void_diagnosis = {} as Diagnosis;
   const objField = {
     name: "description",
     id: 1,
@@ -39,78 +49,15 @@ function Patients(): JSX.Element {
       {/*<PatientsHeader />*/}
       <div className="flex w-full items-center justify-center">
         <div className="mx-10 grid h-auto grid-cols-5 justify-between gap-6 py-4 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md2:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-          <PatientCard
-            description={description}
-            setModalEdit={handleModalEdit}
-            setModalShow={handleModalShow}
-            setModalDelete={handleModalDelete}
-          />
-          <PatientCard
-            description={description}
-            setModalEdit={handleModalEdit}
-            setModalShow={handleModalShow}
-            setModalDelete={handleModalDelete}
-          />
-          <PatientCard
-            description={description}
-            setModalEdit={handleModalEdit}
-            setModalShow={handleModalShow}
-            setModalDelete={handleModalDelete}
-          />
-          <PatientCard
-            description={description}
-            setModalEdit={handleModalEdit}
-            setModalShow={handleModalShow}
-            setModalDelete={handleModalDelete}
-          />
-          <PatientCard
-            description={description}
-            setModalEdit={handleModalEdit}
-            setModalShow={handleModalShow}
-            setModalDelete={handleModalDelete}
-          />
-          <PatientCard
-            description={description}
-            setModalEdit={handleModalEdit}
-            setModalShow={handleModalShow}
-            setModalDelete={handleModalDelete}
-          />
-          <PatientCard
-            description={description}
-            setModalEdit={handleModalEdit}
-            setModalShow={handleModalShow}
-            setModalDelete={handleModalDelete}
-          />
-          <PatientCard
-            description={description}
-            setModalEdit={handleModalEdit}
-            setModalShow={handleModalShow}
-            setModalDelete={handleModalDelete}
-          />
-          <PatientCard
-            description={description}
-            setModalEdit={handleModalEdit}
-            setModalShow={handleModalShow}
-            setModalDelete={handleModalDelete}
-          />
-          <PatientCard
-            description={description}
-            setModalEdit={handleModalEdit}
-            setModalShow={handleModalShow}
-            setModalDelete={handleModalDelete}
-          />
-          <PatientCard
-            description={description}
-            setModalEdit={handleModalEdit}
-            setModalShow={handleModalShow}
-            setModalDelete={handleModalDelete}
-          />
-          <PatientCard
-            description={description}
-            setModalEdit={handleModalEdit}
-            setModalShow={handleModalShow}
-            setModalDelete={handleModalDelete}
-          />
+          {diagnoses.map((diagnosis: Diagnosis) => (
+            <PatientCard
+              key={diagnosis.id}
+              diagnosis={diagnosis}
+              setModalEdit={handleModalEdit}
+              setModalShow={handleModalShow}
+              setModalDelete={handleModalDelete}
+            />
+          ))}
         </div>
       </div>
       {showModalEdit && (

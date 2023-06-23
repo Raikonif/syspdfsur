@@ -1,27 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { MdEditSquare, RiDeleteBinFill } from "react-icons/all";
+import Diagnosis from "~/interfaces/Diagnosis.type";
 
 interface IProps {
-  description: string;
+  // key: number;
+  diagnosis: Diagnosis;
   setModalEdit: (isOpen: boolean) => void;
   setModalShow: (isOpen: boolean) => void;
   setModalDelete: (isOpen: boolean) => void;
 }
 
 function PatientCard({
-  description,
+  // key,
+  diagnosis,
   setModalEdit,
   setModalShow,
   setModalDelete,
 }: IProps): JSX.Element {
-  const [currentDescription, setCurrentDescription] = useState<string>(description);
+  const [currentDescription, setCurrentDescription] = useState<string>(diagnosis.description);
   const maxLength = 60;
 
-  useEffect(() => {
-    if (maxLength < currentDescription.length) {
-      setCurrentDescription(currentDescription.slice(0, maxLength) + "...");
-    }
-  }, [currentDescription]);
+  // useEffect(() => {
+  //   if (maxLength < currentDescription.length) {
+  //     setCurrentDescription(currentDescription.slice(0, maxLength) + "...");
+  //   }
+  // }, [currentDescription]);
 
   return (
     <div className="duration-300 hover:scale-110">
