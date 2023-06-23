@@ -1,6 +1,7 @@
-import axios from "axios";
+import { serviceJson } from "~/service/index";
+import Diagnosis from "~/interfaces/Diagnosis.type";
 
 export const getDiagnoses = async () => {
-  const response = await axios.get("http://localhost:3000/diagnoses");
+  const response = await serviceJson.get<Diagnosis[]>("/diagnoses");
   return response.data;
 };

@@ -4,10 +4,10 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
-import { BASE_URL_MOCK } from "~/service/service.constants";
+import { VITE_BASE_URL_MOCK } from "~/service/service.constants";
 
 const serviceJson = axios.create({
-  baseURL: BASE_URL_MOCK,
+  baseURL: VITE_BASE_URL_MOCK,
   headers: {
     "Content-Type": "application/json",
   },

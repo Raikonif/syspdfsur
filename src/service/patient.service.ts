@@ -1,6 +1,6 @@
-import axios from "axios";
+import { serviceJson } from "~/service/index";
 
 export const getPatients = async () => {
-  const response = await axios.get("http://localhost:3000/patients");
+  const response = await serviceJson.get("/patients");
   return response.data;
 };
