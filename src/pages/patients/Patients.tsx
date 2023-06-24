@@ -5,7 +5,6 @@ import GeneralField from "~/components/GeneralField";
 import GeneralButton from "~/components/GeneralButton";
 import Diagnosis from "~/interfaces/Diagnosis.type";
 import { getDiagnoses } from "~/service/diagnosis.service";
-import { VITE_BASE_URL_MOCK } from "~/service/service.constants";
 
 function Patients(): ReactElement {
   const [showModalEdit, setShowModalEdit] = useState<boolean>(false);
@@ -32,11 +31,10 @@ function Patients(): ReactElement {
 
   useEffect(() => {
     getAllDiagnoses().then(() => console.log("Diagnoses", diagnoses));
-  }, []);
+  }, [showModalAdd, showModalDelete, showModalEdit, showModalShow]);
 
   const description =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae nisl vi elit. Lorem Ipsum dolor sit amet";
-  const void_diagnosis = {} as Diagnosis;
   const objField = {
     name: "description",
     id: 1,
