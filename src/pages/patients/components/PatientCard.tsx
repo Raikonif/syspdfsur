@@ -3,7 +3,6 @@ import { MdEditSquare, RiDeleteBinFill } from "react-icons/all";
 import Diagnosis from "~/interfaces/Diagnosis.type";
 
 interface IProps {
-  // key: number;
   diagnosis: Diagnosis;
   setModalEdit: (isOpen: boolean) => void;
   setModalShow: (isOpen: boolean) => void;
@@ -11,7 +10,6 @@ interface IProps {
 }
 
 function PatientCard({
-  // key,
   diagnosis,
   setModalEdit,
   setModalShow,

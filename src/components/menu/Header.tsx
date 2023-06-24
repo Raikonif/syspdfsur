@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import GeneralButton from "~/components/GeneralButton";
-import { BiPlusMedical } from "react-icons/all";
+import { AiOutlineHeart, BiPlusMedical } from "react-icons/all";
 import GeneralModal from "~/components/modal/GeneralModal";
 import GeneralField from "~/components/GeneralField";
+import { RadioGroup } from "@headlessui/react";
 
 function Header(): JSX.Element {
   const [desktopMode, setDesktopMode] = useState<boolean>(false);
@@ -40,8 +41,39 @@ function Header(): JSX.Element {
             <GeneralModal onClose={() => setModalAddPatient(false)} refModal={refModalAddPatient}>
               <div className="flex h-full w-full flex-col items-center">
                 <h1 className="pb-10 text-3xl font-bold">Create Patient</h1>
-                <GeneralField fieldObj={objField} />
-                <GeneralField fieldObj={objField} />
+                <select
+                  id="description"
+                  placeholder="Select a Patient"
+                  className=" w-full rounded-lg border-2 p-3 focus:border-fuchsia-600 focus:outline-none"
+                  value={description}
+                  onChange={(e) => console.log(e.target.value)}
+                />
+                <div className="flex w-full items-center justify-between p-2 px-5">
+                  <div className="flex items-center justify-center">
+                    <label id="histopato" placeholder="histopatologico" />
+                    <input type="radio" value="" id="histopato" name="type" className="hidden" />
+                    <i>
+                      <AiOutlineHeart className="text-fuchsia-600" />
+                    </i>
+                    <span className="mx-2">histopatologico</span>
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <label id="citopato" placeholder="citopatologico" />
+                    <input type="radio" value="" id="citopato" name="type" className="hidden" />
+                    <i>
+                      <AiOutlineHeart className="text-fuchsia-600" />
+                    </i>
+                    <span className="mx-2">citopatologico</span>
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <label id="otro" placeholder="otro" />
+                    <input type="radio" value="2" id="otro" name="type" className="hidden" />
+                    <i>
+                      <AiOutlineHeart className="text-fuchsia-600" />
+                    </i>
+                    <span className="mx-1">otro</span>
+                  </div>
+                </div>
                 <GeneralField fieldObj={objField} />
                 <div className="flex w-full">
                   <GeneralField fieldObj={objField} />
