@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { MdEditSquare, RiDeleteBinFill } from "react-icons/all";
 import Diagnosis from "~/interfaces/Diagnosis.type";
 
@@ -18,11 +18,11 @@ function PatientCard({
   const [currentDescription, setCurrentDescription] = useState<string>(diagnosis.description);
   const maxLength = 60;
 
-  useEffect(() => {
-    if (maxLength < currentDescription.length) {
-      setCurrentDescription(currentDescription.slice(0, maxLength) + "...");
-    }
-  }, [currentDescription]);
+  // useEffect(() => {
+  //   if (maxLength < currentDescription.length) {
+  //     setCurrentDescription(currentDescription.slice(0, maxLength) + "...");
+  //   }
+  // }, [currentDescription]);
 
   return (
     <div className="duration-300 hover:scale-110">
