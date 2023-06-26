@@ -1,7 +1,6 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement } from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
 import { AiOutlineHeart } from "react-icons/all";
-import GeneralField from "~/components/GeneralField";
 import GeneralButton from "~/components/GeneralButton";
 
 interface IProps {
