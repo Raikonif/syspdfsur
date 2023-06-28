@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import useOutsideClick from "~/hooks/useOutsideClick";
 
 interface ModalProps {
@@ -15,7 +15,7 @@ function GeneralModal({
   refModal,
   customWidth = "w=5/6",
   customHeight = "h-5/6",
-}: ModalProps): JSX.Element {
+}: ModalProps): ReactElement {
   useOutsideClick({ ref: refModal, onOutsideClick: onClose });
   return (
     <>
