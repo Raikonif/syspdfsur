@@ -5,7 +5,7 @@ interface IProps {
   onClose: () => void;
   refModal: React.RefObject<HTMLDivElement>;
 }
-function ModalCitopathology({ onClose, refModal }: IProps): ReactElement {
+function ModalCytopathology({ onClose, refModal }: IProps): ReactElement {
   return (
     <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
       <GeneralModal onClose={onClose} refModal={refModal}>
@@ -18,4 +18,4 @@ function ModalCitopathology({ onClose, refModal }: IProps): ReactElement {
   );
 }
 
-export default ModalCitopathology;
+export default ModalCytopathology;

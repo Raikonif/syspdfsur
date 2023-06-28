@@ -4,13 +4,13 @@ import { AiOutlineHeart, BsArrowRightCircle } from "react-icons/all";
 import GeneralButton from "~/components/GeneralButton";
 import * as events from "events";
 import ModalHistopathology from "~/components/menu/ModalHistopathology";
-import ModalCitopathology from "~/components/menu/ModalCitopathology";
+import ModalCytopathology from "~/components/menu/ModalCytopathology";
 import ModalBiopsy from "~/components/menu/ModalBiopsy";
 
 interface IProps {
   onClose: () => void;
   openHistopathology: () => void;
-  openCitopathology: () => void;
+  openCytopathology: () => void;
   openBiopsy: () => void;
   refModal: React.RefObject<HTMLDivElement>;
 }
@@ -20,7 +20,7 @@ function ModalCreate({
   refModal,
   openBiopsy,
   openHistopathology,
-  openCitopathology,
+  openCytopathology,
 }: IProps): ReactElement {
   const [active, setActive] = useState<string>("");
 
@@ -30,7 +30,7 @@ function ModalCreate({
       onClose();
     }
     if (active === "2") {
-      openCitopathology();
+      openCytopathology();
       onClose();
     }
     if (active === "3") {

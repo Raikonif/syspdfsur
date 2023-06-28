@@ -6,7 +6,7 @@ import GeneralField from "~/components/GeneralField";
 import { RadioGroup } from "@headlessui/react";
 import ModalCreate from "~/components/menu/ModalCreate";
 import ModalHistopathology from "~/components/menu/ModalHistopathology";
-import ModalCitopathology from "~/components/menu/ModalCitopathology";
+import ModalCytopathology from "~/components/menu/ModalCytopathology";
 import ModalBiopsy from "~/components/menu/ModalBiopsy";
 
 function Header(): JSX.Element {
@@ -58,7 +58,7 @@ function Header(): JSX.Element {
               onClose={() => setModalAddPatient(false)}
               refModal={refModalAddPatient}
               openBiopsy={() => setOpenBiopsy(true)}
-              openCitopathology={() => setOpenCitopathology(true)}
+              openCytopathology={() => setOpenCitopathology(true)}
               openHistopathology={() => setOpenHistopathology(true)}
             />
           </div>
@@ -70,7 +70,7 @@ function Header(): JSX.Element {
           />
         )}
         {openCitopathology && (
-          <ModalCitopathology
+          <ModalCytopathology
             onClose={() => setOpenCitopathology(false)}
             refModal={refModalCitopathology}
           />
