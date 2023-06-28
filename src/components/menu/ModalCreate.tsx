@@ -1,54 +1,91 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
-import { AiOutlineHeart } from "react-icons/all";
+import { AiOutlineHeart, BsArrowRightCircle } from "react-icons/all";
 import GeneralButton from "~/components/GeneralButton";
+import * as events from "events";
+import ModalHistopathology from "~/components/menu/ModalHistopathology";
+import ModalCitopathology from "~/components/menu/ModalCitopathology";
+import ModalBiopsy from "~/components/menu/ModalBiopsy";
 
 interface IProps {
   onClose: () => void;
+  openHistopathology: () => void;
+  openCitopathology: () => void;
+  openBiopsy: () => void;
   refModal: React.RefObject<HTMLDivElement>;
 }
 
-function ModalCreate({ onClose, refModal }: IProps): ReactElement {
+function ModalCreate({
+  onClose,
+  refModal,
+  openBiopsy,
+  openHistopathology,
+  openCitopathology,
+}: IProps): ReactElement {
+  const [active, setActive] = useState<string>("");
+
+  const handleCreateType = (active: string) => {
+    if (active === "1") {
+      openHistopathology();
+      onClose();
+    }
+    if (active === "2") {
+      openCitopathology();
+      onClose();
+    }
+    if (active === "3") {
+      openBiopsy();
+      onClose();
+    }
+  };
+  useEffect(() => {
+    handleCreateType(active);
+  }, [active]);
+
   return (
     <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
-      <GeneralModal onClose={onClose} refModal={refModal}>
-        <div className="flex h-full w-full flex-col items-center">
-          <h1 className="pb-10 text-3xl font-bold">Create Patient</h1>
-          <select
-            id="description"
-            placeholder="Select a Patient"
-            className=" w-full rounded-lg border-2 p-3 focus:border-fuchsia-600 focus:outline-none"
-            value={""}
-            onChange={(e) => console.log(e.target.value)}
-          />
-          <div className="flex w-full items-center justify-between p-2 px-5">
-            <div className="flex items-center justify-center">
-              <label id="histopato" placeholder="histopatologico" />
-              <input type="radio" value="1" id="histopato" name="type" className="peer sr-only" />
-              <i>
-                <AiOutlineHeart className="text-2xl text-fuchsia-600" />
-              </i>
-              <span className="mx-2">histopatologico</span>
+      <GeneralModal onClose={onClose} refModal={refModal} customWidth="w-100" customHeight="h-100">
+        <div className="flex h-full w-full flex-col items-start">
+          <h1 className="mx-4 pb-5 pt-3 text-3xl font-bold">Create Diagnosis</h1>
+          <div className="w-full p-2">
+            <div className=" flex w-full flex-col justify-center">
+              <div className="w-full">
+                <input type="radio" value="1" id="histopato" name="type" className="peer hidden" />
+                <label
+                  id="histopato"
+                  className="m-2 flex cursor-pointer select-none items-center justify-between rounded-3xl bg-fuchsia-600 p-3 text-center font-semibold text-white hover:bg-fuchsia-500 active:bg-fuchsia-700 peer-checked:bg-violet-500"
+                  htmlFor="histopato"
+                  onClick={() => setActive("1")}
+                >
+                  <span className="w-full">Histopatológico</span>
+                  <BsArrowRightCircle className="h-5 w-5" />
+                </label>
+              </div>
+              <div className="w-full">
+                <input type="radio" value="2" id="citopato" name="type" className="peer hidden" />
+                <label
+                  id="citopato"
+                  className="m-2 flex cursor-pointer select-none items-center justify-between rounded-3xl bg-fuchsia-600 p-3 text-center font-semibold text-white hover:bg-fuchsia-500 active:bg-fuchsia-700 peer-checked:bg-violet-500"
+                  htmlFor="citopato"
+                  onClick={() => setActive("2")}
+                >
+                  <span className="w-full">CitoPatológico</span>
+                  <BsArrowRightCircle className="h-5 w-5" />
+                </label>
+              </div>
+              <div className="w-full">
+                <input type="radio" value="3" id="biopsia" name="type" className="peer hidden" />
+                <label
+                  id="biopsia"
+                  className="m-2 flex cursor-pointer select-none items-center justify-between rounded-3xl bg-fuchsia-600 p-3 text-center font-semibold text-white hover:bg-fuchsia-500 active:bg-fuchsia-700 peer-checked:bg-violet-500"
+                  htmlFor="otro"
+                  onClick={() => setActive("3")}
+                >
+                  <span className="w-full">Biopsia</span>
+                  <BsArrowRightCircle className="h-5 w-5" />
+                </label>
+              </div>
             </div>
-            <div className="flex items-center justify-center">
-              <label id="citopato" placeholder="citopatologico" />
-              <input type="radio" value="2" id="citopato" name="type" className="peer sr-only" />
-              <i>
-                <AiOutlineHeart className="text-2xl text-fuchsia-600" />
-              </i>
-              <span className="mx-2">citopatologico</span>
-            </div>
-            <div className="flex items-center justify-center">
-              <label id="otro" placeholder="otro" />
-              <input type="radio" value="3" id="otro" name="type" className="peer sr-only" />
-              <i>
-                <AiOutlineHeart className="text-2xl text-fuchsia-600" />
-              </i>
-              <span className="mx-1">otro</span>
-            </div>
-          </div>
-          <div className="absolute bottom-7 right-7">
-            <GeneralButton textButton={"Create Patient"} btnType={"submit"} action={onClose} />
           </div>
         </div>
       </GeneralModal>
