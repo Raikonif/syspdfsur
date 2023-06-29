@@ -13,7 +13,6 @@
     "test": "vitest tests/*.js"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.17",
     "axios": "^1.4.0",
     "csstype": "^3.0.10",
