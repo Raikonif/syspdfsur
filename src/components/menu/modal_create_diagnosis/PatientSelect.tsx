@@ -14,6 +14,7 @@ function PatientSelect(): ReactElement {
     setSelected(patient);
     setOpenSelect(false);
   };
+  const indexStr = Number("-1");
 
   useEffect(() => {
     getAllPatients().then(() => console.log("Patients", patients));
@@ -57,7 +58,7 @@ function PatientSelect(): ReactElement {
         {openSelect && (
           <ul
             className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
-            tabIndex="-1"
+            tabIndex={indexStr}
             role="listbox"
             aria-labelledby="listbox-label"
             aria-activedescendant="listbox-option-3"
