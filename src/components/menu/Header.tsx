@@ -3,11 +3,10 @@ import GeneralButton from "~/components/GeneralButton";
 import { AiOutlineHeart, BiPlusMedical } from "react-icons/all";
 import GeneralModal from "~/components/modal/GeneralModal";
 import GeneralField from "~/components/GeneralField";
-import { RadioGroup } from "@headlessui/react";
-import ModalCreate from "~/components/menu/ModalCreate";
-import ModalHistopathology from "~/components/menu/ModalHistopathology";
-import ModalCytopathology from "~/components/menu/ModalCytopathology";
-import ModalBiopsy from "~/components/menu/ModalBiopsy";
+import ModalCreateDiagnosis from "~/components/menu/modal_create_diagnosis/ModalCreateDiagnosis";
+import ModalHistopathology from "~/components/menu/modal_create_diagnosis/ModalHistopathology";
+import ModalCytology from "~/components/menu/modal_create_diagnosis/ModalCytology";
+import ModalBiopsy from "~/components/menu/modal_create_diagnosis/ModalBiopsy";
 
 function Header(): JSX.Element {
   const [desktopMode, setDesktopMode] = useState<boolean>(false);
@@ -25,18 +24,6 @@ function Header(): JSX.Element {
   useEffect(() => {
     window.innerWidth < 640 ? setDesktopMode(false) : setDesktopMode(true);
   });
-  const handleClickOption = (option: string) => {
-    setOption(option);
-  };
-  const description =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae nisl vi elit. Lorem Ipsum dolor sit amet";
-  const objField = {
-    name: "description",
-    id: 1,
-    type: "text",
-    value: description,
-    placeholder: "description",
-  };
   return (
     <>
       <div className="flex w-full">
@@ -54,30 +41,30 @@ function Header(): JSX.Element {
         )}
         {modalAddPatient && (
           <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
-            <ModalCreate
+            <ModalCreateDiagnosis
               onClose={() => setModalAddPatient(false)}
               refModal={refModalAddPatient}
-              openBiopsy={() => setOpenBiopsy(true)}
-              openCytopathology={() => setOpenCitopathology(true)}
-              openHistopathology={() => setOpenHistopathology(true)}
+              // openBiopsy={() => setOpenBiopsy(true)}
+              // openCytology={() => setOpenCitopathology(true)}
+              // openHistopathology={() => setOpenHistopathology(true)}
             />
           </div>
         )}
-        {openHistopathology && (
-          <ModalHistopathology
-            onClose={() => setOpenHistopathology(false)}
-            refModal={refModalHistopathology}
-          />
-        )}
-        {openCitopathology && (
-          <ModalCytopathology
-            onClose={() => setOpenCitopathology(false)}
-            refModal={refModalCitopathology}
-          />
-        )}
-        {openBiopsy && (
-          <ModalBiopsy onClose={() => setOpenBiopsy(false)} refModal={refModalBiopsy} />
-        )}
+        {/*{openHistopathology && (*/}
+        {/*  <ModalHistopathology*/}
+        {/*    onClose={() => setOpenHistopathology(false)}*/}
+        {/*    refModal={refModalHistopathology}*/}
+        {/*  />*/}
+        {/*)}*/}
+        {/*{openCitopathology && (*/}
+        {/*  <ModalCytology*/}
+        {/*    onClose={() => setOpenCitopathology(false)}*/}
+        {/*    refModal={refModalCitopathology}*/}
+        {/*  />*/}
+        {/*)}*/}
+        {/*{openBiopsy && (*/}
+        {/*  <ModalBiopsy onClose={() => setOpenBiopsy(false)} refModal={refModalBiopsy} />*/}
+        {/*)}*/}
       </div>
     </>
   );
