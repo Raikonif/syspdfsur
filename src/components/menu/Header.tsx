@@ -11,6 +11,7 @@ import ModalBiopsy from "~/components/menu/modal_create_diagnosis/ModalBiopsy";
 function Header(): JSX.Element {
   const [desktopMode, setDesktopMode] = useState<boolean>(false);
   const [modalAddPatient, setModalAddPatient] = useState<boolean>(false);
+  const [option, setOption] = useState<string>("");
   const refModalAddPatient = useRef<HTMLDivElement>(null);
   const refModalHistopathology = useRef<HTMLDivElement>(null);
   const refModalCitopathology = useRef<HTMLDivElement>(null);
