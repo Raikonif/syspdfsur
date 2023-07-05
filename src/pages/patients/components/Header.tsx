@@ -7,7 +7,6 @@ import ModalCreateDiagnosis from "~/pages/patients/components/modal_create_diagn
 import ModalHistopathology from "~/pages/patients/components/modal_create_diagnosis/ModalHistopathology";
 import ModalCytology from "~/pages/patients/components/modal_create_diagnosis/ModalCytology";
 import ModalBiopsy from "~/pages/patients/components/modal_create_diagnosis/ModalBiopsy";
-
 function Header(): ReactElement {
   const [desktopMode, setDesktopMode] = useState<boolean>(false);
   const [modalAddPatient, setModalAddPatient] = useState<boolean>(false);
@@ -44,9 +43,27 @@ function Header(): ReactElement {
             <ModalCreateDiagnosis
               onClose={() => setModalAddPatient(false)}
               refModal={refModalAddPatient}
+              // openBiopsy={() => setOpenBiopsy(true)}
+              // openCytology={() => setOpenCitopathology(true)}
+              // openHistopathology={() => setOpenHistopathology(true)}
             />
           </div>
         )}
+        {/*{openHistopathology && (*/}
+        {/*  <ModalHistopathology*/}
+        {/*    onClose={() => setOpenHistopathology(false)}*/}
+        {/*    refModal={refModalHistopathology}*/}
+        {/*  />*/}
+        {/*)}*/}
+        {/*{openCitopathology && (*/}
+        {/*  <ModalCytology*/}
+        {/*    onClose={() => setOpenCitopathology(false)}*/}
+        {/*    refModal={refModalCitopathology}*/}
+        {/*  />*/}
+        {/*)}*/}
+        {/*{openBiopsy && (*/}
+        {/*  <ModalBiopsy onClose={() => setOpenBiopsy(false)} refModal={refModalBiopsy} />*/}
+        {/*)}*/}
       </div>
     </div>
   );
