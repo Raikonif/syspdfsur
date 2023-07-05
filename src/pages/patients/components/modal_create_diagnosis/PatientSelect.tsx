@@ -1,24 +1,28 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useState, useEffect } from "react";
 import Patient from "~/interfaces/Patient.type";
-import Patients from "~/pages/patients/Patients";
-import { getPatients } from "~/service/patient.service";
 
-function PatientSelect(): ReactElement {
+interface IProps {
+  pats: Patient[];
+}
+
+function PatientSelect({ pats }: IProps): ReactElement {
   const [openSelect, setOpenSelect] = useState<boolean>(false);
-  const [patients, setPatients] = useState<Patient[]>([] as Patient[]);
+  const patients: Patient[] = pats;
   const [selected, setSelected] = useState<Patient>({} as Patient);
-  const getAllPatients = async () => {
-    setPatients(await getPatients());
-  };
   const selectAndClose = (patient: Patient) => {
     setSelected(patient);
     setOpenSelect(false);
   };
   const indexStr = Number("-1");
-
   useEffect(() => {
-    getAllPatients().then(() => console.log("Patients", patients));
-    setSelected(patients[0]);
+    setSelected({
+      id: 0,
+      first_name: "Select a",
+      last_name: "Patient",
+      email: "",
+      gender: "",
+      age: 0,
+    });
   }, []);
 
   return (

@@ -6,6 +6,7 @@ import PatientsHistory from "~/pages/PatientsHistory";
 import Settings from "~/pages/Settings";
 import { AuthProvider } from "~/pages/login/context/AuthContext";
 import UserContextProvider from "~/pages/login/context/UserContext";
+import DiagnosisProvider from "~/pages/patients/context/DiagnosisProvider";
 
 const GenericRoutes = {
   path: "",
@@ -18,9 +19,9 @@ const GenericRoutes = {
     {
       path: "patients",
       element: (
-        <UserContextProvider>
+        <DiagnosisProvider>
           <Patients />
-        </UserContextProvider>
+        </DiagnosisProvider>
       ),
     },
     {

@@ -1,50 +1,34 @@
-import React, { ReactElement, useEffect, useRef, useState } from "react";
+import React, { ReactElement, useEffect, useRef, useState, useContext } from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
 import { BsArrowRightCircle } from "react-icons/all";
-import ModalHistopathology from "~/components/menu/modal_create_diagnosis/ModalHistopathology";
-import PatientSelect from "~/components/menu/modal_create_diagnosis/PatientSelect";
+import ModalHistopathology from "~/pages/patients/components/modal_create_diagnosis/ModalHistopathology";
+import PatientSelect from "~/pages/patients/components/modal_create_diagnosis/PatientSelect";
+import { getPatients } from "~/service/patient.service";
+import Patient from "~/interfaces/Patient.type";
+import DiagnosisContext from "~/pages/patients/context/DiagnosisContext";
+import useGetData from "~/hooks/useGetData";
 
 interface IProps {
   onClose: () => void;
-  // openHistopathology: () => void;
-  // openCytology: () => void;
-  // openBiopsy: () => void;
   refModal: React.RefObject<HTMLDivElement>;
 }
 
-function ModalCreateDiagnosis({
-  onClose,
-  refModal,
-}: // openBiopsy,
-// openHistopathology,
-// openCytology,
-IProps): ReactElement {
+function ModalCreateDiagnosis({ onClose, refModal }: IProps): ReactElement {
   const [active, setActive] = useState<string>("");
-
-  const handleCreateType = (active: string) => {
-    // if (active === "1") {
-    //   openHistopathology();
-    //   // onClose();
-    // }
-    // if (active === "2") {
-    //   openCytology();
-    //   // onClose();
-    // }
-    // if (active === "3") {
-    //   openBiopsy();
-    //   // onClose();
-    // }
-  };
+  // const { patients, diagnoses } = useContext(DiagnosisContext);
+  const { data } = useGetData({ dataToFetch: getPatients });
   useEffect(() => {
-    handleCreateType(active);
-  }, [active]);
+    console.log("patients", data);
+    // console.log("diagnoses", diagnoses);
+  }, []);
+
   return (
     <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
       <GeneralModal onClose={onClose} refModal={refModal}>
         <div className="flex h-full w-full flex-col items-center">
           <h1 className="mx-4 pb-5 pt-3 text-3xl font-bold">Crear Diagnóstico</h1>
           <div className="flex w-full flex-col p-2">
-            <PatientSelect />
+            <PatientSelect pats={data} />
             <div className="flex w-full items-center">
               <div className="w-full">
                 <input type="radio" value="1" id="histo" name="type" className="peer hidden" />
@@ -90,7 +74,9 @@ IProps): ReactElement {
               <h1>Citologia</h1>
             </div>
           )}
-          {active === "3" && <div>Biopsia</div>}
+          {active === "3" && (
+            <div className="h-full w-full items-center justify-center bg-slate-600">Biopsia</div>
+          )}
         </div>
       </GeneralModal>
     </div>

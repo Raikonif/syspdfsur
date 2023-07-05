@@ -5,12 +5,14 @@ import GeneralField from "~/components/GeneralField";
 import GeneralButton from "~/components/GeneralButton";
 import Diagnosis from "~/interfaces/Diagnosis.type";
 import { getDiagnoses } from "~/service/diagnosis.service";
+import Header from "./components/Header";
+import SearchButton from "~/components/menu/search/SearchButton";
 
 function Patients(): ReactElement {
   const [showModalEdit, setShowModalEdit] = useState<boolean>(false);
   const [showModalShow, setShowModalShow] = useState<boolean>(false);
   const [showModalDelete, setShowModalDelete] = useState<boolean>(false);
-  const [showModalAdd, setShowModalAdd] = useState<boolean>(false);
+  const [mobileMode, setMobileMode] = useState<boolean>(false);
   const refModalShow = useRef<HTMLDivElement>(null);
   const refModalEdit = useRef<HTMLDivElement>(null);
   const refModalDelete = useRef<HTMLDivElement>(null);
@@ -30,8 +32,22 @@ function Patients(): ReactElement {
   };
 
   useEffect(() => {
-    getAllDiagnoses().then(() => console.log("Diagnoses", diagnoses));
-  }, [showModalAdd, showModalDelete, showModalEdit, showModalShow]);
+    const handleMobileMode = () => {
+      if (window.innerWidth < 640) {
+        setMobileMode(true);
+      } else {
+        setMobileMode(false);
+      }
+    };
+    window.addEventListener("resize", handleMobileMode);
+    return () => {
+      window.removeEventListener("resize", handleMobileMode);
+    };
+  }, []);
+
+  useEffect(() => {
+    getAllDiagnoses();
+  }, [showModalDelete, showModalEdit, showModalShow]);
 
   const description =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae nisl vi elit. Lorem Ipsum dolor sit amet";
@@ -44,9 +60,10 @@ function Patients(): ReactElement {
   };
   return (
     <>
-      {/*<PatientsHeader />*/}
-      <div className="flex w-full items-center justify-center">
-        <div className="mx-10 grid h-auto grid-cols-5 justify-between gap-6 py-4 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md2:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+      <div className="flex w-full flex-col items-center justify-center">
+        <Header />
+        <SearchButton isMobileMode={mobileMode} />
+        <div className="mx-10 mt-20 grid h-auto grid-cols-5 justify-between gap-6 py-4 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md2:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
           {diagnoses.map((diagnosis: Diagnosis) => (
             <PatientCard
               key={diagnosis.id}
