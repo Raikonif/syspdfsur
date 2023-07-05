@@ -43,27 +43,9 @@ function Header(): ReactElement {
             <ModalCreateDiagnosis
               onClose={() => setModalAddPatient(false)}
               refModal={refModalAddPatient}
-              // openBiopsy={() => setOpenBiopsy(true)}
-              // openCytology={() => setOpenCitopathology(true)}
-              // openHistopathology={() => setOpenHistopathology(true)}
             />
           </div>
         )}
-        {/*{openHistopathology && (*/}
-        {/*  <ModalHistopathology*/}
-        {/*    onClose={() => setOpenHistopathology(false)}*/}
-        {/*    refModal={refModalHistopathology}*/}
-        {/*  />*/}
-        {/*)}*/}
-        {/*{openCitopathology && (*/}
-        {/*  <ModalCytology*/}
-        {/*    onClose={() => setOpenCitopathology(false)}*/}
-        {/*    refModal={refModalCitopathology}*/}
-        {/*  />*/}
-        {/*)}*/}
-        {/*{openBiopsy && (*/}
-        {/*  <ModalBiopsy onClose={() => setOpenBiopsy(false)} refModal={refModalBiopsy} />*/}
-        {/*)}*/}
       </div>
     </div>
   );
