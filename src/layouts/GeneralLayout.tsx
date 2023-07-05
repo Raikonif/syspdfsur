@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import GeneralMenu from "~/components/menu/GeneralMenu";
 import homeOptions from "~/constants/options/home.options";
-import Header from "~/components/menu/Header";
+import Header from "~/pages/patients/components/Header";
 import SearchButton from "~/components/menu/search/SearchButton";
 import ProfileCard from "~/components/menu/Profile/ProfileCard";
 import SignOutModal from "~/components/menu/Profile/SignOutModal";
@@ -21,10 +21,8 @@ function GeneralLayout(): JSX.Element {
     const handleMobileMode = () => {
       if (window.innerWidth < 640) {
         setMobileMode(true);
-        console.log("false");
       } else {
         setMobileMode(false);
-        console.log("true");
       }
     };
     window.addEventListener("resize", handleMobileMode);
@@ -43,13 +41,9 @@ function GeneralLayout(): JSX.Element {
           <GeneralMenu itemList={homeOptions.menuOptions} isMobileMode={mobileMode} />
         </div>
         <div className="flex h-full w-full flex-col">
-          <div className="flex">
-            <Header />
-          </div>
           <Outlet />
           <Toaster />
         </div>
-        <SearchButton isMobileMode={mobileMode} />
         {modalProfile && <ProfileCard openModal={() => setModalSignOut(true)} />}
         {modalSignOut && (
           <div className="fixed inset-0 z-20 flex items-center justify-center bg-gray-400 bg-opacity-50 backdrop-blur-sm">
