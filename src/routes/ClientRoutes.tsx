@@ -1,10 +1,10 @@
 import React from "react";
 import ClientLayout from "~/layouts/ClientLayout";
-import Home from "~/pages/ClientBlogs/Home/Home";
+import Home from "~/pages/blog_client/Home/Home";
 import NotFound from "~/pages/NotFound";
-import Blogs from "~/pages/ClientBlogs/Blogs";
-import About from "~/pages/ClientBlogs/About";
-import Resources from "~/pages/ClientBlogs/Resources";
+import Blogs from "~/pages/blog_client/Blogs";
+import About from "~/pages/blog_client/About";
+import Resources from "~/pages/blog_client/Resources";
 
 const ClientRoutes = {
   path: "",

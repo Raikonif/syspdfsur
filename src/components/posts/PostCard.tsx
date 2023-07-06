@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import IPostInterface from "~/interfaces/IPostInterface";
-import PostContext from "~/pages/ClientBlogs/Home/context";
-import { IPostContext } from "~/pages/ClientBlogs/Home/context";
+import PostContext from "~/pages/blog_client/Home/context";
+import { IPostContext } from "~/pages/blog_client/Home/context";
 function PostCard({ title, description, image, date, key }: IPostInterface) {
   const { setPostSelected } = useContext(PostContext) as IPostContext;
   const handleClick = () => {

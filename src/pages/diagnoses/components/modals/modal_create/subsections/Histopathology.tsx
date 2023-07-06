@@ -5,7 +5,7 @@ import GeneralModal from "~/components/modal/GeneralModal";
 // onClose: () => void;
 // refModal: React.RefObject<HTMLDivElement>;
 // }
-function ModalHistopathology(): ReactElement {
+function Histopathology(): ReactElement {
   return (
     <div className="flex h-full w-full flex-col items-center bg-slate-600 ">
       <h1 className="mx-4 pb-5 pt-3 text-3xl font-bold">Create Histopathology</h1>
@@ -13,4 +13,4 @@ function ModalHistopathology(): ReactElement {
   );
 }
 
-export default ModalHistopathology;
+export default Histopathology;

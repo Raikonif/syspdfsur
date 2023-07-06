@@ -1,19 +1,19 @@
 import React, { ReactElement, useEffect, useRef, useState, useContext } from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
 import { BsArrowRightCircle } from "react-icons/all";
-import ModalHistopathology from "~/pages/patients/components/modal_create_diagnosis/ModalHistopathology";
-import PatientSelect from "~/pages/patients/components/modal_create_diagnosis/PatientSelect";
+import Histopathology from "~/pages/diagnoses/components/modals/modal_create/subsections/Histopathology";
+import PatientSelect from "~/pages/diagnoses/components/modals/modal_create/PatientSelect";
 import { getPatients } from "~/service/patient.service";
 import Patient from "~/interfaces/Patient.type";
-import DiagnosisContext from "~/pages/patients/context/DiagnosisContext";
+import DiagnosisContext from "~/pages/diagnoses/context/DiagnosisContext";
 import useGetData from "~/hooks/useGetData";
 
 interface IProps {
-  onClose: () => void;
+  onClose: (isOpen: boolean) => void;
   refModal: React.RefObject<HTMLDivElement>;
 }
 
-function ModalCreateDiagnosis({ onClose, refModal }: IProps): ReactElement {
+function ModalCreate({ onClose, refModal }: IProps): ReactElement {
   const [active, setActive] = useState<string>("");
   // const { patients, diagnoses } = useContext(DiagnosisContext);
   const { data } = useGetData({ dataToFetch: getPatients });
@@ -24,7 +24,7 @@ function ModalCreateDiagnosis({ onClose, refModal }: IProps): ReactElement {
 
   return (
     <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
-      <GeneralModal onClose={onClose} refModal={refModal}>
+      <GeneralModal onClose={() => onClose(false)} refModal={refModal}>
         <div className="flex h-full w-full flex-col items-center">
           <h1 className="mx-4 pb-5 pt-3 text-3xl font-bold">Crear Diagnóstico</h1>
           <div className="flex w-full flex-col p-2">
@@ -68,7 +68,7 @@ function ModalCreateDiagnosis({ onClose, refModal }: IProps): ReactElement {
               </div>
             </div>
           </div>
-          {active === "1" && <ModalHistopathology />}
+          {active === "1" && <Histopathology />}
           {active === "2" && (
             <div className="h-full w-full items-center justify-center bg-slate-600">
               <h1>Citologia</h1>
@@ -83,4 +83,4 @@ function ModalCreateDiagnosis({ onClose, refModal }: IProps): ReactElement {
   );
 }
 
-export default ModalCreateDiagnosis;
+export default ModalCreate;

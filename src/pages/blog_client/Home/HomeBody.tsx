@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import textsConstants from "~/pages/ClientBlogs/Home/constants/texts.constants";
+import textsConstants from "~/pages/blog_client/Home/constants/texts.constants";
 import { NavLink } from "react-router-dom";
 import PostsList from "~/components/posts/PostsList";
 import PostPreviewCard from "~/components/posts/PostPreviewCard";
 import { BiSearchAlt } from "react-icons/all";
 import PostFooter from "~/components/posts/PostFooter";
 import IPostInterface from "~/interfaces/IPostInterface";
-import PostContext from "~/pages/ClientBlogs/Home/context";
+import PostContext from "~/pages/blog_client/Home/context";
 import { IMenuArticle } from "~/interfaces/menuInterface";
 import ArticlesMenu from "~/components/blog_menu/ArticlesMenu";
 
