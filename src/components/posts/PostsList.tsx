@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import PostCard from "~/components/posts/PostCard";
-import textsConstants from "~/pages/ClientBlogs/Home/constants/texts.constants";
-import PostContext, { IPostContext } from "~/pages/ClientBlogs/Home/context";
+import textsConstants from "~/pages/blog_client/Home/constants/texts.constants";
+import PostContext, { IPostContext } from "~/pages/blog_client/Home/context";
 
 function PostsList() {
   const defaultPost = textsConstants.body.postsList[0];

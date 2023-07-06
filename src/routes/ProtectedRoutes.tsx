@@ -6,7 +6,7 @@ interface IProps {
   redirectPath: string;
 }
 
-function ProtectedRoutes({ auth, redirectPath = "/Patients" }: IProps): JSX.Element {
+function ProtectedRoutes({ auth, redirectPath = "/Diagnoses" }: IProps): JSX.Element {
   const AuthContext = createContext({});
   return auth ? (
     <Navigate to={redirectPath} key={redirectPath} replace />

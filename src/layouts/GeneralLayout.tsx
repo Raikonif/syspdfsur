@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import GeneralMenu from "~/components/menu/GeneralMenu";
 import homeOptions from "~/constants/options/home.options";
-import Header from "~/pages/patients/components/Header";
+import Header from "~/pages/diagnoses/components/Header";
 import SearchButton from "~/components/menu/search/SearchButton";
 import ProfileCard from "~/components/menu/Profile/ProfileCard";
 import SignOutModal from "~/components/menu/Profile/SignOutModal";

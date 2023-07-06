@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import Patient from "~/interfaces/Patient.type";
-import Patients from "~/pages/patients/Patients";
+import Diagnoses from "~/pages/diagnoses/Diagnoses";
 import { getPatients } from "~/service/patient.service";
 
 function PatientSelect(): ReactElement {

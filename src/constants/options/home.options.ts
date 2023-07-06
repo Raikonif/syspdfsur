@@ -14,7 +14,7 @@ const homeOptions = {
     },
     {
       id: 3,
-      title: "Patients History",
+      title: "Diagnoses History",
       icon: "fas fa-history",
       link: "/patients_history",
     },

@@ -1,9 +1,9 @@
 import React from "react";
 import HomeMenu from "~/components/blog_menu/HomeMenu";
-import HomeHeader from "~/pages/ClientBlogs/Home/HomeHeader";
-import HomeFooter from "~/pages/ClientBlogs/Home/HomeFooter";
-import HomeBody from "~/pages/ClientBlogs/Home/HomeBody";
-import HomeSideOptions from "~/pages/ClientBlogs/Home/HomeSideOptions";
+import HomeHeader from "~/pages/blog_client/Home/HomeHeader";
+import HomeFooter from "~/pages/blog_client/Home/HomeFooter";
+import HomeBody from "~/pages/blog_client/Home/HomeBody";
+import HomeSideOptions from "~/pages/blog_client/Home/HomeSideOptions";
 
 function Home(): JSX.Element {
   return (
