@@ -19,7 +19,6 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
   const { data } = useGetData({ dataToFetch: getPatients });
   useEffect(() => {
     console.log("patients", data);
-    // console.log("diagnoses", diagnoses);
   }, []);
 
   return (

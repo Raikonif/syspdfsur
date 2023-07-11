@@ -28,9 +28,11 @@ function DiagnosisCard({
     <div className="duration-300 hover:scale-110">
       <div onClick={() => setModalShow(true)}>
         <article className="container rounded-2xl bg-white p-5 shadow-2xl">
-          <h1 className="font-bold text-fuchsia-600">Patient Card</h1>
+          <h1 className="font-bold text-fuchsia-600">{diagnosis.name}</h1>
           <p className="font-light text-gray-500 active:text-gray-400">{currentDescription}</p>
-          <h6 className="mb-5 text-sm text-gray-300 active:text-gray-200">Date 12/04/2023</h6>
+          <h6 className="mb-5 text-sm text-gray-300 active:text-gray-200">
+            {diagnosis.part_of_body}
+          </h6>
           <div className="flex justify-between">
             <button
               className="h-6 w-6 hover:scale-110"

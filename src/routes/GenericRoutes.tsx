@@ -1,6 +1,6 @@
 import React from "react";
 import GeneralLayout from "~/layouts/GeneralLayout";
-import Dashboard from "~/pages/Dashboard";
+import Patients from "~/pages/patients/Patients";
 import Diagnoses from "~/pages/diagnoses/Diagnoses";
 import PatientsHistory from "~/pages/PatientsHistory";
 import Settings from "~/pages/Settings";
@@ -13,11 +13,11 @@ const GenericRoutes = {
   element: <GeneralLayout />,
   children: [
     {
-      path: "dashboard",
-      element: <Dashboard />,
+      path: "patients",
+      element: <Patients />,
     },
     {
-      path: "patients",
+      path: "diagnoses",
       element: (
         <DiagnosisProvider>
           <Diagnoses />

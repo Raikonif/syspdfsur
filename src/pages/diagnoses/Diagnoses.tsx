@@ -71,7 +71,7 @@ function Diagnoses(): ReactElement {
     <>
       <div className="flex w-full flex-col items-center justify-center">
         <Header setModalCreate={handleModalCreate} />
-        <SearchButton isMobileMode={mobileMode} />
+
         <div className="mx-10 mt-20 grid h-auto grid-cols-5 justify-between gap-6 py-4 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md2:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
           {diagnoses.map((diagnosis: Diagnosis) => (
             <DiagnosisCard

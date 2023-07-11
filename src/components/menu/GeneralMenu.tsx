@@ -35,7 +35,7 @@ function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
         to={item.link}
         className={({ isActive }): string => (isActive ? active : "flex justify-center")}
       >
-        <li className=" m-1 flex w-full justify-center p-2 text-white duration-300 hover:scale-125 active:scale-125 active:border-l-2">
+        <li className="m-1 flex w-full justify-center p-2 text-white duration-300 hover:scale-125 active:scale-125 active:border-l-2">
           {item.title}
         </li>
       </NavLink>
@@ -45,7 +45,7 @@ function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
         to={item.link}
         className={({ isActive }) => (isActive ? activeDesktop : "")}
       >
-        <li className="flex flex-col pb-10 pl-4 pt-10 text-white shadow hover:bg-violet-600 hover:text-slate-200 hover:shadow-lg active:bg-violet-400">
+        <li className="flex flex-col pb-10 pl-4 pr-1 pt-10 text-white shadow hover:bg-violet-600 hover:text-slate-200 hover:shadow-lg active:bg-violet-400">
           {item.title}
         </li>
       </NavLink>
@@ -69,7 +69,7 @@ function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
           </div>
         </div>
       ) : (
-        <div className="fixed h-screen w-40 rounded-r-2xl bg-fuchsia-600">
+        <div className="fixed h-screen w-36 rounded-r-2xl bg-fuchsia-600">
           <Profile openModalSignOut={() => setopenSignOut(true)} />
           {openSignOut && (
             <div className="fixed inset-0 z-20 flex items-center justify-center bg-gray-400 bg-opacity-50 backdrop-blur-sm">
@@ -77,7 +77,7 @@ function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
             </div>
           )}
           <div>
-            <ul className="text-white">{listItems}</ul>
+            <ul className="w-full text-white">{listItems}</ul>
           </div>
         </div>
       )}
