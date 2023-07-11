@@ -485,36 +485,6 @@
       "gender": 0,
       "age": 27,
       "dni": "avery.hill@example.com,"
-    },
-    {
-      "first_name": "Diego",
-      "last_name": "Alarcon Inturias",
-      "age": 31,
-      "gender": "",
-      "dni": 8358851,
-      "clinical_history": 1,
-      "register_birth": 31992,
-      "id": 51
-    },
-    {
-      "first_name": "Pinito",
-      "last_name": "Alarcon Calle",
-      "age": 8,
-      "gender": "",
-      "dni": 12345678,
-      "clinical_history": 4,
-      "register_birth": 123456,
-      "id": 52
-    },
-    {
-      "first_name": "Nandy",
-      "last_name": "Goma Pelala",
-      "age": 34,
-      "gender": "Female",
-      "dni": 6988356,
-      "clinical_history": 5,
-      "register_birth": 2489,
-      "id": 53
     }
   ],
   "diagnoses": [

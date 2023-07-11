@@ -14,6 +14,7 @@ function ModalDelete({ onClose, refModal }: IProps): ReactElement {
         refModal={refModal}
         customWidth={"1/3"}
         customHeight={"1/4"}
+        buttonClose={false}
       >
         <div className="flex w-5/6 flex-col">
           <h1 className="py-3 font-sans">Estas segura de querer Borrar este paciente?</h1>
