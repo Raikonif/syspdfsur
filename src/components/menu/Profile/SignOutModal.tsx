@@ -1,32 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React, { ReactElement } from "react";
 import { useNavigate } from "react-router-dom";
+import GeneralModal from "~/components/modal/GeneralModal";
 
 interface IProps {
   onClose: (change: boolean) => void;
+  refModal: React.RefObject<HTMLDivElement>;
 }
-function SignOutModal({ onClose }: IProps): JSX.Element {
+function SignOutModal({ onClose, refModal }: IProps): ReactElement {
   const navigate = useNavigate();
   const closeSession = () => {
     navigate("/auth");
   };
   // TODO: Add the OutsideClickHandler
   return (
-    <div className=" fixed z-20 flex h-60 w-80 flex-col items-center justify-center rounded-xl border border-gray-300 bg-white shadow-2xl">
-      <h1 className="text-sans-serif text-bold mb-12 text-2xl">Close Your Session?</h1>
-      <div className="m-4 flex justify-between">
-        <button
-          className="active: mx-7 rounded-xl bg-violet-500 px-7 py-2 text-white hover:bg-green-400 active:bg-green-200"
-          onClick={closeSession}
-        >
-          Yes
-        </button>
-        <button
-          className="mx-7 rounded-xl bg-slate-400 px-7 py-1 text-white hover:bg-red-500 active:bg-red-300"
-          onClick={() => onClose(false)}
-        >
-          No
-        </button>
-      </div>
+    <div className="fixed inset-0 z-auto flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
+      <GeneralModal
+        onClose={() => onClose(false)}
+        refModal={refModal}
+        customWidth={"w-1/3"}
+        customHeight={"w-1/4"}
+        buttonClose={false}
+      >
+        <div className="flex w-5/6 flex-col">
+          <h1 className="py-3 font-sans"> Quieres cerrar sesion??</h1>
+          <div className="flex items-center justify-between py-3">
+            <button
+              className="mr-2 w-full rounded-lg bg-violet-700 py-1 text-white"
+              onClick={() => closeSession}
+            >
+              Borrar
+            </button>
+            <button
+              className="ml-2 w-full rounded-lg bg-slate-400 py-1 text-white"
+              onClick={() => onClose(false)}
+            >
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </GeneralModal>
     </div>
   );
 }

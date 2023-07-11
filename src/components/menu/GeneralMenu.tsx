@@ -23,6 +23,7 @@ function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
   const handleClickMenu = () => {
     setShowMenu(!showMenu);
   };
+  const refSignOut = React.useRef<HTMLDivElement>(null);
   const active =
     "flex justify-center bg-fuchsia-500 text-slate-200 rounded w-full border-slate-200";
   const activeDesktop =
@@ -73,7 +74,7 @@ function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
           <Profile openModalSignOut={() => setopenSignOut(true)} />
           {openSignOut && (
             <div className="fixed inset-0 z-20 flex items-center justify-center bg-gray-400 bg-opacity-50 backdrop-blur-sm">
-              <SignOutModal onClose={() => setopenSignOut(false)} />
+              <SignOutModal onClose={() => setopenSignOut(false)} refModal={refSignOut} />
             </div>
           )}
           <div>
