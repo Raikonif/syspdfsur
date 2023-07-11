@@ -13,7 +13,7 @@ function GeneralModal({
   onClose,
   children,
   refModal,
-  customWidth = "w=5/6",
+  customWidth = "w-5/6",
   customHeight = "h-5/6",
 }: ModalProps): ReactElement {
   useOutsideClick({ ref: refModal, onOutsideClick: onClose });

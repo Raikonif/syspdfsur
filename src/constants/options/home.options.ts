@@ -4,13 +4,13 @@ const homeOptions = {
       id: 1,
       title: "Patients",
       icon: "fas fa-ClientBlogs",
-      link: "/dashboard",
+      link: "/patients",
     },
     {
       id: 2,
       title: "Diagnoses",
       icon: "fas fa-user-injured",
-      link: "/patients",
+      link: "/diagnoses",
     },
     {
       id: 3,

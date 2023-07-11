@@ -1,11 +1,6 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
-import { AiOutlineHeart, BsArrowRightCircle } from "react-icons/all";
-import GeneralButton from "~/components/GeneralButton";
-import * as events from "events";
-import ModalHistopathology from "~/components/menu/ModalHistopathology";
-import ModalCytopathology from "~/components/menu/ModalCytopathology";
-import ModalBiopsy from "~/components/menu/ModalBiopsy";
+import { BsArrowRightCircle } from "react-icons/all";
 
 interface IProps {
   onClose: () => void;

@@ -31,10 +31,12 @@ function GeneralLayout(): JSX.Element {
     };
   }, []);
   return (
-    <div className="flex h-screen items-center justify-center bg-white ">
+    <div className="flex h-screen w-screen items-center justify-center bg-white ">
       <div
         className={`${
-          mobileMode ? "flex h-screen w-full flex-col bg-white" : "flex h-screen w-screen bg-white"
+          mobileMode
+            ? "flex h-screen w-screen flex-col bg-white"
+            : "flex h-screen w-screen bg-white"
         }`}
       >
         <div className="w-40">
@@ -44,6 +46,7 @@ function GeneralLayout(): JSX.Element {
           <Outlet />
           <Toaster />
         </div>
+        <SearchButton isMobileMode={mobileMode} />
         {modalProfile && <ProfileCard openModal={() => setModalSignOut(true)} />}
         {modalSignOut && (
           <div className="fixed inset-0 z-20 flex items-center justify-center bg-gray-400 bg-opacity-50 backdrop-blur-sm">

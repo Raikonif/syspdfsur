@@ -19,7 +19,7 @@ function PatientSelect({ pats }: IProps): ReactElement {
       id: 0,
       first_name: "Select a",
       last_name: "Patient",
-      email: "",
+      dni: "",
       gender: "",
       age: 0,
     });
