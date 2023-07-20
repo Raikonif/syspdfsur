@@ -25,13 +25,13 @@ function SignOutModal({ onClose, refModal }: IProps): ReactElement {
           <h1 className="py-3 font-sans"> Quieres cerrar sesion??</h1>
           <div className="flex items-center justify-between py-3">
             <button
-              className="mr-2 w-full rounded-lg bg-violet-700 py-1 text-white"
+              className="mr-2 w-full rounded-lg bg-violet-700 py-1 text-white hover:bg-violet-600"
               onClick={() => closeSession}
             >
               Borrar
             </button>
             <button
-              className="ml-2 w-full rounded-lg bg-slate-400 py-1 text-white"
+              className="ml-2 w-full rounded-lg bg-slate-400 py-1 text-white hover:bg-slate-300"
               onClick={() => onClose(false)}
             >
               Cancelar

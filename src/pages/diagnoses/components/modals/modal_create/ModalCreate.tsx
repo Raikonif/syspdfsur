@@ -7,6 +7,9 @@ import { getPatients } from "~/service/patient.service";
 import Patient from "~/interfaces/Patient.type";
 import DiagnosisContext from "~/pages/diagnoses/context/DiagnosisContext";
 import useGetData from "~/hooks/useGetData";
+import MedicSelect from "~/pages/diagnoses/components/modals/modal_create/MedicSelect";
+import { getMedics } from "~/service/medic.service";
+import Medic from "~/interfaces/Medic.type";
 
 interface IProps {
   onClose: (isOpen: boolean) => void;
@@ -16,18 +19,20 @@ interface IProps {
 function ModalCreate({ onClose, refModal }: IProps): ReactElement {
   const [active, setActive] = useState<string>("");
   // const { patients, diagnoses } = useContext(DiagnosisContext);
-  const { data } = useGetData({ dataToFetch: getPatients });
-  useEffect(() => {
-    console.log("patients", data);
-  }, []);
-
+  const { data: patients } = useGetData<Patient[]>({ dataToFetch: getPatients });
+  const { data: medics } = useGetData<Medic[]>({ dataToFetch: getMedics });
+  const [report, setReport] = useState<string>("");
   return (
     <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
       <GeneralModal onClose={() => onClose(false)} refModal={refModal}>
         <div className="flex h-full w-full flex-col items-center">
           <h1 className="mx-4 pb-5 pt-3 text-3xl font-bold">Crear Diagnóstico</h1>
           <div className="flex w-full flex-col p-2">
-            <PatientSelect pats={data} />
+            <PatientSelect data={patients} />
+            <MedicSelect data={medics} />
+            <input type="text" value="" id="" name="" placeholder="Diagnostico Clinico" />
+            <input type="text" value="" id="" name="" placeholder="Servicio/Centro" />
+            <input type="text" value="" id="" name="" placeholder="Numero de estudio" />
             <div className="flex w-full items-center">
               <div className="w-full">
                 <input type="radio" value="1" id="histo" name="type" className="peer hidden" />

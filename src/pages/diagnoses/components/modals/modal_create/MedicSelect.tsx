@@ -1,30 +1,19 @@
-import React, { ReactElement, useState, useEffect } from "react";
-import Patient from "~/interfaces/Patient.type";
+import React, { ReactElement, useState } from "react";
+import Medic from "~/interfaces/Medic.type";
 
 interface IProps {
-  data: Patient[];
+  data: Medic[];
 }
-
-function PatientSelect({ data }: IProps): ReactElement {
-  const [openSelect, setOpenSelect] = useState<boolean>(false);
-  const patients: Patient[] = data;
-  const [selected, setSelected] = useState<Patient>({} as Patient);
-  const selectAndClose = (patient: Patient) => {
-    setSelected(patient);
+function MedicSelect({ data }: IProps): ReactElement {
+  const [openSelect, setOpenSelect] = useState(false);
+  const [selected, setSelected] = useState<Medic>({} as Medic);
+  // const [medics, setMedics] = useState<Medic[]>([]);
+  const medics: Medic[] = data;
+  const indexStr = Number("-1");
+  const selectAndClose = (medic: Medic) => {
+    setSelected(medic);
     setOpenSelect(false);
   };
-  const indexStr = Number("-1");
-  useEffect(() => {
-    setSelected({
-      id: 0,
-      first_name: "Select a",
-      last_name: "Patient",
-      dni: "",
-      gender: "",
-      age: 0,
-    });
-  }, []);
-
   return (
     <div className="flex flex-col">
       <label id="listbox-label" className="font-medium">
@@ -67,20 +56,20 @@ function PatientSelect({ data }: IProps): ReactElement {
             aria-labelledby="listbox-label"
             aria-activedescendant="listbox-option-3"
           >
-            {patients.map((patient: Patient) => (
+            {medics.map((medic: Medic) => (
               <li
                 className="relative cursor-default select-none py-2 pl-3 text-gray-900 hover:bg-indigo-500 hover:text-white"
-                key={patient.id}
+                key={medic.id}
               >
                 <div
                   className="flex items-center"
                   onClick={() => {
-                    selectAndClose(patient);
+                    selectAndClose(medic);
                   }}
                 >
                   <img src="https://placeimg.com/20/20/animals" alt="..." />
-                  <span className="ml-3 block truncate font-normal">{patient.first_name}</span>
-                  <span className="ml-1 block truncate">{patient.last_name}</span>
+                  <span className="ml-3 block truncate font-normal">{medic.first_name}</span>
+                  <span className="ml-1 block truncate">{medic.last_name}</span>
                 </div>
               </li>
             ))}
@@ -91,4 +80,4 @@ function PatientSelect({ data }: IProps): ReactElement {
   );
 }
 
-export default PatientSelect;
+export default MedicSelect;

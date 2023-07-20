@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import GeneralButton from "~/components/GeneralButton";
 import { FaUserEdit } from "react-icons/all";
 
@@ -10,7 +10,7 @@ function ProfileCard({ openModal }: IProps): JSX.Element {
     <div className="fixed z-20 flex h-60 w-60 flex-col items-center justify-center rounded-lg border border-gray-300 bg-white shadow-2xl">
       <img
         className="h-30 w-30 rounded-full shadow-xl"
-        src="https://placeimg.com/100/100/animals"
+        src="https://picsum.photos/100/100"
         alt="..."
       />
       <h1 className="text-violet-600">Nandy</h1>

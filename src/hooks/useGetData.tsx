@@ -1,28 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-interface IProps {
-  dataToFetch: any;
+interface IProps<T> {
+  dataToFetch: () => Promise<T>;
 }
-function useGetData({ dataToFetch }: IProps) {
-  const [data, setData] = React.useState<any>([]);
-  const [loading, setLoading] = React.useState<boolean>(false);
-  const [error, setError] = React.useState<boolean>(false);
+function useGetData<T>({ dataToFetch }: IProps<T>) {
+  const [data, setData] = useState<T>([] as T);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
 
   const getData = async () => {
     setLoading(true);
     try {
-      const data = await dataToFetch();
-      setData(data);
+      const fetchedData = await dataToFetch();
+      setData(fetchedData);
     } catch (error) {
       setError(true);
     } finally {
       setLoading(false);
     }
   };
-  React.useEffect(() => {
+  useEffect(() => {
     getData();
   }, []);
-
   return { data, loading, error };
 }
 
