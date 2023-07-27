@@ -5,9 +5,9 @@ import Medic from "~/interfaces/Medic.type";
 
 interface IProps {
   data: Medic[];
-  medicInput: (persona: Medic) => void;
+  // medicInput: (persona: Medic) => void;
 }
-function MedicSelect({ data, medicInput }: IProps) {
+function MedicSelect({ data }: IProps) {
   const [inputValue, setInputValue] = useState<string>("");
   const [selected, setSelected] = useState<Medic>({
     id: 0,
@@ -18,7 +18,7 @@ function MedicSelect({ data, medicInput }: IProps) {
   const [open, setOpen] = useState<boolean>(false);
 
   const handleClear = () => {
-    medicInput({
+    setSelected({
       id: 0,
       first_name: "Select",
       last_name: "",
@@ -27,11 +27,11 @@ function MedicSelect({ data, medicInput }: IProps) {
   };
   const handleSelect = (medic: Medic) => {
     setSelected(medic);
-    medicInput(medic);
     setOpen(false);
   };
   useEffect(() => {
     handleSelect(selected);
+    console.log("selected", selected);
   }, [selected]);
   return (
     <div className="h-80 w-full font-medium">
@@ -87,8 +87,6 @@ function MedicSelect({ data, medicInput }: IProps) {
             onClick={() => {
               if (medic.first_name.toLowerCase() !== selected.first_name.toLowerCase()) {
                 setSelected(medic);
-                // medicInput(medic);
-                console.log(selected);
                 setOpen(false);
                 setInputValue("");
               }
