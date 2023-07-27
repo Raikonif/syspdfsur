@@ -5,7 +5,6 @@ import Histopathology from "~/pages/diagnoses/components/modals/modal_create/sub
 import PatientSelect from "~/pages/diagnoses/components/modals/modal_create/PatientSelect";
 import { getPatients } from "~/service/patient.service";
 import Patient from "~/interfaces/Patient.type";
-import DiagnosisContext from "~/pages/diagnoses/context/DiagnosisContext";
 import useGetData from "~/hooks/useGetData";
 import MedicSelect from "~/pages/diagnoses/components/modals/modal_create/MedicSelect";
 import { getMedics } from "~/service/medic.service";
@@ -18,10 +17,13 @@ interface IProps {
 
 function ModalCreate({ onClose, refModal }: IProps): ReactElement {
   const [active, setActive] = useState<string>("");
-  // const { patients, diagnoses } = useContext(DiagnosisContext);
   const { data: patients } = useGetData<Patient[]>({ dataToFetch: getPatients });
   const { data: medics } = useGetData<Medic[]>({ dataToFetch: getMedics });
-  const [report, setReport] = useState<string>("");
+  const [medic, setMedic] = useState<Medic>({} as Medic);
+
+  useEffect(() => {
+    console.log(medic);
+  });
   return (
     <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
       <GeneralModal onClose={() => onClose(false)} refModal={refModal}>
@@ -29,10 +31,21 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
           <h1 className="mx-4 pb-5 pt-3 text-3xl font-bold">Crear Diagnóstico</h1>
           <div className="flex w-full flex-col p-2">
             <PatientSelect data={patients} />
-            <MedicSelect data={medics} />
-            <input type="text" value="" id="" name="" placeholder="Diagnostico Clinico" />
-            <input type="text" value="" id="" name="" placeholder="Servicio/Centro" />
-            <input type="text" value="" id="" name="" placeholder="Numero de estudio" />
+            <MedicSelect
+              data={medics}
+              medicInput={() =>
+                setMedic({
+                  id: 0,
+                  first_name: "Select",
+                  last_name: "",
+                  specialty: "Medic",
+                })
+              }
+            />
+            <span>Medico: {medic.specialty}</span>
+            {/*<input type="text" value="" id="" name="" placeholder="Diagnostico Clinico" />*/}
+            {/*<input type="text" value="" id="" name="" placeholder="Servicio/Centro" />*/}
+            {/*<input type="text" value="" id="" name="" placeholder="Numero de estudio" />*/}
             <div className="flex w-full items-center">
               <div className="w-full">
                 <input type="radio" value="1" id="histo" name="type" className="peer hidden" />
