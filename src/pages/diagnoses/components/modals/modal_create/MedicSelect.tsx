@@ -5,9 +5,10 @@ import Medic from "~/interfaces/Medic.type";
 
 interface IProps {
   data: Medic[];
+  option: (m: Medic) => void;
   // medicInput: (persona: Medic) => void;
 }
-function MedicSelect({ data }: IProps) {
+function MedicSelect({ data, option }: IProps) {
   const [inputValue, setInputValue] = useState<string>("");
   const [selected, setSelected] = useState<Medic>({
     id: 0,
@@ -28,6 +29,7 @@ function MedicSelect({ data }: IProps) {
   const handleSelect = (medic: Medic) => {
     setSelected(medic);
     setOpen(false);
+    option(medic);
   };
   useEffect(() => {
     handleSelect(selected);

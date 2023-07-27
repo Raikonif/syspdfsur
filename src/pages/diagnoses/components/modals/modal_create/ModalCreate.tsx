@@ -19,7 +19,8 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
   const [active, setActive] = useState<string>("");
   const { data: patients } = useGetData<Patient[]>({ dataToFetch: getPatients });
   const { data: medics } = useGetData<Medic[]>({ dataToFetch: getMedics });
-  const [medic, setMedic] = useState<Medic>({} as Medic);
+  const [medicSelected, setMedicSelected] = useState<Medic>({} as Medic);
+  const [];
 
   return (
     <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
@@ -28,8 +29,15 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
           <h1 className="mx-4 pb-5 pt-3 text-3xl font-bold">Crear Diagnóstico</h1>
           <div className="flex w-full flex-col p-2">
             <PatientSelect data={patients} />
-            <MedicSelect data={medics} />
-            <span>Medico: {medic.specialty}</span>
+            <MedicSelect data={medics} option={setMedicSelected} />
+            <span>
+              Medico:{" "}
+              {medicSelected.first_name +
+                " " +
+                medicSelected.last_name +
+                " " +
+                medicSelected.specialty}
+            </span>
             {/*<input type="text" value="" id="" name="" placeholder="Diagnostico Clinico" />*/}
             {/*<input type="text" value="" id="" name="" placeholder="Servicio/Centro" />*/}
             {/*<input type="text" value="" id="" name="" placeholder="Numero de estudio" />*/}
