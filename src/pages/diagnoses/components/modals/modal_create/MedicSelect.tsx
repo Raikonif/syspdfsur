@@ -47,7 +47,7 @@ function MedicSelect({ data, option }: IProps) {
         >
           <AiFillCloseCircle
             size={20}
-            className="mx-2 text-pink-500 hover:text-pink-400 active:text-pink-600"
+            className="mx-2 text-indigo-600 hover:text-indigo-400 active:text-indigo-700"
           />
         </button>
         <div
