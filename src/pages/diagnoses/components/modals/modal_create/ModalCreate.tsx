@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useRef, useState, useContext } from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
-import { BsArrowRightCircle } from "react-icons/all";
+import { BsArrowRightCircle, BsPersonPlusFill, FaHandHoldingMedical } from "react-icons/all";
 import Histopathology from "~/pages/diagnoses/components/modals/modal_create/subsections/Histopathology";
 import PatientSelect from "~/pages/diagnoses/components/modals/modal_create/PatientSelect";
 import { getPatients } from "~/service/patient.service";
@@ -9,6 +9,7 @@ import useGetData from "~/hooks/useGetData";
 import MedicSelect from "~/pages/diagnoses/components/modals/modal_create/MedicSelect";
 import { getMedics } from "~/service/medic.service";
 import Medic from "~/interfaces/Medic.type";
+import GeneralSelect from "../../../../../components/GeneralSelect";
 
 interface IProps {
   onClose: (isOpen: boolean) => void;
@@ -20,24 +21,30 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
   const { data: patients } = useGetData<Patient[]>({ dataToFetch: getPatients });
   const { data: medics } = useGetData<Medic[]>({ dataToFetch: getMedics });
   const [medicSelected, setMedicSelected] = useState<Medic>({} as Medic);
-  const [];
+  const [patientSelected, setPatientSelected] = useState<Patient>({} as Patient);
 
   return (
     <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
       <GeneralModal onClose={() => onClose(false)} refModal={refModal}>
         <div className="flex h-full w-full flex-col items-center">
           <h1 className="mx-4 pb-5 pt-3 text-3xl font-bold">Crear Diagnóstico</h1>
-          <div className="flex w-full flex-col p-2">
-            <PatientSelect data={patients} />
-            <MedicSelect data={medics} option={setMedicSelected} />
-            <span>
-              Medico:{" "}
-              {medicSelected.first_name +
-                " " +
-                medicSelected.last_name +
-                " " +
-                medicSelected.specialty}
-            </span>
+          <div className="flex w-full flex-col p-1">
+            <div className="flex justify-between">
+              <div className="mx-2 flex w-full items-center">
+                <PatientSelect data={patients} option={setPatientSelected} />
+                <BsPersonPlusFill
+                  size={30}
+                  className="m-2 rounded-lg bg-indigo-200 p-1 text-indigo-600"
+                />
+              </div>
+              <div className="flex w-full items-center">
+                <MedicSelect data={medics} option={setMedicSelected} />
+                <FaHandHoldingMedical
+                  size={30}
+                  className="m-2 rounded-lg bg-indigo-200 p-1 text-indigo-600"
+                />
+              </div>
+            </div>
             {/*<input type="text" value="" id="" name="" placeholder="Diagnostico Clinico" />*/}
             {/*<input type="text" value="" id="" name="" placeholder="Servicio/Centro" />*/}
             {/*<input type="text" value="" id="" name="" placeholder="Numero de estudio" />*/}

@@ -6,8 +6,8 @@ import Medic from "~/interfaces/Medic.type";
 interface IProps {
   data: Medic[];
   option: (m: Medic) => void;
-  // medicInput: (persona: Medic) => void;
 }
+
 function MedicSelect({ data, option }: IProps) {
   const [inputValue, setInputValue] = useState<string>("");
   const [selected, setSelected] = useState<Medic>({
@@ -35,8 +35,9 @@ function MedicSelect({ data, option }: IProps) {
     handleSelect(selected);
     console.log("selected", selected);
   }, [selected]);
+
   return (
-    <div className="h-80 w-full font-medium">
+    <div className="h-auto w-full font-medium">
       <div className="flex items-center justify-center rounded-lg border-2 shadow-md ">
         <button
           onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
@@ -55,29 +56,29 @@ function MedicSelect({ data, option }: IProps) {
             !selected && "text-gray-700"
           }`}
         >
-          {selected && selected.first_name + " - " + selected.specialty}
+          {selected && selected.first_name + " " + selected.last_name + " - " + selected.specialty}
           <BiChevronDown size={20} className={`${open && "rotate-180"}`} />
         </div>
       </div>
-      <ul className={`mt-2 overflow-y-auto bg-white ${open ? "max-h-60" : "max-h-0"} `}>
+      <ul className={`mt-2 overflow-y-auto bg-white ${open ? "max-h-60" : "peer hidden"} `}>
         <div className="sticky top-0 flex items-center bg-white px-2">
-          <AiOutlineSearch size={18} className="text-gray-700" />
+          <AiOutlineSearch size={20} className="text-violet-600" />
           <input
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value.toLowerCase())}
             placeholder="Enter Medic Name"
-            className="p-2 outline-none placeholder:text-gray-700"
+            className="p-2 outline-none placeholder:font-sans placeholder:text-violet-700"
           />
         </div>
         {data?.map((medic: Medic) => (
           <li
             key={medic.id}
-            className={`p-2 text-sm hover:bg-sky-600 hover:text-white
+            className={`p-2 text-sm hover:bg-fuchsia-600 hover:text-white
             ${
               (medic.first_name.toLowerCase() === selected.first_name.toLowerCase() ||
                 medic.last_name.toLowerCase() === selected.last_name.toLowerCase()) &&
-              "bg-sky-600 text-white"
+              "bg-fuchsia-600 text-white"
             }
             
             ${
