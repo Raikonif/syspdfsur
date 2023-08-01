@@ -30,6 +30,13 @@ function PatientSelect({ data, option }: IProps): ReactElement {
       dni: "",
     });
   };
+  const handleSearch = (inputValue: string) => {
+    if (!open) {
+      setInputValue("");
+    } else {
+      setInputValue(inputValue);
+    }
+  };
   const handleSelect = (patient: Patient) => {
     setSelected(patient);
     setOpen(false);
@@ -39,7 +46,9 @@ function PatientSelect({ data, option }: IProps): ReactElement {
     handleSelect(selected);
     console.log("selected", selected);
   }, [selected]);
-
+  useEffect(() => {
+    handleSearch(inputValue);
+  }, [open]);
   return (
     <div className="h-auto w-full font-medium">
       <div className="flex items-center justify-center rounded-lg border-2 shadow-md ">
@@ -68,21 +77,25 @@ function PatientSelect({ data, option }: IProps): ReactElement {
           <BiChevronDown size={20} className={`${open && "rotate-180"}`} />
         </div>
       </div>
-      <ul className={`mt-2 block overflow-y-auto bg-white ${open ? "max-h-60" : "hidden"} `}>
+      <ul
+        className={`mt-2 block overflow-y-auto bg-white duration-300 ${
+          open ? "max-h-60" : "hidden"
+        } `}
+      >
         <div className="sticky top-0 flex items-center bg-white px-2">
-          <AiOutlineSearch size={20} className="text-violet-600" />
+          <AiOutlineSearch size={20} className="mx-1 text-violet-600" />
           <input
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value.toLowerCase())}
             placeholder="Enter Patient Name or Lastname"
-            className="p-2 outline-none placeholder:font-sans placeholder:text-violet-700"
+            className="w-full rounded-lg border-2 p-2 shadow-md outline-none placeholder:text-violet-700"
           />
         </div>
         {data?.map((patient: Patient) => (
           <li
             key={patient.id}
-            className={`p-2 text-sm hover:bg-fuchsia-600 hover:text-white
+            className={`z-20 p-2 text-sm hover:bg-fuchsia-600 hover:text-white
             ${
               (patient.first_name.toLowerCase() === selected.first_name.toLowerCase() ||
                 patient.last_name.toLowerCase() === selected.last_name.toLowerCase()) &&
@@ -92,7 +105,7 @@ function PatientSelect({ data, option }: IProps): ReactElement {
             ${
               patient.first_name.toLowerCase().startsWith(inputValue) ||
               patient.last_name.toLowerCase().startsWith(inputValue)
-                ? "block"
+                ? "z-20 block"
                 : "hidden"
             }`}
             onClick={() => {

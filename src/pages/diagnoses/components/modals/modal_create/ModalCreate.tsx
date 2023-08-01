@@ -31,17 +31,21 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
             <div className="flex justify-between">
               <div className="mx-2 flex w-full items-center">
                 <PatientSelect data={patients} option={setPatientSelected} />
-                <BsPersonPlusFill
-                  size={30}
-                  className="m-2 rounded-lg bg-indigo-200 p-1 text-indigo-600"
-                />
+                <button>
+                  <BsPersonPlusFill
+                    size={30}
+                    className="m-2 rounded-lg bg-indigo-200 p-1 text-indigo-600"
+                  />
+                </button>
               </div>
               <div className="flex w-full items-center">
                 <MedicSelect data={medics} option={setMedicSelected} />
-                <FaHandHoldingMedical
-                  size={30}
-                  className="m-2 rounded-lg bg-indigo-200 p-1 text-indigo-600"
-                />
+                <button>
+                  <FaHandHoldingMedical
+                    size={30}
+                    className="m-2 rounded-lg bg-indigo-200 p-1 text-indigo-600"
+                  />
+                </button>
               </div>
             </div>
             {/*<input type="text" value="" id="" name="" placeholder="Diagnostico Clinico" />*/}
