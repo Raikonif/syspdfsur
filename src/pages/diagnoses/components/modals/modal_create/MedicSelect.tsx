@@ -26,6 +26,14 @@ function MedicSelect({ data, option }: IProps) {
       specialty: "Medic",
     });
   };
+
+  const handleSearch = (inputValue: string) => {
+    if (!open) {
+      setInputValue("");
+    } else {
+      setInputValue(inputValue);
+    }
+  };
   const handleSelect = (medic: Medic) => {
     setSelected(medic);
     setOpen(false);
@@ -36,6 +44,9 @@ function MedicSelect({ data, option }: IProps) {
     console.log("selected", selected);
   }, [selected]);
 
+  useEffect(() => {
+    handleSearch(inputValue);
+  }, [open]);
   return (
     <div className="h-auto w-full font-medium">
       <div className="flex items-center justify-center rounded-lg border-2 shadow-md ">
