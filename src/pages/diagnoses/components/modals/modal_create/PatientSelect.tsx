@@ -96,7 +96,10 @@ function PatientSelect({ data, option }: IProps): ReactElement {
                 : "hidden"
             }`}
             onClick={() => {
-              if (patient.first_name.toLowerCase() !== selected.first_name.toLowerCase()) {
+              if (
+                patient.first_name.toLowerCase() !== selected.first_name.toLowerCase() ||
+                patient.last_name.toLowerCase() !== selected.last_name.toLowerCase()
+              ) {
                 setSelected(patient);
                 setOpen(false);
                 setInputValue("");

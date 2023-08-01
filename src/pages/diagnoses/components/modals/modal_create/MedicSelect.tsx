@@ -88,7 +88,10 @@ function MedicSelect({ data, option }: IProps) {
                 : "hidden"
             }`}
             onClick={() => {
-              if (medic.first_name.toLowerCase() !== selected.first_name.toLowerCase()) {
+              if (
+                medic.first_name.toLowerCase() !== selected.first_name.toLowerCase() ||
+                medic.last_name.toLowerCase() !== selected.last_name.toLowerCase()
+              ) {
                 setSelected(medic);
                 setOpen(false);
                 setInputValue("");

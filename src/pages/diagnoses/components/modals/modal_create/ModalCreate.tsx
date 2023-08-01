@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useRef, useState, useContext } from "react";
+import React, { ReactElement, useState } from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
 import { BsArrowRightCircle, BsPersonPlusFill, FaHandHoldingMedical } from "react-icons/all";
 import Histopathology from "~/pages/diagnoses/components/modals/modal_create/subsections/Histopathology";
@@ -9,7 +9,6 @@ import useGetData from "~/hooks/useGetData";
 import MedicSelect from "~/pages/diagnoses/components/modals/modal_create/MedicSelect";
 import { getMedics } from "~/service/medic.service";
 import Medic from "~/interfaces/Medic.type";
-import GeneralSelect from "../../../../../components/GeneralSelect";
 
 interface IProps {
   onClose: (isOpen: boolean) => void;
