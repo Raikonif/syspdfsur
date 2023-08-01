@@ -3,6 +3,7 @@ import { AiFillCloseCircle, AiOutlineSearch } from "react-icons/ai";
 import { BiChevronDown } from "react-icons/bi";
 import { BsFillCircleFill } from "react-icons/bs";
 import Patient from "~/interfaces/Patient.type";
+import { BsPersonPlusFill } from "react-icons/all";
 
 interface IProps {
   data: Patient[];
@@ -42,6 +43,7 @@ function PatientSelect({ data, option }: IProps): ReactElement {
     setOpen(false);
     option(patient);
   };
+
   useEffect(() => {
     handleSelect(selected);
     console.log("selected", selected);
@@ -49,6 +51,7 @@ function PatientSelect({ data, option }: IProps): ReactElement {
   useEffect(() => {
     handleSearch(inputValue);
   }, [open]);
+
   return (
     <div className="h-auto w-full font-medium">
       <div className="flex items-center justify-center rounded-lg border-2 shadow-md ">
@@ -76,6 +79,9 @@ function PatientSelect({ data, option }: IProps): ReactElement {
           {selected && selected.first_name + " " + selected.last_name}
           <BiChevronDown size={20} className={`${open && "rotate-180"}`} />
         </div>
+        <button className="m-2 rounded-lg bg-indigo-200 p-1 text-indigo-600">
+          <BsPersonPlusFill size={30} />
+        </button>
       </div>
       <ul
         className={`mt-2 block overflow-y-auto bg-white duration-300 ${

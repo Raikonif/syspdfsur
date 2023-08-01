@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import { AiFillCloseCircle, AiOutlineSearch } from "react-icons/ai";
 import Medic from "~/interfaces/Medic.type";
+import { FaHandHoldingMedical } from "react-icons/all";
 
 interface IProps {
   data: Medic[];
@@ -26,7 +27,6 @@ function MedicSelect({ data, option }: IProps) {
       specialty: "Medic",
     });
   };
-
   const handleSearch = (inputValue: string) => {
     if (!open) {
       setInputValue("");
@@ -39,6 +39,7 @@ function MedicSelect({ data, option }: IProps) {
     setOpen(false);
     option(medic);
   };
+
   useEffect(() => {
     handleSelect(selected);
     console.log("selected", selected);
@@ -47,6 +48,7 @@ function MedicSelect({ data, option }: IProps) {
   useEffect(() => {
     handleSearch(inputValue);
   }, [open]);
+
   return (
     <div className="h-auto w-full font-medium">
       <div className="flex items-center justify-center rounded-lg border-2 shadow-md ">
@@ -70,6 +72,9 @@ function MedicSelect({ data, option }: IProps) {
           {selected && selected.first_name + " " + selected.last_name + " - " + selected.specialty}
           <BiChevronDown size={20} className={`${open && "rotate-180"}`} />
         </div>
+        <button className="m-2 rounded-lg bg-indigo-200 p-1 text-indigo-600">
+          <FaHandHoldingMedical size={30} />
+        </button>
       </div>
       <ul className={`mt-2 overflow-y-auto bg-white ${open ? "max-h-60" : "peer hidden"} `}>
         <div className="sticky top-0 flex items-center bg-white px-2">
