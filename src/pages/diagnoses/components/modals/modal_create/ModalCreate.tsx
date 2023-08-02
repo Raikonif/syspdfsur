@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
 import { BsArrowRightCircle } from "react-icons/all";
 import Histopathology from "~/pages/diagnoses/components/modals/modal_create/subsections/Histopathology";
@@ -11,6 +11,7 @@ import { getMedics } from "~/service/medic.service";
 import Medic from "~/interfaces/Medic.type";
 import Datepicker from "react-tailwindcss-datepicker";
 import Report from "~/interfaces/Report.type";
+import today from "~/pages/diagnoses/functions";
 
 interface IProps {
   onClose: (isOpen: boolean) => void;
@@ -38,7 +39,7 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
   });
 
   const handleValueChange = (sampleDate: any) => {
-    console.log("newValue:", sampleDate);
+    console.log("sample:", sampleDate);
     setSampleDate(sampleDate);
   };
   const handleReceptionChange = (receptionDate: any) => {
@@ -49,6 +50,12 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
     console.log("report:", reportDate);
     setReportElaboration(reportDate);
   };
+
+  useEffect(() => {
+    console.log("report:", reportElaboration);
+    console.log("sample:", sampleDate);
+    console.log("reception:", sampleReception);
+  }, []);
 
   return (
     <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
