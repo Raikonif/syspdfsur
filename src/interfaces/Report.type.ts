@@ -1,10 +1,13 @@
 interface Report {
   id: number;
-  sub_report_id: number;
   patient_id: number;
   medic_id: number;
-  sampling_date: string;
-  sample_reception_date: string;
+  type: string;
+  service: string;
+  clinical_diagnosis: string;
+  study_code: string;
+  sample_date: string;
+  reception_date: string;
   report_date: string;
 }
 

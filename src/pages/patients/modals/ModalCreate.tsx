@@ -88,7 +88,7 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
               <option value="Male" className="bg-blue-300 hover:bg-blue-300">
                 Hombre
               </option>
-              <option value="Female" className="bg-pink-300">
+              <option value="Female" className="bg-pink-300 hover:bg-pink-300">
                 Mujer
               </option>
             </select>

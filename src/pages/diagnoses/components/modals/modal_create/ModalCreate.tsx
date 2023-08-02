@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
-import { BsArrowRightCircle, BsPersonPlusFill, FaHandHoldingMedical } from "react-icons/all";
+import { BsArrowRightCircle } from "react-icons/all";
 import Histopathology from "~/pages/diagnoses/components/modals/modal_create/subsections/Histopathology";
 import PatientSelect from "~/pages/diagnoses/components/modals/modal_create/PatientSelect";
 import { getPatients } from "~/service/patient.service";
@@ -9,6 +9,8 @@ import useGetData from "~/hooks/useGetData";
 import MedicSelect from "~/pages/diagnoses/components/modals/modal_create/MedicSelect";
 import { getMedics } from "~/service/medic.service";
 import Medic from "~/interfaces/Medic.type";
+import Datepicker from "react-tailwindcss-datepicker";
+import Report from "~/interfaces/Report.type";
 
 interface IProps {
   onClose: (isOpen: boolean) => void;
@@ -19,26 +21,130 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
   const [active, setActive] = useState<string>("");
   const { data: patients } = useGetData<Patient[]>({ dataToFetch: getPatients });
   const { data: medics } = useGetData<Medic[]>({ dataToFetch: getMedics });
+  const [inputDiagnosis, setInputDiagnosis] = useState<string>("");
+  const [inputService, setInputService] = useState<string>("");
+  const [inputCode, setInputCode] = useState<string>("");
+  const [report, setReport] = useState<Report>({} as Report);
   const [medicSelected, setMedicSelected] = useState<Medic>({} as Medic);
   const [patientSelected, setPatientSelected] = useState<Patient>({} as Patient);
+  const [sampleDate, setSampleDate] = useState({
+    startDate: null,
+    endDate: null,
+  });
+  const [sampleReception, setSampleReception] = useState({
+    startDate: null,
+    endDate: null,
+  });
+  const [reportElaboration, setReportElaboration] = useState({
+    startDate: new Date(),
+    endDate: new Date(),
+  });
+
+  const handleValueChange = (newValue: any) => {
+    console.log("newValue:", newValue);
+    setSampleDate(newValue);
+  };
+  const handleReceptionChange = (receptionDate: any) => {
+    console.log("reception:", receptionDate);
+    setSampleReception(receptionDate);
+  };
+  const handleReportChange = (reportDate: any) => {
+    console.log("report:", reportDate);
+    setReportElaboration(reportDate);
+  };
 
   return (
     <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
       <GeneralModal onClose={() => onClose(false)} refModal={refModal}>
         <div className="flex h-full w-full flex-col items-center">
-          <h1 className="mx-4 pb-5 pt-3 text-3xl font-bold">Crear Diagnóstico</h1>
+          <h1 className="mx-4 pb-5 pt-3 text-3xl font-bold">Crear Reporte</h1>
           <div className="flex w-full flex-col p-1">
             <div className="flex justify-between">
-              <div className="mx-2 flex w-full items-center">
+              <div className="mx-1 flex w-1/2 items-center">
                 <PatientSelect data={patients} option={setPatientSelected} />
               </div>
-              <div className="flex w-full items-center">
+              <div className=" mx-1 flex w-1/2 items-center">
                 <MedicSelect data={medics} option={setMedicSelected} />
               </div>
             </div>
-            {/*<input type="text" value="" id="" name="" placeholder="Diagnostico Clinico" />*/}
-            {/*<input type="text" value="" id="" name="" placeholder="Servicio/Centro" />*/}
-            {/*<input type="text" value="" id="" name="" placeholder="Numero de estudio" />*/}
+            <div className="flex justify-between p-1">
+              <input
+                type="text"
+                value={report.clinical_diagnosis}
+                id="cli_diagnosis"
+                name="cli_diagnosis"
+                placeholder="Diagnostico Clinico"
+                onChange={(e) => setReport({ ...report, clinical_diagnosis: e.target.value })}
+                className="m-1 mt-2 w-1/2 items-center rounded-lg bg-indigo-200 p-2 placeholder:text-indigo-400"
+              />
+              <div className="flex w-1/2">
+                <input
+                  type="text"
+                  value={report.service}
+                  id="service"
+                  name="service"
+                  placeholder="Servicio/Centro"
+                  onChange={(e) => setReport({ ...report, service: e.target.value })}
+                  className="m-1 mt-2 w-1/2 items-center rounded-lg bg-indigo-200 p-2 placeholder:text-indigo-400"
+                />
+                <input
+                  type="text"
+                  value={report.study_code}
+                  id="study_code"
+                  name="study_code"
+                  placeholder="Numero de Estudio"
+                  onChange={(e) => setReport({ ...report, study_code: e.target.value })}
+                  className="m-1 mt-2 w-1/2 items-center rounded-lg bg-indigo-200 p-2 placeholder:text-indigo-400"
+                />
+              </div>
+            </div>
+            <div className="flex p-1">
+              <div className="m-1 flex w-1/3 flex-col border">
+                <label>
+                  <span className="text-gray-700">Toma de Muestra: </span>
+                </label>
+                <Datepicker
+                  value={sampleDate}
+                  asSingle={true}
+                  useRange={false}
+                  onChange={handleValueChange}
+                  showShortcuts={true}
+                  primaryColor={"fuchsia"}
+                  placeholder={"Fecha de Toma de Muestra"}
+                  displayFormat={"DD/MM/YYYY"}
+                />
+              </div>
+              <div className="m-1 flex w-1/3 flex-col border">
+                <label>
+                  <span className="text-gray-700">Recepcion de Muestra: </span>
+                </label>
+                <Datepicker
+                  value={sampleReception}
+                  asSingle={true}
+                  useRange={false}
+                  onChange={handleReceptionChange}
+                  showShortcuts={true}
+                  primaryColor={"fuchsia"}
+                  placeholder={"Fecha de Recepcion de Muestra"}
+                  displayFormat={"DD/MM/YYYY"}
+                />
+              </div>
+              <div className="m-1 flex w-1/3 flex-col border">
+                <label>
+                  <span className="text-gray-700">Elaboracion de Informe: </span>
+                </label>
+                <Datepicker
+                  value={reportElaboration}
+                  asSingle={true}
+                  useRange={false}
+                  onChange={handleReportChange}
+                  showShortcuts={true}
+                  primaryColor={"fuchsia"}
+                  placeholder={reportElaboration.startDate.toLocaleDateString()}
+                  displayFormat={"DD/MM/YYYY"}
+                />
+              </div>
+            </div>
             <div className="flex w-full items-center">
               <div className="w-full">
                 <input type="radio" value="1" id="histo" name="type" className="peer hidden" />

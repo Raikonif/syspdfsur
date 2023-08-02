@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { MdEditSquare, RiDeleteBinFill } from "react-icons/all";
-import Diagnosis from "~/interfaces/Diagnosis.type";
+import Report from "~/interfaces/Report.type";
 
 interface IProps {
-  diagnosis: Diagnosis;
+  diagnosis: Report;
   setModalEdit: (isOpen: boolean) => void;
   setModalShow: (isOpen: boolean) => void;
   setModalDelete: (isOpen: boolean) => void;

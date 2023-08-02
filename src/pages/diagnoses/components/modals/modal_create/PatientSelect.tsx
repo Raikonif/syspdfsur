@@ -54,7 +54,7 @@ function PatientSelect({ data, option }: IProps): ReactElement {
 
   return (
     <div className="h-auto w-full font-medium">
-      <div className="flex items-center justify-center rounded-lg border-2 shadow-md ">
+      <div className="flex items-center justify-center rounded-lg border-2 border-indigo-600 shadow-md ">
         <button
           onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
             handleClear();
@@ -79,7 +79,7 @@ function PatientSelect({ data, option }: IProps): ReactElement {
           {selected && selected.first_name + " " + selected.last_name}
           <BiChevronDown size={20} className={`${open && "rotate-180"}`} />
         </div>
-        <button className="m-2 rounded-lg bg-indigo-200 p-1 text-indigo-600">
+        <button className="m-2 rounded-lg border-2 border-indigo-600 bg-indigo-200 p-1 text-indigo-600">
           <BsPersonPlusFill size={30} />
         </button>
       </div>

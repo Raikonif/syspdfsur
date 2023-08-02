@@ -3,7 +3,7 @@ import DiagnosisCard from "~/pages/diagnoses/components/DiagnosisCard";
 import GeneralModal from "~/components/modal/GeneralModal";
 import GeneralField from "~/components/GeneralField";
 import GeneralButton from "~/components/GeneralButton";
-import Diagnosis from "~/interfaces/Diagnosis.type";
+import Report from "~/interfaces/Report.type";
 import { getDiagnoses } from "~/service/diagnosis.service";
 import Header from "./components/Header";
 import SearchButton from "~/components/menu/search/SearchButton";
@@ -22,7 +22,7 @@ function Diagnoses(): ReactElement {
   const refModalEdit = useRef<HTMLDivElement>(null);
   const refModalDelete = useRef<HTMLDivElement>(null);
   const refModalCreate = useRef<HTMLDivElement>(null);
-  const [diagnoses, setDiagnoses] = useState<Diagnosis[]>([] as Diagnosis[]);
+  const [diagnoses, setDiagnoses] = useState<Report[]>([] as Report[]);
 
   const handleModalCreate = (newState: boolean) => {
     setShowModalCreate(newState);
@@ -73,7 +73,7 @@ function Diagnoses(): ReactElement {
         <Header setModalCreate={handleModalCreate} />
 
         <div className="mx-10 mt-20 grid h-auto grid-cols-5 justify-between gap-6 py-4 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md2:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-          {diagnoses.map((diagnosis: Diagnosis) => (
+          {diagnoses.map((diagnosis: Report) => (
             <DiagnosisCard
               key={diagnosis.id}
               diagnosis={diagnosis}

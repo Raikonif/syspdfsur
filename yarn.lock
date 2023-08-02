@@ -1184,6 +1184,11 @@ data-urls@^4.0.0:
     whatwg-mimetype "^3.0.0"
     whatwg-url "^12.0.0"
 
+dayjs@^1.11.6:
+  version "1.11.9"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.9.tgz#9ca491933fadd0a60a2c19f6c237c03517d71d1a"
+  integrity sha512-QvzAURSbQ0pKdIye2txOzNaHmxtUBXerpY0FJsFXUMKbIZeFm5ht1LS/jFsrncjnmtv8HsG0W2g6c0zUjZWmpA==
+
 debug@*, debug@4, debug@^4.1.0, debug@^4.1.1, debug@^4.3.2, debug@^4.3.4:
   version "4.3.4"
   resolved "https://registry.npmjs.org/debug/-/debug-4.3.4.tgz"
@@ -3401,6 +3406,11 @@ react-router@6.10.0:
   integrity sha512-Nrg0BWpQqrC3ZFFkyewrflCud9dio9ME3ojHCF/WLsprJVzkq3q3UeEhMCAW1dobjeGbWgjNn/PVF6m46ANxXQ==
   dependencies:
     "@remix-run/router" "1.5.0"
+
+react-tailwindcss-datepicker@^1.6.6:
+  version "1.6.6"
+  resolved "https://registry.yarnpkg.com/react-tailwindcss-datepicker/-/react-tailwindcss-datepicker-1.6.6.tgz#b6afe0ff8efacf8fa4eaf02e6dadd5fe4719963d"
+  integrity sha512-kHSUonRO86PoYQQWPqpaSw2JeEn9OafdLsLBG85zO5Sfs23Ku8Ixt/YO+Is3TCBcFeOKnZgzhGLmP3NAXVlFkA==
 
 react@^18.2.0:
   version "18.2.0"
