@@ -21,9 +21,6 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
   const [active, setActive] = useState<string>("");
   const { data: patients } = useGetData<Patient[]>({ dataToFetch: getPatients });
   const { data: medics } = useGetData<Medic[]>({ dataToFetch: getMedics });
-  const [inputDiagnosis, setInputDiagnosis] = useState<string>("");
-  const [inputService, setInputService] = useState<string>("");
-  const [inputCode, setInputCode] = useState<string>("");
   const [report, setReport] = useState<Report>({} as Report);
   const [medicSelected, setMedicSelected] = useState<Medic>({} as Medic);
   const [patientSelected, setPatientSelected] = useState<Patient>({} as Patient);
@@ -40,9 +37,9 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
     endDate: new Date(),
   });
 
-  const handleValueChange = (newValue: any) => {
-    console.log("newValue:", newValue);
-    setSampleDate(newValue);
+  const handleValueChange = (sampleDate: any) => {
+    console.log("newValue:", sampleDate);
+    setSampleDate(sampleDate);
   };
   const handleReceptionChange = (receptionDate: any) => {
     console.log("reception:", receptionDate);

@@ -3,6 +3,9 @@ export interface HistopathologyReport {
   report_id: number;
   slides: number;
   blocks?: number;
+  macroscopy: string;
+  microscopy: string;
+  conclusion: string;
 }
 
 export interface PAPReport {
