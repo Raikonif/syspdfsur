@@ -137,7 +137,11 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
                   onChange={handleReportChange}
                   showShortcuts={true}
                   primaryColor={"fuchsia"}
-                  placeholder={reportElaboration.startDate.toLocaleDateString()}
+                  placeholder={
+                    reportElaboration.startDate
+                      ? String(reportElaboration.startDate)
+                      : "Fecha de Elaboracion de Informe"
+                  }
                   displayFormat={"DD/MM/YYYY"}
                 />
               </div>
