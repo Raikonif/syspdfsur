@@ -12,6 +12,7 @@ import Medic from "~/interfaces/Medic.type";
 import Datepicker from "react-tailwindcss-datepicker";
 import Report from "~/interfaces/Report.type";
 import today from "~/pages/diagnoses/functions";
+import { HistopathologyReport } from "~/interfaces/SubReports.interface";
 
 interface IProps {
   onClose: (isOpen: boolean) => void;
@@ -22,7 +23,27 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
   const [active, setActive] = useState<string>("");
   const { data: patients } = useGetData<Patient[]>({ dataToFetch: getPatients });
   const { data: medics } = useGetData<Medic[]>({ dataToFetch: getMedics });
-  const [report, setReport] = useState<Report>({} as Report);
+  const [report, setReport] = useState<Report>({
+    id: 0,
+    medic_id: 0,
+    patient_id: 0,
+    type: "",
+    clinical_diagnosis: "",
+    service: "",
+    study_code: "",
+    reception_date: "",
+    report_date: "",
+    sample_date: "",
+  });
+  const [histoReport, setHistoReport] = useState<HistopathologyReport>({
+    id: 0,
+    report_id: 0,
+    slides: 0,
+    blocks: 0,
+    macroscopy: "",
+    microscopy: "",
+    conclusion: "",
+  });
   const [medicSelected, setMedicSelected] = useState<Medic>({} as Medic);
   const [patientSelected, setPatientSelected] = useState<Patient>({} as Patient);
   const [sampleDate, setSampleDate] = useState({
@@ -63,47 +84,8 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
         <div className="flex h-full w-full flex-col items-center">
           <h1 className="mx-4 pb-5 pt-3 text-3xl font-bold">Crear Reporte</h1>
           <div className="flex w-full flex-col p-1">
-            <div className="flex justify-between">
-              <div className="mx-1 flex w-1/2 items-center">
-                <PatientSelect data={patients} option={setPatientSelected} />
-              </div>
-              <div className=" mx-1 flex w-1/2 items-center">
-                <MedicSelect data={medics} option={setMedicSelected} />
-              </div>
-            </div>
-            <div className="flex justify-between p-1">
-              <input
-                type="text"
-                value={report.clinical_diagnosis}
-                id="cli_diagnosis"
-                name="cli_diagnosis"
-                placeholder="Diagnostico Clinico"
-                onChange={(e) => setReport({ ...report, clinical_diagnosis: e.target.value })}
-                className="m-1 mt-2 w-1/2 items-center rounded-lg bg-indigo-200 p-2 placeholder:text-indigo-400"
-              />
-              <div className="flex w-1/2">
-                <input
-                  type="text"
-                  value={report.service}
-                  id="service"
-                  name="service"
-                  placeholder="Servicio/Centro"
-                  onChange={(e) => setReport({ ...report, service: e.target.value })}
-                  className="m-1 mt-2 w-1/2 items-center rounded-lg bg-indigo-200 p-2 placeholder:text-indigo-400"
-                />
-                <input
-                  type="text"
-                  value={report.study_code}
-                  id="study_code"
-                  name="study_code"
-                  placeholder="Numero de Estudio"
-                  onChange={(e) => setReport({ ...report, study_code: e.target.value })}
-                  className="m-1 mt-2 w-1/2 items-center rounded-lg bg-indigo-200 p-2 placeholder:text-indigo-400"
-                />
-              </div>
-            </div>
             <div className="flex p-1">
-              <div className="m-1 flex w-1/3 flex-col border">
+              <div className="m-1 flex w-1/3 flex-col rounded-lg border border-indigo-600 p-2">
                 <label>
                   <span className="text-gray-700">Toma de Muestra: </span>
                 </label>
@@ -114,11 +96,11 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
                   onChange={handleValueChange}
                   showShortcuts={true}
                   primaryColor={"fuchsia"}
-                  placeholder={"Fecha de Toma de Muestra"}
+                  placeholder={"Ingrese una Fecha"}
                   displayFormat={"DD/MM/YYYY"}
                 />
               </div>
-              <div className="m-1 flex w-1/3 flex-col border">
+              <div className="m-1 flex w-1/3 flex-col rounded-lg border border-indigo-600 p-2">
                 <label>
                   <span className="text-gray-700">Recepcion de Muestra: </span>
                 </label>
@@ -129,11 +111,11 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
                   onChange={handleReceptionChange}
                   showShortcuts={true}
                   primaryColor={"fuchsia"}
-                  placeholder={"Fecha de Recepcion de Muestra"}
+                  placeholder={"Ingrese una Fecha"}
                   displayFormat={"DD/MM/YYYY"}
                 />
               </div>
-              <div className="m-1 flex w-1/3 flex-col border">
+              <div className="m-1 flex w-1/3 flex-col rounded-lg border border-indigo-600 p-2">
                 <label>
                   <span className="text-gray-700">Elaboracion de Informe: </span>
                 </label>
@@ -153,6 +135,46 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
                 />
               </div>
             </div>
+            <div className="flex justify-between px-1">
+              <div className="mx-1 flex w-1/2">
+                <PatientSelect data={patients} option={setPatientSelected} />
+              </div>
+              <div className=" mx-1 flex w-1/2">
+                <MedicSelect data={medics} option={setMedicSelected} />
+              </div>
+            </div>
+            <div className="flex justify-between p-1">
+              <input
+                type="text"
+                value={report.clinical_diagnosis}
+                id="cli_diagnosis"
+                name="cli_diagnosis"
+                placeholder="Diagnostico Clinico"
+                onChange={(e) => setReport({ ...report, clinical_diagnosis: e.target.value })}
+                className="m-1 mt-2 w-1/2 items-center rounded-lg bg-indigo-200 p-2 placeholder:text-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-600"
+              />
+              <div className="flex w-1/2">
+                <input
+                  type="text"
+                  value={report.service}
+                  id="service"
+                  name="service"
+                  placeholder="Servicio/Centro"
+                  onChange={(e) => setReport({ ...report, service: e.target.value })}
+                  className="m-1 mt-2 w-1/2 items-center rounded-lg bg-indigo-200 p-2 placeholder:text-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-600"
+                />
+                <input
+                  type="text"
+                  value={report.study_code}
+                  id="study_code"
+                  name="study_code"
+                  placeholder="Numero de Estudio"
+                  onChange={(e) => setReport({ ...report, study_code: e.target.value })}
+                  className="m-1 mt-2 w-1/2 items-center rounded-lg bg-indigo-200 p-2 placeholder:text-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-600"
+                />
+              </div>
+            </div>
+
             <div className="flex w-full items-center">
               <div className="w-full">
                 <input type="radio" value="1" id="histo" name="type" className="peer hidden" />
@@ -192,7 +214,7 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
               </div>
             </div>
           </div>
-          {active === "1" && <Histopathology />}
+          {active === "1" && <Histopathology setReport={setHistoReport} report={histoReport} />}
           {active === "2" && (
             <div className="h-full w-full items-center justify-center bg-slate-600">
               <h1>Citologia</h1>

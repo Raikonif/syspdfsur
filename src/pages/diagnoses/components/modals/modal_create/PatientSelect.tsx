@@ -1,7 +1,6 @@
 import React, { ReactElement, useState, useEffect } from "react";
 import { AiFillCloseCircle, AiOutlineSearch } from "react-icons/ai";
 import { BiChevronDown } from "react-icons/bi";
-import { BsFillCircleFill } from "react-icons/bs";
 import Patient from "~/interfaces/Patient.type";
 import { BsPersonPlusFill } from "react-icons/all";
 
@@ -53,8 +52,8 @@ function PatientSelect({ data, option }: IProps): ReactElement {
   }, [open]);
 
   return (
-    <div className="h-auto w-full font-medium">
-      <div className="flex items-center justify-center rounded-lg border-2 border-indigo-600 shadow-md ">
+    <div className="h-auto w-full">
+      <div className="flex items-center justify-center rounded-lg border border-indigo-600 shadow-md ">
         <button
           onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
             handleClear();
@@ -79,7 +78,7 @@ function PatientSelect({ data, option }: IProps): ReactElement {
           {selected && selected.first_name + " " + selected.last_name}
           <BiChevronDown size={20} className={`${open && "rotate-180"}`} />
         </div>
-        <button className="m-2 rounded-lg border-2 border-indigo-600 bg-indigo-200 p-1 text-indigo-600">
+        <button className="m-2 rounded-lg border border-indigo-600 bg-indigo-200 p-1 text-indigo-600">
           <BsPersonPlusFill size={30} />
         </button>
       </div>
