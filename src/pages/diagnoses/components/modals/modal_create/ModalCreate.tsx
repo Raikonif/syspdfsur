@@ -11,7 +11,6 @@ import { getMedics } from "~/service/medic.service";
 import Medic from "~/interfaces/Medic.type";
 import Datepicker from "react-tailwindcss-datepicker";
 import Report from "~/interfaces/Report.type";
-import today from "~/pages/diagnoses/functions";
 import { HistopathologyReport } from "~/interfaces/SubReports.interface";
 
 interface IProps {
@@ -23,27 +22,8 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
   const [active, setActive] = useState<string>("");
   const { data: patients } = useGetData<Patient[]>({ dataToFetch: getPatients });
   const { data: medics } = useGetData<Medic[]>({ dataToFetch: getMedics });
-  const [report, setReport] = useState<Report>({
-    id: 0,
-    medic_id: 0,
-    patient_id: 0,
-    type: "",
-    clinical_diagnosis: "",
-    service: "",
-    study_code: "",
-    reception_date: "",
-    report_date: "",
-    sample_date: "",
-  });
-  const [histoReport, setHistoReport] = useState<HistopathologyReport>({
-    id: 0,
-    report_id: 0,
-    slides: 0,
-    blocks: 0,
-    macroscopy: "",
-    microscopy: "",
-    conclusion: "",
-  });
+  const [report, setReport] = useState<Report>({} as Report);
+  const [histoReport, setHistoReport] = useState<HistopathologyReport>({} as HistopathologyReport);
   const [medicSelected, setMedicSelected] = useState<Medic>({} as Medic);
   const [patientSelected, setPatientSelected] = useState<Patient>({} as Patient);
   const [sampleDate, setSampleDate] = useState({
@@ -149,6 +129,7 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
                 value={report.clinical_diagnosis}
                 id="cli_diagnosis"
                 name="cli_diagnosis"
+                aria-autocomplete="none"
                 placeholder="Diagnostico Clinico"
                 onChange={(e) => setReport({ ...report, clinical_diagnosis: e.target.value })}
                 className="m-1 mt-2 w-1/2 items-center rounded-lg bg-indigo-200 p-2 placeholder:text-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-600"
@@ -159,6 +140,7 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
                   value={report.service}
                   id="service"
                   name="service"
+                  aria-autocomplete="none"
                   placeholder="Servicio/Centro"
                   onChange={(e) => setReport({ ...report, service: e.target.value })}
                   className="m-1 mt-2 w-1/2 items-center rounded-lg bg-indigo-200 p-2 placeholder:text-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-600"
@@ -168,6 +150,7 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
                   value={report.study_code}
                   id="study_code"
                   name="study_code"
+                  aria-autocomplete="none"
                   placeholder="Numero de Estudio"
                   onChange={(e) => setReport({ ...report, study_code: e.target.value })}
                   className="m-1 mt-2 w-1/2 items-center rounded-lg bg-indigo-200 p-2 placeholder:text-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-600"

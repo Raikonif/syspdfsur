@@ -16,7 +16,7 @@ function Histopathology({ setReport, report }: IProps): ReactElement {
           value={report.slides === 0 ? "" : report.slides}
           id="histo_slides"
           name="histo_slides"
-          placeholder="Laminas"
+          placeholder="Láminas"
           onChange={(e) => setReport({ ...report, slides: Number(e.target.value) })}
           className="m-1 mt-2 w-full items-center rounded-lg bg-indigo-200 p-2 placeholder:text-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-600"
         />
@@ -35,7 +35,7 @@ function Histopathology({ setReport, report }: IProps): ReactElement {
           value={report.macroscopy}
           id="histo_macroscopy"
           name="histo_macroscopy"
-          placeholder="Macroscopia"
+          placeholder="Macroscopía"
           onChange={(e) => setReport({ ...report, macroscopy: e.target.value })}
           className="m-1 mt-2 w-1/3 items-center rounded-lg bg-indigo-200 p-2 placeholder:text-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-600"
         />
@@ -43,7 +43,7 @@ function Histopathology({ setReport, report }: IProps): ReactElement {
           value={report.microscopy}
           id="histo_microscopy"
           name="histo_microscopy"
-          placeholder="Microscopia"
+          placeholder="Microscopía"
           onChange={(e) => setReport({ ...report, microscopy: e.target.value })}
           className="m-1 mt-2 w-1/3 items-center rounded-lg bg-indigo-200 p-2 placeholder:text-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-600"
         />
@@ -51,7 +51,7 @@ function Histopathology({ setReport, report }: IProps): ReactElement {
           value={report.conclusion}
           id="histo_conclusion"
           name="histo_conclusion"
-          placeholder="Conclusiones"
+          placeholder="Conclusión"
           onChange={(e) => setReport({ ...report, conclusion: e.target.value })}
           className="m-1 mt-2 w-1/3 items-center rounded-lg bg-indigo-200 p-2 placeholder:text-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-600"
         />

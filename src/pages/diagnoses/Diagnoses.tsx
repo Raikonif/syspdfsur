@@ -4,7 +4,7 @@ import GeneralModal from "~/components/modal/GeneralModal";
 import GeneralField from "~/components/GeneralField";
 import GeneralButton from "~/components/GeneralButton";
 import Report from "~/interfaces/Report.type";
-import { getDiagnoses } from "~/service/diagnosis.service";
+import { getReports } from "~/service/report.service";
 import Header from "./components/Header";
 import SearchButton from "~/components/menu/search/SearchButton";
 import ModalDelete from "~/pages/diagnoses/components/modals/ModalDelete";
@@ -37,7 +37,7 @@ function Diagnoses(): ReactElement {
     setShowModalDelete(newState);
   };
   const getAllDiagnoses = async () => {
-    setDiagnoses(await getDiagnoses());
+    setDiagnoses(await getReports());
   };
 
   useEffect(() => {

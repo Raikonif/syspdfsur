@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Patient from "~/interfaces/Patient.type";
 import DiagnosisContext from "./DiagnosisContext";
 import Report from "~/interfaces/Report.type";
-import { getDiagnoses } from "~/service/diagnosis.service";
+import { getReports } from "~/service/report.service";
 import { getPatients } from "~/service/patient.service";
 
 interface IProps {
@@ -16,7 +16,7 @@ function DiagnosisProvider({ children }: IProps) {
     setPatients(await getPatients());
   };
   const getAllDiagnoses = async () => {
-    setDiagnoses(await getDiagnoses());
+    setDiagnoses(await getReports());
   };
   useEffect(() => {
     getAllDiagnoses();
