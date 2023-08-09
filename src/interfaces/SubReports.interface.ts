@@ -8,6 +8,15 @@ export interface HistopathologyReport {
   conclusion: string;
 }
 
+export interface IHistopathologyReportForm {
+  report_id: number;
+  slides?: number;
+  blocks: number;
+  macroscopy: string;
+  microscopy: string;
+  conclusion: string;
+}
+
 export interface PAPReport {
   id: number;
   report_id: number;

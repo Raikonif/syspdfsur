@@ -11,7 +11,7 @@ import { getMedics } from "~/service/medic.service";
 import Medic from "~/interfaces/Medic.type";
 import Datepicker from "react-tailwindcss-datepicker";
 import { IReportForm, Report } from "~/interfaces/Report.type";
-import { HistopathologyReport } from "~/interfaces/SubReports.interface";
+import { HistopathologyReport, IHistopathologyReportForm } from "~/interfaces/SubReports.interface";
 
 interface IProps {
   onClose: (isOpen: boolean) => void;
@@ -33,7 +33,14 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
     reception_date: "",
     report_date: "",
   });
-  const [histoReport, setHistoReport] = useState<HistopathologyReport>({} as HistopathologyReport);
+  const [histoReport, setHistoReport] = useState<IHistopathologyReportForm>({
+    report_id: 0,
+    slides: 0,
+    blocks: 0,
+    macroscopy: "",
+    microscopy: "",
+    conclusion: "",
+  });
   const [medicSelected, setMedicSelected] = useState<Medic>({} as Medic);
   const [patientSelected, setPatientSelected] = useState<Patient>({} as Patient);
   const [sampleDate, setSampleDate] = useState({

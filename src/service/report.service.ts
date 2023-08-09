@@ -12,20 +12,20 @@ export const getReports = async () => {
 };
 
 export const createReport = async (report: Partial<Report>) => {
-  const response = await serviceJson.post<Report>("/diagnoses", report);
+  const response = await serviceJson.post<Report>("/reports", report);
   return response.data;
 };
 export const createHistoReport = async (Histopathology: Partial<HistopathologyReport>) => {
-  const response = await serviceJson.post<Report>("/diagnoses", Histopathology);
+  const response = await serviceJson.post<Report>("/reports", Histopathology);
   return response.data;
 };
 
 export const createPAPReport = async (PAP: Partial<PAPReport>) => {
-  const response = await serviceJson.post<Report>("/diagnoses", PAP);
+  const response = await serviceJson.post<Report>("/reports", PAP);
   return response.data;
 };
 
 export const createCytoReport = async (Cytopathology: Partial<CytopathologyReport>) => {
-  const response = await serviceJson.post<Report>("/diagnoses", Cytopathology);
+  const response = await serviceJson.post<Report>("/reports", Cytopathology);
   return response.data;
 };
