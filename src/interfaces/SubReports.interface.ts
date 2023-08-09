@@ -1,5 +1,5 @@
 export interface HistopathologyReport {
-  id?: number;
+  id: number;
   report_id: number;
   slides?: number;
   blocks: number;

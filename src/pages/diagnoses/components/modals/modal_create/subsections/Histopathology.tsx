@@ -1,6 +1,5 @@
 import React, { ReactElement } from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
-import Report from "~/interfaces/Report.type";
 import { HistopathologyReport } from "~/interfaces/SubReports.interface";
 
 interface IProps {

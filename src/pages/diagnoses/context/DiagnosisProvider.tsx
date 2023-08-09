@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Patient from "~/interfaces/Patient.type";
 import DiagnosisContext from "./DiagnosisContext";
-import Report from "~/interfaces/Report.type";
+import { Report } from "~/interfaces/Report.type";
 import { getReports } from "~/service/report.service";
 import { getPatients } from "~/service/patient.service";
 

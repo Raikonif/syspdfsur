@@ -1,5 +1,5 @@
 import { serviceJson } from "~/service/index";
-import Report from "~/interfaces/Report.type";
+import { Report } from "~/interfaces/Report.type";
 import {
   CytopathologyReport,
   HistopathologyReport,
@@ -7,7 +7,7 @@ import {
 } from "~/interfaces/SubReports.interface";
 
 export const getReports = async () => {
-  const response = await serviceJson.get<Report[]>("/diagnoses");
+  const response = await serviceJson.get<Report[]>("/reports");
   return response.data;
 };
 

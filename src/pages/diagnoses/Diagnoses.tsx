@@ -3,7 +3,7 @@ import DiagnosisCard from "~/pages/diagnoses/components/DiagnosisCard";
 import GeneralModal from "~/components/modal/GeneralModal";
 import GeneralField from "~/components/GeneralField";
 import GeneralButton from "~/components/GeneralButton";
-import Report from "~/interfaces/Report.type";
+import { Report } from "~/interfaces/Report.type";
 import { getReports } from "~/service/report.service";
 import Header from "./components/Header";
 import SearchButton from "~/components/menu/search/SearchButton";

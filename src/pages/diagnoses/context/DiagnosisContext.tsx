@@ -1,5 +1,5 @@
 import React, { createContext } from "react";
-import Report from "~/interfaces/Report.type";
+import { Report } from "~/interfaces/Report.type";
 import Patient from "~/interfaces/Patient.type";
 
 interface IContextData {

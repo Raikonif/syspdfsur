@@ -10,7 +10,7 @@ import MedicSelect from "~/pages/diagnoses/components/modals/modal_create/MedicS
 import { getMedics } from "~/service/medic.service";
 import Medic from "~/interfaces/Medic.type";
 import Datepicker from "react-tailwindcss-datepicker";
-import Report from "~/interfaces/Report.type";
+import { IReportForm, Report } from "~/interfaces/Report.type";
 import { HistopathologyReport } from "~/interfaces/SubReports.interface";
 
 interface IProps {
@@ -22,7 +22,17 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
   const [active, setActive] = useState<string>("");
   const { data: patients } = useGetData<Patient[]>({ dataToFetch: getPatients });
   const { data: medics } = useGetData<Medic[]>({ dataToFetch: getMedics });
-  const [report, setReport] = useState<Report>({} as Report);
+  const [report, setReport] = useState<IReportForm>({
+    medic_id: 0,
+    patient_id: 0,
+    type: "",
+    service: "",
+    clinical_diagnosis: "",
+    study_code: "",
+    sample_date: "",
+    reception_date: "",
+    report_date: "",
+  });
   const [histoReport, setHistoReport] = useState<HistopathologyReport>({} as HistopathologyReport);
   const [medicSelected, setMedicSelected] = useState<Medic>({} as Medic);
   const [patientSelected, setPatientSelected] = useState<Patient>({} as Patient);
