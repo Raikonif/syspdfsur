@@ -6,26 +6,34 @@ import {
   PAPReport,
 } from "~/interfaces/SubReports.interface";
 
-export const getReports = async () => {
+const getReports = async () => {
   const response = await serviceJson.get<Report[]>("/reports");
   return response.data;
 };
 
-export const createReport = async (report: Partial<Report>) => {
+const createReport = async (report: Partial<Report>) => {
   const response = await serviceJson.post<Report>("/reports", report);
   return response.data;
 };
-export const createHistoReport = async (Histopathology: Partial<HistopathologyReport>) => {
+const createHistoReport = async (Histopathology: Partial<HistopathologyReport>) => {
   const response = await serviceJson.post<Report>("/reports", Histopathology);
   return response.data;
 };
 
-export const createPAPReport = async (PAP: Partial<PAPReport>) => {
+const createPAPReport = async (PAP: Partial<PAPReport>) => {
   const response = await serviceJson.post<Report>("/reports", PAP);
   return response.data;
 };
 
-export const createCytoReport = async (Cytopathology: Partial<CytopathologyReport>) => {
+const createCytoReport = async (Cytopathology: Partial<CytopathologyReport>) => {
   const response = await serviceJson.post<Report>("/reports", Cytopathology);
   return response.data;
 };
+
+export {
+  getReports,
+  createReport,
+  createHistoReport,
+  createPAPReport,
+  createCytoReport,
+}

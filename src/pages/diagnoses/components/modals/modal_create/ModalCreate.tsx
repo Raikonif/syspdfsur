@@ -11,7 +11,10 @@ import { getMedics } from "~/service/medic.service";
 import Medic from "~/interfaces/Medic.type";
 import Datepicker from "react-tailwindcss-datepicker";
 import { IReportForm, Report } from "~/interfaces/Report.type";
-import { HistopathologyReport, IHistopathologyReportForm } from "~/interfaces/SubReports.interface";
+import { IHistopathologyReportForm } from "~/interfaces/SubReports.interface";
+import { CYTOLOGY, HISTOPATHOLOGY, PAP } from "~/constants";
+import { Dates } from "~/interfaces/Dates.type";
+import { createReport } from "~/service/report.service";
 
 interface IProps {
   onClose: (isOpen: boolean) => void;
@@ -19,19 +22,19 @@ interface IProps {
 }
 
 function ModalCreate({ onClose, refModal }: IProps): ReactElement {
-  const [active, setActive] = useState<string>("");
+  const [active, setActive] = useState<string>(HISTOPATHOLOGY);
   const { data: patients } = useGetData<Patient[]>({ dataToFetch: getPatients });
   const { data: medics } = useGetData<Medic[]>({ dataToFetch: getMedics });
   const [report, setReport] = useState<IReportForm>({
     medic_id: 0,
     patient_id: 0,
-    type: "",
+    type: HISTOPATHOLOGY,
     service: "",
     clinical_diagnosis: "",
     study_code: "",
-    sample_date: "",
-    reception_date: "",
-    report_date: "",
+    sample_date: null,
+    reception_date: null,
+    report_date: null,
   });
   const [histoReport, setHistoReport] = useState<IHistopathologyReportForm>({
     report_id: 0,
@@ -41,17 +44,15 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
     microscopy: "",
     conclusion: "",
   });
-  const [medicSelected, setMedicSelected] = useState<Medic>({} as Medic);
-  const [patientSelected, setPatientSelected] = useState<Patient>({} as Patient);
-  const [sampleDate, setSampleDate] = useState({
+  const [sampleDate, setSampleDate] = useState<Dates>({
     startDate: null,
     endDate: null,
   });
-  const [sampleReception, setSampleReception] = useState({
+  const [sampleReception, setSampleReception] = useState<Dates>({
     startDate: null,
     endDate: null,
   });
-  const [reportElaboration, setReportElaboration] = useState({
+  const [reportElaboration, setReportElaboration] = useState<Dates>({
     startDate: new Date(),
     endDate: new Date(),
   });
@@ -59,14 +60,25 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
   const handleValueChange = (sampleDate: any) => {
     console.log("sample:", sampleDate);
     setSampleDate(sampleDate);
+    const updatedSampleDate = sampleDate.startDate !== null ? sampleDate.startDate : undefined;
+    setReport({ ...report, sample_date: updatedSampleDate });
   };
   const handleReceptionChange = (receptionDate: any) => {
     console.log("reception:", receptionDate);
     setSampleReception(receptionDate);
+    const updatedReceptionDate =
+      receptionDate.startDate !== null ? receptionDate.startDate : undefined;
+    setReport({ ...report, reception_date: updatedReceptionDate });
   };
   const handleReportChange = (reportDate: any) => {
     console.log("report:", reportDate);
     setReportElaboration(reportDate);
+    const updatedReportDate = reportDate.startDate !== null ? reportDate.startDate : undefined;
+    setReport({ ...report, report_date: updatedReportDate });
+  };
+  const handleReport = (report: Partial<Report>) => {
+    createReport(report);
+    console.log("submited report: ", report);
   };
 
   useEffect(() => {
@@ -134,10 +146,10 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
             </div>
             <div className="flex justify-between px-1">
               <div className="mx-1 flex w-1/2">
-                <PatientSelect data={patients} option={setPatientSelected} />
+                <PatientSelect data={patients} option={setReport} report={report} />
               </div>
               <div className=" mx-1 flex w-1/2">
-                <MedicSelect data={medics} option={setMedicSelected} />
+                <MedicSelect data={medics} option={setReport} report={report} />
               </div>
             </div>
             <div className="flex justify-between p-1">
@@ -182,7 +194,10 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
                   id="histo"
                   className="m-2 flex cursor-pointer select-none items-center justify-between rounded-3xl bg-indigo-700 p-2 text-center font-semibold text-white hover:bg-indigo-600 peer-checked:border-4 peer-checked:border-indigo-400"
                   htmlFor="histo"
-                  onClick={() => setActive("1")}
+                  onClick={() => {
+                    setActive(HISTOPATHOLOGY);
+                    setReport({ ...report, type: HISTOPATHOLOGY });
+                  }}
                 >
                   <span className="w-full">Histopatológico</span>
                   <BsArrowRightCircle className="h-5 w-5" />
@@ -194,7 +209,10 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
                   id="cito"
                   className="m-2 flex cursor-pointer select-none items-center justify-between rounded-3xl bg-lime-600 p-2 text-center font-semibold text-white hover:bg-lime-500 peer-checked:border-4 peer-checked:border-lime-300"
                   htmlFor="cito"
-                  onClick={() => setActive("2")}
+                  onClick={() => {
+                    setReport({ ...report, type: CYTOLOGY });
+                    setActive(CYTOLOGY);
+                  }}
                 >
                   <span className="w-full">Citológico</span>
                   <BsArrowRightCircle className="h-5 w-5" />
@@ -206,7 +224,10 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
                   id="bio"
                   className="m-2 flex cursor-pointer select-none items-center justify-between rounded-3xl bg-pink-700 p-2 text-center font-semibold text-white hover:bg-pink-600 peer-checked:border-4 peer-checked:border-pink-400"
                   htmlFor="bio"
-                  onClick={() => setActive("3")}
+                  onClick={() => {
+                    setReport({ ...report, type: PAP });
+                    setActive(PAP);
+                  }}
                 >
                   <span className="w-full">PAP</span>
                   <BsArrowRightCircle className="h-5 w-5" />
@@ -214,15 +235,23 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
               </div>
             </div>
           </div>
-          {active === "1" && <Histopathology setReport={setHistoReport} report={histoReport} />}
-          {active === "2" && (
+          {active === HISTOPATHOLOGY && (
+            <Histopathology setReport={setHistoReport} report={histoReport} />
+          )}
+          {active === CYTOLOGY && (
             <div className="h-full w-full items-center justify-center bg-slate-600">
               <h1>Citologia</h1>
             </div>
           )}
-          {active === "3" && (
+          {active === PAP && (
             <div className="h-full w-full items-center justify-center bg-slate-600">Biopsia</div>
           )}
+          <button
+            onClick={() => handleReport(report)}
+            className={"m-1 rounded-lg bg-indigo-600 p-2 text-white"}
+          >
+            Guardar Reporte
+          </button>
         </div>
       </GeneralModal>
     </div>

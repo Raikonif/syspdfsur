@@ -3,13 +3,15 @@ import { AiFillCloseCircle, AiOutlineSearch } from "react-icons/ai";
 import { BiChevronDown } from "react-icons/bi";
 import Patient from "~/interfaces/Patient.type";
 import { BsPersonPlusFill } from "react-icons/all";
+import { IReportForm } from "../../../../../interfaces/Report.type";
 
 interface IProps {
   data: Patient[];
-  option: (m: Patient) => void;
+  report: IReportForm;
+  option: (m: IReportForm) => void;
 }
 
-function PatientSelect({ data, option }: IProps): ReactElement {
+function PatientSelect({ data, option, report }: IProps): ReactElement {
   const [inputValue, setInputValue] = useState<string>("");
   const [selected, setSelected] = useState<Patient>({
     id: 0,
@@ -40,7 +42,7 @@ function PatientSelect({ data, option }: IProps): ReactElement {
   const handleSelect = (patient: Patient) => {
     setSelected(patient);
     setOpen(false);
-    option(patient);
+    option({ ...report, patient_id: patient.id });
   };
 
   useEffect(() => {

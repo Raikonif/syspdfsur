@@ -3,13 +3,15 @@ import { BiChevronDown } from "react-icons/bi";
 import { AiFillCloseCircle, AiOutlineSearch } from "react-icons/ai";
 import Medic from "~/interfaces/Medic.type";
 import { FaHandHoldingMedical } from "react-icons/all";
+import { IReportForm } from "../../../../../interfaces/Report.type";
 
 interface IProps {
   data: Medic[];
-  option: (m: Medic) => void;
+  option: (m: IReportForm) => void;
+  report: IReportForm;
 }
 
-function MedicSelect({ data, option }: IProps) {
+function MedicSelect({ data, option, report }: IProps) {
   const [inputValue, setInputValue] = useState<string>("");
   const [selected, setSelected] = useState<Medic>({
     id: 0,
@@ -37,7 +39,7 @@ function MedicSelect({ data, option }: IProps) {
   const handleSelect = (medic: Medic) => {
     setSelected(medic);
     setOpen(false);
-    option(medic);
+    option({ ...report, medic_id: medic.id });
   };
 
   useEffect(() => {
