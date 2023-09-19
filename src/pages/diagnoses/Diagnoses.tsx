@@ -10,7 +10,7 @@ import SearchButton from "~/components/menu/search/SearchButton";
 import ModalDelete from "~/pages/diagnoses/components/modals/ModalDelete";
 import ModalShow from "~/pages/diagnoses/components/modals/ModalShow";
 import ModalEdit from "~/pages/diagnoses/components/modals/ModalEdit";
-import ModalCreate from "~/pages/diagnoses/components/modals/modal_create/ModalCreate";
+import ModalCreateReport from "~/pages/diagnoses/components/modals/modal_create/ModalCreateReport";
 
 function Diagnoses(): ReactElement {
   const [showModalEdit, setShowModalEdit] = useState<boolean>(false);
@@ -87,7 +87,9 @@ function Diagnoses(): ReactElement {
       {showModalEdit && <ModalEdit onClose={handleModalEdit} refModal={refModalEdit} />}
       {showModalShow && <ModalShow onClose={handleModalShow} refModal={refModalShow} />}
       {showModalDelete && <ModalDelete onClose={handleModalDelete} refModal={refModalDelete} />}
-      {showModalCreate && <ModalCreate onClose={handleModalCreate} refModal={refModalCreate} />}
+      {showModalCreate && (
+        <ModalCreateReport onClose={handleModalCreate} refModal={refModalCreate} />
+      )}
     </>
   );
 }

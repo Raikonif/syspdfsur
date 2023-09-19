@@ -1,4 +1,4 @@
 export interface Dates {
-    startDate: Date | null,
-    endDate: Date | null
+  startDate: null | string | number | any;
+  endDate: null | string | number | any;
 }

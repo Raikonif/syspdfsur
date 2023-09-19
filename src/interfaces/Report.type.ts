@@ -6,9 +6,9 @@ export interface Report {
   service: string;
   clinical_diagnosis: string;
   study_code: string;
-  sample_date: Date;
-  reception_date: Date;
-  report_date: Date;
+  sample_date: string;
+  reception_date: string;
+  report_date: string;
 }
 
 export interface IReportForm {
@@ -18,7 +18,19 @@ export interface IReportForm {
   service: string;
   clinical_diagnosis: string;
   study_code: string;
-  sample_date: Date | null;
-  reception_date: Date | null;
-  report_date: Date | null;
+  sample_date: string | null | number | any;
+  reception_date: string | null | number | any;
+  report_date: string | null | number | any;
+}
+
+export interface IsValidReport {
+  patient_id: boolean;
+  medic_id: boolean;
+  type: boolean;
+  service: boolean;
+  clinical_diagnosis: boolean;
+  study_code: boolean;
+  sample_date: boolean;
+  reception_date: boolean;
+  report_date: boolean;
 }

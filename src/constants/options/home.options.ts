@@ -2,25 +2,25 @@ const homeOptions = {
   menuOptions: [
     {
       id: 1,
-      title: "Patients",
+      title: "Pacientes",
       icon: "fas fa-ClientBlogs",
       link: "/patients",
     },
     {
       id: 2,
-      title: "Diagnoses",
+      title: "Reportes Diagnóstico",
       icon: "fas fa-user-injured",
       link: "/diagnoses",
     },
     {
       id: 3,
-      title: "Diagnoses History",
+      title: "Historial de Diagnosticos",
       icon: "fas fa-history",
       link: "/patients_history",
     },
     {
       id: 4,
-      title: "Settings",
+      title: "Configuración",
       icon: "fas fa-cog",
       link: "/settings",
     },

@@ -2,29 +2,54 @@ import React, { ReactElement, useEffect, useState } from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
 import { BsArrowRightCircle } from "react-icons/all";
 import Histopathology from "~/pages/diagnoses/components/modals/modal_create/subsections/Histopathology";
-import PatientSelect from "~/pages/diagnoses/components/modals/modal_create/PatientSelect";
+import PatientSelect from "~/pages/diagnoses/components/modals/modal_create/components/PatientSelect";
 import { getPatients } from "~/service/patient.service";
 import Patient from "~/interfaces/Patient.type";
 import useGetData from "~/hooks/useGetData";
-import MedicSelect from "~/pages/diagnoses/components/modals/modal_create/MedicSelect";
+import MedicSelect from "~/pages/diagnoses/components/modals/modal_create/components/MedicSelect";
 import { getMedics } from "~/service/medic.service";
 import Medic from "~/interfaces/Medic.type";
 import Datepicker from "react-tailwindcss-datepicker";
-import { IReportForm, Report } from "~/interfaces/Report.type";
-import { IHistopathologyReportForm } from "~/interfaces/SubReports.interface";
+import { IReportForm, IsValidReport, Report } from "~/interfaces/Report.type";
+import {
+  HistopathologyReport,
+  IHistopathologyReportForm,
+  IsValidHistopathologyReport,
+} from "~/interfaces/SubReports.interface";
 import { CYTOLOGY, HISTOPATHOLOGY, PAP } from "~/constants";
 import { Dates } from "~/interfaces/Dates.type";
+import { createHistoReport, getLastReport } from "~/service/report.service";
 import { createReport } from "~/service/report.service";
+import useValidation from "~/hooks/useValidation";
+import useValidateReport from "~/hooks/useValidateReport";
+import CustomDatepicker from "./components/CustomDatepicker";
 
 interface IProps {
   onClose: (isOpen: boolean) => void;
   refModal: React.RefObject<HTMLDivElement>;
 }
 
-function ModalCreate({ onClose, refModal }: IProps): ReactElement {
+function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
   const [active, setActive] = useState<string>(HISTOPATHOLOGY);
   const { data: patients } = useGetData<Patient[]>({ dataToFetch: getPatients });
   const { data: medics } = useGetData<Medic[]>({ dataToFetch: getMedics });
+  const [switchButton, setSwitchButton] = useState<boolean>(false);
+  const [sampleDate, setSampleDate] = useState<Dates>({
+    startDate: null,
+    endDate: null,
+  });
+  const currentDate = new Date();
+  const [sampleReception, setSampleReception] = useState<Dates>({
+    startDate: null,
+    endDate: null,
+  });
+  const [reportElaboration, setReportElaboration] = useState<Dates>({
+    startDate: `${currentDate.getFullYear()}-${
+      currentDate.getMonth() + 1
+    }-${currentDate.getDate()}`,
+
+    endDate: `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`,
+  });
   const [report, setReport] = useState<IReportForm>({
     medic_id: 0,
     patient_id: 0,
@@ -34,8 +59,9 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
     study_code: "",
     sample_date: null,
     reception_date: null,
-    report_date: null,
+    report_date: reportElaboration.startDate as Date,
   });
+
   const [histoReport, setHistoReport] = useState<IHistopathologyReportForm>({
     report_id: 0,
     slides: 0,
@@ -44,18 +70,15 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
     microscopy: "",
     conclusion: "",
   });
-  const [sampleDate, setSampleDate] = useState<Dates>({
-    startDate: null,
-    endDate: null,
-  });
-  const [sampleReception, setSampleReception] = useState<Dates>({
-    startDate: null,
-    endDate: null,
-  });
-  const [reportElaboration, setReportElaboration] = useState<Dates>({
-    startDate: new Date(),
-    endDate: new Date(),
-  });
+
+  const validateSubReport = (report: Partial<HistopathologyReport>) => {
+    for (const value of Object.values(report)) {
+      if (report.slides === 0 || value === null || value === "") {
+        return false;
+      }
+    }
+    return true;
+  };
 
   const handleValueChange = (sampleDate: any) => {
     console.log("sample:", sampleDate);
@@ -63,6 +86,7 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
     const updatedSampleDate = sampleDate.startDate !== null ? sampleDate.startDate : undefined;
     setReport({ ...report, sample_date: updatedSampleDate });
   };
+
   const handleReceptionChange = (receptionDate: any) => {
     console.log("reception:", receptionDate);
     setSampleReception(receptionDate);
@@ -70,22 +94,42 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
       receptionDate.startDate !== null ? receptionDate.startDate : undefined;
     setReport({ ...report, reception_date: updatedReceptionDate });
   };
+
   const handleReportChange = (reportDate: any) => {
     console.log("report:", reportDate);
     setReportElaboration(reportDate);
     const updatedReportDate = reportDate.startDate !== null ? reportDate.startDate : undefined;
     setReport({ ...report, report_date: updatedReportDate });
   };
-  const handleReport = (report: Partial<Report>) => {
-    createReport(report);
-    console.log("submited report: ", report);
+
+  // TODO: Create a function to validate the report
+  const handleReport = async () => {
+    try {
+      const reportData = await createReport(report as Report);
+      const lastReportID = await getLastReport();
+      const subReport = await createHistoReport({ ...histoReport, report_id: lastReportID });
+      console.log("submited report: ", reportData);
+      console.log("submited subreport: ", subReport);
+    } catch (error) {
+      console.log("error handling the report", error);
+    }
   };
+  const is_valid_report = useValidateReport(report);
+  const is_valid_subreport = validateSubReport(histoReport);
 
   useEffect(() => {
     console.log("report:", reportElaboration);
     console.log("sample:", sampleDate);
     console.log("reception:", sampleReception);
   }, []);
+
+  useEffect(() => {
+    if (is_valid_report && is_valid_subreport) {
+      setSwitchButton(true);
+    }
+    console.log("valid report", is_valid_report);
+    console.log("valid subreport", is_valid_subreport);
+  }, [report, histoReport]);
 
   return (
     <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
@@ -94,55 +138,24 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
           <h1 className="mx-4 pb-5 pt-3 text-3xl font-bold">Crear Reporte</h1>
           <div className="flex w-full flex-col p-1">
             <div className="flex p-1">
-              <div className="m-1 flex w-1/3 flex-col rounded-lg border border-indigo-600 p-2">
-                <label>
-                  <span className="text-gray-700">Toma de Muestra: </span>
-                </label>
-                <Datepicker
-                  value={sampleDate}
-                  asSingle={true}
-                  useRange={false}
-                  onChange={handleValueChange}
-                  showShortcuts={true}
-                  primaryColor={"fuchsia"}
-                  placeholder={"Ingrese una Fecha"}
-                  displayFormat={"DD/MM/YYYY"}
-                />
-              </div>
-              <div className="m-1 flex w-1/3 flex-col rounded-lg border border-indigo-600 p-2">
-                <label>
-                  <span className="text-gray-700">Recepcion de Muestra: </span>
-                </label>
-                <Datepicker
-                  value={sampleReception}
-                  asSingle={true}
-                  useRange={false}
-                  onChange={handleReceptionChange}
-                  showShortcuts={true}
-                  primaryColor={"fuchsia"}
-                  placeholder={"Ingrese una Fecha"}
-                  displayFormat={"DD/MM/YYYY"}
-                />
-              </div>
-              <div className="m-1 flex w-1/3 flex-col rounded-lg border border-indigo-600 p-2">
-                <label>
-                  <span className="text-gray-700">Elaboracion de Informe: </span>
-                </label>
-                <Datepicker
-                  value={reportElaboration}
-                  asSingle={true}
-                  useRange={false}
-                  onChange={handleReportChange}
-                  showShortcuts={true}
-                  primaryColor={"fuchsia"}
-                  placeholder={
-                    reportElaboration.startDate
-                      ? String(reportElaboration.startDate)
-                      : "Fecha de Elaboracion de Informe"
-                  }
-                  displayFormat={"DD/MM/YYYY"}
-                />
-              </div>
+              <CustomDatepicker
+                value={sampleDate}
+                onChange={handleValueChange}
+                placeholder={"Ingrese una Fecha"}
+                label={"Toma de Muestra"}
+              />
+              <CustomDatepicker
+                value={sampleReception}
+                onChange={handleReceptionChange}
+                placeholder={"Ingrese una Fecha"}
+                label={"Recepcion de Muestra"}
+              />
+              <CustomDatepicker
+                value={reportElaboration}
+                onChange={handleReportChange}
+                placeholder={"Fecha de Elaboracion de Informe"}
+                label={"Elaboracion de Informe"}
+              />
             </div>
             <div className="flex justify-between px-1">
               <div className="mx-1 flex w-1/2">
@@ -247,8 +260,13 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
             <div className="h-full w-full items-center justify-center bg-slate-600">Biopsia</div>
           )}
           <button
-            onClick={() => handleReport(report)}
-            className={"m-1 rounded-lg bg-indigo-600 p-2 text-white"}
+            onClick={() => {
+              handleReport();
+            }}
+            className={`${
+              switchButton ? "bg-indigo-600" : "bg-indigo-400"
+            } m-1 rounded-lg  p-2 text-white`}
+            disabled={!switchButton}
           >
             Guardar Reporte
           </button>
@@ -258,4 +276,4 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
   );
 }
 
-export default ModalCreate;
+export default ModalCreateReport;

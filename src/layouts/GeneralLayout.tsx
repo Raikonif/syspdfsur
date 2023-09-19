@@ -7,7 +7,6 @@ import SearchButton from "~/components/menu/search/SearchButton";
 import ProfileCard from "~/components/menu/Profile/ProfileCard";
 import SignOutModal from "~/components/menu/Profile/SignOutModal";
 import toast, { Toaster } from "react-hot-toast";
-import Profile from "~/components/menu/Profile/Profile";
 
 function GeneralLayout(): JSX.Element {
   const [mobileMode, setMobileMode] = useState<boolean>(false);

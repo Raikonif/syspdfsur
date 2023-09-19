@@ -1,12 +1,5 @@
-import React, { ReactElement, useEffect, useRef, useState } from "react";
-import GeneralButton from "~/components/GeneralButton";
-import { AiOutlineHeart, BiPlusMedical } from "react-icons/all";
-import GeneralModal from "~/components/modal/GeneralModal";
-import GeneralField from "~/components/GeneralField";
-import ModalCreate from "~/pages/diagnoses/components/modals/modal_create/ModalCreate";
-import Histopathology from "~/pages/diagnoses/components/modals/modal_create/subsections/Histopathology";
-import Cytology from "~/pages/diagnoses/components/modals/modal_create/subsections/Cytology";
-import Biopsy from "~/pages/diagnoses/components/modals/modal_create/subsections/Biopsy";
+import React, { ReactElement, useEffect, useState } from "react";
+import { BiPlusMedical } from "react-icons/all";
 
 interface IProps {
   setModalCreate: (isOpen: boolean) => void;
