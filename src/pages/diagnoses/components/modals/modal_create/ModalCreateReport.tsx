@@ -23,6 +23,7 @@ import { createReport } from "~/service/report.service";
 import useValidation from "~/hooks/useValidation";
 import useValidateReport from "~/hooks/useValidateReport";
 import CustomDatepicker from "./components/CustomDatepicker";
+import useCleanOptional from "~/hooks/useCleanOptional";
 
 interface IProps {
   onClose: (isOpen: boolean) => void;
@@ -63,7 +64,7 @@ function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
   });
 
   const [histoReport, setHistoReport] = useState<IHistopathologyReportForm>({
-    report_id: 0,
+    report_id: 1,
     slides: 0,
     blocks: 0,
     macroscopy: "",
@@ -115,7 +116,7 @@ function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
     }
   };
   const is_valid_report = useValidateReport(report);
-  const is_valid_subreport = validateSubReport(histoReport);
+  const is_valid_subreport = useValidateReport(histoReport);
 
   useEffect(() => {
     console.log("report:", reportElaboration);
@@ -126,6 +127,8 @@ function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
   useEffect(() => {
     if (is_valid_report && is_valid_subreport) {
       setSwitchButton(true);
+    } else {
+      setSwitchButton(false);
     }
     console.log("valid report", is_valid_report);
     console.log("valid subreport", is_valid_subreport);

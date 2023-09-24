@@ -1,3 +1,6 @@
+export interface GenericObject {
+  [key: string]: unknown;
+}
 export interface HistopathologyReport {
   id: number;
   report_id: number;
@@ -8,7 +11,7 @@ export interface HistopathologyReport {
   conclusion: string;
 }
 
-export interface IHistopathologyReportForm {
+export interface IHistopathologyReportForm extends GenericObject {
   report_id: number;
   slides?: number;
   blocks: number;
