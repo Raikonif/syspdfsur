@@ -23,7 +23,7 @@ import { createReport } from "~/service/report.service";
 import useValidation from "~/hooks/useValidation";
 import useValidateReport from "~/hooks/useValidateReport";
 import CustomDatepicker from "./components/CustomDatepicker";
-import useCleanOptional from "~/hooks/useCleanOptional";
+import useCleanOptionalKeys from "~/hooks/useCleanOptionalKeys";
 
 interface IProps {
   onClose: (isOpen: boolean) => void;
@@ -115,8 +115,9 @@ function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
       console.log("error handling the report", error);
     }
   };
+  const histoReportCleaned = useCleanOptionalKeys(histoReport);
   const is_valid_report = useValidateReport(report);
-  const is_valid_subreport = useValidateReport(histoReport);
+  const is_valid_subreport = useValidateReport(histoReportCleaned);
 
   useEffect(() => {
     console.log("report:", reportElaboration);

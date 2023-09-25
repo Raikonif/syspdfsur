@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { GenericObject } from "~/interfaces/SubReports.interface";
 
 const SLIDES = "slides";
-function useCleanOptional<T extends GenericObject>(subReport: T) {
+function useCleanOptionalKeys<T extends GenericObject>(subReport: T) {
   const [subReportCleaned, setSubReportCleaned] = useState<T>({} as T);
   const onChangeValuesSubReport = () => {
     for (const [key, value] of Object.entries(subReport)) {
@@ -18,4 +18,4 @@ function useCleanOptional<T extends GenericObject>(subReport: T) {
   return subReportCleaned;
 }
 
-export default useCleanOptional;
+export default useCleanOptionalKeys;
