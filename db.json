@@ -883,6 +883,30 @@
       "reception_date": "2023-09-12",
       "report_date": "2023-9-7",
       "id": 28
+    },
+    {
+      "medic_id": 4,
+      "patient_id": 4,
+      "type": "Histopathology",
+      "service": "asdf",
+      "clinical_diagnosis": "sdf",
+      "study_code": "1234",
+      "sample_date": "2023-09-06",
+      "reception_date": "2023-09-12",
+      "report_date": "2023-9-25",
+      "id": 29
+    },
+    {
+      "medic_id": 4,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "asdf",
+      "clinical_diagnosis": "asf",
+      "study_code": "1234",
+      "sample_date": "2023-09-14",
+      "reception_date": "2023-09-12",
+      "report_date": "2023-9-26",
+      "id": 30
     }
   ],
   "histo_reports": [
@@ -912,6 +936,24 @@
       "microscopy": "asdf",
       "conclusion": "asdf",
       "id": 3
+    },
+    {
+      "report_id": 29,
+      "slides": 1,
+      "blocks": 2,
+      "macroscopy": "asdf",
+      "microscopy": "asdf",
+      "conclusion": "asdf",
+      "id": 4
+    },
+    {
+      "report_id": 30,
+      "slides": 0,
+      "blocks": 23,
+      "macroscopy": "asdf",
+      "microscopy": "asds",
+      "conclusion": "asdf",
+      "id": 5
     }
   ],
   "diagnoses": [

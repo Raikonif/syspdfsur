@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { GenericObject } from "~/interfaces/SubReports.interface";
 
 const SLIDES = "slides";
+const BLOCKS = "blocks";
+const CLINICAL_HISTORY = "clinicalHistory";
 function useCleanOptionalKeys<T extends GenericObject>(subReport: T) {
   const [subReportCleaned, setSubReportCleaned] = useState<T>({} as T);
   const onChangeValuesSubReport = () => {

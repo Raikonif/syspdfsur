@@ -22,8 +22,12 @@ import { createHistoReport, getLastReport } from "~/service/report.service";
 import { createReport } from "~/service/report.service";
 import useValidation from "~/hooks/useValidation";
 import useValidateReport from "~/hooks/useValidateReport";
-import CustomDatepicker from "./components/CustomDatepicker";
+import ReportDatetimepickers from "./components/ReportDatetimepickers";
 import useCleanOptionalKeys from "~/hooks/useCleanOptionalKeys";
+import InputFields from "~/pages/diagnoses/components/modals/modal_create/components/InputFields";
+import SubReportsSelector from "~/pages/diagnoses/components/modals/modal_create/components/SubReportsSelector";
+import Cytology from "~/pages/diagnoses/components/modals/modal_create/subsections/Cytology";
+import Biopsy from "~/pages/diagnoses/components/modals/modal_create/subsections/Biopsy";
 
 interface IProps {
   onClose: (isOpen: boolean) => void;
@@ -123,6 +127,7 @@ function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
     console.log("report:", reportElaboration);
     console.log("sample:", sampleDate);
     console.log("reception:", sampleReception);
+    console.log("active", active);
   }, []);
 
   useEffect(() => {
@@ -142,23 +147,13 @@ function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
           <h1 className="mx-4 pb-5 pt-3 text-3xl font-bold">Crear Reporte</h1>
           <div className="flex w-full flex-col p-1">
             <div className="flex p-1">
-              <CustomDatepicker
-                value={sampleDate}
-                onChange={handleValueChange}
-                placeholder={"Ingrese una Fecha"}
-                label={"Toma de Muestra"}
-              />
-              <CustomDatepicker
-                value={sampleReception}
-                onChange={handleReceptionChange}
-                placeholder={"Ingrese una Fecha"}
-                label={"Recepcion de Muestra"}
-              />
-              <CustomDatepicker
-                value={reportElaboration}
-                onChange={handleReportChange}
-                placeholder={"Fecha de Elaboracion de Informe"}
-                label={"Elaboracion de Informe"}
+              <ReportDatetimepickers
+                valueSampleDate={sampleDate}
+                valueReceptionDate={sampleReception}
+                valueElaborationDate={reportElaboration}
+                onChangeSampleDate={handleValueChange}
+                onChangeReceptionDate={handleReceptionChange}
+                onChangeElaborationDate={handleReportChange}
               />
             </div>
             <div className="flex justify-between px-1">
@@ -170,110 +165,44 @@ function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
               </div>
             </div>
             <div className="flex justify-between p-1">
-              <input
-                type="text"
-                value={report.clinical_diagnosis}
-                id="cli_diagnosis"
-                name="cli_diagnosis"
-                aria-autocomplete="none"
-                placeholder="Diagnostico Clinico"
-                onChange={(e) => setReport({ ...report, clinical_diagnosis: e.target.value })}
-                className="m-1 mt-2 w-1/2 items-center rounded-lg bg-indigo-200 p-2 placeholder:text-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-600"
-              />
-              <div className="flex w-1/2">
-                <input
-                  type="text"
-                  value={report.service}
-                  id="service"
-                  name="service"
-                  aria-autocomplete="none"
-                  placeholder="Servicio/Centro"
-                  onChange={(e) => setReport({ ...report, service: e.target.value })}
-                  className="m-1 mt-2 w-1/2 items-center rounded-lg bg-indigo-200 p-2 placeholder:text-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-600"
-                />
-                <input
-                  type="text"
-                  value={report.study_code}
-                  id="study_code"
-                  name="study_code"
-                  aria-autocomplete="none"
-                  placeholder="Numero de Estudio"
-                  onChange={(e) => setReport({ ...report, study_code: e.target.value })}
-                  className="m-1 mt-2 w-1/2 items-center rounded-lg bg-indigo-200 p-2 placeholder:text-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-600"
-                />
-              </div>
+              <InputFields report={report} setReport={setReport} />
             </div>
 
             <div className="flex w-full items-center">
-              <div className="w-full">
-                <input type="radio" value="1" id="histo" name="type" className="peer hidden" />
-                <label
-                  id="histo"
-                  className="m-2 flex cursor-pointer select-none items-center justify-between rounded-3xl bg-indigo-700 p-2 text-center font-semibold text-white hover:bg-indigo-600 peer-checked:border-4 peer-checked:border-indigo-400"
-                  htmlFor="histo"
-                  onClick={() => {
-                    setActive(HISTOPATHOLOGY);
-                    setReport({ ...report, type: HISTOPATHOLOGY });
-                  }}
-                >
-                  <span className="w-full">Histopatológico</span>
-                  <BsArrowRightCircle className="h-5 w-5" />
-                </label>
-              </div>
-              <div className="w-full">
-                <input type="radio" value="2" id="cito" name="type" className="peer hidden" />
-                <label
-                  id="cito"
-                  className="m-2 flex cursor-pointer select-none items-center justify-between rounded-3xl bg-lime-600 p-2 text-center font-semibold text-white hover:bg-lime-500 peer-checked:border-4 peer-checked:border-lime-300"
-                  htmlFor="cito"
-                  onClick={() => {
-                    setReport({ ...report, type: CYTOLOGY });
-                    setActive(CYTOLOGY);
-                  }}
-                >
-                  <span className="w-full">Citológico</span>
-                  <BsArrowRightCircle className="h-5 w-5" />
-                </label>
-              </div>
-              <div className="w-full">
-                <input type="radio" value="3" id="bio" name="type" className="peer hidden" />
-                <label
-                  id="bio"
-                  className="m-2 flex cursor-pointer select-none items-center justify-between rounded-3xl bg-pink-700 p-2 text-center font-semibold text-white hover:bg-pink-600 peer-checked:border-4 peer-checked:border-pink-400"
-                  htmlFor="bio"
-                  onClick={() => {
-                    setReport({ ...report, type: PAP });
-                    setActive(PAP);
-                  }}
-                >
-                  <span className="w-full">PAP</span>
-                  <BsArrowRightCircle className="h-5 w-5" />
-                </label>
-              </div>
+              <SubReportsSelector setReport={setReport} report={report} setActive={setActive} />
             </div>
           </div>
           {active === HISTOPATHOLOGY && (
             <Histopathology setReport={setHistoReport} report={histoReport} />
           )}
-          {active === CYTOLOGY && (
-            <div className="h-full w-full items-center justify-center bg-slate-600">
-              <h1>Citologia</h1>
+          {active === CYTOLOGY && <Cytology />}
+          {active === PAP && <Biopsy />}
+          <div className="w-full">
+            <div className="flex items-end justify-end">
+              <button
+                onClick={() => {
+                  handleReport().then(() => onClose(false));
+                }}
+                className={`${
+                  switchButton ? "bg-fuchsia-600" : "bg-fuchsia-400"
+                } m-1 rounded-lg  p-2 text-white`}
+                disabled={!switchButton}
+              >
+                Guardar Reporte y Generar PDF
+              </button>
+              <button
+                onClick={() => {
+                  handleReport().then(() => onClose(false));
+                }}
+                className={`${
+                  switchButton ? "bg-indigo-600" : "bg-indigo-400"
+                } m-1 rounded-lg  p-2 text-white`}
+                disabled={!switchButton}
+              >
+                Guardar Reporte
+              </button>
             </div>
-          )}
-          {active === PAP && (
-            <div className="h-full w-full items-center justify-center bg-slate-600">Biopsia</div>
-          )}
-          <button
-            onClick={() => {
-              handleReport();
-            }}
-            className={`${
-              switchButton ? "bg-indigo-600" : "bg-indigo-400"
-            } m-1 rounded-lg  p-2 text-white`}
-            disabled={!switchButton}
-          >
-            Guardar Reporte
-          </button>
+          </div>
         </div>
       </GeneralModal>
     </div>
