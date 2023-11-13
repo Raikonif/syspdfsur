@@ -15,7 +15,7 @@ function SubReportsSelector({ setActive, setReport, report }: IProps) {
         <input type="radio" value="1" id="histo" name="type" className="peer hidden" />
         <label
           id="histo"
-          className="m-2 flex cursor-pointer select-none items-center justify-between rounded-3xl bg-indigo-700 p-2 text-center font-semibold text-white hover:bg-indigo-600 peer-checked:border-4 peer-checked:border-indigo-400"
+          className="m-2 flex cursor-pointer select-none items-center justify-center rounded-3xl bg-indigo-700 p-2 text-center font-semibold text-white hover:bg-indigo-600 peer-checked:border-4 peer-checked:border-indigo-400"
           htmlFor="histo"
           onClick={() => {
             setActive(HISTOPATHOLOGY);
@@ -23,14 +23,14 @@ function SubReportsSelector({ setActive, setReport, report }: IProps) {
           }}
         >
           <span className="w-full">Histopatológico</span>
-          <BsArrowRightCircle className="h-5 w-5" />
+          {/*<BsArrowRightCircle className="h-5 w-5" />*/}
         </label>
       </div>
       <div className="w-full">
         <input type="radio" value="2" id="cito" name="type" className="peer hidden" />
         <label
           id="cito"
-          className="m-2 flex cursor-pointer select-none items-center justify-between rounded-3xl bg-lime-600 p-2 text-center font-semibold text-white hover:bg-lime-500 peer-checked:border-4 peer-checked:border-lime-300"
+          className="m-2 flex cursor-pointer select-none items-center justify-center rounded-3xl bg-sky-600 p-2 text-center font-semibold text-white hover:bg-sky-500 peer-checked:border-4 peer-checked:border-sky-300"
           htmlFor="cito"
           onClick={() => {
             setReport({ ...report, type: CYTOLOGY });
@@ -38,14 +38,14 @@ function SubReportsSelector({ setActive, setReport, report }: IProps) {
           }}
         >
           <span className="w-full">Citológico</span>
-          <BsArrowRightCircle className="h-5 w-5" />
+          {/*<BsArrowRightCircle className="h-5 w-5" />*/}
         </label>
       </div>
       <div className="w-full">
         <input type="radio" value="3" id="bio" name="type" className="peer hidden" />
         <label
           id="bio"
-          className="m-2 flex cursor-pointer select-none items-center justify-between rounded-3xl bg-fuchsia-600 p-2 text-center font-semibold text-white hover:bg-fuchsia-500 peer-checked:border-4 peer-checked:border-pink-400"
+          className="m-2 flex cursor-pointer select-none items-center justify-center rounded-3xl bg-fuchsia-600 p-2 text-center font-semibold text-white hover:bg-fuchsia-500 peer-checked:border-4 peer-checked:border-fuchsia-400"
           htmlFor="bio"
           onClick={() => {
             setReport({ ...report, type: PAP });
@@ -53,7 +53,7 @@ function SubReportsSelector({ setActive, setReport, report }: IProps) {
           }}
         >
           <span className="w-full">PAP</span>
-          <BsArrowRightCircle className="h-5 w-5" />
+          {/*<BsArrowRightCircle className="h-5 w-5" />*/}
         </label>
       </div>
     </>

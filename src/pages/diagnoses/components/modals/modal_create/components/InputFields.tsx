@@ -14,7 +14,7 @@ function InputFields({ report, setReport }: IProps) {
         id="cli_diagnosis"
         name="cli_diagnosis"
         aria-autocomplete="none"
-        placeholder="Diagnostico Clinico"
+        placeholder="Diagnostico Clinico *"
         onChange={(e) => setReport({ ...report, clinical_diagnosis: e.target.value })}
         className="m-1 mt-2 w-1/2 items-center rounded-lg bg-indigo-200 p-2 placeholder:text-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-600"
       />
@@ -25,7 +25,7 @@ function InputFields({ report, setReport }: IProps) {
           id="service"
           name="service"
           aria-autocomplete="none"
-          placeholder="Servicio/Centro"
+          placeholder="Servicio/Centro *"
           onChange={(e) => setReport({ ...report, service: e.target.value })}
           className="m-1 mt-2 w-1/2 items-center rounded-lg bg-indigo-200 p-2 placeholder:text-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-600"
         />
@@ -35,7 +35,7 @@ function InputFields({ report, setReport }: IProps) {
           id="study_code"
           name="study_code"
           aria-autocomplete="none"
-          placeholder="Numero de Estudio"
+          placeholder="Numero de Estudio *"
           onChange={(e) => setReport({ ...report, study_code: e.target.value })}
           className="m-1 mt-2 w-1/2 items-center rounded-lg bg-indigo-200 p-2 placeholder:text-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-600"
         />

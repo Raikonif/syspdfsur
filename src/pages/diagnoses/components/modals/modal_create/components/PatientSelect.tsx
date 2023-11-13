@@ -15,7 +15,7 @@ function PatientSelect({ data, option, report }: IProps): ReactElement {
   const [inputValue, setInputValue] = useState<string>("");
   const [selected, setSelected] = useState<Patient>({
     id: 0,
-    first_name: "Select - Patient",
+    first_name: "Select - Patient *",
     last_name: "",
     gender: "",
     age: "",
@@ -25,7 +25,7 @@ function PatientSelect({ data, option, report }: IProps): ReactElement {
   const handleClear = () => {
     setSelected({
       id: 0,
-      first_name: "Select - Patient",
+      first_name: "Select - Patient *",
       last_name: "",
       gender: "",
       age: "",

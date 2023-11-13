@@ -1,6 +1,5 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
-import { BsArrowRightCircle } from "react-icons/all";
 import Histopathology from "~/pages/diagnoses/components/modals/modal_create/subsections/Histopathology";
 import PatientSelect from "~/pages/diagnoses/components/modals/modal_create/components/PatientSelect";
 import { getPatients } from "~/service/patient.service";
@@ -9,18 +8,12 @@ import useGetData from "~/hooks/useGetData";
 import MedicSelect from "~/pages/diagnoses/components/modals/modal_create/components/MedicSelect";
 import { getMedics } from "~/service/medic.service";
 import Medic from "~/interfaces/Medic.type";
-import Datepicker from "react-tailwindcss-datepicker";
-import { IReportForm, IsValidReport, Report } from "~/interfaces/Report.type";
-import {
-  HistopathologyReport,
-  IHistopathologyReportForm,
-  IsValidHistopathologyReport,
-} from "~/interfaces/SubReports.interface";
+import { IReportForm, Report } from "~/interfaces/Report.type";
+import { IHistopathologyReportForm } from "~/interfaces/SubReports.interface";
 import { CYTOLOGY, HISTOPATHOLOGY, PAP } from "~/constants";
 import { Dates } from "~/interfaces/Dates.type";
 import { createHistoReport, getLastReport } from "~/service/report.service";
 import { createReport } from "~/service/report.service";
-import useValidation from "~/hooks/useValidation";
 import useValidateReport from "~/hooks/useValidateReport";
 import ReportDatetimepickers from "./components/ReportDatetimepickers";
 import useCleanOptionalKeys from "~/hooks/useCleanOptionalKeys";
@@ -28,7 +21,8 @@ import InputFields from "~/pages/diagnoses/components/modals/modal_create/compon
 import SubReportsSelector from "~/pages/diagnoses/components/modals/modal_create/components/SubReportsSelector";
 import Cytology from "~/pages/diagnoses/components/modals/modal_create/subsections/Cytology";
 import Biopsy from "~/pages/diagnoses/components/modals/modal_create/subsections/Biopsy";
-
+import ReactPDF, { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
+import PDFDocument from "~/pages/diagnoses/components/modals/modal_create/components/PDFDocument";
 interface IProps {
   onClose: (isOpen: boolean) => void;
   refModal: React.RefObject<HTMLDivElement>;
@@ -36,6 +30,7 @@ interface IProps {
 
 function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
   const [active, setActive] = useState<string>(HISTOPATHOLOGY);
+  const [openPDF, setOpenPDF] = useState<boolean>(false);
   const { data: patients } = useGetData<Patient[]>({ dataToFetch: getPatients });
   const { data: medics } = useGetData<Medic[]>({ dataToFetch: getMedics });
   const [switchButton, setSwitchButton] = useState<boolean>(false);
@@ -76,15 +71,6 @@ function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
     conclusion: "",
   });
 
-  const validateSubReport = (report: Partial<HistopathologyReport>) => {
-    for (const value of Object.values(report)) {
-      if (report.slides === 0 || value === null || value === "") {
-        return false;
-      }
-    }
-    return true;
-  };
-
   const handleValueChange = (sampleDate: any) => {
     console.log("sample:", sampleDate);
     setSampleDate(sampleDate);
@@ -107,7 +93,6 @@ function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
     setReport({ ...report, report_date: updatedReportDate });
   };
 
-  // TODO: Create a function to validate the report
   const handleReport = async () => {
     try {
       const reportData = await createReport(report as Report);
@@ -118,6 +103,20 @@ function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
     } catch (error) {
       console.log("error handling the report", error);
     }
+  };
+
+  const downloadPDF = () => {
+    <PDFDownloadLink document={<PDFDocument />} fileName={"FORM"}>
+      {({ loading }) =>
+        loading ? <button>Loading Document...</button> : <button>Download</button>
+      }
+    </PDFDownloadLink>;
+  };
+
+  const handlePDF = () => {
+    <PDFViewer width={600} height={400}>
+      <PDFDocument />
+    </PDFViewer>;
   };
   const histoReportCleaned = useCleanOptionalKeys(histoReport);
   const is_valid_report = useValidateReport(report);
@@ -139,6 +138,13 @@ function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
     console.log("valid report", is_valid_report);
     console.log("valid subreport", is_valid_subreport);
   }, [report, histoReport]);
+
+  // useEffect(() => {
+  //   if (openPDF) {
+  //     handlePDF();
+  //     ReactPDF.render(<PDFDocument />, `${"http://localhost:5173"}/example.pdf`);
+  //   }
+  // }, [openPDF]);
 
   return (
     <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
@@ -177,11 +183,14 @@ function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
           )}
           {active === CYTOLOGY && <Cytology />}
           {active === PAP && <Biopsy />}
-          <div className="w-full">
+          <div className="w-full items-center justify-center">
+            <h4 className="font-bold">campo requerido ( * )</h4>
             <div className="flex items-end justify-end">
               <button
                 onClick={() => {
-                  handleReport().then(() => onClose(false));
+                  handleReport()
+                    .then(() => onClose(false))
+                    .finally();
                 }}
                 className={`${
                   switchButton ? "bg-fuchsia-600" : "bg-fuchsia-400"
@@ -201,6 +210,19 @@ function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
               >
                 Guardar Reporte
               </button>
+              <PDFDownloadLink document={<PDFDocument />} fileName={"FORM"}>
+                {({ loading }) =>
+                  loading ? (
+                    <button className="m-1 rounded-lg bg-indigo-600  p-2 text-white">
+                      Loading Document...
+                    </button>
+                  ) : (
+                    <button className="m-1 rounded-lg bg-indigo-600  p-2 text-white">
+                      Download
+                    </button>
+                  )
+                }
+              </PDFDownloadLink>
             </div>
           </div>
         </div>

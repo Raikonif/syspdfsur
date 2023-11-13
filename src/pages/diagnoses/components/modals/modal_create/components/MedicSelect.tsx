@@ -3,7 +3,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { AiFillCloseCircle, AiOutlineSearch } from "react-icons/ai";
 import Medic from "~/interfaces/Medic.type";
 import { FaHandHoldingMedical } from "react-icons/all";
-import { IReportForm } from "../../../../../../interfaces/Report.type";
+import { IReportForm } from "~/interfaces/Report.type";
 
 interface IProps {
   data: Medic[];
@@ -17,7 +17,7 @@ function MedicSelect({ data, option, report }: IProps) {
     id: 0,
     first_name: "Select",
     last_name: "",
-    specialty: "Medic",
+    specialty: "Medic *",
   } as Medic);
   const [open, setOpen] = useState<boolean>(false);
 
@@ -26,7 +26,7 @@ function MedicSelect({ data, option, report }: IProps) {
       id: 0,
       first_name: "Select",
       last_name: "",
-      specialty: "Medic",
+      specialty: "Medic *",
     });
   };
   const handleSearch = (inputValue: string) => {
