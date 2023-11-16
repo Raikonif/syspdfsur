@@ -29,7 +29,7 @@ function HomeMenu(): JSX.Element {
     navigateHome("/");
   };
   return (
-    <div className="righ-0 fixed left-0 top-0 flex w-full items-center justify-between bg-white p-3 px-5">
+    <div className="righ-0 fixed left-0 top-0 z-20 flex w-full items-center justify-between bg-white p-3 px-5">
       <button onClick={handleGoHome}>
         <img
           src="/icon-page.svg"

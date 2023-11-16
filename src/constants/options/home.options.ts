@@ -28,9 +28,9 @@ const homeOptions = {
   blogOptions: [
     {
       id: 1,
-      title: "Blogs",
+      title: "Articles",
       icon: "fas fa-blog",
-      link: "/blogs",
+      link: "/articles",
     },
     {
       id: 2,

@@ -52,14 +52,14 @@ const textsConstants = {
         date: "2020-01-01",
         link: "/posts/5",
       },
-      // {
-      //   id: 6,
-      //   title: "Caso 6",
-      //   description: "Descripcion del Caso 6",
-      //   image: "https://picsum.photos/200/300",
-      //   date: "2020-01-01",
-      //   link: "/posts/6",
-      // },
+      {
+        id: 6,
+        title: "Caso 6",
+        description: "Descripcion del Caso 6",
+        image: "https://picsum.photos/200/300",
+        date: "2020-01-01",
+        link: "/posts/6",
+      },
     ],
   },
 };
