@@ -1507,5 +1507,183 @@
       "difficulty": 1,
       "part_of_body": "Blood"
     }
+  ],
+  "articles": [
+    {
+      "id": 1,
+      "title": "Article 1",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl ultricies nunc, vitae aliquam nisl",
+      "date": "2023-07-01",
+      "author": "John Doe",
+      "images": [
+        "https://picsum.photos/200/300",
+        "https://picsum.photos/200/300",
+        "https://picsum.photos/200/300"
+      ],
+      "link": "/posts/1"
+    },
+    {
+      "id": 2,
+      "title": "Article 2",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl ultricies nunc, vitae aliquam nisl",
+      "date": "2023-07-02",
+      "author": "John Doe",
+      "images": [
+        "https://picsum.photos/200/300",
+        "https://picsum.photos/200/300",
+        "https://picsum.photos/200/300"
+      ],
+      "link": "/posts/2"
+    },
+    {
+      "id": 3,
+      "title": "Article 3",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl ultricies nunc, vitae aliquam nisl",
+      "date": "2023-07-03",
+      "author": "Thomas Huttson",
+      "images": [
+        "https://picsum.photos/200/300",
+        "https://picsum.photos/200/300",
+        "https://picsum.photos/200/300"
+      ],
+      "link": "/posts/3"
+    },
+    {
+      "id": 4,
+      "title": "Article 4",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl ultricies nunc, vitae aliquam nisl",
+      "date": "2023-07-04",
+      "author": "Raymond Kosh",
+      "images": [
+        "https://picsum.photos/200/300",
+        "https://picsum.photos/200/300",
+        "https://picsum.photos/200/300"
+      ],
+      "link": "/posts/4"
+    },
+    {
+      "id": 5,
+      "title": "Article 5",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl ultricies nunc, vitae aliquam nisl",
+      "date": "2023-07-05",
+      "author": "Rita Roux",
+      "images": [
+        "https://picsum.photos/200/300",
+        "https://picsum.photos/200/300",
+        "https://picsum.photos/200/300"
+      ],
+      "link": "/posts/5"
+    },
+
+    {
+      "id": 6,
+      "title": "The First Post",
+      "content": "This is the first post on this blog.",
+      "date": "2023-11-16",
+      "author": "John Doe",
+      "images": ["https://picsum.photos/200/300", "https://picsum.photos/200/300"],
+      "link": "/posts/6"
+    },
+    {
+      "id": 7,
+      "title": "The Second Post",
+      "content": "This is the second post on this blog.",
+      "date": "2023-11-15",
+      "author": "Jane Doe",
+      "images": [
+        "https://picsum.photos/200/400",
+        "https://picsum.photos/200/300",
+        "https://picsum.photos/200/300"
+      ],
+      "link": "/posts/7"
+    },
+    {
+      "id": 8,
+      "title": "The Third Post",
+      "content": "This is the third post on this blog.",
+      "date": "2023-11-14",
+      "author": "Peter Jones",
+      "images": [
+        "https://picsum.photos/200/500",
+        "https://picsum.photos/200/500",
+        "https://picsum.photos/200/500"
+      ],
+      "link": "/posts/8"
+    },
+    {
+      "id": 9,
+      "title": "The Fourth Post",
+      "content": "This is the fourth post on this blog.",
+      "date": "2023-11-13",
+      "author": "Mary Smith",
+      "images": ["https://picsum.photos/200/600", "https://picsum.photos/200/500"],
+      "link": "/posts/9"
+    },
+    {
+      "id": 10,
+      "title": "The Fifth Post",
+      "content": "This is the fifth post on this blog.",
+      "date": "2023-11-12",
+      "author": "David Brown",
+      "images": ["https://picsum.photos/200/700", "https://picsum.photos/200/500"],
+      "link": "/posts/10"
+    },
+    {
+      "id": 11,
+      "title": "The Sixth Post",
+      "content": "This is the sixth post on this blog.",
+      "date": "2023-11-11",
+      "author": "Susan Williams",
+      "images": [
+        "https://picsum.photos/200/800",
+        "https://picsum.photos/200/500",
+        "https://picsum.photos/200/800"
+      ],
+      "link": "/posts/11"
+    },
+    {
+      "id": 12,
+      "title": "The Seventh Post",
+      "content": "This is the seventh post on this blog.",
+      "date": "2023-11-10",
+      "author": "Robert Miller",
+      "images": ["https://picsum.photos/200/900", "https://picsum.photos/200/800"],
+      "link": "/posts/12"
+    },
+    {
+      "id": 13,
+      "title": "The Eighth Post",
+      "content": "This is the eighth post on this blog.",
+      "date": "2023-11-09",
+      "author": "Patricia Johnson",
+      "images": ["https://picsum.photos/200/1000"],
+      "link": "/posts/13"
+    },
+    {
+      "id": 14,
+      "title": "The Ninth Post",
+      "content": "This is the ninth post on this blog.",
+      "date": "2023-11-08",
+      "author": "Michael Taylor",
+      "images": [
+        "https://picsum.photos/200/1100",
+        "https://picsum.photos/200/800",
+        "https://picsum.photos/200/800"
+      ],
+      "link": "/posts/14"
+    },
+    {
+      "id": 15,
+      "title": "The Tenth Post",
+      "content": "This is the tenth post on this blog.",
+      "date": "2023-11-07",
+      "author": "Sarah Davis",
+      "images": [
+        "https://picsum.photos/200/1200",
+        "https://picsum.photos/200/800",
+        "https://picsum.photos/200/1200"
+      ],
+      "link": "/posts/15"
+    }
   ]
 }
