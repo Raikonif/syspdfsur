@@ -26,7 +26,7 @@ function PostArticleCard({
           <h2 className="font-bold">{title}</h2>
         </header>
         <div className="relative flex h-auto w-auto">
-          <img src={image} alt={title} className="m-4 h-[200px] w-[300px] rounded-lg" />
+          <img src={image} alt={title} className="m-4 h-[200px] w-[300px] rounded-lg p-2" />
           <div className="m-4 flex flex-col">
             <p>{content}</p>
             <footer>{date}</footer>

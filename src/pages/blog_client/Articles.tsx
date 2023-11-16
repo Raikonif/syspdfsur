@@ -4,8 +4,8 @@ import { IPostListInterface } from "~/interfaces/IPostInterface";
 import PostArticleCard from "~/pages/blog_client/Home/components/PostArticleCard";
 function Articles() {
   return (
-    <div className="flex h-full w-auto flex-col pt-20">
-      <ul className="relative flex flex-col">
+    <div className="flex h-full w-full flex-col pt-20">
+      <ul className="relative w-auto flex-col">
         {textsConstants.body.postsList.map((item: IPostListInterface) => (
           <li key={item.id} className="m-2 w-full">
             <PostArticleCard
