@@ -1,11 +1,10 @@
-import React from "react";
-
+import React, { ReactElement } from "react";
 import { Outlet } from "react-router-dom";
 import HomeMenu from "~/components/blog_menu/HomeMenu";
 
-function ClientLayout(): JSX.Element {
+function ClientLayout(): ReactElement {
   return (
-    <div className="flex h-screen flex-col items-center justify-center">
+    <div className="flex h-screen w-auto flex-col items-center justify-center">
       <HomeMenu />
       <Outlet />
     </div>

@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { VITE_BASE_URL_MOCK } from "~/service/service.constants";
 interface PostArticleCardProps {
   title: string;
   content: string;
@@ -8,6 +9,7 @@ interface PostArticleCardProps {
   image: string;
   link: string;
 }
+
 function PostArticleCard({
   title,
   content,
@@ -17,7 +19,7 @@ function PostArticleCard({
 }: PostArticleCardProps): ReactElement {
   const navigate = useNavigate();
   const handleClick = (link: string) => {
-    navigate(link);
+    navigate(`${VITE_BASE_URL_MOCK}${link}`);
   };
   return (
     <>
