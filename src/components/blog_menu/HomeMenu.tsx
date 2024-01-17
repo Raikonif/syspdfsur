@@ -1,49 +1,48 @@
-import React, { useState } from "react";
+import React, { ReactElement, useState } from "react";
 import homeOptions from "~/constants/options/home.options";
 import IMenuInterface from "~/interfaces/menuInterface";
 import { NavLink, useNavigate } from "react-router-dom";
-import { BsFillSunFill, FaMoon } from "react-icons/all";
-
-function HomeMenu(): JSX.Element {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+import { GiMicroscope } from "react-icons/all";
+import { useTranslation } from "react-i18next";
+function HomeMenu(): ReactElement {
   const [goHome, setGoHome] = useState(false);
   const navigateHome = useNavigate();
-  const activeDesktop = "bg-slate-200 text-fuchsia-500 rounded-full duration-500 mx-2";
+  const { t } = useTranslation();
   const activeMobile = "bg-slate-200 rounded-full duration-500 mx-2";
-  const listMenu: JSX.Element[] = homeOptions.blogOptions.map((item: IMenuInterface) => (
-    <NavLink
-      className={({ isActive }): string =>
-        isActive ? activeDesktop : "mx-2 hover:rounded-full hover:bg-slate-100 hover:duration-500"
-      }
-      key={item.id}
-      to={item.link}
-    >
-      <li className="m-2 px-5 text-lg font-semibold text-violet-700">{item.title}</li>
-    </NavLink>
-  ));
 
-  const handleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
   const handleGoHome = () => {
     navigateHome("/");
   };
   return (
-    <div className="righ-0 fixed left-0 top-0 z-20 flex w-full items-center justify-between bg-white p-3 px-5">
-      <button onClick={handleGoHome}>
-        <img
-          src="/icon-page.svg"
-          className="h-10 w-10 rounded-full border border-white duration-500 hover:border-slate-200"
-          alt="..."
-        />
-      </button>
-      {/*TODO: Change the behavior option selected from menu*/}
-      <ul className="flex">{listMenu}</ul>
-      {isDarkMode ? (
-        <BsFillSunFill className="h-9 w-9 text-slate-100" onClick={handleDarkMode} />
-      ) : (
-        <FaMoon className="h-8 w-8 text-slate-700" onClick={handleDarkMode} />
-      )}
+    <div className="fixed left-0 top-0 z-10 w-full shadow-md">
+      <div className="bg-violet-600 px-2 py-2 sm:justify-between md:flex md:px-10">
+        <button
+          onClick={handleGoHome}
+          className="flex cursor-pointer items-center text-2xl font-bold text-gray-800"
+        >
+          <GiMicroscope className="mx-2 text-white" size={40} />
+          <h3 className="text-white">PANDY BLOG</h3>
+        </button>
+        <ul className="flex">
+          {homeOptions.blogOptions.map((item: IMenuInterface) => (
+            <NavLink
+              className={({ isActive }): string =>
+                `mx-5 rounded-full text-lg duration-500 ${
+                  isActive
+                    ? "bg-slate-200 text-violet-600"
+                    : "text-lg text-white hover:bg-slate-100 hover:text-violet-400"
+                }`
+              }
+              key={item.id}
+              to={item.link}
+            >
+              <li className="m-2 px-5 text-lg font-semibold focus:text-violet-600">
+                {t(item.title.toUpperCase())}
+              </li>
+            </NavLink>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

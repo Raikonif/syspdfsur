@@ -1,8 +1,8 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import textsConstants from "~/pages/blog_client/Home/constants/texts.constants";
 import { IPostListInterface } from "~/interfaces/IPostInterface";
 import PostArticleCard from "~/pages/blog_client/Home/components/PostArticleCard";
-function Articles() {
+function Articles(): ReactElement {
   return (
     <div className="flex h-full w-full flex-col pt-20">
       <ul className="relative w-auto flex-col">

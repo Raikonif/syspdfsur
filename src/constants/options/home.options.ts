@@ -34,9 +34,9 @@ const homeOptions = {
     },
     {
       id: 2,
-      title: "Resources",
+      title: "Blog",
       icon: "fas fa-tags",
-      link: "/resources",
+      link: "/blog",
     },
     {
       id: 3,
