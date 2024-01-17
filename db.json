@@ -1511,179 +1511,187 @@
   "articles": [
     {
       "id": 1,
-      "title": "Article 1",
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl ultricies nunc, vitae aliquam nisl",
-      "date": "2023-07-01",
-      "author": "John Doe",
+      "title": "Papanicolau",
+      "author": "Dr. Juan Perez",
+      "date": "18/11/2023",
+      "content": "Un Papanicolau normal significa que no hay células anormales presentes en el cuello uterino. Un Papanicolau anormal significa que se encontraron células anormales en el cuello uterino. Estas células anormales se denominan células precancerosas. Las células precancerosas no son cáncer, pero pueden convertirse en cáncer si no se tratan.",
       "images": [
-        "https://picsum.photos/200/300",
-        "https://picsum.photos/200/300",
-        "https://picsum.photos/200/300"
+        {
+          "id": 1,
+          "url": "https://picsum.photos/200/1200"
+        },
+        {
+          "id": 2,
+          "url": "https://picsum.photos/200/800"
+        },
+        {
+          "id": 3,
+          "url": "https://picsum.photos/900/800"
+        }
       ],
-      "link": "/posts/1"
+      "type": "PAP"
     },
     {
       "id": 2,
-      "title": "Article 2",
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl ultricies nunc, vitae aliquam nisl",
-      "date": "2023-07-02",
-      "author": "John Doe",
+      "title": "Blood Pressure",
+      "author": "Dr. Maria Rodriguez",
+      "date": "22/11/2023",
+      "content": "Maintaining a healthy blood pressure is crucial for cardiovascular health. High blood pressure can lead to serious health issues, including heart disease and stroke.",
       "images": [
-        "https://picsum.photos/200/300",
-        "https://picsum.photos/200/300",
-        "https://picsum.photos/200/300"
+        {
+          "id": 4,
+          "url": "https://picsum.photos/200/1000"
+        },
+        {
+          "id": 5,
+          "url": "https://picsum.photos/200/900"
+        }
       ],
-      "link": "/posts/2"
+      "type": "histopathology"
     },
     {
       "id": 3,
-      "title": "Article 3",
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl ultricies nunc, vitae aliquam nisl",
-      "date": "2023-07-03",
-      "author": "Thomas Huttson",
+      "title": "Cholesterol Levels",
+      "author": "Dr. Laura Martinez",
+      "date": "25/11/2023",
+      "content": "Monitoring cholesterol levels is essential for heart health. High levels of LDL cholesterol (bad cholesterol) can increase the risk of heart disease.",
       "images": [
-        "https://picsum.photos/200/300",
-        "https://picsum.photos/200/300",
-        "https://picsum.photos/200/300"
+        {
+          "id": 6,
+          "url": "https://picsum.photos/200/1100"
+        },
+        {
+          "id": 7,
+          "url": "https://picsum.photos/200/1000"
+        }
       ],
-      "link": "/posts/3"
+      "type": "cithology"
     },
     {
       "id": 4,
-      "title": "Article 4",
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl ultricies nunc, vitae aliquam nisl",
-      "date": "2023-07-04",
-      "author": "Raymond Kosh",
+      "title": "Diabetes Management",
+      "author": "Dr. Carlos Sanchez",
+      "date": "28/11/2023",
+      "content": "Proper management of diabetes involves a combination of medication, diet, and lifestyle changes. Regular monitoring of blood sugar levels is crucial.",
       "images": [
-        "https://picsum.photos/200/300",
-        "https://picsum.photos/200/300",
-        "https://picsum.photos/200/300"
+        {
+          "id": 8,
+          "url": "https://picsum.photos/200/950"
+        },
+        {
+          "id": 9,
+          "url": "https://picsum.photos/200/1050"
+        }
       ],
-      "link": "/posts/4"
+      "type": "PAP"
     },
     {
       "id": 5,
-      "title": "Article 5",
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl ultricies nunc, vitae aliquam nisl",
-      "date": "2023-07-05",
-      "author": "Rita Roux",
+      "title": "Breast Self-Examination",
+      "author": "Dr. Sofia Lopez",
+      "date": "02/12/2023",
+      "content": "Regular breast self-examination is important for detecting any changes or abnormalities in the breast tissue. Early detection can improve the chances of successful treatment.",
       "images": [
-        "https://picsum.photos/200/300",
-        "https://picsum.photos/200/300",
-        "https://picsum.photos/200/300"
+        {
+          "id": 10,
+          "url": "https://picsum.photos/200/980"
+        },
+        {
+          "id": 11,
+          "url": "https://picsum.photos/200/1020"
+        }
       ],
-      "link": "/posts/5"
+      "type": "cithology"
     },
-
     {
       "id": 6,
-      "title": "The First Post",
-      "content": "This is the first post on this blog.",
-      "date": "2023-11-16",
-      "author": "John Doe",
-      "images": ["https://picsum.photos/200/300", "https://picsum.photos/200/300"],
-      "link": "/posts/6"
+      "title": "Prostate Health",
+      "author": "Dr. Ricardo Gomez",
+      "date": "05/12/2023",
+      "content": "Men should be aware of their prostate health. Regular check-ups and screenings can help detect any issues early on.",
+      "images": [
+        {
+          "id": 12,
+          "url": "https://picsum.photos/200/1080"
+        },
+        {
+          "id": 13,
+          "url": "https://picsum.photos/200/970"
+        }
+      ],
+      "type": "histopathology"
     },
     {
       "id": 7,
-      "title": "The Second Post",
-      "content": "This is the second post on this blog.",
-      "date": "2023-11-15",
-      "author": "Jane Doe",
+      "title": "Healthy Eating Habits",
+      "author": "Nutritionist Maria Torres",
+      "date": "08/12/2023",
+      "content": "Maintaining healthy eating habits is key to overall well-being. A balanced diet provides the necessary nutrients for optimal body function.",
       "images": [
-        "https://picsum.photos/200/400",
-        "https://picsum.photos/200/300",
-        "https://picsum.photos/200/300"
+        {
+          "id": 14,
+          "url": "https://picsum.photos/200/1040"
+        },
+        {
+          "id": 15,
+          "url": "https://picsum.photos/200/990"
+        }
       ],
-      "link": "/posts/7"
+      "type": "cithology"
     },
     {
       "id": 8,
-      "title": "The Third Post",
-      "content": "This is the third post on this blog.",
-      "date": "2023-11-14",
-      "author": "Peter Jones",
+      "title": "Exercise for Heart Health",
+      "author": "Fitness Expert Ana Ramirez",
+      "date": "12/12/2023",
+      "content": "Regular exercise is essential for maintaining a healthy heart. It helps improve cardiovascular fitness and reduces the risk of heart disease.",
       "images": [
-        "https://picsum.photos/200/500",
-        "https://picsum.photos/200/500",
-        "https://picsum.photos/200/500"
+        {
+          "id": 16,
+          "url": "https://picsum.photos/200/1070"
+        },
+        {
+          "id": 17,
+          "url": "https://picsum.photos/200/960"
+        }
       ],
-      "link": "/posts/8"
+      "type": "PAP"
     },
     {
       "id": 9,
-      "title": "The Fourth Post",
-      "content": "This is the fourth post on this blog.",
-      "date": "2023-11-13",
-      "author": "Mary Smith",
-      "images": ["https://picsum.photos/200/600", "https://picsum.photos/200/500"],
-      "link": "/posts/9"
+      "title": "Mental Health Awareness",
+      "author": "Psychologist Elena Rodriguez",
+      "date": "15/12/2023",
+      "content": "Promoting mental health awareness is crucial for overall well-being. Taking care of mental health is as important as physical health.",
+      "images": [
+        {
+          "id": 18,
+          "url": "https://picsum.photos/200/1030"
+        },
+        {
+          "id": 19,
+          "url": "https://picsum.photos/200/980"
+        }
+      ],
+      "type": "histopathology"
     },
     {
       "id": 10,
-      "title": "The Fifth Post",
-      "content": "This is the fifth post on this blog.",
-      "date": "2023-11-12",
-      "author": "David Brown",
-      "images": ["https://picsum.photos/200/700", "https://picsum.photos/200/500"],
-      "link": "/posts/10"
-    },
-    {
-      "id": 11,
-      "title": "The Sixth Post",
-      "content": "This is the sixth post on this blog.",
-      "date": "2023-11-11",
-      "author": "Susan Williams",
+      "title": "Sun Safety",
+      "author": "Dr. Javier Hernandez",
+      "date": "18/12/2023",
+      "content": "Practicing sun safety is essential to prevent skin damage and reduce the risk of skin cancer. Use sunscreen and protective clothing when exposed to the sun.",
       "images": [
-        "https://picsum.photos/200/800",
-        "https://picsum.photos/200/500",
-        "https://picsum.photos/200/800"
+        {
+          "id": 20,
+          "url": "https://picsum.photos/200/1000"
+        },
+        {
+          "id": 21,
+          "url": "https://picsum.photos/200/900"
+        }
       ],
-      "link": "/posts/11"
-    },
-    {
-      "id": 12,
-      "title": "The Seventh Post",
-      "content": "This is the seventh post on this blog.",
-      "date": "2023-11-10",
-      "author": "Robert Miller",
-      "images": ["https://picsum.photos/200/900", "https://picsum.photos/200/800"],
-      "link": "/posts/12"
-    },
-    {
-      "id": 13,
-      "title": "The Eighth Post",
-      "content": "This is the eighth post on this blog.",
-      "date": "2023-11-09",
-      "author": "Patricia Johnson",
-      "images": ["https://picsum.photos/200/1000"],
-      "link": "/posts/13"
-    },
-    {
-      "id": 14,
-      "title": "The Ninth Post",
-      "content": "This is the ninth post on this blog.",
-      "date": "2023-11-08",
-      "author": "Michael Taylor",
-      "images": [
-        "https://picsum.photos/200/1100",
-        "https://picsum.photos/200/800",
-        "https://picsum.photos/200/800"
-      ],
-      "link": "/posts/14"
-    },
-    {
-      "id": 15,
-      "title": "The Tenth Post",
-      "content": "This is the tenth post on this blog.",
-      "date": "2023-11-07",
-      "author": "Sarah Davis",
-      "images": [
-        "https://picsum.photos/200/1200",
-        "https://picsum.photos/200/800",
-        "https://picsum.photos/200/1200"
-      ],
-      "link": "/posts/15"
+      "type": "cithology"
     }
-  ]
+  ],
 }
