@@ -9,10 +9,10 @@ import HomeBodyAlt from "~/pages/blog_client/Home/HomeBodyAlt";
 function Home(): JSX.Element {
   return (
     <>
-      <div className="m-16 flex h-screen w-screen justify-center p-10 pt-20">
-        <div className="flex w-full flex-col items-center">
+      <div className="flex flex-col sm:flex-row sm:p-10">
+        <div className="flex w-full flex-col">
           <HomeHeader />
-          <HomeBodyAlt />
+          {/*<HomeBodyAlt />*/}
           {/*<HomeBody />*/}
           <HomeFooter />
         </div>
