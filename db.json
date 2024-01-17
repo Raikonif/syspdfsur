@@ -1,4 +1,90 @@
 {
+  "medics": [
+    {
+      "id": 1,
+      "first_name": "John",
+      "last_name": "Doe",
+      "specialty": "Cardiology"
+    },
+    {
+      "id": 2,
+      "first_name": "Mary",
+      "last_name": "Smith",
+      "specialty": "Dermatology"
+    },
+    {
+      "id": 3,
+      "first_name": "David",
+      "last_name": "Johnson",
+      "specialty": "Endocrinology"
+    },
+    {
+      "id": 4,
+      "first_name": "Sarah",
+      "last_name": "Jones",
+      "specialty": "Gastroenterology"
+    },
+    {
+      "id": 5,
+      "first_name": "Kevin",
+      "last_name": "Brown",
+      "specialty": "Hematology"
+    },
+    {
+      "id": 6,
+      "first_name": "Emily",
+      "last_name": "Davis",
+      "specialty": "Infectious Disease"
+    },
+    {
+      "id": 7,
+      "first_name": "Michael",
+      "last_name": "Wilson",
+      "specialty": "Nephrology"
+    },
+    {
+      "id": 8,
+      "first_name": "Jessica",
+      "last_name": "Anderson",
+      "specialty": "Neurology"
+    },
+    {
+      "id": 9,
+      "first_name": "Andrew",
+      "last_name": "Thomas",
+      "specialty": "Oncology"
+    },
+    {
+      "id": 10,
+      "first_name": "Megan",
+      "last_name": "Garcia",
+      "specialty": "Pulmonology"
+    },
+    {
+      "id": 11,
+      "first_name": "William",
+      "last_name": "Taylor",
+      "specialty": "Rheumatology"
+    },
+    {
+      "id": 12,
+      "first_name": "Olivia",
+      "last_name": "Martinez",
+      "specialty": "Urology"
+    },
+    {
+      "id": 13,
+      "first_name": "James",
+      "last_name": "Anderson",
+      "specialty": "Allergy & Immunology"
+    },
+    {
+      "id": 14,
+      "first_name": "Sophia",
+      "last_name": "Garcia",
+      "specialty": "Anesthesiology"
+    }
+  ],
   "patients": [
     {
       "id": 1,
@@ -6,7 +92,7 @@
       "last_name": "Doe",
       "gender": 1,
       "age": 35,
-      "email": "john.doe@example.com"
+      "dni": "john.doe@example.com"
     },
     {
       "id": 2,
@@ -14,7 +100,7 @@
       "last_name": "Smith",
       "gender": 0,
       "age": 42,
-      "email": "mary.smith@example.com"
+      "dni": "mary.smith@example.com"
     },
     {
       "id": 3,
@@ -22,7 +108,7 @@
       "last_name": "Johnson",
       "gender": 1,
       "age": 56,
-      "email": "david.johnson@example.com"
+      "dni": "david.johnson@example.com"
     },
     {
       "id": 4,
@@ -30,7 +116,7 @@
       "last_name": "Jones",
       "gender": 0,
       "age": 23,
-      "email": "sarah.jones@example.com"
+      "dni": "sarah.jones@example.com"
     },
     {
       "id": 5,
@@ -38,7 +124,7 @@
       "last_name": "Brown",
       "gender": 1,
       "age": 48,
-      "email": "kevin.brown@example.com"
+      "dni": "kevin.brown@example.com"
     },
     {
       "id": 6,
@@ -46,7 +132,7 @@
       "last_name": "Davis",
       "gender": 0,
       "age": 29,
-      "email": "emily.davis@example.com"
+      "dni": "emily.davis@example.com"
     },
     {
       "id": 7,
@@ -54,7 +140,7 @@
       "last_name": "Wilson",
       "gender": 1,
       "age": 41,
-      "email": "michael.wilson@example.com"
+      "dni": "michael.wilson@example.com"
     },
     {
       "id": 8,
@@ -62,7 +148,7 @@
       "last_name": "Anderson",
       "gender": 0,
       "age": 36,
-      "email": "jessica.anderson@example.com"
+      "dni": "jessica.anderson@example.com"
     },
     {
       "id": 9,
@@ -70,7 +156,7 @@
       "last_name": "Thomas",
       "gender": 1,
       "age": 33,
-      "email": "andrew.thomas@example.com"
+      "dni": "andrew.thomas@example.com"
     },
     {
       "id": 10,
@@ -78,7 +164,7 @@
       "last_name": "Garcia",
       "gender": 0,
       "age": 27,
-      "email": "megan.garcia@example.com"
+      "dni": "megan.garcia@example.com"
     },
     {
       "id": 11,
@@ -86,7 +172,7 @@
       "last_name": "Taylor",
       "gender": 1,
       "age": 44,
-      "email": "william.taylor@example.com"
+      "dni": "william.taylor@example.com"
     },
     {
       "id": 12,
@@ -94,7 +180,7 @@
       "last_name": "Martinez",
       "gender": 0,
       "age": 30,
-      "email": "olivia.martinez@example.com"
+      "dni": "olivia.martinez@example.com"
     },
     {
       "id": 13,
@@ -102,7 +188,7 @@
       "last_name": "Anderson",
       "gender": 1,
       "age": 39,
-      "email": "james.anderson@example.com"
+      "dni": "james.anderson@example.com"
     },
     {
       "id": 14,
@@ -110,7 +196,7 @@
       "last_name": "Garcia",
       "gender": 0,
       "age": 24,
-      "email": "sophia.garcia@example.com"
+      "dni": "sophia.garcia@example.com"
     },
     {
       "id": 15,
@@ -118,7 +204,7 @@
       "last_name": "Robinson",
       "gender": 1,
       "age": 37,
-      "email": "christopher.robinson@example.com"
+      "dni": "christopher.robinson@example.com"
     },
     {
       "id": 16,
@@ -126,7 +212,7 @@
       "last_name": "Nelson",
       "gender": 0,
       "age": 31,
-      "email": "isabella.nelson@example.com"
+      "dni": "isabella.nelson@example.com"
     },
     {
       "id": 17,
@@ -134,7 +220,7 @@
       "last_name": "Parker",
       "gender": 1,
       "age": 49,
-      "email": "daniel.parker@example.com"
+      "dni": "daniel.parker@example.com"
     },
     {
       "id": 18,
@@ -142,7 +228,7 @@
       "last_name": "Collins",
       "gender": 0,
       "age": 25,
-      "email": "madison.collins@example.com"
+      "dni": "madison.collins@example.com"
     },
     {
       "id": 19,
@@ -150,7 +236,7 @@
       "last_name": "Morris",
       "gender": 1,
       "age": 57,
-      "email": "anthony.morris@example.com"
+      "dni": "anthony.morris@example.com"
     },
     {
       "id": 20,
@@ -158,7 +244,7 @@
       "last_name": "Murphy",
       "gender": 0,
       "age": 28,
-      "email": "avery.murphy@example.com"
+      "dni": "avery.murphy@example.com"
     },
     {
       "id": 21,
@@ -166,7 +252,7 @@
       "last_name": "Rivera",
       "gender": 1,
       "age": 43,
-      "email": "ryan.rivera@example.com"
+      "dni": "ryan.rivera@example.com"
     },
     {
       "id": 22,
@@ -174,7 +260,7 @@
       "last_name": "Cook",
       "gender": 0,
       "age": 26,
-      "email": "sofia.cook@example.com"
+      "dni": "sofia.cook@example.com"
     },
     {
       "id": 23,
@@ -182,7 +268,7 @@
       "last_name": "Bailey",
       "gender": 1,
       "age": 40,
-      "email": "joseph.bailey@example.com"
+      "dni": "joseph.bailey@example.com"
     },
     {
       "id": 24,
@@ -190,7 +276,7 @@
       "last_name": "Richardson",
       "gender": 0,
       "age": 32,
-      "email": "chloe.richardson@example.com"
+      "dni": "chloe.richardson@example.com"
     },
     {
       "id": 25,
@@ -198,7 +284,7 @@
       "last_name": "Ward",
       "gender": 1,
       "age": 45,
-      "email": "david.ward@example.com"
+      "dni": "david.ward@example.com"
     },
     {
       "id": 26,
@@ -206,7 +292,7 @@
       "last_name": "Torres",
       "gender": 0,
       "age": 33,
-      "email": "evelyn.torres@example.com"
+      "dni": "evelyn.torres@example.com"
     },
     {
       "id": 27,
@@ -214,15 +300,15 @@
       "last_name": "Peterson",
       "gender": 1,
       "age": 47,
-      "email": "robert.peterson@example.com"
+      "dni": "robert.peterson@example.com"
     },
     {
       "id": 28,
       "first_name": "Emma",
-      "last_name":"Nelson",
+      "last_name": "Nelson",
       "gender": 0,
       "age": 29,
-      "email": "emma.nelson@example.com"
+      "dni": "emma.nelson@example.com"
     },
     {
       "id": 29,
@@ -230,7 +316,7 @@
       "last_name": "Gonzalez",
       "gender": 1,
       "age": 52,
-      "email": "nicholas.gonzalez@example.com"
+      "dni": "nicholas.gonzalez@example.com"
     },
     {
       "id": 30,
@@ -238,7 +324,7 @@
       "last_name": "Carter",
       "gender": 0,
       "age": 27,
-      "email": "olivia.carter@example.com"
+      "dni": "olivia.carter@example.com"
     },
     {
       "id": 31,
@@ -246,7 +332,7 @@
       "last_name": "Mitchell",
       "gender": 1,
       "age": 41,
-      "email": "joshua.mitchell@example.com"
+      "dni": "joshua.mitchell@example.com"
     },
     {
       "id": 32,
@@ -254,7 +340,7 @@
       "last_name": "Perez",
       "gender": 0,
       "age": 30,
-      "email": "mia.perez@example.com"
+      "dni": "mia.perez@example.com"
     },
     {
       "id": 33,
@@ -262,7 +348,7 @@
       "last_name": "Roberts",
       "gender": 1,
       "age": 44,
-      "email": "matthew.roberts@example.com"
+      "dni": "matthew.roberts@example.com"
     },
     {
       "id": 34,
@@ -270,7 +356,7 @@
       "last_name": "Turner",
       "gender": 0,
       "age": 34,
-      "email": "ava.turner@example.com"
+      "dni": "ava.turner@example.com"
     },
     {
       "id": 35,
@@ -278,7 +364,7 @@
       "last_name": "Phillips",
       "gender": 1,
       "age": 49,
-      "email": "william.phillips@example.com"
+      "dni": "william.phillips@example.com"
     },
     {
       "id": 36,
@@ -286,7 +372,7 @@
       "last_name": "Campbell",
       "gender": 0,
       "age": 31,
-      "email": "charlotte.campbell@example.com"
+      "dni": "charlotte.campbell@example.com"
     },
     {
       "id": 37,
@@ -294,7 +380,7 @@
       "last_name": "Edwards",
       "gender": 1,
       "age": 46,
-      "email": "christopher.edwards@example.com"
+      "dni": "christopher.edwards@example.com"
     },
     {
       "id": 38,
@@ -302,7 +388,7 @@
       "last_name": "Green",
       "gender": 0,
       "age": 25,
-      "email": "grace.green@example.com"
+      "dni": "grace.green@example.com"
     },
     {
       "id": 39,
@@ -310,7 +396,7 @@
       "last_name": "Baker",
       "gender": 1,
       "age": 37,
-      "email": "andrew.baker@example.com"
+      "dni": "andrew.baker@example.com"
     },
     {
       "id": 40,
@@ -318,7 +404,7 @@
       "last_name": "Gonzalez",
       "gender": 0,
       "age": 29,
-      "email": "harper.gonzalez@example.com"
+      "dni": "harper.gonzalez@example.com"
     },
     {
       "id": 41,
@@ -326,7 +412,7 @@
       "last_name": "Johnson",
       "gender": 1,
       "age": 42,
-      "email": "joseph.johnson@example.com"
+      "dni": "joseph.johnson@example.com"
     },
     {
       "id": 42,
@@ -334,7 +420,7 @@
       "last_name": "Mills",
       "gender": 0,
       "age": 24,
-      "email": "aria.mills@example.com"
+      "dni": "aria.mills@example.com"
     },
     {
       "id": 43,
@@ -342,7 +428,7 @@
       "last_name": "Wright",
       "gender": 1,
       "age": 51,
-      "email": "benjamin.wright@example.com"
+      "dni": "benjamin.wright@example.com"
     },
     {
       "id": 44,
@@ -350,7 +436,7 @@
       "last_name": "Clark",
       "gender": 0,
       "age": 28,
-      "email": "evelyn.clark@example.com"
+      "dni": "evelyn.clark@example.com"
     },
     {
       "id": 45,
@@ -358,7 +444,7 @@
       "last_name": "Sanchez",
       "gender": 1,
       "age": 45,
-      "email": "christopher.sanchez@example.com"
+      "dni": "christopher.sanchez@example.com"
     },
     {
       "id": 46,
@@ -366,7 +452,7 @@
       "last_name": "Gutierrez",
       "gender": 0,
       "age": 32,
-      "email": "lila.gutierrez@example.com"
+      "dni": "lila.gutierrez@example.com"
     },
     {
       "id": 47,
@@ -374,7 +460,7 @@
       "last_name": "Cooper",
       "gender": 1,
       "age": 43,
-      "email": "john.cooper@example.com"
+      "dni": "john.cooper@example.com"
     },
     {
       "id": 48,
@@ -382,7 +468,7 @@
       "last_name": "Morris",
       "gender": 0,
       "age": 26,
-      "email": "audrey.morris@example.com"
+      "dni": "audrey.morris@example.com"
     },
     {
       "id": 49,
@@ -390,7 +476,7 @@
       "last_name": "Rivera",
       "gender": 1,
       "age": 38,
-      "email": "daniel.rivera@example.com"
+      "dni": "daniel.rivera@example.com"
     },
     {
       "id": 50,
@@ -398,13 +484,483 @@
       "last_name": "Hill",
       "gender": 0,
       "age": 27,
-      "email": "avery.hill@example.com,"
+      "dni": "avery.hill@example.com,"
+    },
+    {
+      "first_name": "Diego",
+      "last_name": "Alarcon",
+      "age": 31,
+      "gender": "",
+      "dni": 8358851,
+      "clinical_history": 1234,
+      "register_birth": 1234,
+      "id": 51
+    },
+    {
+      "first_name": "Diego",
+      "last_name": "Alarcon Inturias",
+      "age": 31,
+      "gender": "",
+      "dni": 8358851,
+      "clinical_history": 12345,
+      "register_birth": 12345,
+      "id": 52
+    },
+    {
+      "first_name": "Diego",
+      "last_name": "Alarcon Inturias",
+      "age": 31,
+      "gender": "",
+      "dni": 8358851,
+      "clinical_history": 123456,
+      "register_birth": 123456,
+      "id": 53
+    },
+    {
+      "first_name": "Diego",
+      "last_name": "Alarcon Inturias",
+      "age": 63142527,
+      "gender": "",
+      "dni": 8358851,
+      "clinical_history": 1234567,
+      "register_birth": 1234567,
+      "id": 54
+    },
+    {
+      "first_name": "Nandy",
+      "last_name": "Calle Peñaranda",
+      "age": 34,
+      "gender": "Male",
+      "dni": 6988356,
+      "clinical_history": 123,
+      "register_birth": 123,
+      "id": 55
+    },
+    {
+      "first_name": "Nandy",
+      "last_name": "Calle Peñaranda",
+      "age": 34,
+      "gender": "Female",
+      "dni": 6988356,
+      "clinical_history": 123,
+      "register_birth": 123,
+      "id": 56
     }
   ],
-  "study_type": [
+  "reports": [
+    {
+      "id": 1,
+      "patient_id": 1,
+      "medic_id": 1,
+      "type": "Histopathological",
+      "service": "Pathology Lab",
+      "clinical_diagnosis": "Tumor",
+      "study_code": "ABC123",
+      "sample_date": "2023-07-01",
+      "reception_date": "2023-07-05",
+      "report_date": "2023-07-10"
+    },
+    {
+      "id": 2,
+      "patient_id": 2,
+      "medic_id": 2,
+      "type": "Cytological",
+      "service": "Cytology Department",
+      "clinical_diagnosis": "Abnormal cells",
+      "study_code": "XYZ456",
+      "sample_date": "2023-07-02",
+      "reception_date": "2023-07-06",
+      "report_date": "2023-07-11"
+    },
+    {
+      "id": 3,
+      "patient_id": 3,
+      "medic_id": 3,
+      "type": "Histopathological",
+      "service": "Pathology Lab",
+      "clinical_diagnosis": "Inflammation",
+      "study_code": "MNO789",
+      "sample_date": "2023-07-03",
+      "reception_date": "2023-07-07",
+      "report_date": "2023-07-12"
+    },
+    {
+      "id": 4,
+      "patient_id": 4,
+      "medic_id": 4,
+      "type": "Histopathological",
+      "service": "Pathology Lab",
+      "clinical_diagnosis": "Tumor",
+      "study_code": "ABC123",
+      "sample_date": "2023-07-04",
+      "reception_date": "2023-07-08",
+      "report_date": "2023-07-13"
+    },
+    {
+      "id": 5,
+      "patient_id": 5,
+      "medic_id": 5,
+      "type": "Cytological",
+      "service": "Cytology Department",
+      "clinical_diagnosis": "Abnormal cells",
+      "study_code": "XYZ456",
+      "sample_date": "2023-07-05",
+      "reception_date": "2023-07-09",
+      "report_date": "2023-07-14"
+    },
+    {
+      "id": 6,
+      "patient_id": 6,
+      "medic_id": 6,
+      "type": "PAP",
+      "service": "Ginecology Department",
+      "clinical_diagnosis": "Inflammation",
+      "study_code": "MNO789",
+      "sample_date": "2023-07-06",
+      "reception_date": "2023-07-10",
+      "report_date": "2023-07-15"
+    },
+    {
+      "id": 7,
+      "patient_id": 7,
+      "medic_id": 7,
+      "type": "Histopathological",
+      "service": "Pathology Lab",
+      "clinical_diagnosis": "Tumor",
+      "study_code": "ABC123",
+      "sample_date": "2023-07-07",
+      "reception_date": "2023-07-11",
+      "report_date": "2023-07-16"
+    },
+    {
+      "id": 8,
+      "patient_id": 8,
+      "medic_id": 8,
+      "type": "Cytological",
+      "service": "Cytology Department",
+      "clinical_diagnosis": "Abnormal cells",
+      "study_code": "XYZ456",
+      "sample_date": "2023-07-08",
+      "reception_date": "2023-07-12",
+      "report_date": "2023-07-17"
+    },
+    {
+      "id": 9,
+      "patient_id": 9,
+      "medic_id": 9,
+      "type": "Histopathological",
+      "service": "Pathology Lab",
+      "clinical_diagnosis": "Inflammation",
+      "study_code": "MNO789",
+      "sample_date": "2023-07-09",
+      "reception_date": "2023-07-13",
+      "report_date": "2023-07-18"
+    },
+    {
+      "id": 10,
+      "patient_id": 10,
+      "medic_id": 10,
+      "type": "Histopathological",
+      "service": "Pathology Lab",
+      "clinical_diagnosis": "Tumor",
+      "study_code": "ABC123",
+      "sample_date": "2023-07-10",
+      "reception_date": "2023-07-14",
+      "report_date": "2023-07-19"
+    },
+    {
+      "id": 11,
+      "patient_id": 11,
+      "medic_id": 11,
+      "type": "Cytological",
+      "service": "Cytology Department",
+      "clinical_diagnosis": "Abnormal cells",
+      "study_code": "XYZ456",
+      "sample_date": "2023-07-11",
+      "reception_date": "2023-07-15",
+      "report_date": "2023-07-20"
+    },
+    {
+      "id": 12,
+      "patient_id": 12,
+      "medic_id": 12,
+      "type": "Histopathological",
+      "service": "Pathology Lab",
+      "clinical_diagnosis": "Inflammation",
+      "study_code": "MNO789",
+      "sample_date": "2023-07-12",
+      "reception_date": "2023-07-16",
+      "report_date": "2023-07-21"
+    },
+    {
+      "id": 13,
+      "patient_id": 13,
+      "medic_id": 13,
+      "type": "Histopathological",
+      "service": "Pathology Lab",
+      "clinical_diagnosis": "Tumor",
+      "study_code": "ABC123",
+      "sample_date": "2023-07-13",
+      "reception_date": "2023-07-17",
+      "report_date": "2023-07-22"
+    },
+    {
+      "id": 14,
+      "patient_id": 13,
+      "medic_id": 3,
+      "type": "Histopathological",
+      "service": "Pathology Lab",
+      "clinical_diagnosis": "Inflammation",
+      "study_code": "MNO789",
+      "sample_date": "2023-07-30",
+      "reception_date": "2023-08-03",
+      "report_date": "2023-08-08"
+    },
+    {
+      "medic_id": 1,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "Raiko Service",
+      "clinical_diagnosis": "Chan chan chan",
+      "study_code": "H-1234",
+      "sample_date": "2023-08-01",
+      "reception_date": "2023-08-07",
+      "report_date": "2023-08-11T22:08:31.107Z",
+      "id": 15
+    },
+    {
+      "medic_id": 1,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "Raiko Service",
+      "clinical_diagnosis": "Chan chan chan",
+      "study_code": "H-1234",
+      "sample_date": "2023-08-01",
+      "reception_date": "2023-08-07",
+      "report_date": "2023-08-11T22:08:31.107Z",
+      "id": 16
+    },
+    {
+      "medic_id": 1,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "Raiko Service",
+      "clinical_diagnosis": "Chan chan chan",
+      "study_code": "H-1234",
+      "sample_date": "2023-08-01",
+      "reception_date": "2023-08-07",
+      "report_date": "2023-08-11T22:08:31.107Z",
+      "id": 17
+    },
+    {
+      "medic_id": 1,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "Raiko Service",
+      "clinical_diagnosis": "Chan chan chan",
+      "study_code": "H-1234",
+      "sample_date": "2023-08-01",
+      "reception_date": "2023-08-07",
+      "report_date": "2023-08-11T22:08:31.107Z",
+      "id": 18
+    },
+    {
+      "medic_id": 1,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "Raiko Service",
+      "clinical_diagnosis": "Chan chan chan",
+      "study_code": "H-1234",
+      "sample_date": "2023-08-01",
+      "reception_date": "2023-08-07",
+      "report_date": "2023-08-11T22:08:31.107Z",
+      "id": 19
+    },
+    {
+      "medic_id": 1,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "Raiko Service",
+      "clinical_diagnosis": "Chan chan chan",
+      "study_code": "H-1234",
+      "sample_date": "2023-08-01",
+      "reception_date": "2023-08-07",
+      "report_date": "2023-08-11T22:08:31.107Z",
+      "id": 20
+    },
+    {
+      "medic_id": 1,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "Raiko Service",
+      "clinical_diagnosis": "Chan chan chan",
+      "study_code": "H-1234",
+      "sample_date": "2023-08-01",
+      "reception_date": "2023-08-07",
+      "report_date": "2023-08-11T22:08:31.107Z",
+      "id": 21
+    },
+    {
+      "medic_id": 1,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "Raiko Service",
+      "clinical_diagnosis": "Chan chan chan",
+      "study_code": "",
+      "sample_date": "2023-08-01",
+      "reception_date": "2023-08-07",
+      "report_date": "2023-08-11T22:08:31.107Z",
+      "id": 22
+    },
+    {
+      "medic_id": 4,
+      "patient_id": 4,
+      "type": "Histopathology",
+      "service": "asdf",
+      "clinical_diagnosis": "asdf",
+      "study_code": "asdf",
+      "sample_date": "2023-08-14",
+      "reception_date": "2023-08-15",
+      "report_date": "2023-08-13T23:01:08.012Z",
+      "id": 23
+    },
+    {
+      "medic_id": 1,
+      "patient_id": 4,
+      "type": "Histopathology",
+      "service": "sdf",
+      "clinical_diagnosis": "sdf",
+      "study_code": "sdf",
+      "sample_date": "2023-08-15",
+      "reception_date": "2023-08-09",
+      "report_date": "2023-08-13T04:00:00.000Z",
+      "id": 24
+    },
+    {
+      "medic_id": 3,
+      "patient_id": 4,
+      "type": "Histopathology",
+      "service": "sdf",
+      "clinical_diagnosis": "sdf",
+      "study_code": "asdf",
+      "sample_date": "2023-08-15",
+      "reception_date": "2023-08-14",
+      "report_date": "2023-08-13T00:00:00.000Z",
+      "id": 25
+    },
+    {
+      "medic_id": 6,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "asdfasdf",
+      "clinical_diagnosis": "sdfsadf",
+      "study_code": "asdfasdf",
+      "sample_date": "2023-08-08",
+      "reception_date": "2023-08-15",
+      "report_date": "2023-8-14",
+      "id": 26
+    },
+    {
+      "medic_id": 3,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "asdfasdf",
+      "clinical_diagnosis": "sdfsadf",
+      "study_code": "asdfasdf",
+      "sample_date": "2023-08-02",
+      "reception_date": "2023-08-10",
+      "report_date": "2023-8-14",
+      "id": 27
+    },
+    {
+      "medic_id": 4,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "asdf",
+      "clinical_diagnosis": "asdf",
+      "study_code": "1234",
+      "sample_date": "2023-09-12",
+      "reception_date": "2023-09-12",
+      "report_date": "2023-9-7",
+      "id": 28
+    },
+    {
+      "medic_id": 4,
+      "patient_id": 4,
+      "type": "Histopathology",
+      "service": "asdf",
+      "clinical_diagnosis": "sdf",
+      "study_code": "1234",
+      "sample_date": "2023-09-06",
+      "reception_date": "2023-09-12",
+      "report_date": "2023-9-25",
+      "id": 29
+    },
+    {
+      "medic_id": 4,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "asdf",
+      "clinical_diagnosis": "asf",
+      "study_code": "1234",
+      "sample_date": "2023-09-14",
+      "reception_date": "2023-09-12",
+      "report_date": "2023-9-26",
+      "id": 30
+    }
+  ],
+  "histo_reports": [
+    {
+      "report_id": 0,
+      "slides": 0,
+      "blocks": 12,
+      "macroscopy": "asdf",
+      "microscopy": "asdf",
+      "conclusion": "asdf",
+      "id": 1
+    },
+    {
+      "report_id": 27,
+      "slides": 12,
+      "blocks": 12,
+      "macroscopy": "asdfa",
+      "microscopy": "asdfasdf",
+      "conclusion": "asdfasdf",
+      "id": 2
+    },
+    {
+      "report_id": 28,
+      "slides": 0,
+      "blocks": 0,
+      "macroscopy": "asdf",
+      "microscopy": "asdf",
+      "conclusion": "asdf",
+      "id": 3
+    },
+    {
+      "report_id": 29,
+      "slides": 1,
+      "blocks": 2,
+      "macroscopy": "asdf",
+      "microscopy": "asdf",
+      "conclusion": "asdf",
+      "id": 4
+    },
+    {
+      "report_id": 30,
+      "slides": 0,
+      "blocks": 23,
+      "macroscopy": "asdf",
+      "microscopy": "asds",
+      "conclusion": "asdf",
+      "id": 5
+    }
+  ],
+  "diagnoses": [
     {
       "id": 1,
       "person_id": 1,
+      "medic_id": 1,
       "type": 2,
       "name": "MRI Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -415,6 +971,7 @@
     {
       "id": 2,
       "person_id": 2,
+      "medic_id": 1,
       "type": 3,
       "name": "X-ray",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -425,6 +982,7 @@
     {
       "id": 3,
       "person_id": 3,
+      "medic_id": 2,
       "type": 4,
       "name": "CT Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -435,6 +993,7 @@
     {
       "id": 4,
       "person_id": 4,
+      "medic_id": 3,
       "type": 1,
       "name": "Blood Test",
       "description": "A laboratory analysis used to check various health parameters",
@@ -445,6 +1004,7 @@
     {
       "id": 5,
       "person_id": 5,
+      "medic_id": 4,
       "type": 2,
       "name": "MRI Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -455,6 +1015,7 @@
     {
       "id": 6,
       "person_id": 6,
+      "medic_id": 5,
       "type": 1,
       "name": "Blood Test",
       "description": "A laboratory analysis used to check various health parameters",
@@ -465,6 +1026,7 @@
     {
       "id": 7,
       "person_id": 7,
+      "medic_id": 6,
       "type": 3,
       "name": "X-ray",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -475,6 +1037,7 @@
     {
       "id": 8,
       "person_id": 8,
+      "medic_id": 7,
       "type": 4,
       "name": "CT Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -485,6 +1048,7 @@
     {
       "id": 9,
       "person_id": 9,
+      "medic_id": 8,
       "type": 2,
       "name": "MRI Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -495,6 +1059,7 @@
     {
       "id": 10,
       "person_id": 10,
+      "medic_id": 9,
       "type": 1,
       "name": "Blood Test",
       "description": "A laboratory analysis used to check various health parameters",
@@ -505,6 +1070,7 @@
     {
       "id": 11,
       "person_id": 11,
+      "medic_id": 10,
       "type": 3,
       "name": "X-ray",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -515,6 +1081,7 @@
     {
       "id": 12,
       "person_id": 12,
+      "medic_id": 11,
       "type": 4,
       "name": "CT Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -525,6 +1092,7 @@
     {
       "id": 13,
       "person_id": 13,
+      "medic_id": 12,
       "type": 2,
       "name": "MRI Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -534,7 +1102,9 @@
     },
     {
       "id": 14,
-      "person_id": 14,"type": 1,
+      "person_id": 14,
+      "medic_id": 13,
+      "type": 1,
       "name": "Blood Test",
       "description": "A laboratory analysis used to check various health parameters",
       "diagnosis": "Iron deficiency",
@@ -544,6 +1114,7 @@
     {
       "id": 15,
       "person_id": 15,
+      "medic_id": 14,
       "type": 3,
       "name": "X-ray",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -554,6 +1125,7 @@
     {
       "id": 16,
       "person_id": 16,
+      "medic_id": 14,
       "type": 4,
       "name": "CT Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -564,6 +1136,7 @@
     {
       "id": 17,
       "person_id": 17,
+      "medic_id": 13,
       "type": 2,
       "name": "MRI Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -574,6 +1147,7 @@
     {
       "id": 18,
       "person_id": 18,
+      "medic_id": 12,
       "type": 1,
       "name": "Blood Test",
       "description": "A laboratory analysis used to check various health parameters",
@@ -584,6 +1158,7 @@
     {
       "id": 19,
       "person_id": 19,
+      "medic_id": 11,
       "type": 3,
       "name": "X-ray",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -594,6 +1169,7 @@
     {
       "id": 20,
       "person_id": 20,
+      "medic_id": 10,
       "type": 4,
       "name": "CT Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -604,6 +1180,7 @@
     {
       "id": 21,
       "person_id": 21,
+      "medic_id": 9,
       "type": 2,
       "name": "MRI Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -614,6 +1191,7 @@
     {
       "id": 22,
       "person_id": 22,
+      "medic_id": 8,
       "type": 1,
       "name": "Blood Test",
       "description": "A laboratory analysis used to check various health parameters",
@@ -624,6 +1202,7 @@
     {
       "id": 23,
       "person_id": 23,
+      "medic_id": 7,
       "type": 3,
       "name": "X-ray",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -634,6 +1213,7 @@
     {
       "id": 24,
       "person_id": 24,
+      "medic_id": 6,
       "type": 4,
       "name": "CT Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -644,6 +1224,7 @@
     {
       "id": 25,
       "person_id": 25,
+      "medic_id": 5,
       "type": 2,
       "name": "MRI Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -654,6 +1235,7 @@
     {
       "id": 26,
       "person_id": 26,
+      "medic_id": 4,
       "type": 1,
       "name": "Blood Test",
       "description": "A laboratory analysis used to check various health parameters",
@@ -664,6 +1246,7 @@
     {
       "id": 27,
       "person_id": 27,
+      "medic_id": 3,
       "type": 3,
       "name": "X-ray",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -674,6 +1257,7 @@
     {
       "id": 28,
       "person_id": 28,
+      "medic_id": 2,
       "type": 4,
       "name": "CT Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -684,6 +1268,7 @@
     {
       "id": 29,
       "person_id": 29,
+      "medic_id": 1,
       "type": 2,
       "name": "MRI Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -694,6 +1279,7 @@
     {
       "id": 30,
       "person_id": 30,
+      "medic_id": 1,
       "type": 1,
       "name": "Blood Test",
       "description": "A laboratory analysis used to check various health parameters",
@@ -704,6 +1290,7 @@
     {
       "id": 31,
       "person_id": 31,
+      "medic_id": 1,
       "type": 3,
       "name": "X-ray",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -714,6 +1301,7 @@
     {
       "id": 32,
       "person_id": 32,
+      "medic_id": 2,
       "type": 4,
       "name": "CT Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -724,9 +1312,10 @@
     {
       "id": 33,
       "person_id": 33,
+      "medic_id": 3,
       "type": 2,
       "name": "MRI Scan",
-      "description":"A medical imaging technique used to visualize internal structures of the body",
+      "description": "A medical imaging technique used to visualize internal structures of the body",
       "diagnosis": "Multiple sclerosis",
       "difficulty": 3,
       "part_of_body": "Brain"
@@ -734,6 +1323,7 @@
     {
       "id": 34,
       "person_id": 34,
+      "medic_id": 4,
       "type": 1,
       "name": "Blood Test",
       "description": "A laboratory analysis used to check various health parameters",
@@ -744,6 +1334,7 @@
     {
       "id": 35,
       "person_id": 35,
+      "medic_id": 5,
       "type": 3,
       "name": "X-ray",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -754,6 +1345,7 @@
     {
       "id": 36,
       "person_id": 36,
+      "medic_id": 6,
       "type": 4,
       "name": "CT Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -764,6 +1356,7 @@
     {
       "id": 37,
       "person_id": 37,
+      "medic_id": 7,
       "type": 2,
       "name": "MRI Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -774,6 +1367,7 @@
     {
       "id": 38,
       "person_id": 38,
+      "medic_id": 8,
       "type": 1,
       "name": "Blood Test",
       "description": "A laboratory analysis used to check various health parameters",
@@ -784,6 +1378,7 @@
     {
       "id": 39,
       "person_id": 39,
+      "medic_id": 9,
       "type": 3,
       "name": "X-ray",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -794,6 +1389,7 @@
     {
       "id": 40,
       "person_id": 40,
+      "medic_id": 10,
       "type": 4,
       "name": "CT Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -804,6 +1400,7 @@
     {
       "id": 41,
       "person_id": 41,
+      "medic_id": 11,
       "type": 2,
       "name": "MRI Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -814,6 +1411,7 @@
     {
       "id": 42,
       "person_id": 42,
+      "medic_id": 12,
       "type": 1,
       "name": "Blood Test",
       "description": "A laboratory analysis used to check various health parameters",
@@ -823,7 +1421,8 @@
     },
     {
       "id": 43,
-      "person_id":43,
+      "person_id": 43,
+      "medic_id": 13,
       "type": 3,
       "name": "X-ray",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -834,6 +1433,7 @@
     {
       "id": 44,
       "person_id": 44,
+      "medic_id": 14,
       "type": 4,
       "name": "CT Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -844,6 +1444,7 @@
     {
       "id": 45,
       "person_id": 45,
+      "medic_id": 14,
       "type": 2,
       "name": "MRI Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -854,6 +1455,7 @@
     {
       "id": 46,
       "person_id": 46,
+      "medic_id": 13,
       "type": 1,
       "name": "Blood Test",
       "description": "A laboratory analysis used to check various health parameters",
@@ -864,6 +1466,7 @@
     {
       "id": 47,
       "person_id": 47,
+      "medic_id": 12,
       "type": 3,
       "name": "X-ray",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -874,6 +1477,7 @@
     {
       "id": 48,
       "person_id": 48,
+      "medic_id": 11,
       "type": 4,
       "name": "CT Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -884,6 +1488,7 @@
     {
       "id": 49,
       "person_id": 49,
+      "medic_id": 10,
       "type": 2,
       "name": "MRI Scan",
       "description": "A medical imaging technique used to visualize internal structures of the body",
@@ -894,12 +1499,199 @@
     {
       "id": 50,
       "person_id": 50,
+      "medic_id": 9,
       "type": 1,
       "name": "Blood Test",
       "description": "A laboratory analysis used to check various health parameters",
       "diagnosis": "Hepatitis",
       "difficulty": 1,
       "part_of_body": "Blood"
+    }
+  ],
+  "articles": [
+    {
+      "id": 1,
+      "title": "Papanicolau",
+      "author": "Dr. Juan Perez",
+      "date": "18/11/2023",
+      "content": "Un Papanicolau normal significa que no hay células anormales presentes en el cuello uterino. Un Papanicolau anormal significa que se encontraron células anormales en el cuello uterino. Estas células anormales se denominan células precancerosas. Las células precancerosas no son cáncer, pero pueden convertirse en cáncer si no se tratan.",
+      "images": [
+        {
+          "id": 1,
+          "url": "https://picsum.photos/200/1200"
+        },
+        {
+          "id": 2,
+          "url": "https://picsum.photos/200/800"
+        },
+        {
+          "id": 3,
+          "url": "https://picsum.photos/900/800"
+        }
+      ],
+      "type": "PAP"
+    },
+    {
+      "id": 2,
+      "title": "Blood Pressure",
+      "author": "Dr. Maria Rodriguez",
+      "date": "22/11/2023",
+      "content": "Maintaining a healthy blood pressure is crucial for cardiovascular health. High blood pressure can lead to serious health issues, including heart disease and stroke.",
+      "images": [
+        {
+          "id": 4,
+          "url": "https://picsum.photos/200/1000"
+        },
+        {
+          "id": 5,
+          "url": "https://picsum.photos/200/900"
+        }
+      ],
+      "type": "histopathology"
+    },
+    {
+      "id": 3,
+      "title": "Cholesterol Levels",
+      "author": "Dr. Laura Martinez",
+      "date": "25/11/2023",
+      "content": "Monitoring cholesterol levels is essential for heart health. High levels of LDL cholesterol (bad cholesterol) can increase the risk of heart disease.",
+      "images": [
+        {
+          "id": 6,
+          "url": "https://picsum.photos/200/1100"
+        },
+        {
+          "id": 7,
+          "url": "https://picsum.photos/200/1000"
+        }
+      ],
+      "type": "cithology"
+    },
+    {
+      "id": 4,
+      "title": "Diabetes Management",
+      "author": "Dr. Carlos Sanchez",
+      "date": "28/11/2023",
+      "content": "Proper management of diabetes involves a combination of medication, diet, and lifestyle changes. Regular monitoring of blood sugar levels is crucial.",
+      "images": [
+        {
+          "id": 8,
+          "url": "https://picsum.photos/200/950"
+        },
+        {
+          "id": 9,
+          "url": "https://picsum.photos/200/1050"
+        }
+      ],
+      "type": "PAP"
+    },
+    {
+      "id": 5,
+      "title": "Breast Self-Examination",
+      "author": "Dr. Sofia Lopez",
+      "date": "02/12/2023",
+      "content": "Regular breast self-examination is important for detecting any changes or abnormalities in the breast tissue. Early detection can improve the chances of successful treatment.",
+      "images": [
+        {
+          "id": 10,
+          "url": "https://picsum.photos/200/980"
+        },
+        {
+          "id": 11,
+          "url": "https://picsum.photos/200/1020"
+        }
+      ],
+      "type": "cithology"
+    },
+    {
+      "id": 6,
+      "title": "Prostate Health",
+      "author": "Dr. Ricardo Gomez",
+      "date": "05/12/2023",
+      "content": "Men should be aware of their prostate health. Regular check-ups and screenings can help detect any issues early on.",
+      "images": [
+        {
+          "id": 12,
+          "url": "https://picsum.photos/200/1080"
+        },
+        {
+          "id": 13,
+          "url": "https://picsum.photos/200/970"
+        }
+      ],
+      "type": "histopathology"
+    },
+    {
+      "id": 7,
+      "title": "Healthy Eating Habits",
+      "author": "Nutritionist Maria Torres",
+      "date": "08/12/2023",
+      "content": "Maintaining healthy eating habits is key to overall well-being. A balanced diet provides the necessary nutrients for optimal body function.",
+      "images": [
+        {
+          "id": 14,
+          "url": "https://picsum.photos/200/1040"
+        },
+        {
+          "id": 15,
+          "url": "https://picsum.photos/200/990"
+        }
+      ],
+      "type": "cithology"
+    },
+    {
+      "id": 8,
+      "title": "Exercise for Heart Health",
+      "author": "Fitness Expert Ana Ramirez",
+      "date": "12/12/2023",
+      "content": "Regular exercise is essential for maintaining a healthy heart. It helps improve cardiovascular fitness and reduces the risk of heart disease.",
+      "images": [
+        {
+          "id": 16,
+          "url": "https://picsum.photos/200/1070"
+        },
+        {
+          "id": 17,
+          "url": "https://picsum.photos/200/960"
+        }
+      ],
+      "type": "PAP"
+    },
+    {
+      "id": 9,
+      "title": "Mental Health Awareness",
+      "author": "Psychologist Elena Rodriguez",
+      "date": "15/12/2023",
+      "content": "Promoting mental health awareness is crucial for overall well-being. Taking care of mental health is as important as physical health.",
+      "images": [
+        {
+          "id": 18,
+          "url": "https://picsum.photos/200/1030"
+        },
+        {
+          "id": 19,
+          "url": "https://picsum.photos/200/980"
+        }
+      ],
+      "type": "histopathology"
+    },
+    {
+      "id": 10,
+      "title": "Sun Safety",
+      "author": "Dr. Javier Hernandez",
+      "date": "18/12/2023",
+      "content": "Practicing sun safety is essential to prevent skin damage and reduce the risk of skin cancer. Use sunscreen and protective clothing when exposed to the sun.",
+      "images": [
+        {
+          "id": 20,
+          "url": "https://picsum.photos/200/1000"
+        },
+        {
+          "id": 21,
+          "url": "https://picsum.photos/200/900"
+        }
+      ],
+      "type": "cithology"
     }
   ]
 }

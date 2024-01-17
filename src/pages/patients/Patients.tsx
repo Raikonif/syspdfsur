@@ -1,151 +1,35 @@
 import React, { useEffect, useRef, useState } from "react";
-import PatientCard from "~/pages/patients/components/PatientCard";
-import GeneralModal from "~/components/modal/GeneralModal";
-import GeneralField from "~/components/GeneralField";
-import GeneralButton from "~/components/GeneralButton";
+import Header from "~/pages/patients/Header";
+import ModalCreate from "~/pages/patients/modals/ModalCreate";
+import PatientCard from "~/pages/patients/PatientCard";
+import { getPatients } from "~/service/patient.service";
+import Patient from "~/interfaces/Patient.type";
 
 function Patients(): JSX.Element {
-  const [showModal, setShowModal] = useState<boolean>(false);
-  const [showModalShow, setShowModalShow] = useState<boolean>(false);
-  const refModal = useRef<HTMLDivElement>(null);
-  const handleChildStateChange = (newState: boolean) => {
-    setShowModal(newState);
+  const [showModalCreate, setShowModalCreate] = useState<boolean>(false);
+  const modalCreateRef = useRef<HTMLDivElement>(null);
+  const [patients, setPatients] = useState<Patient[]>([] as Patient[]);
+  const handleModalCreate = (newState: boolean) => {
+    setShowModalCreate(newState);
   };
-  const handleChildShowStateChange = (newState: boolean) => {
-    setShowModalShow(newState);
+  const getAllPatients = async () => {
+    setPatients(await getPatients());
   };
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (refModal.current && !refModal.current.contains(event.target as Node)) {
-        setShowModal(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [refModal]);
 
   useEffect(() => {
-    if (showModal && showModalShow) {
-      setShowModalShow(false);
-    }
-  }, [showModalShow]);
-  const description =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae nisl vi elit. Lorem Ipsum dolor sit amet";
-
-  const objField = {
-    name: "description",
-    id: 1,
-    type: "text",
-    value: description,
-    placeholder: "description",
-  };
+    getAllPatients();
+  }, [showModalCreate]);
   return (
     <>
-      <div className="flex w-full items-center justify-center">
-        <div className="mx-10 grid h-auto grid-cols-5 justify-between gap-6 py-4 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md2:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-          <PatientCard
-            description={description}
-            setModalBool={handleChildStateChange}
-            setShowModalBool={handleChildShowStateChange}
-          />
-          <PatientCard
-            description={description}
-            setModalBool={handleChildStateChange}
-            setShowModalBool={handleChildShowStateChange}
-          />
-          <PatientCard
-            description={description}
-            setModalBool={handleChildStateChange}
-            setShowModalBool={handleChildShowStateChange}
-          />
-          <PatientCard
-            description={description}
-            setModalBool={handleChildStateChange}
-            setShowModalBool={handleChildShowStateChange}
-          />
-          <PatientCard
-            description={description}
-            setModalBool={handleChildStateChange}
-            setShowModalBool={handleChildShowStateChange}
-          />
-          <PatientCard
-            description={description}
-            setModalBool={handleChildStateChange}
-            setShowModalBool={handleChildShowStateChange}
-          />
-          <PatientCard
-            description={description}
-            setModalBool={handleChildStateChange}
-            setShowModalBool={handleChildShowStateChange}
-          />
-          <PatientCard
-            description={description}
-            setModalBool={handleChildStateChange}
-            setShowModalBool={handleChildShowStateChange}
-          />
-          <PatientCard
-            description={description}
-            setModalBool={handleChildStateChange}
-            setShowModalBool={handleChildShowStateChange}
-          />
-          <PatientCard
-            description={description}
-            setModalBool={handleChildStateChange}
-            setShowModalBool={handleChildShowStateChange}
-          />
-          <PatientCard
-            description={description}
-            setModalBool={handleChildStateChange}
-            setShowModalBool={handleChildShowStateChange}
-          />
-          <PatientCard
-            description={description}
-            setModalBool={handleChildStateChange}
-            setShowModalBool={handleChildShowStateChange}
-          />
-        </div>
+      <div className="flex w-11/12 flex-col items-center justify-center p-2">
+        <Header setModalCreate={handleModalCreate} />
+        <ul className="mt-20 grid h-auto w-full grid-cols-2 p-4 px-6">
+          {patients.map((patient: Patient) => (
+            <PatientCard key={patient.id} patient={patient} />
+          ))}
+        </ul>
       </div>
-      {showModal && (
-        <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
-          <GeneralModal onClose={() => setShowModal(false)} refModal={refModal}>
-            <div className="flex h-full w-full flex-col items-center">
-              <h1 className="pb-10 text-3xl font-bold">Edit Patient</h1>
-              <GeneralField fieldObj={objField} />
-              <GeneralField fieldObj={objField} />
-              <GeneralField fieldObj={objField} />
-              <div className="flex w-full">
-                <GeneralField fieldObj={objField} />
-                <GeneralField fieldObj={objField} />
-              </div>
-              <div className="flex w-full">
-                <GeneralField fieldObj={objField} />
-                <GeneralField fieldObj={objField} />
-                <GeneralField fieldObj={objField} />
-              </div>
-              <div className="absolute bottom-7 right-7">
-                <GeneralButton
-                  textButton={"Save Changes"}
-                  btnType={"submit"}
-                  action={() => setShowModal(false)}
-                />
-              </div>
-            </div>
-          </GeneralModal>
-        </div>
-      )}
-      {showModalShow && (
-        <div>
-          <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
-            <GeneralModal onClose={() => setShowModalShow(false)} refModal={refModal}>
-              <div className="flex h-full w-full flex-col items-center">
-                <h1 className="pb-10 text-3xl font-bold">Show Patient</h1>
-              </div>
-            </GeneralModal>
-          </div>
-        </div>
-      )}
+      {showModalCreate && <ModalCreate onClose={handleModalCreate} refModal={modalCreateRef} />}
     </>
   );
 }

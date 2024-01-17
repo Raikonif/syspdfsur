@@ -1,9 +1,9 @@
 import React from "react";
 import AuthLayout from "~/layouts/AuthLayout";
-import Login from "~/pages/Login";
+import Login from "~/pages/login/Login";
 
 const AuthRoutes = {
-  path: "/auth",
+  path: "auth",
   element: <AuthLayout />,
   children: [
     {
