@@ -1,7 +1,7 @@
 import { serviceJson } from "~/service/index";
 import Patient from "~/interfaces/Patient.type";
 
-export const getPatients = async () => {
+export const getPatients = async (): Promise<Patient[]> => {
   const response = await serviceJson.get<Patient[]>("/patients");
   return response.data;
 };

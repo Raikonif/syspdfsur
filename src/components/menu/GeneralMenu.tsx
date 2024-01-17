@@ -4,6 +4,7 @@ import ButtonMenu from "~/components/menu/ButtonMenu";
 import Profile from "~/components/menu/Profile/Profile";
 import SignOutModal from "~/components/menu/Profile/SignOutModal";
 import { Link, NavLink } from "react-router-dom";
+import ProfileCard from "~/components/menu/Profile/ProfileCard";
 
 interface IMenuProps {
   id: number;
@@ -15,14 +16,15 @@ interface IMenuProps {
 interface IProps {
   itemList: IMenuProps[];
   isMobileMode: boolean;
+  modalProfile: (open: boolean) => void;
 }
 
-function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
+function GeneralMenu({ itemList, isMobileMode, modalProfile }: IProps): JSX.Element {
   const [showMenu, setShowMenu] = useState<boolean>(false);
-  const [openSignOut, setopenSignOut] = useState<boolean>(false);
   const handleClickMenu = () => {
     setShowMenu(!showMenu);
   };
+  const refSignOut = React.useRef<HTMLDivElement>(null);
   const active =
     "flex justify-center bg-fuchsia-500 text-slate-200 rounded w-full border-slate-200";
   const activeDesktop =
@@ -70,12 +72,7 @@ function GeneralMenu({ itemList, isMobileMode }: IProps): JSX.Element {
         </div>
       ) : (
         <div className="fixed h-screen w-36 rounded-r-2xl bg-fuchsia-600">
-          <Profile openModalSignOut={() => setopenSignOut(true)} />
-          {openSignOut && (
-            <div className="fixed inset-0 z-20 flex items-center justify-center bg-gray-400 bg-opacity-50 backdrop-blur-sm">
-              <SignOutModal onClose={() => setopenSignOut(false)} />
-            </div>
-          )}
+          <Profile openModalProfile={() => modalProfile(true)} />
           <div>
             <ul className="w-full text-white">{listItems}</ul>
           </div>

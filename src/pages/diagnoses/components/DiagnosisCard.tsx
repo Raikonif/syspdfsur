@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { MdEditSquare, RiDeleteBinFill } from "react-icons/all";
-import Diagnosis from "~/interfaces/Diagnosis.type";
+import { Report } from "~/interfaces/Report.type";
 
 interface IProps {
-  diagnosis: Diagnosis;
+  diagnosis: Report;
   setModalEdit: (isOpen: boolean) => void;
   setModalShow: (isOpen: boolean) => void;
   setModalDelete: (isOpen: boolean) => void;
@@ -15,7 +15,9 @@ function DiagnosisCard({
   setModalShow,
   setModalDelete,
 }: IProps): JSX.Element {
-  const [currentDescription, setCurrentDescription] = useState<string>(diagnosis.description);
+  const [currentDescription, setCurrentDescription] = useState<string>(
+    diagnosis.clinical_diagnosis,
+  );
   const maxLength = 60;
 
   useEffect(() => {
@@ -28,10 +30,10 @@ function DiagnosisCard({
     <div className="duration-300 hover:scale-110">
       <div onClick={() => setModalShow(true)}>
         <article className="container rounded-2xl bg-white p-5 shadow-2xl">
-          <h1 className="font-bold text-fuchsia-600">{diagnosis.name}</h1>
+          <h1 className="font-bold text-fuchsia-600">{diagnosis.type}</h1>
           <p className="font-light text-gray-500 active:text-gray-400">{currentDescription}</p>
           <h6 className="mb-5 text-sm text-gray-300 active:text-gray-200">
-            {diagnosis.part_of_body}
+            {diagnosis.study_code}
           </h6>
           <div className="flex justify-between">
             <button

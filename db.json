@@ -488,33 +488,472 @@
     },
     {
       "first_name": "Diego",
+      "last_name": "Alarcon",
+      "age": 31,
+      "gender": "",
+      "dni": 8358851,
+      "clinical_history": 1234,
+      "register_birth": 1234,
+      "id": 51
+    },
+    {
+      "first_name": "Diego",
       "last_name": "Alarcon Inturias",
       "age": 31,
       "gender": "",
       "dni": 8358851,
-      "clinical_history": 1,
-      "register_birth": 31992,
-      "id": 51
-    },
-    {
-      "first_name": "Pinito",
-      "last_name": "Alarcon Calle",
-      "age": 8,
-      "gender": "",
-      "dni": 12345678,
-      "clinical_history": 4,
-      "register_birth": 123456,
+      "clinical_history": 12345,
+      "register_birth": 12345,
       "id": 52
     },
     {
+      "first_name": "Diego",
+      "last_name": "Alarcon Inturias",
+      "age": 31,
+      "gender": "",
+      "dni": 8358851,
+      "clinical_history": 123456,
+      "register_birth": 123456,
+      "id": 53
+    },
+    {
+      "first_name": "Diego",
+      "last_name": "Alarcon Inturias",
+      "age": 63142527,
+      "gender": "",
+      "dni": 8358851,
+      "clinical_history": 1234567,
+      "register_birth": 1234567,
+      "id": 54
+    },
+    {
       "first_name": "Nandy",
-      "last_name": "Goma Pelala",
+      "last_name": "Calle Peñaranda",
+      "age": 34,
+      "gender": "Male",
+      "dni": 6988356,
+      "clinical_history": 123,
+      "register_birth": 123,
+      "id": 55
+    },
+    {
+      "first_name": "Nandy",
+      "last_name": "Calle Peñaranda",
       "age": 34,
       "gender": "Female",
       "dni": 6988356,
-      "clinical_history": 5,
-      "register_birth": 2489,
-      "id": 53
+      "clinical_history": 123,
+      "register_birth": 123,
+      "id": 56
+    }
+  ],
+  "reports": [
+    {
+      "id": 1,
+      "patient_id": 1,
+      "medic_id": 1,
+      "type": "Histopathological",
+      "service": "Pathology Lab",
+      "clinical_diagnosis": "Tumor",
+      "study_code": "ABC123",
+      "sample_date": "2023-07-01",
+      "reception_date": "2023-07-05",
+      "report_date": "2023-07-10"
+    },
+    {
+      "id": 2,
+      "patient_id": 2,
+      "medic_id": 2,
+      "type": "Cytological",
+      "service": "Cytology Department",
+      "clinical_diagnosis": "Abnormal cells",
+      "study_code": "XYZ456",
+      "sample_date": "2023-07-02",
+      "reception_date": "2023-07-06",
+      "report_date": "2023-07-11"
+    },
+    {
+      "id": 3,
+      "patient_id": 3,
+      "medic_id": 3,
+      "type": "Histopathological",
+      "service": "Pathology Lab",
+      "clinical_diagnosis": "Inflammation",
+      "study_code": "MNO789",
+      "sample_date": "2023-07-03",
+      "reception_date": "2023-07-07",
+      "report_date": "2023-07-12"
+    },
+    {
+      "id": 4,
+      "patient_id": 4,
+      "medic_id": 4,
+      "type": "Histopathological",
+      "service": "Pathology Lab",
+      "clinical_diagnosis": "Tumor",
+      "study_code": "ABC123",
+      "sample_date": "2023-07-04",
+      "reception_date": "2023-07-08",
+      "report_date": "2023-07-13"
+    },
+    {
+      "id": 5,
+      "patient_id": 5,
+      "medic_id": 5,
+      "type": "Cytological",
+      "service": "Cytology Department",
+      "clinical_diagnosis": "Abnormal cells",
+      "study_code": "XYZ456",
+      "sample_date": "2023-07-05",
+      "reception_date": "2023-07-09",
+      "report_date": "2023-07-14"
+    },
+    {
+      "id": 6,
+      "patient_id": 6,
+      "medic_id": 6,
+      "type": "PAP",
+      "service": "Ginecology Department",
+      "clinical_diagnosis": "Inflammation",
+      "study_code": "MNO789",
+      "sample_date": "2023-07-06",
+      "reception_date": "2023-07-10",
+      "report_date": "2023-07-15"
+    },
+    {
+      "id": 7,
+      "patient_id": 7,
+      "medic_id": 7,
+      "type": "Histopathological",
+      "service": "Pathology Lab",
+      "clinical_diagnosis": "Tumor",
+      "study_code": "ABC123",
+      "sample_date": "2023-07-07",
+      "reception_date": "2023-07-11",
+      "report_date": "2023-07-16"
+    },
+    {
+      "id": 8,
+      "patient_id": 8,
+      "medic_id": 8,
+      "type": "Cytological",
+      "service": "Cytology Department",
+      "clinical_diagnosis": "Abnormal cells",
+      "study_code": "XYZ456",
+      "sample_date": "2023-07-08",
+      "reception_date": "2023-07-12",
+      "report_date": "2023-07-17"
+    },
+    {
+      "id": 9,
+      "patient_id": 9,
+      "medic_id": 9,
+      "type": "Histopathological",
+      "service": "Pathology Lab",
+      "clinical_diagnosis": "Inflammation",
+      "study_code": "MNO789",
+      "sample_date": "2023-07-09",
+      "reception_date": "2023-07-13",
+      "report_date": "2023-07-18"
+    },
+    {
+      "id": 10,
+      "patient_id": 10,
+      "medic_id": 10,
+      "type": "Histopathological",
+      "service": "Pathology Lab",
+      "clinical_diagnosis": "Tumor",
+      "study_code": "ABC123",
+      "sample_date": "2023-07-10",
+      "reception_date": "2023-07-14",
+      "report_date": "2023-07-19"
+    },
+    {
+      "id": 11,
+      "patient_id": 11,
+      "medic_id": 11,
+      "type": "Cytological",
+      "service": "Cytology Department",
+      "clinical_diagnosis": "Abnormal cells",
+      "study_code": "XYZ456",
+      "sample_date": "2023-07-11",
+      "reception_date": "2023-07-15",
+      "report_date": "2023-07-20"
+    },
+    {
+      "id": 12,
+      "patient_id": 12,
+      "medic_id": 12,
+      "type": "Histopathological",
+      "service": "Pathology Lab",
+      "clinical_diagnosis": "Inflammation",
+      "study_code": "MNO789",
+      "sample_date": "2023-07-12",
+      "reception_date": "2023-07-16",
+      "report_date": "2023-07-21"
+    },
+    {
+      "id": 13,
+      "patient_id": 13,
+      "medic_id": 13,
+      "type": "Histopathological",
+      "service": "Pathology Lab",
+      "clinical_diagnosis": "Tumor",
+      "study_code": "ABC123",
+      "sample_date": "2023-07-13",
+      "reception_date": "2023-07-17",
+      "report_date": "2023-07-22"
+    },
+    {
+      "id": 14,
+      "patient_id": 13,
+      "medic_id": 3,
+      "type": "Histopathological",
+      "service": "Pathology Lab",
+      "clinical_diagnosis": "Inflammation",
+      "study_code": "MNO789",
+      "sample_date": "2023-07-30",
+      "reception_date": "2023-08-03",
+      "report_date": "2023-08-08"
+    },
+    {
+      "medic_id": 1,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "Raiko Service",
+      "clinical_diagnosis": "Chan chan chan",
+      "study_code": "H-1234",
+      "sample_date": "2023-08-01",
+      "reception_date": "2023-08-07",
+      "report_date": "2023-08-11T22:08:31.107Z",
+      "id": 15
+    },
+    {
+      "medic_id": 1,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "Raiko Service",
+      "clinical_diagnosis": "Chan chan chan",
+      "study_code": "H-1234",
+      "sample_date": "2023-08-01",
+      "reception_date": "2023-08-07",
+      "report_date": "2023-08-11T22:08:31.107Z",
+      "id": 16
+    },
+    {
+      "medic_id": 1,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "Raiko Service",
+      "clinical_diagnosis": "Chan chan chan",
+      "study_code": "H-1234",
+      "sample_date": "2023-08-01",
+      "reception_date": "2023-08-07",
+      "report_date": "2023-08-11T22:08:31.107Z",
+      "id": 17
+    },
+    {
+      "medic_id": 1,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "Raiko Service",
+      "clinical_diagnosis": "Chan chan chan",
+      "study_code": "H-1234",
+      "sample_date": "2023-08-01",
+      "reception_date": "2023-08-07",
+      "report_date": "2023-08-11T22:08:31.107Z",
+      "id": 18
+    },
+    {
+      "medic_id": 1,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "Raiko Service",
+      "clinical_diagnosis": "Chan chan chan",
+      "study_code": "H-1234",
+      "sample_date": "2023-08-01",
+      "reception_date": "2023-08-07",
+      "report_date": "2023-08-11T22:08:31.107Z",
+      "id": 19
+    },
+    {
+      "medic_id": 1,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "Raiko Service",
+      "clinical_diagnosis": "Chan chan chan",
+      "study_code": "H-1234",
+      "sample_date": "2023-08-01",
+      "reception_date": "2023-08-07",
+      "report_date": "2023-08-11T22:08:31.107Z",
+      "id": 20
+    },
+    {
+      "medic_id": 1,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "Raiko Service",
+      "clinical_diagnosis": "Chan chan chan",
+      "study_code": "H-1234",
+      "sample_date": "2023-08-01",
+      "reception_date": "2023-08-07",
+      "report_date": "2023-08-11T22:08:31.107Z",
+      "id": 21
+    },
+    {
+      "medic_id": 1,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "Raiko Service",
+      "clinical_diagnosis": "Chan chan chan",
+      "study_code": "",
+      "sample_date": "2023-08-01",
+      "reception_date": "2023-08-07",
+      "report_date": "2023-08-11T22:08:31.107Z",
+      "id": 22
+    },
+    {
+      "medic_id": 4,
+      "patient_id": 4,
+      "type": "Histopathology",
+      "service": "asdf",
+      "clinical_diagnosis": "asdf",
+      "study_code": "asdf",
+      "sample_date": "2023-08-14",
+      "reception_date": "2023-08-15",
+      "report_date": "2023-08-13T23:01:08.012Z",
+      "id": 23
+    },
+    {
+      "medic_id": 1,
+      "patient_id": 4,
+      "type": "Histopathology",
+      "service": "sdf",
+      "clinical_diagnosis": "sdf",
+      "study_code": "sdf",
+      "sample_date": "2023-08-15",
+      "reception_date": "2023-08-09",
+      "report_date": "2023-08-13T04:00:00.000Z",
+      "id": 24
+    },
+    {
+      "medic_id": 3,
+      "patient_id": 4,
+      "type": "Histopathology",
+      "service": "sdf",
+      "clinical_diagnosis": "sdf",
+      "study_code": "asdf",
+      "sample_date": "2023-08-15",
+      "reception_date": "2023-08-14",
+      "report_date": "2023-08-13T00:00:00.000Z",
+      "id": 25
+    },
+    {
+      "medic_id": 6,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "asdfasdf",
+      "clinical_diagnosis": "sdfsadf",
+      "study_code": "asdfasdf",
+      "sample_date": "2023-08-08",
+      "reception_date": "2023-08-15",
+      "report_date": "2023-8-14",
+      "id": 26
+    },
+    {
+      "medic_id": 3,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "asdfasdf",
+      "clinical_diagnosis": "sdfsadf",
+      "study_code": "asdfasdf",
+      "sample_date": "2023-08-02",
+      "reception_date": "2023-08-10",
+      "report_date": "2023-8-14",
+      "id": 27
+    },
+    {
+      "medic_id": 4,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "asdf",
+      "clinical_diagnosis": "asdf",
+      "study_code": "1234",
+      "sample_date": "2023-09-12",
+      "reception_date": "2023-09-12",
+      "report_date": "2023-9-7",
+      "id": 28
+    },
+    {
+      "medic_id": 4,
+      "patient_id": 4,
+      "type": "Histopathology",
+      "service": "asdf",
+      "clinical_diagnosis": "sdf",
+      "study_code": "1234",
+      "sample_date": "2023-09-06",
+      "reception_date": "2023-09-12",
+      "report_date": "2023-9-25",
+      "id": 29
+    },
+    {
+      "medic_id": 4,
+      "patient_id": 3,
+      "type": "Histopathology",
+      "service": "asdf",
+      "clinical_diagnosis": "asf",
+      "study_code": "1234",
+      "sample_date": "2023-09-14",
+      "reception_date": "2023-09-12",
+      "report_date": "2023-9-26",
+      "id": 30
+    }
+  ],
+  "histo_reports": [
+    {
+      "report_id": 0,
+      "slides": 0,
+      "blocks": 12,
+      "macroscopy": "asdf",
+      "microscopy": "asdf",
+      "conclusion": "asdf",
+      "id": 1
+    },
+    {
+      "report_id": 27,
+      "slides": 12,
+      "blocks": 12,
+      "macroscopy": "asdfa",
+      "microscopy": "asdfasdf",
+      "conclusion": "asdfasdf",
+      "id": 2
+    },
+    {
+      "report_id": 28,
+      "slides": 0,
+      "blocks": 0,
+      "macroscopy": "asdf",
+      "microscopy": "asdf",
+      "conclusion": "asdf",
+      "id": 3
+    },
+    {
+      "report_id": 29,
+      "slides": 1,
+      "blocks": 2,
+      "macroscopy": "asdf",
+      "microscopy": "asdf",
+      "conclusion": "asdf",
+      "id": 4
+    },
+    {
+      "report_id": 30,
+      "slides": 0,
+      "blocks": 23,
+      "macroscopy": "asdf",
+      "microscopy": "asds",
+      "conclusion": "asdf",
+      "id": 5
     }
   ],
   "diagnoses": [
@@ -1067,6 +1506,192 @@
       "diagnosis": "Hepatitis",
       "difficulty": 1,
       "part_of_body": "Blood"
+    }
+  ],
+  "articles": [
+    {
+      "id": 1,
+      "title": "Papanicolau",
+      "author": "Dr. Juan Perez",
+      "date": "18/11/2023",
+      "content": "Un Papanicolau normal significa que no hay células anormales presentes en el cuello uterino. Un Papanicolau anormal significa que se encontraron células anormales en el cuello uterino. Estas células anormales se denominan células precancerosas. Las células precancerosas no son cáncer, pero pueden convertirse en cáncer si no se tratan.",
+      "images": [
+        {
+          "id": 1,
+          "url": "https://picsum.photos/200/1200"
+        },
+        {
+          "id": 2,
+          "url": "https://picsum.photos/200/800"
+        },
+        {
+          "id": 3,
+          "url": "https://picsum.photos/900/800"
+        }
+      ],
+      "type": "PAP"
+    },
+    {
+      "id": 2,
+      "title": "Blood Pressure",
+      "author": "Dr. Maria Rodriguez",
+      "date": "22/11/2023",
+      "content": "Maintaining a healthy blood pressure is crucial for cardiovascular health. High blood pressure can lead to serious health issues, including heart disease and stroke.",
+      "images": [
+        {
+          "id": 4,
+          "url": "https://picsum.photos/200/1000"
+        },
+        {
+          "id": 5,
+          "url": "https://picsum.photos/200/900"
+        }
+      ],
+      "type": "histopathology"
+    },
+    {
+      "id": 3,
+      "title": "Cholesterol Levels",
+      "author": "Dr. Laura Martinez",
+      "date": "25/11/2023",
+      "content": "Monitoring cholesterol levels is essential for heart health. High levels of LDL cholesterol (bad cholesterol) can increase the risk of heart disease.",
+      "images": [
+        {
+          "id": 6,
+          "url": "https://picsum.photos/200/1100"
+        },
+        {
+          "id": 7,
+          "url": "https://picsum.photos/200/1000"
+        }
+      ],
+      "type": "cithology"
+    },
+    {
+      "id": 4,
+      "title": "Diabetes Management",
+      "author": "Dr. Carlos Sanchez",
+      "date": "28/11/2023",
+      "content": "Proper management of diabetes involves a combination of medication, diet, and lifestyle changes. Regular monitoring of blood sugar levels is crucial.",
+      "images": [
+        {
+          "id": 8,
+          "url": "https://picsum.photos/200/950"
+        },
+        {
+          "id": 9,
+          "url": "https://picsum.photos/200/1050"
+        }
+      ],
+      "type": "PAP"
+    },
+    {
+      "id": 5,
+      "title": "Breast Self-Examination",
+      "author": "Dr. Sofia Lopez",
+      "date": "02/12/2023",
+      "content": "Regular breast self-examination is important for detecting any changes or abnormalities in the breast tissue. Early detection can improve the chances of successful treatment.",
+      "images": [
+        {
+          "id": 10,
+          "url": "https://picsum.photos/200/980"
+        },
+        {
+          "id": 11,
+          "url": "https://picsum.photos/200/1020"
+        }
+      ],
+      "type": "cithology"
+    },
+    {
+      "id": 6,
+      "title": "Prostate Health",
+      "author": "Dr. Ricardo Gomez",
+      "date": "05/12/2023",
+      "content": "Men should be aware of their prostate health. Regular check-ups and screenings can help detect any issues early on.",
+      "images": [
+        {
+          "id": 12,
+          "url": "https://picsum.photos/200/1080"
+        },
+        {
+          "id": 13,
+          "url": "https://picsum.photos/200/970"
+        }
+      ],
+      "type": "histopathology"
+    },
+    {
+      "id": 7,
+      "title": "Healthy Eating Habits",
+      "author": "Nutritionist Maria Torres",
+      "date": "08/12/2023",
+      "content": "Maintaining healthy eating habits is key to overall well-being. A balanced diet provides the necessary nutrients for optimal body function.",
+      "images": [
+        {
+          "id": 14,
+          "url": "https://picsum.photos/200/1040"
+        },
+        {
+          "id": 15,
+          "url": "https://picsum.photos/200/990"
+        }
+      ],
+      "type": "cithology"
+    },
+    {
+      "id": 8,
+      "title": "Exercise for Heart Health",
+      "author": "Fitness Expert Ana Ramirez",
+      "date": "12/12/2023",
+      "content": "Regular exercise is essential for maintaining a healthy heart. It helps improve cardiovascular fitness and reduces the risk of heart disease.",
+      "images": [
+        {
+          "id": 16,
+          "url": "https://picsum.photos/200/1070"
+        },
+        {
+          "id": 17,
+          "url": "https://picsum.photos/200/960"
+        }
+      ],
+      "type": "PAP"
+    },
+    {
+      "id": 9,
+      "title": "Mental Health Awareness",
+      "author": "Psychologist Elena Rodriguez",
+      "date": "15/12/2023",
+      "content": "Promoting mental health awareness is crucial for overall well-being. Taking care of mental health is as important as physical health.",
+      "images": [
+        {
+          "id": 18,
+          "url": "https://picsum.photos/200/1030"
+        },
+        {
+          "id": 19,
+          "url": "https://picsum.photos/200/980"
+        }
+      ],
+      "type": "histopathology"
+    },
+    {
+      "id": 10,
+      "title": "Sun Safety",
+      "author": "Dr. Javier Hernandez",
+      "date": "18/12/2023",
+      "content": "Practicing sun safety is essential to prevent skin damage and reduce the risk of skin cancer. Use sunscreen and protective clothing when exposed to the sun.",
+      "images": [
+        {
+          "id": 20,
+          "url": "https://picsum.photos/200/1000"
+        },
+        {
+          "id": 21,
+          "url": "https://picsum.photos/200/900"
+        }
+      ],
+      "type": "cithology"
     }
   ]
 }

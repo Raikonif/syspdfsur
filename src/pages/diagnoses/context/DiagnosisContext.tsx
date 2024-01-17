@@ -1,10 +1,10 @@
 import React, { createContext } from "react";
-import Diagnosis from "~/interfaces/Diagnosis.type";
+import { Report } from "~/interfaces/Report.type";
 import Patient from "~/interfaces/Patient.type";
 
 interface IContextData {
   patients: Patient[];
-  diagnoses: Diagnosis[];
+  diagnoses: Report[];
 }
 
 const DiagnosisContext = createContext<IContextData>({} as IContextData);

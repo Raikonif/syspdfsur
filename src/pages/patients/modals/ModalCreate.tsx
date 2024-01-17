@@ -12,7 +12,7 @@ interface IProps {
 
 function ModalCreate({ onClose, refModal }: IProps): ReactElement {
   const [active, setActive] = useState<string>("");
-  const [genderSelected, setGenderSelected] = useState<string>("");
+  const [genderSelected, setGenderSelected] = useState<string>("Male");
   const [savePatient, setSavePatient] = useState<Patient>({
     first_name: "",
     last_name: "",
@@ -25,19 +25,21 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
   const addPatient = async (patient: Patient) => {
     await createPatient(patient);
   };
-  const handleChangeSelected = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    e.preventDefault();
-    const value = e.target.value;
-    setGenderSelected(value);
-    setSavePatient({ ...savePatient, gender: value });
-  };
+  // const handleChangeSelected = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  //   e.preventDefault();
+  //   const value = e.target.value;
+  //   setGenderSelected(value);
+  //   setSavePatient({ ...savePatient, gender: genderSelected });
+  // };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     addPatient(savePatient);
     onClose(false);
     console.log("savePatient", savePatient);
   };
-
+  useEffect(() => {
+    console.log("savePatient", savePatient);
+  }, [savePatient]);
   return (
     <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
       <GeneralModal
@@ -70,7 +72,7 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
           </div>
           <div className="m-1 flex w-full justify-center">
             <input
-              type="number"
+              type="text"
               aria-autocomplete="none"
               className="m-1 rounded-lg border-4 bg-slate-200 p-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-600"
               placeholder="Edad"
@@ -81,21 +83,21 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
             <select
               name="gender"
               id="gender"
-              value={genderSelected}
+              value={savePatient.gender}
               className="m-1 rounded-lg border-4 bg-slate-200 p-2 focus:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-fuchsia-600"
-              onChange={handleChangeSelected}
+              onChange={(e) => setSavePatient({ ...savePatient, gender: e.target.value })}
             >
               <option value="Male" className="bg-blue-300 hover:bg-blue-300">
                 Hombre
               </option>
-              <option value="Female" className="bg-pink-300">
+              <option value="Female" className="bg-pink-300 hover:bg-pink-300">
                 Mujer
               </option>
             </select>
           </div>
           <div className="m-1 flex w-full justify-between">
             <input
-              type="number"
+              type="text"
               aria-autocomplete="none"
               className="m-1 rounded-lg border-4 bg-slate-200 p-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-600"
               placeholder="C.I."
@@ -103,7 +105,7 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
               value={savePatient.dni}
             />
             <input
-              type="number"
+              type="text"
               aria-autocomplete="none"
               className="m-1 rounded-lg border-4 bg-slate-200 p-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-600"
               placeholder="Historial Clinico"
@@ -113,7 +115,7 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
               value={savePatient.clinical_history}
             />
             <input
-              type="number"
+              type="text"
               aria-autocomplete="none"
               className="m-1 rounded-lg border-4 bg-slate-200 p-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-600"
               placeholder="Numero de Registro"

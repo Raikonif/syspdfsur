@@ -12,10 +12,14 @@ function GeneralLayout(): JSX.Element {
   const [mobileMode, setMobileMode] = useState<boolean>(false);
   const [modalSignOut, setModalSignOut] = useState<boolean>(false);
   const [modalProfile, setModalProfile] = useState<boolean>(false);
-
+  const refSignOut = React.useRef<HTMLDivElement>(null);
   useEffect(() => {
     toast.success("Welcome to your System Nandy!");
   }, [Toaster]);
+
+  useEffect(() => {
+    console.log("modalProfile", modalProfile);
+  }, [modalSignOut, modalProfile]);
 
   useEffect(() => {
     const handleMobileMode = () => {
@@ -40,7 +44,11 @@ function GeneralLayout(): JSX.Element {
         }`}
       >
         <div className="w-40">
-          <GeneralMenu itemList={homeOptions.menuOptions} isMobileMode={mobileMode} />
+          <GeneralMenu
+            itemList={homeOptions.menuOptions}
+            isMobileMode={mobileMode}
+            modalProfile={setModalProfile}
+          />
         </div>
         <div className="flex h-full w-full flex-col">
           <Outlet />
@@ -49,9 +57,7 @@ function GeneralLayout(): JSX.Element {
         <SearchButton isMobileMode={mobileMode} />
         {modalProfile && <ProfileCard openModal={() => setModalSignOut(true)} />}
         {modalSignOut && (
-          <div className="fixed inset-0 z-20 flex items-center justify-center bg-gray-400 bg-opacity-50 backdrop-blur-sm">
-            <SignOutModal onClose={() => setModalSignOut(false)} />
-          </div>
+          <SignOutModal onClose={() => setModalSignOut(true)} refModal={refSignOut} />
         )}
       </div>
     </div>
