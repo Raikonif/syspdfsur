@@ -7,7 +7,7 @@ function ClientLayout(): ReactElement {
     <>
       <div className="min-h-screen">
         <HomeMenu />
-        <div className="w-full items-center justify-center pt-32 sm:pt-20">
+        <div className="w-full items-center justify-center pt-28 md:pt-32 lg:pt-20">
           <Outlet />
         </div>
       </div>

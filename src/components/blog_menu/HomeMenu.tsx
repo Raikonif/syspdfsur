@@ -13,7 +13,7 @@ function HomeMenu(): ReactElement {
   };
   return (
     <div className="fixed left-0 top-0 z-10 w-full shadow-md">
-      <div className="bg-violet-700/90 px-2 py-2 backdrop-blur-sm sm:justify-between md:flex md:px-10">
+      <div className="bg-violet-700/90 px-2 py-2 backdrop-blur-sm md:justify-between md:px-10 lg:flex">
         <button
           onClick={handleGoHome}
           className="mb-3 flex cursor-pointer items-center text-2xl font-bold text-gray-800"
