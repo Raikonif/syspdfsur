@@ -55,7 +55,7 @@ function Articles(): ReactElement {
   return (
     <div className="flex w-full flex-col">
       <div className="container mx-auto flex flex-col">
-        <div className="flex w-full flex-col items-center justify-center sm:flex-row">
+        <div className="flex w-full flex-col items-center justify-center md:flex-row">
           <Filter selected={changeFilter} setSelected={setChangeFilter} />
           <Search search={changeSearch} setSearch={setChangeSearch} />
         </div>

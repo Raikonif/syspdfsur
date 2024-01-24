@@ -5,7 +5,7 @@ function About() {
   const { t } = useTranslation();
   return (
     <>
-      <div className="text-semibold flex flex-col items-center p-6 sm:flex-row">
+      <div className="text-semibold flex flex-col items-center p-6 xl:flex-row">
         <img
           src={profile}
           className="max-h-[600px] max-w-[400px] items-center rounded-md border-2"
