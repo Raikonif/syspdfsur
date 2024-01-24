@@ -34,7 +34,7 @@ function HomeMenu(): ReactElement {
               key={item.id}
               to={item.link}
             >
-              <li className="m-1 px-5 font-semibold focus:text-violet-600  sm:m-2 sm:text-lg">
+              <li className="m-1 px-3 text-sm font-semibold focus:text-violet-600 sm:m-2 sm:px-5 sm:text-lg">
                 {t(item.title.toUpperCase())}
               </li>
             </NavLink>
