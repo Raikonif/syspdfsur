@@ -1,18 +1,20 @@
 import React from "react";
 import { Article } from "~/interfaces/Article.interface";
 import ArticleCard from "./ArticleCard";
+import { useTranslation } from "react-i18next";
 
 interface ArticleListProps {
   articles: Article[];
 }
 function ArticleList({ articles }: ArticleListProps) {
+  const { t } = useTranslation();
   const articlesLength = articles.length;
   return (
     <>
-      <ul className="mx-3 grid sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="grid px-3 sm:grid-cols-2 lg:grid-cols-3">
         {articlesLength > 0 &&
           articles.map((article: Article) => (
-            <li className="mx-2" key={article.id}>
+            <li key={article.id}>
               <ArticleCard
                 id={article.id}
                 title={article.title}
@@ -27,7 +29,7 @@ function ArticleList({ articles }: ArticleListProps) {
       </ul>
       {articlesLength === 0 && (
         <div className="mt-10 flex w-full items-center justify-center">
-          <h1 className="h-full w-full text-center text-2xl">No se encontraron artículos</h1>
+          <h1 className="h-full w-full text-center text-2xl">{t("ARTICLES_NOT_FOUND")}</h1>
         </div>
       )}
     </>

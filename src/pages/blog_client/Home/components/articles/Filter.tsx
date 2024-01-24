@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ALL, CITHOLOGY, HISTOPATHOLOGY, PAP } from "~/constants/Blog/blog.constants";
 interface FilterProps {
   selected: string;
@@ -6,76 +6,71 @@ interface FilterProps {
 }
 
 function Filter({ selected, setSelected }: FilterProps) {
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelected(event.target.value);
   };
 
   return (
-    <div className="m-1 mt-3 w-full justify-center p-3 sm:mt-6">
-      <select
-        name="study"
-        id="study-select"
-        className=" grid w-full grid-cols-3 items-center justify-between rounded-lg border p-3 font-[Arial] text-sm font-semibold text-violet-600 md:px-10"
-        onChange={handleChange}
-        value={selected}
-      >
-        <option value={ALL} className="w-auto font-[Arial] text-sm font-semibold text-violet-600">
-          ALL
-        </option>
-        <option value={"PAP"} className="w-auto font-[Arial] text-sm font-semibold text-violet-600">
-          PAPS
-        </option>
-        <option
+    <div className="my-6 flex items-center justify-center sm:my-4 sm:mt-8">
+      <div className="m-1 flex items-center gap-x-1 px-2">
+        <input
+          id="all"
+          name="filters"
+          type="radio"
+          checked={selected === ALL}
+          onChange={handleChange}
+          className="h-4 w-4 border-gray-300 text-violet-600 focus:ring-indigo-600"
+          value={ALL}
+        />
+        <label htmlFor="all" className="block text-sm font-medium leading-6 text-gray-900">
+          All
+        </label>
+      </div>
+      <div className="flex items-center gap-x-1 px-2">
+        <input
+          id="paps"
+          name="filters"
+          type="radio"
+          checked={selected === PAP}
+          onChange={handleChange}
+          className="h-4 w-4 border-gray-300 text-violet-600 focus:ring-indigo-600"
+          value={PAP}
+        />
+        <label htmlFor="paps" className="block text-sm font-medium leading-6 text-gray-900">
+          Paps
+        </label>
+      </div>
+      <div className="flex items-center gap-x-1 px-2">
+        <input
+          id="cithology"
+          name="filters"
+          type="radio"
+          checked={selected === CITHOLOGY}
+          onChange={handleChange}
+          className="h-4 w-4 border-gray-300 text-violet-600 focus:ring-indigo-600"
           value={CITHOLOGY}
-          className="w-auto font-[Arial] text-sm font-semibold text-violet-600"
-        >
-          CITHOLOGY
-        </option>
-        <option
+        />
+        <label htmlFor="cithology" className="block text-sm font-medium leading-6 text-gray-900">
+          Cithology
+        </label>
+      </div>
+      <div className="flex items-center gap-x-1 px-2">
+        <input
+          id="histopathology"
+          name="filters"
+          type="radio"
+          checked={selected === HISTOPATHOLOGY}
+          onChange={handleChange}
+          className="h-4 w-4 border-gray-300 text-violet-600 focus:ring-indigo-600"
           value={HISTOPATHOLOGY}
-          className="w-auto font-[Arial] text-sm font-semibold text-violet-600"
+        />
+        <label
+          htmlFor="histopathology"
+          className="block text-sm font-medium leading-6 text-gray-900"
         >
-          HISTOPATHOLOGY
-        </option>
-        {/* <div>
-          <input
-            className="text-white mx-5 text-bold text-[Arial] text-xl"
-            type="radio"
-            name="study_type"
-            value="PAPS"
-          />
-          <label className="text-white font-[Arial] font-bold">PAPS</label>
-        </div>
-        <div>
-          <input
-            className="text-white mx-5 text-bold text-[Arial] text-xl"
-            type="radio"
-            name="study_type"
-            value="CITHOLOGY"
-          />
-          <label className="text-white font-[Arial] font-bold">CITO</label>
-        </div>
-        <div>
-          <input
-            className="text-white mx-5 text-bold text-[Arial] text-xl"
-            type="radio"
-            name="study_type"
-            value="HISTOLOGY"
-          />
-          <label className="text-white font-[Arial] font-bold">HISTO</label>
-        </div>
-        <div className="flex items-center w-full justify-center grid-col-span-3">
-          <input
-            className="text-white mx-5 text-bold text-[Arial] text-xl"
-            type="radio"
-            name="study_type"
-            value="ALL"
-          />
-          <label className="text-white font-[Arial] font-bold w-full">
-            TODOS
-          </label>
-        </div> */}
-      </select>
+          Histopathology
+        </label>
+      </div>
     </div>
   );
 }

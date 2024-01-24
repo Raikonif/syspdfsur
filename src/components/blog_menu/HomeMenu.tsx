@@ -5,10 +5,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { GiMicroscope } from "react-icons/all";
 import { useTranslation } from "react-i18next";
 function HomeMenu(): ReactElement {
-  const [goHome, setGoHome] = useState(false);
   const navigateHome = useNavigate();
   const { t } = useTranslation();
-  const activeMobile = "bg-slate-200 rounded-full duration-500 mx-2";
 
   const handleGoHome = () => {
     navigateHome("/");
@@ -27,7 +25,7 @@ function HomeMenu(): ReactElement {
           {homeOptions.blogOptions.map((item: IMenuInterface) => (
             <NavLink
               className={({ isActive }): string =>
-                `mx-1 cursor-pointer rounded-full text-lg duration-500 sm:mx-5 ${
+                `mx-1 rounded-full text-lg duration-500 sm:mx-5 sm:cursor-pointer ${
                   isActive
                     ? "bg-slate-200 text-violet-600"
                     : "text-lg text-white hover:bg-slate-100 hover:text-violet-400"

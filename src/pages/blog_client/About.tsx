@@ -38,8 +38,8 @@ function About() {
           </p>
         </div>
       </div>
-      <div className="flex w-full items-end justify-end px-6 pb-6 sm:p-6">
-        <div className="my-4 flex w-full flex-col items-center rounded-sm bg-fuchsia-600 p-2 sm:w-fit sm:items-end">
+      <div className="mb-6 flex w-full items-end justify-end px-6 sm:p-6">
+        <div className="flex w-full flex-col items-center rounded-sm bg-fuchsia-600 p-2 sm:my-4 sm:w-fit sm:items-end">
           <span className="mb-1 text-end font-semibold text-slate-100">
             - Dra. Nandy Calle Peñaranda
           </span>

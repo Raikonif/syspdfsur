@@ -4,10 +4,14 @@ import HomeMenu from "~/components/blog_menu/HomeMenu";
 
 function ClientLayout(): ReactElement {
   return (
-    <div className="w-full items-center justify-center p-1 pt-32 sm:pt-20">
-      <HomeMenu />
-      <Outlet />
-    </div>
+    <>
+      <div className="min-h-screen">
+        <HomeMenu />
+        <div className="w-full items-center justify-center pt-32 sm:pt-20">
+          <Outlet />
+        </div>
+      </div>
+    </>
   );
 }
 
