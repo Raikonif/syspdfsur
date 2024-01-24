@@ -44,7 +44,7 @@ function About() {
             - Dra. Nandy Calle Peñaranda
           </span>
           <span className="text-end font-semibold text-slate-100">
-            Medico en Anatomia Patologica
+            Medico Especialista en Anatomia Patologica
           </span>
         </div>
       </div>

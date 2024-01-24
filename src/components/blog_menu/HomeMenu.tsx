@@ -21,11 +21,11 @@ function HomeMenu(): ReactElement {
           <GiMicroscope className="mx-2 text-white" size={40} />
           <h3 className="text-white">PANDY BLOG</h3>
         </button>
-        <ul className="my-2 flex w-auto items-center justify-between text-xs">
+        <ul className="m-2 flex w-auto items-center justify-between">
           {homeOptions.blogOptions.map((item: IMenuInterface) => (
             <NavLink
               className={({ isActive }): string =>
-                `mx-1 rounded-full text-lg duration-500 sm:mx-5 sm:cursor-pointer ${
+                `mx-1 rounded-full text-xs duration-500 sm:mx-5 sm:cursor-pointer sm:text-lg ${
                   isActive
                     ? "bg-slate-200 text-violet-600"
                     : "text-lg text-white hover:bg-slate-100 hover:text-violet-400"
