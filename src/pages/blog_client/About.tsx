@@ -38,12 +38,12 @@ function About() {
           </p>
         </div>
       </div>
-      <div className="flex w-full items-end justify-end px-6 pb-6 sm:p-6">
+      <div className="mt-4 flex w-full items-end justify-end px-6 pb-6 sm:p-6">
         <div className="flex w-full flex-col items-center rounded-sm bg-fuchsia-600 p-2 sm:my-4 sm:w-fit sm:items-end">
-          <span className="mb-1 text-end font-semibold text-slate-100">
-            - Dra. Nandy Calle Peñaranda
+          <span className="mb-1 text-center text-xl font-semibold text-slate-100 sm:text-end">
+            Dra. Nandy Calle Peñaranda
           </span>
-          <span className="text-end font-semibold text-slate-100">
+          <span className="text-center text-lg font-semibold text-slate-100 sm:text-end">
             Medico Especialista en Anatomia Patologica
           </span>
         </div>
