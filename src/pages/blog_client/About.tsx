@@ -8,11 +8,11 @@ function About() {
       <div className="text-semibold flex flex-col items-center px-6 pt-6 sm:pb-0 xl:flex-row">
         <img
           src={profile}
-          className="mb-1 max-h-[600px] max-w-[400px] items-center rounded-md border-2"
+          className="mb-1 max-h-[600px] max-w-[400px] items-center rounded-md border"
           alt={"profile"}
         />
         <div className="flex flex-col">
-          <h1 className="text-balance my-3 text-center text-2xl font-semibold text-fuchsia-600">
+          <h1 className="text-balance my-3 text-center text-2xl font-semibold text-fuchsia-600 dark:text-fuchsia-500">
             {t("ABOUT").toUpperCase()}
           </h1>
           <p className="text-pretty m-1 ml-3 flex flex-col text-lg text-slate-700 dark:text-white">

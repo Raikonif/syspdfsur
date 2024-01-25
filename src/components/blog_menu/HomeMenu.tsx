@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement } from "react";
 import homeOptions from "~/constants/options/home.options";
 import IMenuInterface from "~/interfaces/menuInterface";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -16,7 +16,7 @@ function HomeMenu(): ReactElement {
       <div className="bg-violet-700/90 px-2 py-2 backdrop-blur-sm md:justify-between md:px-10 lg:flex">
         <button
           onClick={handleGoHome}
-          className="mb-3 flex cursor-pointer items-center text-2xl font-bold text-gray-800"
+          className="mb-3 flex w-full cursor-pointer items-center justify-center text-2xl font-bold text-gray-800 lg:w-auto"
         >
           <GiMicroscope className="mx-2 text-white" size={40} />
           <h3 className="text-white">PANDY BLOG</h3>
