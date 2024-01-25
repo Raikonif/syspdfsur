@@ -8,7 +8,9 @@ function HomeHeader(): JSX.Element {
         alt="..."
         className="mr-5 h-[60px] w-[60px] rounded-full border-4 border-violet-700"
       />
-      <h1 className="mb-3 font-sans text-xl">{textConstants.header.introduction}</h1>
+      <h1 className="mb-3 font-sans text-xl dark:text-white">
+        {textConstants.header.introduction}
+      </h1>
     </div>
   );
 }

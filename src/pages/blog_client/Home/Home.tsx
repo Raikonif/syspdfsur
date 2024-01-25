@@ -14,7 +14,7 @@ function Home(): JSX.Element {
           <HomeHeader />
           {/*<HomeBodyAlt />*/}
           {/*<HomeBody />*/}
-          <HomeFooter />
+          {/*<HomeFooter />*/}
         </div>
         {/*<div className="flex w-1/4 flex-col">*/}
         {/*  <HomeSideOptions />*/}
