@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { BsFillSearchHeartFill } from "react-icons/bs";
 
 interface SearchProps {
@@ -7,12 +8,13 @@ interface SearchProps {
 }
 
 function Search({ search, setSearch }: SearchProps) {
+  const { t } = useTranslation();
   return (
-    <div className="mx-2 flex w-4/5 items-center justify-between rounded-lg bg-violet-600 sm:mt-5 sm:w-full">
+    <div className="flex w-11/12 items-center justify-between rounded-lg bg-violet-600 sm:mx-2 sm:mt-5 sm:w-full">
       <input
-        className="h-full w-full rounded-l-md border p-3 focus:outline-none"
+        className="h-full w-full rounded-l-md border p-3 text-white focus:outline-none dark:border-slate-500 dark:bg-slate-600 dark:text-white"
         type="text"
-        placeholder="Search"
+        placeholder={t("SEARCH")}
         aria-autocomplete="none"
         autoComplete="off"
         value={search}

@@ -11,10 +11,10 @@ function ArticleList({ articles }: ArticleListProps) {
   const articlesLength = articles.length;
   return (
     <>
-      <ul className="grid px-3 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="mt-2 grid px-3 sm:grid-cols-2 lg:grid-cols-3">
         {articlesLength > 0 &&
           articles.map((article: Article) => (
-            <li key={article.id}>
+            <li key={article.id} className="mx-2">
               <ArticleCard
                 id={article.id}
                 title={article.title}

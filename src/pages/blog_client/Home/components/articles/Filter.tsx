@@ -22,7 +22,10 @@ function Filter({ selected, setSelected }: FilterProps) {
           className="h-4 w-4 border-gray-300 text-violet-600 focus:ring-indigo-600"
           value={ALL}
         />
-        <label htmlFor="all" className="block text-sm font-medium leading-6 text-gray-900">
+        <label
+          htmlFor="all"
+          className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
+        >
           All
         </label>
       </div>
@@ -36,7 +39,10 @@ function Filter({ selected, setSelected }: FilterProps) {
           className="h-4 w-4 border-gray-300 text-violet-600 focus:ring-indigo-600"
           value={PAP}
         />
-        <label htmlFor="paps" className="block text-sm font-medium leading-6 text-gray-900">
+        <label
+          htmlFor="paps"
+          className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
+        >
           Paps
         </label>
       </div>
@@ -50,7 +56,10 @@ function Filter({ selected, setSelected }: FilterProps) {
           className="h-4 w-4 border-gray-300 text-violet-600 focus:ring-indigo-600"
           value={CITHOLOGY}
         />
-        <label htmlFor="cithology" className="block text-sm font-medium leading-6 text-gray-900">
+        <label
+          htmlFor="cithology"
+          className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
+        >
           Cithology
         </label>
       </div>
@@ -66,7 +75,7 @@ function Filter({ selected, setSelected }: FilterProps) {
         />
         <label
           htmlFor="histopathology"
-          className="block text-sm font-medium leading-6 text-gray-900"
+          className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
         >
           Histopathology
         </label>

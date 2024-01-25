@@ -10,13 +10,13 @@ function ArticleCard({ id, title, author, date, content, images, type }: Article
   };
   return (
     <article
-      className="my-4 flex w-full cursor-pointer flex-col rounded-md border bg-white p-4 pt-7 shadow-xl"
+      className="my-4 flex w-full cursor-pointer flex-col rounded-md border-2 bg-white p-4 pt-7 shadow-2xl dark:border-slate-600 dark:bg-slate-700 dark:text-white"
       onClick={openArticle}
     >
       <h2 className="font-bold">{title}</h2>
-      <p className="font-[Arial] font-bold text-slate-400">{date}</p>
-      <h3 className="font-[Arial] font-bold text-violet-600">{author}</h3>
-      <p className="m-2 font-[Arial]">{slicedContent}</p>
+      <p className="font-semibold text-slate-400">{date}</p>
+      <h3 className="font-semibold text-violet-600 dark:text-fuchsia-500">{author}</h3>
+      <p className="mb-2 mt-1">{slicedContent}</p>
       <img
         src={image.url}
         alt={String(image.id)}
