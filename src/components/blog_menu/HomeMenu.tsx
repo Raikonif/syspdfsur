@@ -27,8 +27,8 @@ function HomeMenu(): ReactElement {
               className={({ isActive }): string =>
                 `mx-1 rounded-full text-xs duration-500 sm:mx-5 sm:cursor-pointer sm:text-lg ${
                   isActive
-                    ? "bg-slate-200 text-violet-600"
-                    : "text-lg text-white hover:bg-slate-100 hover:text-violet-400"
+                    ? "bg-slate-200 text-violet-600 dark:bg-transparent dark:bg-gradient-to-r dark:from-purple-600 dark:to-violet-600 dark:text-white"
+                    : "text-lg text-white hover:bg-slate-100 hover:text-violet-400 dark:hover:bg-slate-700"
                 }`
               }
               key={item.id}
