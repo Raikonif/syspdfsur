@@ -1,7 +1,4 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import textsConstants from "~/pages/blog_client/Home/constants/texts.constants";
-import { IPostListInterface } from "~/interfaces/IPostInterface";
-import PostArticleCard from "~/pages/blog_client/Home/components/PostArticleCard";
 import { Article } from "~/interfaces/Article.interface";
 import { ALL, PAP, CITHOLOGY, HISTOPATHOLOGY } from "~/constants/Blog/blog.constants";
 import { getArticles } from "~/service/articles.service";

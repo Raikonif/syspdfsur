@@ -23,7 +23,7 @@ function ArticleCard({ id, title, author, date, content, images, type }: Article
         console.error(error);
       }
     };
-    loadImage();
+    loadImage().then();
   }, [image]);
 
   return (
@@ -32,7 +32,7 @@ function ArticleCard({ id, title, author, date, content, images, type }: Article
       onClick={openArticle}
     >
       <h2 className="font-bold">{title}</h2>
-      <p className="font-semibold text-slate-400">{date}</p>
+      <p className="font-semibold text-slate-400 dark:text-slate-300">{date}</p>
       <h3 className="font-semibold text-violet-600 dark:text-fuchsia-500">{author}</h3>
       <p className="mb-2 mt-1">{slicedContent}</p>
 
