@@ -7,7 +7,7 @@ interface ArticleListProps {
   articles: Article[];
 }
 function ArticleList({ articles }: ArticleListProps) {
-  const { t } = useTranslation();
+  const { t: trans } = useTranslation();
   const articlesLength = articles.length;
   return (
     <>
@@ -30,7 +30,7 @@ function ArticleList({ articles }: ArticleListProps) {
       {articlesLength === 0 && (
         <div className="mt-10 flex w-full items-center justify-center">
           <h1 className="h-full w-full text-center text-2xl dark:text-white">
-            {t("ARTICLES_NOT_FOUND")}
+            {trans("ARTICLES_NOT_FOUND")}
           </h1>
         </div>
       )}
