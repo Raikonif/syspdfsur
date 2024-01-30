@@ -22,8 +22,8 @@ function Articles(): ReactElement {
   }, []);
 
   useEffect(() => {
-    if (articles.length < 1) return;
     if (
+      articles.length > 0 &&
       changeSearch !== "" &&
       changeSearch !== undefined &&
       changeSearch !== null &&
@@ -44,8 +44,7 @@ function Articles(): ReactElement {
   }, [articles, changeSearch]);
 
   useEffect(() => {
-    if (articles.length < 1) return;
-    changeFilter !== ALL
+    changeFilter !== ALL && articles.length > 0
       ? setArticlesFiltered(
           articles.filter((article) => article.type.toUpperCase() === changeFilter),
         )

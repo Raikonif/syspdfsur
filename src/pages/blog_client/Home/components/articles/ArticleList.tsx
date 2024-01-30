@@ -17,13 +17,6 @@ function ArticleList({ articles }: ArticleListProps) {
   return (
     <>
       <ul className="mt-2 grid px-3 sm:grid-cols-2 lg:grid-cols-3">
-        {articlesLength === 0 && (
-          <div className="mt-10 flex w-full items-center justify-center">
-            <h1 className="h-full w-full text-center text-2xl dark:text-white">
-              {t("ARTICLES_NOT_FOUND")}
-            </h1>
-          </div>
-        )}
         {articlesLength > 0 &&
           articles.map((article: Article) => (
             <li key={article.id} className="mx-2">
@@ -38,6 +31,13 @@ function ArticleList({ articles }: ArticleListProps) {
               />
             </li>
           ))}
+        {articlesLength === 0 && (
+          <div className="mt-10 flex w-full items-center justify-center">
+            <h1 className="h-full w-full text-center text-2xl dark:text-white">
+              {t("ARTICLES_NOT_FOUND")}
+            </h1>
+          </div>
+        )}
       </ul>
     </>
   );
