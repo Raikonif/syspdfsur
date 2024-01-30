@@ -10,7 +10,7 @@ function Articles(): ReactElement {
   const [changeFilter, setChangeFilter] = useState<string>(ALL);
   const [changeSearch, setChangeSearch] = useState<string>("");
   const [articles, setArticles] = useState<Article[]>([]);
-  const [articlesFiltered, setArticlesFiltered] = useState<Article[]>(articles);
+  const [articlesFiltered, setArticlesFiltered] = useState<Article[]>(articles || []);
 
   const allArticles = async () => {
     const articles = await getArticles();
