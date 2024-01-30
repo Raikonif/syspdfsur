@@ -9,8 +9,8 @@ import Filter from "~/pages/blog_client/Home/components/articles/Filter";
 function Articles(): ReactElement {
   const [changeFilter, setChangeFilter] = useState<string>(ALL);
   const [changeSearch, setChangeSearch] = useState<string>("");
-  const [articles, setArticles] = useState<Article[]>([]);
-  const [articlesFiltered, setArticlesFiltered] = useState<Article[]>(articles || []);
+  const [articles, setArticles] = useState<Article[]>([] as Article[]);
+  const [articlesFiltered, setArticlesFiltered] = useState<Article[]>(articles);
 
   const allArticles = async () => {
     const articles = await getArticles();
@@ -58,7 +58,7 @@ function Articles(): ReactElement {
           <Search search={changeSearch} setSearch={setChangeSearch} />
         </div>
       </div>
-      <ArticleList articles={articlesFiltered || []} />
+      <ArticleList articles={articlesFiltered} />
     </div>
   );
 }
