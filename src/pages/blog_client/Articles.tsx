@@ -57,7 +57,7 @@ function Articles(): ReactElement {
           <Search search={changeSearch} setSearch={setChangeSearch} />
         </div>
       </div>
-      <ArticleList articles={articlesFiltered} />
+      <ArticleList articles={[]} />
     </div>
   );
 }
