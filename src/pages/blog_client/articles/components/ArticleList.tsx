@@ -12,7 +12,7 @@ function ArticleList({ articles }: ArticleListProps) {
   const [articlesLength, setArticlesLength] = useState<number>(0);
   useEffect(() => {
     if (articles.length > 0) setArticlesLength(articles.length);
-  }, []);
+  }, [articles]);
 
   return (
     <>

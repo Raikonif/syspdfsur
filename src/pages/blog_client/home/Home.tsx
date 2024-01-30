@@ -1,10 +1,10 @@
 import React from "react";
 import HomeMenu from "~/components/blog_menu/HomeMenu";
-import HomeHeader from "~/pages/blog_client/Home/HomeHeader";
-import HomeFooter from "~/pages/blog_client/Home/HomeFooter";
-import HomeBody from "~/pages/blog_client/Home/HomeBody";
-import HomeSideOptions from "~/pages/blog_client/Home/HomeSideOptions";
-import HomeBodyAlt from "~/pages/blog_client/Home/HomeBodyAlt";
+import HomeHeader from "~/pages/blog_client/home/HomeHeader";
+import HomeFooter from "~/pages/blog_client/home/HomeFooter";
+import HomeBody from "~/pages/blog_client/home/HomeBody";
+import HomeSideOptions from "~/pages/blog_client/home/HomeSideOptions";
+import HomeBodyAlt from "~/pages/blog_client/home/HomeBodyAlt";
 
 function Home(): JSX.Element {
   return (

@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
-import PostCard from "~/pages/blog_client/Home/components/PostCard";
-import textsConstants from "~/pages/blog_client/Home/constants/texts.constants";
+import PostCard from "~/pages/blog_client/articles/components/PostCard";
+import textsConstants from "~/pages/blog_client/home/constants/texts.constants";
 import { IPostListInterface } from "~/interfaces/IPostInterface";
 import { useNavigate } from "react-router-dom";
 
@@ -35,7 +35,7 @@ function HomeBodyAlt(): ReactElement {
           ))}
           <div className="flex w-full items-center justify-center">
             <button
-              onClick={() => handleClick("/articles")}
+              onClick={() => handleClick("/components")}
               className="h-max w-max font-bold text-violet-500 hover:text-violet-400 hover:shadow-2xl active:text-violet-700"
             >
               Mas articulos ...
