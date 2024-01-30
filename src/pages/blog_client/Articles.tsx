@@ -22,8 +22,7 @@ function Articles(): ReactElement {
   }, []);
 
   useEffect(() => {
-    if (
-      articles.length > 0 &&
+    if (Array.isArray(articles) && articles.length > 0) {
       changeSearch !== "" &&
       changeSearch !== undefined &&
       changeSearch !== null &&
@@ -32,23 +31,23 @@ function Articles(): ReactElement {
       changeSearch !== PAP &&
       changeSearch !== CITHOLOGY &&
       changeSearch !== HISTOPATHOLOGY
-    ) {
-      setArticlesFiltered(
-        articles.filter((article) =>
-          article.title.toUpperCase().includes(changeSearch.toUpperCase()),
-        ),
-      );
-    } else {
-      setArticlesFiltered(articles);
+        ? setArticlesFiltered(
+            articles.filter((article) =>
+              article.title.toUpperCase().includes(changeSearch.toUpperCase()),
+            ),
+          )
+        : setArticlesFiltered(articles);
     }
   }, [articles, changeSearch]);
 
   useEffect(() => {
-    changeFilter !== ALL && articles.length > 0
-      ? setArticlesFiltered(
-          articles.filter((article) => article.type.toUpperCase() === changeFilter),
-        )
-      : setArticlesFiltered(articles);
+    if (Array.isArray(articles) && articles.length > 0) {
+      changeFilter !== ALL
+        ? setArticlesFiltered(
+            articles.filter((article) => article.type.toUpperCase() === changeFilter),
+          )
+        : setArticlesFiltered(articles);
+    }
   }, [articles, changeFilter]);
 
   return (
