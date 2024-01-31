@@ -8,12 +8,12 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   // test: {},
   build: {
-    // outDir: "dist",
-    // assetsDir: "assets",
+    outDir: "dist",
+    assetsDir: "assets",
     rollupOptions: {
       output: {
         manualChunks: {
-          _redirects: ["_redirects"],
+          _redirects: ["_redirects.html"],
         },
       },
     },
