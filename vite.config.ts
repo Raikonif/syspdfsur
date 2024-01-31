@@ -7,4 +7,15 @@ dotenv.config();
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   // test: {},
+  build: {
+    // outDir: "dist",
+    // assetsDir: "assets",
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          _redirects: ["_redirects"],
+        },
+      },
+    },
+  },
 });
