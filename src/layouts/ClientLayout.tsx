@@ -11,9 +11,9 @@ function ClientLayout(): ReactElement {
   }, []);
   return (
     <>
-      <div className=" min-h-screen dark:bg-slate-700">
-        <HomeMenu />
-        <div className="w-full items-center justify-center px-3 pt-28 sm:px-5 md:pt-32 lg:pt-20">
+      <HomeMenu />
+      <div className="w-full items-center justify-center pt-28 dark:bg-slate-700 md:pt-32 lg:pt-20">
+        <div className="min-h-screen px-3 sm:px-5">
           <Outlet />
         </div>
       </div>

@@ -16,7 +16,7 @@ function ArticleList({ articles }: ArticleListProps) {
 
   return (
     <>
-      <ul className="mt-2 grid px-3 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="mt-2 grid px-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {articlesLength > 0 &&
           articles.map((article: Article) => (
             <li key={article.id} className="mx-2">
