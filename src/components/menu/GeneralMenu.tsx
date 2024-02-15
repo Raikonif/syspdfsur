@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/all";
 import ButtonMenu from "~/components/menu/ButtonMenu";
 import Profile from "~/components/menu/Profile/Profile";
-import SignOutModal from "~/components/menu/Profile/SignOutModal";
-import { Link, NavLink } from "react-router-dom";
-import ProfileCard from "~/components/menu/Profile/ProfileCard";
+import { NavLink } from "react-router-dom";
 
 interface IMenuProps {
   id: number;
@@ -19,7 +17,7 @@ interface IProps {
   modalProfile: (open: boolean) => void;
 }
 
-function GeneralMenu({ itemList, isMobileMode, modalProfile }: IProps): JSX.Element {
+function GeneralMenu({ itemList, isMobileMode, modalProfile }: IProps): ReactElement {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const handleClickMenu = () => {
     setShowMenu(!showMenu);
