@@ -31,14 +31,12 @@ function ArticleList({ articles }: ArticleListProps) {
               />
             </li>
           ))}
-        {articlesLength === 0 && (
-          <div className="mt-10 flex w-full items-center justify-center">
-            <h1 className="h-full w-full text-center text-2xl dark:text-white">
-              {t("ARTICLES_NOT_FOUND")}
-            </h1>
-          </div>
-        )}
       </ul>
+      {articlesLength < 1 && (
+        <div className="mt-10 flex w-full text-center">
+          <h1 className="h-full w-full text-2xl dark:text-white">{t("ARTICLES_NOT_FOUND")}</h1>
+        </div>
+      )}
     </>
   );
 }
