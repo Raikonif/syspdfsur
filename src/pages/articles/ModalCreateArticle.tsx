@@ -1,5 +1,6 @@
 import React, { ReactElement, useState } from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
+import { useTranslation } from "react-i18next";
 
 interface IProps {
   onClose: (isOpen: boolean) => void;
@@ -7,14 +8,14 @@ interface IProps {
 }
 function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
   const [agreed, setAgreed] = useState(false);
-
+  const { t } = useTranslation();
   return (
     <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
       <GeneralModal onClose={() => onClose(false)} refModal={refModal}>
         <form className="flex w-full max-w-sm space-x-3">
           <div className="m-auto mt-10 w-full max-w-2xl rounded-lg bg-white px-5 py-10 shadow dark:bg-gray-800">
             <div className="mb-6 text-center text-3xl font-light text-gray-800 dark:text-white">
-              Contact us !
+              {t("CREATE_ARTICLE")}
             </div>
             <div className="m-auto grid max-w-xl grid-cols-2 gap-4">
               <div className="col-span-2 lg:col-span-1">
