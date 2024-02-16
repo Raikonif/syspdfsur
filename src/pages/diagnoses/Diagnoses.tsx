@@ -20,7 +20,6 @@ function Diagnoses(): ReactElement {
   const refModalDelete = useRef<HTMLDivElement>(null);
   const refModalCreate = useRef<HTMLDivElement>(null);
   const [diagnoses, setDiagnoses] = useState<Report[]>([] as Report[]);
-  const [diagnosisLength, setDiagnosisLength] = useState<number>(0);
   const handleModalCreate = (newState: boolean) => {
     setShowModalCreate(newState);
   };
@@ -54,10 +53,6 @@ function Diagnoses(): ReactElement {
   useEffect(() => {
     getAllDiagnoses();
   }, [showModalDelete, showModalEdit, showModalShow]);
-
-  useEffect(() => {
-    if (diagnoses.length > 0) setDiagnosisLength(diagnoses.length);
-  }, [diagnoses]);
 
   return (
     <>
