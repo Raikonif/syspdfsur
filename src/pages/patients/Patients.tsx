@@ -15,24 +15,17 @@ function Patients(): JSX.Element {
     setShowModalCreate(newState);
   };
   const getAllPatients = async () => {
-    setPatients(await getPatients());
+    const patients = await getPatients();
+    setPatients(patients);
   };
 
   useEffect(() => {
     getAllPatients();
   }, [showModalCreate]);
 
-  useEffect(() => {
-    if (patients.length > 0) setPatientsLength(patients.length);
-  }, []);
-
   return (
     <>
-      <div
-        className={`${
-          patientsLength < 1 && "h-full"
-        } "flex p-2" w-11/12 flex-col items-center justify-center`}
-      >
+      <div className="flex h-full w-full flex-col items-center justify-center">
         <Header setModalCreate={handleModalCreate} />
         <PatientList patients={patients} />
       </div>

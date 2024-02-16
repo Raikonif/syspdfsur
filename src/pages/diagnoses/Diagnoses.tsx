@@ -33,7 +33,8 @@ function Diagnoses(): ReactElement {
     setShowModalDelete(newState);
   };
   const getAllDiagnoses = async () => {
-    setDiagnoses(await getReports());
+    const reports = await getReports();
+    setDiagnoses(reports);
   };
 
   useEffect(() => {
