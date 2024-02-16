@@ -4,6 +4,7 @@ import ModalCreate from "~/pages/patients/modals/ModalCreate";
 import PatientCard from "~/pages/patients/components/PatientCard";
 import { getPatients } from "~/service/patient.service";
 import Patient from "~/interfaces/Patient.type";
+import PatientList from "~/pages/patients/components/PatientList";
 
 function Patients(): JSX.Element {
   const [showModalCreate, setShowModalCreate] = useState<boolean>(false);
@@ -33,18 +34,7 @@ function Patients(): JSX.Element {
         } "flex p-2" w-11/12 flex-col items-center justify-center`}
       >
         <Header setModalCreate={handleModalCreate} />
-        {patientsLength > 0 && (
-          <ul className="mt-20 grid h-auto w-full grid-cols-2 p-4 px-6">
-            {patients.map((patient: Patient) => (
-              <PatientCard key={patient.id} patient={patient} />
-            ))}
-          </ul>
-        )}
-        {patientsLength < 1 && (
-          <div className="flex h-full w-full items-center justify-center">
-            <h1 className="text-2xl dark:text-white">No se encontraron pacientes</h1>
-          </div>
-        )}
+        <PatientList patients={patients} />
       </div>
       {showModalCreate && <ModalCreate onClose={handleModalCreate} refModal={modalCreateRef} />}
     </>
