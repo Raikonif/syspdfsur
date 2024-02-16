@@ -9,6 +9,7 @@ function Patients(): JSX.Element {
   const [showModalCreate, setShowModalCreate] = useState<boolean>(false);
   const modalCreateRef = useRef<HTMLDivElement>(null);
   const [patients, setPatients] = useState<Patient[]>([] as Patient[]);
+  const [patientsLength, setPatientsLength] = useState<number>(0);
   const handleModalCreate = (newState: boolean) => {
     setShowModalCreate(newState);
   };
@@ -19,15 +20,31 @@ function Patients(): JSX.Element {
   useEffect(() => {
     getAllPatients();
   }, [showModalCreate]);
+
+  useEffect(() => {
+    if (patients.length > 0) setPatientsLength(patients.length);
+  }, [patients]);
+
   return (
     <>
-      <div className="flex w-11/12 flex-col items-center justify-center p-2">
+      <div
+        className={`${
+          patientsLength < 1 && "h-full"
+        } "flex p-2" w-11/12 flex-col items-center justify-center`}
+      >
         <Header setModalCreate={handleModalCreate} />
-        <ul className="mt-20 grid h-auto w-full grid-cols-2 p-4 px-6">
-          {patients.map((patient: Patient) => (
-            <PatientCard key={patient.id} patient={patient} />
-          ))}
-        </ul>
+        {patientsLength > 0 && (
+          <ul className="mt-20 grid h-auto w-full grid-cols-2 p-4 px-6">
+            {patients.map((patient: Patient) => (
+              <PatientCard key={patient.id} patient={patient} />
+            ))}
+          </ul>
+        )}
+        {patientsLength < 1 && (
+          <div className="flex h-full w-full items-center justify-center">
+            <h1 className="text-2xl dark:text-white">No se encontraron pacientes</h1>
+          </div>
+        )}
       </div>
       {showModalCreate && <ModalCreate onClose={handleModalCreate} refModal={modalCreateRef} />}
     </>
