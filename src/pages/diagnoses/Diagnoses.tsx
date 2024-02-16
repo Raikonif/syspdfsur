@@ -7,6 +7,7 @@ import ModalDelete from "~/pages/diagnoses/components/modals/ModalDelete";
 import ModalShow from "~/pages/diagnoses/components/modals/ModalShow";
 import ModalEdit from "~/pages/diagnoses/components/modals/ModalEdit";
 import ModalCreateReport from "~/pages/diagnoses/components/modals/modal_create/ModalCreateReport";
+import DiagnosisList from "~/pages/diagnoses/components/DiagnosisList";
 
 function Diagnoses(): ReactElement {
   const [showModalEdit, setShowModalEdit] = useState<boolean>(false);
@@ -62,30 +63,12 @@ function Diagnoses(): ReactElement {
     <>
       <div className="flex h-full w-full flex-col items-center justify-center">
         <Header setModalCreate={handleModalCreate} />
-        <div
-          className={`${
-            diagnosisLength < 1
-              ? "flex h-full w-full items-center justify-center"
-              : "mt-20 grid h-auto grid-cols-1 justify-between sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
-          }
-            mx-10 gap-6 py-4`}
-        >
-          {diagnosisLength > 0 &&
-            diagnoses.map((diagnosis: Report) => (
-              <DiagnosisCard
-                key={diagnosis.id}
-                diagnosis={diagnosis}
-                setModalEdit={handleModalEdit}
-                setModalShow={handleModalShow}
-                setModalDelete={handleModalDelete}
-              />
-            ))}
-          {diagnosisLength < 1 && (
-            <div className="flex h-full w-full items-center justify-center">
-              <h1 className="text-2xl dark:text-white">No se encontraron diagnósticos</h1>
-            </div>
-          )}
-        </div>
+        <DiagnosisList
+          diagnoses={diagnoses}
+          handleModalEdit={handleModalEdit}
+          handleModalShow={handleModalShow}
+          handleModalDelete={handleModalDelete}
+        />
       </div>
       {showModalEdit && <ModalEdit onClose={handleModalEdit} refModal={refModalEdit} />}
       {showModalShow && <ModalShow onClose={handleModalShow} refModal={refModalShow} />}

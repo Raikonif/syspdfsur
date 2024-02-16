@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Article } from "~/interfaces/Article.interface";
 import ArticleCard from "./ArticleCard";
 import { useTranslation } from "react-i18next";
-import { number } from "prop-types";
 
 interface ArticleListProps {
   articles: Article[];
