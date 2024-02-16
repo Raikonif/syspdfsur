@@ -23,7 +23,7 @@ function Patients(): JSX.Element {
 
   useEffect(() => {
     if (patients.length > 0) setPatientsLength(patients.length);
-  }, []);
+  }, [patients]);
 
   return (
     <>

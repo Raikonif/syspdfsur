@@ -56,7 +56,7 @@ function Diagnoses(): ReactElement {
 
   useEffect(() => {
     if (diagnoses.length > 0) setDiagnosisLength(diagnoses.length);
-  }, []);
+  }, [diagnoses]);
 
   return (
     <>
