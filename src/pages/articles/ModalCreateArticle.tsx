@@ -62,7 +62,7 @@ function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
                   ></textarea>
                 </label>
               </div>
-
+              <RichTextEditor />
               <div className="col-span-2 text-right">
                 <button
                   type="submit"
