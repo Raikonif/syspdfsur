@@ -1,11 +1,13 @@
 import React, { ReactElement, useState } from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
 import { useTranslation } from "react-i18next";
+import RichTextEditor from "~/components/RichTextEditor";
 
 interface IProps {
   onClose: (isOpen: boolean) => void;
   refModal: React.RefObject<HTMLDivElement>;
 }
+
 function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
   const [agreed, setAgreed] = useState(false);
   const { t } = useTranslation();
@@ -60,6 +62,7 @@ function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
                   ></textarea>
                 </label>
               </div>
+
               <div className="col-span-2 text-right">
                 <button
                   type="submit"
