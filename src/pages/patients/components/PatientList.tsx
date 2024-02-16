@@ -8,7 +8,7 @@ interface PatientListProps {
 function PatientList({ patients }: PatientListProps) {
   const [patientsLength, setPatientsLength] = useState<number>(0);
   useEffect(() => {
-    if (patients.length > 0) setPatientsLength(patients.length);
+    setPatientsLength(patients.length);
   }, [patients]);
   return (
     <>

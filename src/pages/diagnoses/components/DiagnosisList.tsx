@@ -16,7 +16,7 @@ function DiagnosisList({
 }: DiagnosisListProps) {
   const [diagnosesLength, setDiagnosesLength] = useState<number>(0);
   useEffect(() => {
-    if (diagnoses.length > 0) setDiagnosesLength(diagnoses.length);
+    setDiagnosesLength(diagnoses.length);
   }, [diagnoses]);
   return (
     <>
