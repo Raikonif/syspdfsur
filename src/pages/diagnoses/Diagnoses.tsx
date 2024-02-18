@@ -52,7 +52,9 @@ function Diagnoses(): ReactElement {
   }, []);
 
   useEffect(() => {
-    getAllDiagnoses();
+    getAllDiagnoses()
+      .catch((error) => console.error(error))
+      .finally(() => setDiagnoses([]));
   }, [showModalDelete, showModalEdit, showModalShow]);
 
   return (

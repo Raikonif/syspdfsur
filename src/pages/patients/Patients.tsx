@@ -20,7 +20,9 @@ function Patients(): JSX.Element {
   };
 
   useEffect(() => {
-    getAllPatients();
+    getAllPatients()
+      .catch((error) => console.error(error))
+      .finally(() => setPatients([]));
   }, [showModalCreate]);
 
   return (

@@ -8,6 +8,7 @@ interface DiagnosisListProps {
   handleModalShow: (newState: boolean) => void;
   handleModalDelete: (newState: boolean) => void;
 }
+
 function DiagnosisList({
   diagnoses,
   handleModalEdit,
@@ -28,9 +29,9 @@ function DiagnosisList({
       {/*   }*/}
       {/*         mx-10 gap-6 py-4`}*/}
       {/* >*/}
-      <ul className="mt-2 grid px-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {diagnosesLength > 0 &&
-          diagnoses.map((diagnosis: Report) => (
+      {diagnosesLength > 0 ? (
+        <ul className="mt-2 grid px-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {diagnoses.map((diagnosis: Report) => (
             <li key={diagnosis.id} className="mx-2">
               <DiagnosisCard
                 key={diagnosis.id}
@@ -41,8 +42,8 @@ function DiagnosisList({
               />
             </li>
           ))}
-      </ul>
-      {diagnosesLength < 1 && (
+        </ul>
+      ) : (
         <div className="flex h-full w-full items-center justify-center">
           <h1 className="text-2xl dark:text-white">No se encontraron diagnósticos</h1>
         </div>
