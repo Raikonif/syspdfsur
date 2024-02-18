@@ -13,9 +13,14 @@ function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
   const { t } = useTranslation();
   return (
     <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
-      <GeneralModal onClose={() => onClose(false)} refModal={refModal}>
+      <GeneralModal
+        onClose={() => onClose(false)}
+        refModal={refModal}
+        customWidth={"w-fit"}
+        customHeight={"h-fit"}
+      >
         <form className="flex w-full max-w-sm space-x-3">
-          <div className="m-auto mt-10 w-full max-w-2xl rounded-lg bg-white px-5 py-10 shadow dark:bg-gray-800">
+          <div className="m-auto mt-10 w-full max-w-2xl rounded-lg bg-white px-5 py-10 dark:bg-gray-800">
             <h1 className="mb-6 text-center text-3xl font-light text-gray-800 dark:text-white">
               {t("CREATE_ARTICLE")}
             </h1>

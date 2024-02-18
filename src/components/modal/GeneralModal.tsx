@@ -33,7 +33,7 @@ function GeneralModal({
             X
           </button>
         )}
-        <div className="flex w-full justify-center px-10 py-10 xs:px-4 xs:py-8">{children}</div>
+        <div className="flex w-full justify-center">{children}</div>
       </div>
     </>
   );
