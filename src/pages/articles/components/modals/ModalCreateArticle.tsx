@@ -2,6 +2,7 @@ import React, { ReactElement, useState } from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
 import { useTranslation } from "react-i18next";
 import RichTextEditor from "~/components/RichTextEditor";
+import MyDropZone from "~/components/MyDropZone";
 
 interface IProps {
   onClose: (isOpen: boolean) => void;
@@ -9,7 +10,6 @@ interface IProps {
 }
 
 function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
-  const [agreed, setAgreed] = useState(false);
   const { t } = useTranslation();
   return (
     <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
@@ -41,17 +41,16 @@ function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
                     type="text"
                     id="article-form-type"
                     className=" w-full flex-1 appearance-none rounded-lg border border-gray-300 border-transparent bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600"
-                    placeholder="Name"
+                    placeholder="Type"
                   />
                 </div>
               </div>
               <div className="col-span-2 lg:col-span-1">
                 <div className=" relative ">
-                  <input
-                    type="text"
+                  <select
                     id="article-author"
                     className=" w-full flex-1 appearance-none rounded-lg border border-gray-300 border-transparent bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600"
-                    placeholder="Name"
+                    placeholder="Author"
                   />
                 </div>
               </div>
@@ -67,7 +66,7 @@ function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
                   ></textarea>
                 </label>
               </div>
-              <RichTextEditor />
+              <MyDropZone />
               <div className="col-span-2 text-right">
                 <button
                   type="submit"
