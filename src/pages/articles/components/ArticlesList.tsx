@@ -1,16 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Article } from "~/interfaces/Article.interface";
+import ArticleCardSys from "~/pages/articles/components/ArticleCardSys";
 
-function ArticlesList() {
+interface ArticlesListProps {
+  articles: Article[];
+  showCreateModal: (state: boolean) => void;
+  showEditModal: (state: boolean) => void;
+  showDeleteModal: (state: boolean) => void;
+}
+
+function ArticlesList({
+  articles,
+  showDeleteModal,
+  showEditModal,
+  showCreateModal,
+}: ArticlesListProps) {
+  const [articlesLength, setArticlesLength] = useState<number>(0);
+  // useEffect(() => {
+  //   if (articles.length > 0) setArticlesLength(articles.length);
+  // }, []);
+
   return (
-    <article className="flex max-h-[150px] max-w-[200px] border-2 bg-slate-100 py-2">
-      <div className="p-2">
-        <header className="px-5 py-2 font-semibold">Article</header>
-        <p className="font-semibold text-slate-500">Date 12/12/22</p>
-        <p className="font-semibold">Author</p>
-        <p>Content ...</p>
-      </div>
-      <img src="https://picsum.photos/200/980" alt="..." className="h-full w-[100px]" />
-    </article>
+    <div className="flex flex-col sm:flex-row">
+      <ArticleCardSys />
+    </div>
   );
 }
 

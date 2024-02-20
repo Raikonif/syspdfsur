@@ -23,7 +23,12 @@ function ArticlesPage(): ReactElement {
         </button>
       </div>
       <div className="h-full w-full flex-row sm:flex">
-        <ArticlesList />
+        <ArticlesList
+          articles={articles}
+          showCreateModal={handleModalCreate}
+          showDeleteModal={handleModalCreate}
+          showEditModal={handleModalCreate}
+        />
       </div>
       {showModal && <ModalCreateArticle onClose={handleModalCreate} refModal={refModalCreate} />}
     </>
