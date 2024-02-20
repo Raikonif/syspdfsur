@@ -6,6 +6,7 @@ import SearchButton from "~/components/menu/search/SearchButton";
 import ProfileCard from "~/components/menu/Profile/ProfileCard";
 import SignOutModal from "~/components/menu/Profile/SignOutModal";
 import toast, { Toaster } from "react-hot-toast";
+import Search from "~/components/menu/search/Search";
 
 function GeneralLayout(): JSX.Element {
   const [mobileMode, setMobileMode] = useState<boolean>(false);
@@ -53,7 +54,8 @@ function GeneralLayout(): JSX.Element {
           <Outlet />
           <Toaster />
         </div>
-        <SearchButton isMobileMode={mobileMode} />
+        {/*<SearchButton isMobileMode={mobileMode} />*/}
+        {/*<Search />*/}
         {modalProfile && <ProfileCard openModal={() => setModalSignOut(true)} />}
         {modalSignOut && (
           <SignOutModal onClose={() => setModalSignOut(true)} refModal={refSignOut} />
