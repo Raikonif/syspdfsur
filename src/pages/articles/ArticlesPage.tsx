@@ -22,7 +22,7 @@ function ArticlesPage(): ReactElement {
           <BiPlusMedical className="m-1 mr-2 text-white" />
         </button>
       </div>
-      <div className="h-full w-full flex-row sm:flex">
+      <div className="w-full flex-row sm:flex">
         <ArticlesList
           articles={articles}
           showCreateModal={handleModalCreate}

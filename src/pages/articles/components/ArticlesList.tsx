@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Article } from "~/interfaces/Article.interface";
 import ArticleCardSys from "~/pages/articles/components/ArticleCardSys";
+import { useTranslation } from "react-i18next";
 
 interface ArticlesListProps {
   articles: Article[];
@@ -19,11 +20,30 @@ function ArticlesList({
   // useEffect(() => {
   //   if (articles.length > 0) setArticlesLength(articles.length);
   // }, []);
-
+  const { t } = useTranslation();
   return (
-    <div className="flex flex-col sm:flex-row">
-      <ArticleCardSys />
-    </div>
+    <>
+      {articlesLength == 0 ? (
+        <ul className="mt-2 grid px-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <ArticleCardSys />
+          <ArticleCardSys />
+          <ArticleCardSys />
+          <ArticleCardSys />
+          <ArticleCardSys />
+          <ArticleCardSys />
+          <ArticleCardSys />
+          <ArticleCardSys />
+          <ArticleCardSys />
+          <ArticleCardSys />
+          <ArticleCardSys />
+          <ArticleCardSys />
+        </ul>
+      ) : (
+        <div className="mt-10 flex w-full text-center">
+          <h1 className="h-full w-full text-2xl dark:text-white">{t("ARTICLES_NOT_FOUND")}</h1>
+        </div>
+      )}
+    </>
   );
 }
 
