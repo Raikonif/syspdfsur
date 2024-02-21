@@ -40,7 +40,7 @@ function ArticlesPage(): ReactElement {
           articles={articles}
           showShowModal={handleModalCreate}
           showDeleteModal={handleModalDelete}
-          showEditModal={handleModalDelete}
+          showEditModal={handleModalCreate}
         />
       </div>
       {createModal && <ModalCreateArticle onClose={handleModalCreate} refModal={refModalCreate} />}
