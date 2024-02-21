@@ -7,5 +7,9 @@
   "ARTICLES_BLOG": "Articles Blog",
   "ARTICLES_NOT_FOUND": "Articles not Found",
   "SEARCH": "Search",
-  "CREATE_ARTICLE": "Create Article"
+  "CREATE_ARTICLE": "Create Article",
+  "CANCEL": "Cancel",
+  "CONFIRM": "Confirm",
+  "SAVE": "Save",
+  "DELETE": "Delete"
 }
