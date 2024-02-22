@@ -1,8 +1,8 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement } from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
 import { useTranslation } from "react-i18next";
-import RichTextEditor from "~/components/RichTextEditor";
 import MyDropZone from "~/components/MyDropZone";
+import ImageAndDescription from "~/pages/articles/components/modals/ImageAndDescription";
 
 interface IProps {
   onClose: (isOpen: boolean) => void;
@@ -16,10 +16,10 @@ function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
       <GeneralModal
         onClose={() => onClose(false)}
         refModal={refModal}
-        customWidth={"w-fit"}
-        customHeight={"h-fit"}
+        customWidth={"w-4/5 lg:w-fit"}
+        customHeight={"h-10/12 lg:h-fit"}
       >
-        <form className="flex w-full max-w-sm space-x-3">
+        <form className="flex w-full max-w-sm space-x-3 md:max-w-xl lg:max-w-sm">
           <div className="m-auto mt-10 w-full max-w-2xl rounded-lg bg-white px-5 py-10 dark:bg-gray-800">
             <h1 className="mb-6 text-center text-3xl font-light text-gray-800 dark:text-white">
               {t("CREATE_ARTICLE")}
@@ -54,19 +54,20 @@ function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
                   />
                 </div>
               </div>
-              <div className="col-span-2">
-                <label className="text-gray-700" htmlFor="name">
-                  <textarea
-                    className="w-full flex-1 appearance-none rounded-lg border border-gray-300 bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600"
-                    id="article-form-content"
-                    placeholder="Enter your Content"
-                    name="comment"
-                    rows={5}
-                    cols={40}
-                  ></textarea>
-                </label>
-              </div>
-              <MyDropZone />
+              <ImageAndDescription getImage={""} getDescription={""} />
+              {/*<div className="col-span-2">*/}
+              {/*  <label className="text-gray-700" htmlFor="name">*/}
+              {/*    <textarea*/}
+              {/*      className="w-full flex-1 appearance-none rounded-lg border border-gray-300 bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600"*/}
+              {/*      id="article-form-content"*/}
+              {/*      placeholder="Enter your Content"*/}
+              {/*      name="comment"*/}
+              {/*      rows={5}*/}
+              {/*      cols={40}*/}
+              {/*    ></textarea>*/}
+              {/*  </label>*/}
+              {/*</div>*/}
+              {/*<MyDropZone />*/}
               <div className="col-span-2 text-right">
                 <button
                   type="submit"

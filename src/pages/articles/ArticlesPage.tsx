@@ -4,6 +4,7 @@ import ArticlesList from "~/pages/articles/components/ArticlesList";
 import { Article } from "~/interfaces/Article.interface";
 import Header from "~/pages/articles/components/Header";
 import ModalDeleteItem from "~/components/ModalDeleteItem";
+import Paginator from "~/components/Paginator";
 
 function ArticlesPage(): ReactElement {
   const [articles, setArticles] = useState<Article[]>([] as Article[]);
@@ -43,6 +44,7 @@ function ArticlesPage(): ReactElement {
           showEditModal={handleModalCreate}
         />
       </div>
+      <Paginator />
       {createModal && <ModalCreateArticle onClose={handleModalCreate} refModal={refModalCreate} />}
       {deleteModal && (
         <ModalDeleteItem
