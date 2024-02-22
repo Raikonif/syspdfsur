@@ -25,55 +25,7 @@ function ArticlesList({
   return (
     <>
       {articlesLength == 0 ? (
-        <ul className="mt-2 grid px-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          <ArticleCardSys
-            article={article}
-            setModalDelete={showDeleteModal}
-            setModalEdit={showEditModal}
-            setModalShow={showShowModal}
-          />
-          <ArticleCardSys
-            article={article}
-            setModalDelete={showDeleteModal}
-            setModalEdit={showEditModal}
-            setModalShow={showShowModal}
-          />
-          <ArticleCardSys
-            article={article}
-            setModalDelete={showDeleteModal}
-            setModalEdit={showEditModal}
-            setModalShow={showShowModal}
-          />
-          <ArticleCardSys
-            article={article}
-            setModalDelete={showDeleteModal}
-            setModalEdit={showEditModal}
-            setModalShow={showShowModal}
-          />
-          <ArticleCardSys
-            article={article}
-            setModalDelete={showDeleteModal}
-            setModalEdit={showEditModal}
-            setModalShow={showShowModal}
-          />
-          <ArticleCardSys
-            article={article}
-            setModalDelete={showDeleteModal}
-            setModalEdit={showEditModal}
-            setModalShow={showShowModal}
-          />
-          <ArticleCardSys
-            article={article}
-            setModalDelete={showDeleteModal}
-            setModalEdit={showEditModal}
-            setModalShow={showShowModal}
-          />
-          <ArticleCardSys
-            article={article}
-            setModalDelete={showDeleteModal}
-            setModalEdit={showEditModal}
-            setModalShow={showShowModal}
-          />
+        <ul className="mt-5 grid px-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           <ArticleCardSys
             article={article}
             setModalDelete={showDeleteModal}
