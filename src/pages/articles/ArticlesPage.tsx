@@ -5,6 +5,7 @@ import { Article } from "~/interfaces/Article.interface";
 import Header from "~/pages/articles/components/Header";
 import ModalDeleteItem from "~/components/ModalDeleteItem";
 import Paginator from "~/components/Paginator";
+import { BiPlusMedical } from "react-icons/all";
 
 function ArticlesPage(): ReactElement {
   const [articles, setArticles] = useState<Article[]>([] as Article[]);
@@ -35,16 +36,26 @@ function ArticlesPage(): ReactElement {
 
   return (
     <>
-      <div className="flex flex-col">
-        <Header setShowModal={setCreateModal} showModal={createModal} />
-        <ArticlesList
-          articles={articles}
-          showShowModal={handleModalCreate}
-          showDeleteModal={handleModalDelete}
-          showEditModal={handleModalCreate}
-        />
+      <div className="flex h-full flex-col justify-between">
+        <div className="flex flex-col">
+          <Header setShowModal={setCreateModal} showModal={createModal} />
+          <ArticlesList
+            articles={articles}
+            showShowModal={handleModalCreate}
+            showDeleteModal={handleModalDelete}
+            showEditModal={handleModalCreate}
+          />
+        </div>
+        <div className="my-5">
+          <Paginator />
+        </div>
       </div>
-      <Paginator />
+      <button
+        className="fixed bottom-6 right-6 h-[50px] w-[50px]"
+        onClick={() => setCreateModal(true)}
+      >
+        <BiPlusMedical className="m-1 mr-2 h-[50px] w-[50px] rounded-full bg-violet-600 p-2 text-center text-white sm:hidden" />
+      </button>
       {createModal && <ModalCreateArticle onClose={handleModalCreate} refModal={refModalCreate} />}
       {deleteModal && (
         <ModalDeleteItem

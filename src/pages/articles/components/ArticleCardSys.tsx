@@ -21,7 +21,7 @@ function ArticleCardSys({
   const { t } = useTranslation();
   return (
     <article
-      className="m-2 flex max-h-[200px] max-w-md cursor-pointer flex-col rounded-md border-y border-l-8 border-fuchsia-600 shadow-md"
+      className="m-2 flex max-h-[200px] max-w-md cursor-pointer flex-col rounded-md border-y border-l-8 border-fuchsia-600 shadow-md sm:mx-2 sm:my-3"
       onClick={() => setModalShow(true)}
     >
       <div className="flex w-full flex-col justify-between">

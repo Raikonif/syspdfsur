@@ -3,7 +3,7 @@ import { BsFillSearchHeartFill } from "react-icons/all";
 
 function Search() {
   return (
-    <div className="mb-3 sm:w-full xl:w-96">
+    <div className="mb-3 w-fit sm:w-full">
       <div className="relative  flex w-full flex-wrap items-stretch">
         <input
           type="search"
