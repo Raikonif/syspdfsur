@@ -6,6 +6,7 @@ import Header from "~/pages/articles/components/Header";
 import ModalDeleteItem from "~/components/ModalDeleteItem";
 import Paginator from "~/components/Paginator";
 import { BiPlusMedical } from "react-icons/all";
+import Search from "~/components/menu/search/Search";
 
 function ArticlesPage(): ReactElement {
   const [articles, setArticles] = useState<Article[]>([] as Article[]);
@@ -36,7 +37,7 @@ function ArticlesPage(): ReactElement {
 
   return (
     <>
-      <div className="flex h-full flex-col justify-between">
+      <div className="flex h-full flex-col justify-between pt-10 sm:pt-0">
         <div className="flex flex-col">
           <Header setShowModal={setCreateModal} showModal={createModal} />
           <ArticlesList
@@ -51,11 +52,14 @@ function ArticlesPage(): ReactElement {
         </div>
       </div>
       <button
-        className="fixed bottom-6 right-6 h-[50px] w-[50px]"
+        className="fixed bottom-6 right-6 h-[50px] w-[50px] sm:hidden"
         onClick={() => setCreateModal(true)}
       >
-        <BiPlusMedical className="m-1 mr-2 h-[50px] w-[50px] rounded-full bg-violet-600 p-2 text-center text-white sm:hidden" />
+        <BiPlusMedical className="h-[50px] w-[50px] rounded-full bg-violet-600 p-2 text-center text-white" />
       </button>
+      {/*<div className="fixed mt-2 flex w-full items-end justify-end px-3 sm:hidden">*/}
+      {/*  <Search />*/}
+      {/*</div>*/}
       {createModal && <ModalCreateArticle onClose={handleModalCreate} refModal={refModalCreate} />}
       {deleteModal && (
         <ModalDeleteItem

@@ -25,7 +25,7 @@ function ArticlesList({
   return (
     <>
       {articlesLength == 0 ? (
-        <ul className="mt-5 grid content-around px-3 sm:my-10 sm:grid-cols-2 lg:grid-cols-3 xl:mr-1 xl:grid-cols-4 2xl:mr-0">
+        <ul className="mt-5 grid content-around px-3 sm:my-5 sm:grid-cols-2 lg:grid-cols-3 xl:mr-1 xl:grid-cols-4 2xl:mr-0">
           <ArticleCardSys
             article={article}
             setModalDelete={showDeleteModal}

@@ -69,7 +69,7 @@ function GeneralMenu({ itemList, isMobileMode, modalProfile }: IProps): ReactEle
           </div>
         </div>
       ) : (
-        <div className="fixed h-screen w-36 rounded-r-2xl bg-fuchsia-600">
+        <div className="fixed h-screen max-w-[130px] rounded-r-2xl bg-fuchsia-600">
           <Profile openModalProfile={() => modalProfile(true)} />
           <div>
             <ul className="w-full text-white">{listItems}</ul>
