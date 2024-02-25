@@ -1,28 +1,29 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
-import { useTranslation } from "react-i18next";
-import MyDropZone from "~/components/MyDropZone";
 import ImageAndDescription from "~/pages/articles/components/modals/ImageAndDescription";
+import { useTranslation } from "react-i18next";
+import FlickitySliderArticle from "~/pages/articles/components/FlickitySliderArticle";
 
-interface IProps {
+interface Props {
   onClose: (isOpen: boolean) => void;
   refModal: React.RefObject<HTMLDivElement>;
+  onEdit: (isEditing: boolean) => void;
+  edit: boolean;
 }
-
-function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
+function ModalEditArticle({ onClose, refModal, onEdit, edit }: Props) {
   const { t } = useTranslation();
   return (
     <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
       <GeneralModal
         onClose={() => onClose(false)}
         refModal={refModal}
-        customWidth={"w-full lg:w-fit"}
-        customHeight={"h-full lg:h-fit"}
+        customWidth={"w-4/5 lg:w-fit"}
+        customHeight={"h-10/12 lg:h-fit"}
       >
         <form className="flex w-full max-w-sm space-x-3 md:max-w-xl lg:max-w-sm">
           <div className="m-auto mt-10 w-full max-w-2xl rounded-lg bg-white px-5 py-10 dark:bg-gray-800">
             <h1 className="mb-6 text-center text-3xl font-light text-gray-800 dark:text-white">
-              {t("CREATE_ARTICLE")}
+              {edit ? t("EDIT_ARTICLE") : t("ARTICLE_VIEW")}
             </h1>
             <div className="m-auto grid max-w-xl grid-cols-2 gap-4">
               <div className="col-span-2 lg:col-span-1">
@@ -47,19 +48,18 @@ function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
               </div>
               <div className="col-span-2 lg:col-span-1">
                 <div className=" relative ">
-                  <input
-                    type={"text"}
+                  <select
                     id="article-author"
                     className=" w-full flex-1 appearance-none rounded-lg border border-gray-300 border-transparent bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600"
                     placeholder="Author"
                   />
                 </div>
               </div>
-              <ImageAndDescription
-                getImage={"https://www.w3schools.com/w3images/lights.jpg"}
-                getDescription={""}
-              />
-              {/*<MyDropZone />*/}
+              <FlickitySliderArticle />
+              {/*<ImageAndDescription*/}
+              {/*  getImage={"https://www.w3schools.com/w3images/lights.jpg"}*/}
+              {/*  getDescription={"DESCRIPTION AS EXAMPLE"}*/}
+              {/*/>*/}
               <div className="col-span-2 text-right">
                 <button
                   type="submit"
@@ -76,4 +76,4 @@ function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
   );
 }
 
-export default ModalCreateArticle;
+export default ModalEditArticle;

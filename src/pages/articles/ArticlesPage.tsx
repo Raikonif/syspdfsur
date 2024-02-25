@@ -7,6 +7,7 @@ import ModalDeleteItem from "~/components/ModalDeleteItem";
 import Paginator from "~/components/Paginator";
 import { BiPlusMedical } from "react-icons/all";
 import Search from "~/components/menu/search/Search";
+import ModalEditArticle from "~/pages/articles/components/modals/ModalEditArticle";
 
 function ArticlesPage(): ReactElement {
   const [articles, setArticles] = useState<Article[]>([] as Article[]);
@@ -15,6 +16,7 @@ function ArticlesPage(): ReactElement {
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
   const [editModal, setEditModal] = useState<boolean>(false);
   const [confirmDelete, setConfirmDelete] = useState<boolean>(false);
+  const [edit, setEdit] = useState<boolean>(false);
   const refModalCreate = React.useRef<HTMLDivElement>(null);
   const refModalDelete = React.useRef<HTMLDivElement>(null);
   const refModalEdit = React.useRef<HTMLDivElement>(null);
@@ -42,9 +44,9 @@ function ArticlesPage(): ReactElement {
           <Header setShowModal={setCreateModal} showModal={createModal} />
           <ArticlesList
             articles={articles}
-            showShowModal={handleModalCreate}
+            showShowModal={handleModalEdit}
             showDeleteModal={handleModalDelete}
-            showEditModal={handleModalCreate}
+            showEditModal={handleModalEdit}
           />
         </div>
         <div className="my-5">
@@ -68,8 +70,22 @@ function ArticlesPage(): ReactElement {
           confirmDelete={handleConfirmDelete}
         />
       )}
-      {editModal && <ModalCreateArticle onClose={handleModalEdit} refModal={refModalEdit} />}
-      {showModal && <ModalCreateArticle onClose={handleModalShow} refModal={refModalCreate} />}
+      {editModal && (
+        <ModalEditArticle
+          onClose={handleModalEdit}
+          refModal={refModalEdit}
+          onEdit={setEdit}
+          edit={edit}
+        />
+      )}
+      {showModal && (
+        <ModalEditArticle
+          onClose={handleModalShow}
+          refModal={refModalEdit}
+          onEdit={setEdit}
+          edit={edit}
+        />
+      )}
     </>
   );
 }

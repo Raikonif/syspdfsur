@@ -8,6 +8,8 @@
   "ARTICLES_NOT_FOUND": "No se encontraron Artículos",
   "SEARCH": "Buscar",
   "CREATE_ARTICLE": "Crear Artículo",
+  "EDIT_ARTICLE": "Editar Artículo",
+  "ARTICLE_VIEW": "Vista del Artículo",
   "CANCEL": "Cancelar",
   "CONFIRM": "Confirmar",
   "SAVE": "Guardar",
