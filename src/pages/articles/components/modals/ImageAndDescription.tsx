@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BiPlusMedical } from "react-icons/all";
 import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from "react-icons/io";
 interface Props {
@@ -7,6 +7,9 @@ interface Props {
 }
 
 function ImageAndDescription({ getImage, getDescription }: Props) {
+  const [slide, setSlide] = useState<[]>([]);
+  const [position, setPosition] = useState<number>(0);
+
   return (
     <div className="col-span-2 flex flex-col">
       <img src={getImage} alt="Lights" className="col-span-2 aspect-auto rounded-md" />
