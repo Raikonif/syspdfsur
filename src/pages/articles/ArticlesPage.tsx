@@ -52,11 +52,11 @@ function ArticlesPage(): ReactElement {
           <Paginator />
         </div>
       </div>
-      <button
-        className="fixed bottom-6 right-6 h-[50px] w-[50px] sm:hidden"
-        onClick={() => setCreateModal(true)}
-      >
-        <BiPlusMedical className="h-[50px] w-[50px] rounded-full bg-violet-600 p-2 text-center text-white" />
+      <button className="fixed bottom-6 right-6 lg:hidden" onClick={() => setCreateModal(true)}>
+        <BiPlusMedical
+          size={40}
+          className="rounded-full bg-violet-600 p-2 text-center text-white"
+        />
       </button>
       {/*<div className="fixed mt-2 flex w-full items-end justify-end px-3 sm:hidden">*/}
       {/*  <Search />*/}
