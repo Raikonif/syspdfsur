@@ -28,14 +28,14 @@ function ImageAndDescription({ getImage, getDescription }: Props) {
         </label>
       </div>
       <div className="flex w-full items-center justify-between">
-        <div className="mx-1 flex">
+        <button className="mx-1 flex">
           <IoIosArrowDropleftCircle size={25} className="text-indigo-600" />
           <p className="mx-1 text-indigo-600">Prev</p>
-        </div>
-        <div className="ml-1 flex">
+        </button>
+        <button className="ml-1 flex">
           <p className="mx-1 text-indigo-600">Next</p>
           <IoIosArrowDroprightCircle size={25} className="text-indigo-600" />
-        </div>
+        </button>
         <button className="flex w-fit rounded-lg border-2 border-slate-400 p-1.5">
           <p className="pr-2 text-slate-500">Add another Slide</p>
           <BiPlusMedical size={30} className="rounded-md bg-indigo-600 p-1.5 text-white" />

@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import GeneralMenu from "~/components/menu/GeneralMenu";
 import homeOptions from "~/constants/options/home.options";
-import SearchButton from "~/components/menu/search/SearchButton";
 import ProfileCard from "~/components/menu/Profile/ProfileCard";
 import SignOutModal from "~/components/menu/Profile/SignOutModal";
 import toast, { Toaster } from "react-hot-toast";
-import Search from "~/components/menu/search/Search";
 
-function GeneralLayout(): JSX.Element {
+function GeneralLayout(): ReactElement {
   const [mobileMode, setMobileMode] = useState<boolean>(false);
   const [modalSignOut, setModalSignOut] = useState<boolean>(false);
   const [modalProfile, setModalProfile] = useState<boolean>(false);
   const refSignOut = React.useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     toast.success("Welcome to your System Nandy!");
   }, [Toaster]);
@@ -43,19 +42,11 @@ function GeneralLayout(): JSX.Element {
             : "flex h-screen w-screen bg-white"
         }`}
       >
-        <div className="w-40">
-          <GeneralMenu
-            itemList={homeOptions.menuOptions}
-            isMobileMode={mobileMode}
-            modalProfile={setModalProfile}
-          />
-        </div>
+        <GeneralMenu itemList={homeOptions.menuOptions} modalProfile={setModalProfile} />
         <div className="flex h-full w-full flex-col">
           <Outlet />
           <Toaster />
         </div>
-        {/*<SearchButton isMobileMode={mobileMode} />*/}
-        {/*<Search />*/}
         {modalProfile && <ProfileCard openModal={() => setModalSignOut(true)} />}
         {modalSignOut && (
           <SignOutModal onClose={() => setModalSignOut(true)} refModal={refSignOut} />

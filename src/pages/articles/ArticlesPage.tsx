@@ -6,7 +6,6 @@ import Header from "~/pages/articles/components/Header";
 import ModalDeleteItem from "~/components/ModalDeleteItem";
 import Paginator from "~/components/Paginator";
 import { BiPlusMedical } from "react-icons/all";
-import Search from "~/components/menu/search/Search";
 import ModalEditArticle from "~/pages/articles/components/modals/ModalEditArticle";
 
 function ArticlesPage(): ReactElement {
@@ -16,7 +15,7 @@ function ArticlesPage(): ReactElement {
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
   const [editModal, setEditModal] = useState<boolean>(false);
   const [confirmDelete, setConfirmDelete] = useState<boolean>(false);
-  const [edit, setEdit] = useState<boolean>(false);
+  const [edit, setEdit] = useState<boolean>(true);
   const refModalCreate = React.useRef<HTMLDivElement>(null);
   const refModalDelete = React.useRef<HTMLDivElement>(null);
   const refModalEdit = React.useRef<HTMLDivElement>(null);
