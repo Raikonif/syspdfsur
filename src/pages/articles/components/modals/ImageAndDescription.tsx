@@ -11,8 +11,12 @@ function ImageAndDescription({ getImage, getDescription }: Props) {
   const [position, setPosition] = useState<number>(0);
 
   return (
-    <div className="col-span-2 flex flex-col">
-      <img src={getImage} alt="Lights" className="col-span-2 aspect-auto rounded-md" />
+    <div className="col-span-2 flex w-full flex-col rounded-md border-2 border-indigo-600 p-0.5">
+      <img
+        src={getImage}
+        alt="Lights"
+        className="col-span-2 aspect-auto max-h-[150px] max-w-[400px] rounded-md"
+      />
       <div className="col-span-2 my-2">
         <label className="text-gray-700" htmlFor="name">
           <textarea

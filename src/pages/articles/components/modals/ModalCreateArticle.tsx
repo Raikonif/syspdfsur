@@ -12,7 +12,7 @@ interface IProps {
 function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
   const { t } = useTranslation();
   return (
-    <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
+    <div className="fixed inset-0 z-20 flex w-full flex-col items-center justify-center bg-gray-400 bg-opacity-50 p-2 backdrop-blur-sm sm:p-10">
       <GeneralModal
         onClose={() => onClose(false)}
         refModal={refModal}
@@ -20,8 +20,8 @@ function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
         customHeight={"h-full lg:h-fit"}
       >
         <form className="flex w-full max-w-sm space-x-3 md:max-w-xl lg:max-w-sm">
-          <div className="m-auto mt-10 w-full max-w-2xl rounded-lg bg-white px-5 py-10 dark:bg-gray-800">
-            <h1 className="mb-6 text-center text-3xl font-light text-gray-800 dark:text-white">
+          <div className="m-auto mt-0 flex w-full max-w-2xl flex-col rounded-lg bg-white px-5 py-10 dark:bg-gray-800 sm:mt-auto">
+            <h1 className="text-center text-lg font-light text-gray-800 dark:text-white sm:mb-6 sm:text-3xl">
               {t("CREATE_ARTICLE")}
             </h1>
             <div className="m-auto grid max-w-xl grid-cols-2 gap-4">
@@ -30,7 +30,7 @@ function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
                   <input
                     type="text"
                     id="article-form-title"
-                    className=" w-full flex-1 appearance-none rounded-lg border border-gray-300 border-transparent bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600"
+                    className="w-full flex-1 appearance-none rounded-lg border border-gray-300 border-transparent bg-white px-4 py-2 text-base text-xs text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600"
                     placeholder="Title"
                   />
                 </div>
@@ -40,7 +40,7 @@ function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
                   <input
                     type="text"
                     id="article-form-type"
-                    className=" w-full flex-1 appearance-none rounded-lg border border-gray-300 border-transparent bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600"
+                    className="w-full flex-1 appearance-none rounded-lg border border-gray-300 border-transparent bg-white px-4 py-2 text-base text-xs text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600"
                     placeholder="Type"
                   />
                 </div>
@@ -50,7 +50,7 @@ function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
                   <input
                     type={"text"}
                     id="article-author"
-                    className=" w-full flex-1 appearance-none rounded-lg border border-gray-300 border-transparent bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600"
+                    className="w-full flex-1 appearance-none rounded-lg border border-gray-300 border-transparent bg-white px-4 py-2 text-base text-xs text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600"
                     placeholder="Author"
                   />
                 </div>
