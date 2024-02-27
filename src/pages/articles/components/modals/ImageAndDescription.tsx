@@ -11,7 +11,7 @@ function ImageAndDescription({ getImage, getDescription }: Props) {
   const [position, setPosition] = useState<number>(0);
 
   return (
-    <div className="col-span-2 flex w-full flex-col rounded-md border-2 border-indigo-600 p-0.5">
+    <div className="col-span-2 flex w-full flex-col border-y-2 border-indigo-600 p-1">
       <img
         src={getImage}
         alt="Lights"
