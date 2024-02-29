@@ -22,7 +22,7 @@ function Header({ setShowModal, showModal }: HeaderProps): ReactElement {
         >
           <div className="m-2 flex items-center text-xs text-white">
             <p>{t("CREATE_ARTICLE")}</p>
-            <BiPlusMedical className="ml-2 text-center" />
+            <BiPlusMedical className="ml-1 text-center" />
           </div>
         </button>
       </div>

@@ -3,6 +3,7 @@ import GeneralModal from "~/components/modal/GeneralModal";
 import { useTranslation } from "react-i18next";
 import MyDropZone from "~/components/MyDropZone";
 import ImageAndDescription from "~/pages/articles/components/modals/ImageAndDescription";
+import ArticleSliderSwiper from "~/pages/articles/components/ArticleSliderSwiper";
 
 interface IProps {
   onClose: (isOpen: boolean) => void;
@@ -11,6 +12,26 @@ interface IProps {
 
 function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
   const { t } = useTranslation();
+  const slides = [
+    {
+      id: 1,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis. Lorem Ipsum",
+      image: "https://www.w3schools.com/w3images/lights.jpg",
+    },
+    {
+      id: 2,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis. Lorem Ipsum",
+      image: "https://www.w3schools.com/w3images/nature.jpg",
+    },
+    {
+      id: 3,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis. Lorem Ipsum",
+      image: "https://www.w3schools.com/w3images/mountains.jpg",
+    },
+  ];
   return (
     <div className="fixed inset-0 z-20 flex w-full flex-col items-center justify-center bg-gray-400 bg-opacity-50 p-2 backdrop-blur-sm sm:p-10">
       <GeneralModal
@@ -55,11 +76,7 @@ function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
                   />
                 </div>
               </div>
-              <ImageAndDescription
-                getImage={"https://www.w3schools.com/w3images/lights.jpg"}
-                getDescription={""}
-              />
-              {/*<MyDropZone />*/}
+              <ArticleSliderSwiper slides={[]} />
               <div className="col-span-2 text-right">
                 <button
                   type="submit"

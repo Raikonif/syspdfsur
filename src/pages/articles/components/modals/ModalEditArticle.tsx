@@ -1,8 +1,7 @@
 import React from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
-import ImageAndDescription from "~/pages/articles/components/modals/ImageAndDescription";
 import { useTranslation } from "react-i18next";
-import FlickitySliderArticle from "~/pages/articles/components/FlickitySliderArticle";
+import ArticleSliderSwiper from "~/pages/articles/components/ArticleSliderSwiper";
 
 interface Props {
   onClose: (isOpen: boolean) => void;
@@ -12,6 +11,26 @@ interface Props {
 }
 function ModalEditArticle({ onClose, refModal, onEdit, edit }: Props) {
   const { t } = useTranslation();
+  const slides = [
+    {
+      id: 1,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis. Lorem Ipsum",
+      image: "https://www.w3schools.com/w3images/lights.jpg",
+    },
+    {
+      id: 2,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis. Lorem Ipsum",
+      image: "https://www.w3schools.com/w3images/nature.jpg",
+    },
+    {
+      id: 3,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis. Lorem Ipsum",
+      image: "https://www.w3schools.com/w3images/mountains.jpg",
+    },
+  ];
   return (
     <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
       <GeneralModal
@@ -55,11 +74,7 @@ function ModalEditArticle({ onClose, refModal, onEdit, edit }: Props) {
                   />
                 </div>
               </div>
-              <FlickitySliderArticle />
-              {/*<ImageAndDescription*/}
-              {/*  getImage={"https://www.w3schools.com/w3images/lights.jpg"}*/}
-              {/*  getDescription={"DESCRIPTION AS EXAMPLE"}*/}
-              {/*/>*/}
+              <ArticleSliderSwiper slides={slides} />
               <div className="col-span-2 text-right">
                 <button
                   type="submit"

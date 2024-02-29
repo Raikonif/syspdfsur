@@ -23,7 +23,7 @@ function GeneralModal({
     <>
       <div
         ref={refModal}
-        className={`fixed inset-0 flex items-center ${customWidth} ${customHeight} justify-center rounded-xl bg-white shadow-2xl transition-colors`}
+        className={`fixed flex items-center ${customWidth} ${customHeight} justify-center rounded-xl bg-white shadow-2xl transition-colors`}
       >
         {buttonClose && (
           <button
@@ -33,7 +33,7 @@ function GeneralModal({
             X
           </button>
         )}
-        <div className="flex w-full justify-center">{children}</div>
+        <div className="flex w-full items-center justify-center">{children}</div>
       </div>
     </>
   );

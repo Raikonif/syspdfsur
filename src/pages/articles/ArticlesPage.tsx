@@ -7,6 +7,8 @@ import ModalDeleteItem from "~/components/ModalDeleteItem";
 import Paginator from "~/components/Paginator";
 import { BiPlusMedical } from "react-icons/all";
 import ModalEditArticle from "~/pages/articles/components/modals/ModalEditArticle";
+import ArticlesSlider from "~/pages/articles/components/ArticlesSlider";
+import ArticleSliderSwiper from "~/pages/articles/components/ArticleSliderSwiper";
 
 function ArticlesPage(): ReactElement {
   const [articles, setArticles] = useState<Article[]>([] as Article[]);
@@ -36,6 +38,27 @@ function ArticlesPage(): ReactElement {
     setConfirmDelete(newState);
   };
 
+  const slides = [
+    {
+      id: 1,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis. Lorem Ipsum",
+      image: "https://www.w3schools.com/w3images/lights.jpg",
+    },
+    {
+      id: 2,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis. Lorem Ipsum",
+      image: "https://www.w3schools.com/w3images/nature.jpg",
+    },
+    {
+      id: 3,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis. Lorem Ipsum",
+      image: "https://www.w3schools.com/w3images/mountains.jpg",
+    },
+  ];
+
   return (
     <>
       <div className="flex h-full flex-col justify-between pt-10 sm:pt-0">
@@ -47,6 +70,7 @@ function ArticlesPage(): ReactElement {
             showDeleteModal={handleModalDelete}
             showEditModal={handleModalEdit}
           />
+          {/*<ArticleSliderSwiper slides={slides} />*/}
         </div>
         <div className="my-5">
           <Paginator />
