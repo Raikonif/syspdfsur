@@ -9,6 +9,8 @@ import { BiPlusMedical } from "react-icons/all";
 import ModalEditArticle from "~/pages/articles/components/modals/ModalEditArticle";
 import ArticlesSlider from "~/pages/articles/components/ArticlesSlider";
 import ArticleSliderSwiper from "~/pages/articles/components/ArticleSliderSwiper";
+import ModalShow from "~/pages/diagnoses/components/modals/ModalShow";
+import modalCreateArticle from "~/pages/articles/components/modals/ModalCreateArticle";
 
 function ArticlesPage(): ReactElement {
   const [articles, setArticles] = useState<Article[]>([] as Article[]);
@@ -21,21 +23,12 @@ function ArticlesPage(): ReactElement {
   const refModalCreate = React.useRef<HTMLDivElement>(null);
   const refModalDelete = React.useRef<HTMLDivElement>(null);
   const refModalEdit = React.useRef<HTMLDivElement>(null);
+  const [openClose, setOpenClose] = useState<boolean>(false);
 
-  const handleModalShow = (newState: boolean) => {
-    setShowModal(newState);
-  };
-  const handleModalCreate = (newState: boolean) => {
-    setCreateModal(newState);
-  };
-  const handleModalDelete = (newState: boolean) => {
-    setDeleteModal(newState);
-  };
-  const handleModalEdit = (newState: boolean) => {
+  const handleOpenClose = (newState: boolean) => {
     setEditModal(newState);
-  };
-  const handleConfirmDelete = (newState: boolean) => {
-    setConfirmDelete(newState);
+    setCreateModal(newState);
+    setShowModal(newState);
   };
 
   const slides = [
@@ -66,9 +59,9 @@ function ArticlesPage(): ReactElement {
           <Header setShowModal={setCreateModal} showModal={createModal} />
           <ArticlesList
             articles={articles}
-            showShowModal={handleModalEdit}
-            showDeleteModal={handleModalDelete}
-            showEditModal={handleModalEdit}
+            showShowModal={setShowModal}
+            showDeleteModal={setDeleteModal}
+            showEditModal={setEditModal}
           />
           {/*<ArticleSliderSwiper slides={slides} />*/}
         </div>
@@ -85,30 +78,25 @@ function ArticlesPage(): ReactElement {
       {/*<div className="fixed mt-2 flex w-full items-end justify-end px-3 sm:hidden">*/}
       {/*  <Search />*/}
       {/*</div>*/}
-      {createModal && <ModalCreateArticle onClose={handleModalCreate} refModal={refModalCreate} />}
+      {/*{createModal && <ModalCreateArticle onClose={handleModalCreate} refModal={refModalCreate} />}*/}
       {deleteModal && (
         <ModalDeleteItem
-          onClose={handleModalDelete}
+          onClose={setDeleteModal}
           refModal={refModalDelete}
-          confirmDelete={handleConfirmDelete}
+          confirmDelete={setConfirmDelete}
         />
       )}
-      {editModal && (
-        <ModalEditArticle
-          onClose={handleModalEdit}
-          refModal={refModalEdit}
-          onEdit={setEdit}
-          edit={edit}
+      {(showModal || createModal || editModal) && (
+        <ModalCreateArticle
+          onClose={handleOpenClose}
+          refModal={refModalCreate}
+          create={createModal}
+          edit={editModal}
+          show={showModal}
+          onEdit={setEditModal}
         />
       )}
-      {showModal && (
-        <ModalEditArticle
-          onClose={handleModalShow}
-          refModal={refModalEdit}
-          onEdit={setEdit}
-          edit={edit}
-        />
-      )}
+      {/*{showModal && <ModalCreateArticle onClose={handleModalShow} refModal={refModalCreate} />}*/}
     </>
   );
 }

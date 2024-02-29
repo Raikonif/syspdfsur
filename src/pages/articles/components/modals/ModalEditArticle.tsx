@@ -32,16 +32,16 @@ function ModalEditArticle({ onClose, refModal, onEdit, edit }: Props) {
     },
   ];
   return (
-    <div className="fixed inset-0 z-20 flex w-full items-center justify-center bg-gray-400 bg-opacity-50 p-10 backdrop-blur-sm">
+    <div className="fixed inset-0 z-20 flex w-full flex-col items-center justify-center bg-gray-400 bg-opacity-50 p-2 backdrop-blur-sm sm:p-10">
       <GeneralModal
         onClose={() => onClose(false)}
         refModal={refModal}
-        customWidth={"w-4/5 lg:w-fit"}
-        customHeight={"h-10/12 lg:h-fit"}
+        customWidth={"w-full lg:w-fit"}
+        customHeight={"h-full lg:h-fit"}
       >
         <form className="flex w-full max-w-sm space-x-3 md:max-w-xl lg:max-w-sm">
-          <div className="m-auto mt-10 w-full max-w-2xl rounded-lg bg-white px-5 py-10 dark:bg-gray-800">
-            <h1 className="mb-6 text-center text-3xl font-light text-gray-800 dark:text-white">
+          <div className="m-auto mt-0 flex w-full max-w-2xl flex-col rounded-lg bg-white px-5 py-10 dark:bg-gray-800 sm:mt-auto">
+            <h1 className="text-center text-3xl font-light text-gray-800 dark:text-white sm:mb-6">
               {edit ? t("EDIT_ARTICLE") : t("ARTICLE_VIEW")}
             </h1>
             <div className="m-auto grid max-w-xl grid-cols-2 gap-4">

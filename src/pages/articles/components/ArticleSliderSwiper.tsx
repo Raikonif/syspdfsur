@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
-// import "./styles.css";
-
 import { Pagination, Navigation } from "swiper/modules";
 import ArticleSwiperCard from "~/pages/articles/components/ArticleSwiperCard";
+
+import default_image from "~/assets/default_image.jpg";
 
 interface Slide {
   id: number;
@@ -19,7 +19,8 @@ interface SlideList {
   slides: Slide[];
 }
 function ArticleSliderSwiper({ slides }: SlideList) {
-  const [imageSrcLoaded, setImageSrcLoaded] = useState<string>("");
+  const [imageSrcLoaded, setImageSrcLoaded] = useState<string>(default_image);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
     const loadImage = async () => {
       try {
@@ -27,6 +28,7 @@ function ArticleSliderSwiper({ slides }: SlideList) {
         const blob = await response.blob();
         const objectURL = URL.createObjectURL(blob);
         setImageSrcLoaded(objectURL);
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -44,18 +46,15 @@ function ArticleSliderSwiper({ slides }: SlideList) {
         loop={true}
         modules={[Pagination, Navigation]}
         navigation={true}
-        className="col-span-2 max-w-xs self-start rounded-3xl pb-16"
+        className="max-w-xs self-start rounded-lg pb-7"
       >
         {slides.map((slide: Slide) => (
-          <SwiperSlide
-            key={slide.id}
-            className="h-fit rounded-3xl border-b-8 border-[#FAF9FD] bg-white dark:border-slate-400 dark:bg-slate-400/60"
-          >
+          <SwiperSlide key={slide.id} className="rounded-lg bg-white dark:bg-slate-400/60">
             <ArticleSwiperCard
               key={slide.id}
               description={slide.description}
               id={slide.id}
-              image={slide.image}
+              image={imageSrcLoaded}
             />
           </SwiperSlide>
         ))}

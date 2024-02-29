@@ -6,11 +6,22 @@ import ImageAndDescription from "~/pages/articles/components/modals/ImageAndDesc
 import ArticleSliderSwiper from "~/pages/articles/components/ArticleSliderSwiper";
 
 interface IProps {
-  onClose: (isOpen: boolean) => void;
+  onClose: (onClose: boolean) => void;
+  onEdit: (onEdit: boolean) => void;
+  create: boolean;
+  edit: boolean;
+  show: boolean;
   refModal: React.RefObject<HTMLDivElement>;
 }
 
-function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
+function ModalCreateArticle({
+  onClose,
+  refModal,
+  create,
+  edit,
+  show,
+  onEdit,
+}: IProps): ReactElement {
   const { t } = useTranslation();
   const slides = [
     {
@@ -43,7 +54,9 @@ function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
         <form className="flex w-full max-w-sm space-x-3 md:max-w-xl lg:max-w-sm">
           <div className="m-auto mt-0 flex w-full max-w-2xl flex-col rounded-lg bg-white px-5 py-10 dark:bg-gray-800 sm:mt-auto">
             <h1 className="text-center text-3xl font-light text-gray-800 dark:text-white sm:mb-6">
-              {t("CREATE_ARTICLE")}
+              {create && !edit && !show && t("CREATE_ARTICLE")}
+              {edit && !create && !show && t("EDIT_ARTICLE")}
+              {show && !create && !edit && t("ARTICLE_VIEW")}
             </h1>
             <div className="m-auto grid max-w-xl grid-cols-2 gap-4">
               <div className="col-span-2 lg:col-span-1">
@@ -76,7 +89,9 @@ function ModalCreateArticle({ onClose, refModal }: IProps): ReactElement {
                   />
                 </div>
               </div>
-              <ArticleSliderSwiper slides={[]} />
+              <div className="col-span-2">
+                <ArticleSliderSwiper slides={slides} />
+              </div>
               <div className="col-span-2 text-right">
                 <button
                   type="submit"

@@ -1,5 +1,5 @@
-import { SwiperSlide } from "swiper/react";
 import React, { useEffect, useState } from "react";
+import default_image from "~/assets/default_image.jpg";
 
 interface Slide {
   id: number;
@@ -8,6 +8,8 @@ interface Slide {
 }
 function ArticleSwiperCard({ id, description, image }: Slide) {
   const [imageSrcLoaded, setImageSrcLoaded] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const isOnEdit = false;
   useEffect(() => {
     const loadImage = async () => {
       try {
@@ -15,6 +17,7 @@ function ArticleSwiperCard({ id, description, image }: Slide) {
         const blob = await response.blob();
         const objectURL = URL.createObjectURL(blob);
         setImageSrcLoaded(objectURL);
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -24,7 +27,19 @@ function ArticleSwiperCard({ id, description, image }: Slide) {
   return (
     <>
       <div className="">
-        <img src={image} alt="..." />
+        {!isLoading ? (
+          <img
+            src={imageSrcLoaded}
+            alt={String(id)}
+            className="max-h-[200px] w-full rounded-b-md"
+          />
+        ) : (
+          <img
+            src={default_image}
+            alt={"default_image"}
+            className="max-h-[200px] w-full rounded-b-md"
+          />
+        )}
         <input type="file" className="hidden" />
       </div>
       <div className="mt-2 flex flex-col gap-1">
