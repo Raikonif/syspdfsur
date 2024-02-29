@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import ModalCreateArticle from "~/pages/articles/components/modals/ModalCreateArticle";
 import ArticlesList from "~/pages/articles/components/ArticlesList";
 import { Article } from "~/interfaces/Article.interface";
@@ -11,6 +11,7 @@ import ArticlesSlider from "~/pages/articles/components/ArticlesSlider";
 import ArticleSliderSwiper from "~/pages/articles/components/ArticleSliderSwiper";
 import ModalShow from "~/pages/diagnoses/components/modals/ModalShow";
 import modalCreateArticle from "~/pages/articles/components/modals/ModalCreateArticle";
+import { getArticle, getArticles } from "~/service/articles.service";
 
 function ArticlesPage(): ReactElement {
   const [articles, setArticles] = useState<Article[]>([] as Article[]);
@@ -24,12 +25,20 @@ function ArticlesPage(): ReactElement {
   const refModalDelete = React.useRef<HTMLDivElement>(null);
   const refModalEdit = React.useRef<HTMLDivElement>(null);
   const [openClose, setOpenClose] = useState<boolean>(false);
-
+  const [arts, setArts] = useState<any[]>([]);
   const handleOpenClose = (newState: boolean) => {
     setEditModal(newState);
     setCreateModal(newState);
     setShowModal(newState);
   };
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      const artis = await getArticles();
+      console.log(artis);
+    };
+    fetchArticles();
+  }, []);
 
   const slides = [
     {
