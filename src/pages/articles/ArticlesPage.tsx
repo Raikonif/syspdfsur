@@ -11,7 +11,7 @@ import ArticlesSlider from "~/pages/articles/components/ArticlesSlider";
 import ArticleSliderSwiper from "~/pages/articles/components/ArticleSliderSwiper";
 import ModalShow from "~/pages/diagnoses/components/modals/ModalShow";
 import modalCreateArticle from "~/pages/articles/components/modals/ModalCreateArticle";
-import { getArticle, getArticles } from "~/service/articles.service";
+import { getArticle, getArticles, getArticlesSlides, getAuthors } from "~/service/articles.service";
 
 function ArticlesPage(): ReactElement {
   const [articles, setArticles] = useState<Article[]>([] as Article[]);
@@ -35,7 +35,11 @@ function ArticlesPage(): ReactElement {
   useEffect(() => {
     const fetchArticles = async () => {
       const artis = await getArticles();
+      const authors = await getAuthors();
+      const articlesSlides = await getArticlesSlides();
       console.log(artis);
+      console.log(authors);
+      console.log(articlesSlides);
     };
     fetchArticles();
   }, []);
