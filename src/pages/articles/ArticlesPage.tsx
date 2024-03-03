@@ -29,7 +29,7 @@ import {
 function ArticlesPage(): ReactElement {
   const [articles, setArticles] = useState<Article[]>([] as Article[]);
   const [authors, setAuthors] = useState<Author[]>([] as Author[]);
-  const [articleSlides, setArticleSlides] = useState<ArticleSlide[]>([] as ArticleSlide);
+  const [articleSlides, setArticleSlides] = useState<ArticleSlide[]>([] as ArticleSlide[]);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [createModal, setCreateModal] = useState<boolean>(false);
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
