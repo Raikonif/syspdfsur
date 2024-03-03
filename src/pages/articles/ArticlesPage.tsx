@@ -1,7 +1,13 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import ModalCreateArticle from "~/pages/articles/components/modals/ModalCreateArticle";
 import ArticlesList from "~/pages/articles/components/ArticlesList";
-import { Article } from "~/interfaces/Article.interface";
+import {
+  Article,
+  ArticleSlide,
+  Author,
+  ExtendedAuthorAndSlideForArticle,
+  IArticle,
+} from "~/interfaces/Article.interface";
 import Header from "~/pages/articles/components/Header";
 import ModalDeleteItem from "~/components/ModalDeleteItem";
 import Paginator from "~/components/Paginator";
@@ -11,10 +17,19 @@ import ArticlesSlider from "~/pages/articles/components/ArticlesSlider";
 import ArticleSliderSwiper from "~/pages/articles/components/ArticleSliderSwiper";
 import ModalShow from "~/pages/diagnoses/components/modals/ModalShow";
 import modalCreateArticle from "~/pages/articles/components/modals/ModalCreateArticle";
-import { getArticle, getArticles, getArticlesSlides, getAuthors } from "~/service/articles.service";
+import {
+  getArticle,
+  getArticles,
+  getArticlesSlides,
+  getArticlesSlidesByArticle,
+  getAuthor,
+  getAuthors,
+} from "~/service/articles.service";
 
 function ArticlesPage(): ReactElement {
   const [articles, setArticles] = useState<Article[]>([] as Article[]);
+  const [authors, setAuthors] = useState<Author[]>([] as Author[]);
+  const [articleSlides, setArticleSlides] = useState<ArticleSlide[]>([] as ArticleSlide);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [createModal, setCreateModal] = useState<boolean>(false);
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
@@ -25,7 +40,7 @@ function ArticlesPage(): ReactElement {
   const refModalDelete = React.useRef<HTMLDivElement>(null);
   const refModalEdit = React.useRef<HTMLDivElement>(null);
   const [openClose, setOpenClose] = useState<boolean>(false);
-  const [arts, setArts] = useState<any[]>([]);
+  const [articlesComplete, setArticlesComplete] = useState<IArticle[]>([]);
   const handleOpenClose = (newState: boolean) => {
     setEditModal(newState);
     setCreateModal(newState);
@@ -33,15 +48,32 @@ function ArticlesPage(): ReactElement {
   };
 
   useEffect(() => {
-    const fetchArticles = async () => {
-      const artis = await getArticles();
-      const authors = await getAuthors();
-      const articlesSlides = await getArticlesSlides();
-      console.log(artis);
-      console.log(authors);
-      console.log(articlesSlides);
+    const articles = getArticles();
+    const authors = getAuthors();
+    const articleSlides = getArticlesSlides();
+    const fetchCompleteArticles = async () => {
+      const [articlesData, authorsData, articlesSlidesData] = await Promise.all([
+        articles,
+        authors,
+        articleSlides,
+      ]);
+      const articlesCompose = articlesData.map((article) => {
+        const author = authorsData.find((author) => author.id === article.id);
+        const slides = articlesSlidesData.filter((slide) => slide.article === article.id);
+        return {
+          ...article,
+          author,
+          article_slides: slides,
+        };
+      });
+
+      // const articlesCompose2 = articlesCompose[0].id;
+      console.log("ARTICLES COMPLETE", articlesCompose);
+      // console.log("AUTHORS", authorsData);
+      // console.log("ARTICLES", articlesData);
+      console.log("SLIDES", articlesSlidesData);
     };
-    fetchArticles();
+    fetchCompleteArticles();
   }, []);
 
   const slides = [
