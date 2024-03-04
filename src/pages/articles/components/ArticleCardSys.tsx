@@ -1,12 +1,9 @@
 import React, { ReactElement } from "react";
-import { FaEdit } from "react-icons/fa";
-import { MdDeleteForever } from "react-icons/md";
-import { IoReaderSharp } from "react-icons/io5";
-import { Article } from "~/interfaces/Article.interface";
 import { useTranslation } from "react-i18next";
+import { IArticle } from "~/interfaces/Article.interface";
 
 interface ArticleCardSysProps {
-  article: Article;
+  article: IArticle;
   setModalEdit: (newState: boolean) => void;
   setModalShow: (newState: boolean) => void;
   setModalDelete: (newState: boolean) => void;
@@ -27,10 +24,10 @@ function ArticleCardSys({
       <div className="flex w-full flex-col justify-between">
         <div className="flex h-full w-full flex-col justify-between p-4">
           <header className="mb-2 mt-1 border-b border-fuchsia-600 pb-1 text-center font-semibold">
-            Case 1 PAP new
+            {article.title}
           </header>
-          <p className="text-sm font-semibold text-slate-500">Date: 12/12/22</p>
-          <p className="font-semibold">Dra. Nandy Calle Peñaranda</p>
+          <p className="text-sm font-semibold text-slate-500">{article.created_at}</p>
+          <p className="font-semibold">{article.author?.full_name}</p>
         </div>
         <div className="flex justify-end">
           <button

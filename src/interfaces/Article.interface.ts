@@ -1,12 +1,12 @@
 export interface Article {
   id: number;
   title: string;
-  date: string;
+  created_at: string;
   author_id: number;
   type: string;
 }
 
-export interface ExtendedAuthorAndSlideForArticle extends Article {
+export interface ExtendedArticle extends Article {
   author: Author;
   article_slides: ArticleSlide[];
 }
@@ -38,8 +38,8 @@ export interface Author {
 export interface IArticle {
   id: number;
   title: string;
-  date: string;
+  created_at: string;
   type: string;
   article_slides: ArticleSlide[];
-  author: Author;
+  author: Author | null;
 }

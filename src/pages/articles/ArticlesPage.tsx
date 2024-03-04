@@ -5,7 +5,7 @@ import {
   Article,
   ArticleSlide,
   Author,
-  ExtendedAuthorAndSlideForArticle,
+  ExtendedArticle,
   IArticle,
 } from "~/interfaces/Article.interface";
 import Header from "~/pages/articles/components/Header";
@@ -40,7 +40,7 @@ function ArticlesPage(): ReactElement {
   const refModalDelete = React.useRef<HTMLDivElement>(null);
   const refModalEdit = React.useRef<HTMLDivElement>(null);
   const [openClose, setOpenClose] = useState<boolean>(false);
-  const [articlesComplete, setArticlesComplete] = useState<IArticle[]>([]);
+  const [articlesComplete, setArticlesComplete] = useState<IArticle[]>([] as IArticle[]);
   const handleOpenClose = (newState: boolean) => {
     setEditModal(newState);
     setCreateModal(newState);
@@ -58,20 +58,18 @@ function ArticlesPage(): ReactElement {
         articleSlides,
       ]);
       const articlesCompose = articlesData.map((article) => {
-        const author = authorsData.find((author) => author.id === article.id);
-        const slides = articlesSlidesData.filter((slide) => slide.article === article.id);
+        const author = authorsData.find((author: Author) => author.id === article.id);
+        const slides = articlesSlidesData.filter(
+          (slide: ArticleSlide) => slide.article === article.id,
+        );
         return {
           ...article,
-          author,
+          author: author || null,
           article_slides: slides,
         };
       });
-
-      // const articlesCompose2 = articlesCompose[0].id;
-      console.log("ARTICLES COMPLETE", articlesCompose);
-      // console.log("AUTHORS", authorsData);
-      // console.log("ARTICLES", articlesData);
-      console.log("SLIDES", articlesSlidesData);
+      setArticlesComplete(articlesCompose);
+      console.log("ARTICLES COMPLETE", articlesComplete);
     };
     fetchCompleteArticles();
   }, []);
@@ -103,12 +101,11 @@ function ArticlesPage(): ReactElement {
         <div className="flex flex-col">
           <Header setShowModal={setCreateModal} showModal={createModal} />
           <ArticlesList
-            articles={articles}
+            articles={articlesComplete}
             showShowModal={setShowModal}
             showDeleteModal={setDeleteModal}
             showEditModal={setEditModal}
           />
-          {/*<ArticleSliderSwiper slides={slides} />*/}
         </div>
         <div className="my-5">
           <Paginator />
