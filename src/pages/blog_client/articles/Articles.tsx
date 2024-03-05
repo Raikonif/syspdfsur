@@ -17,7 +17,7 @@ function Articles(): ReactElement {
   };
 
   useEffect(() => {
-    allArticles().catch((error) => console.error(error));
+    // allArticles().catch((error) => console.error(error));
   }, []);
 
   useEffect(() => {
@@ -57,7 +57,7 @@ function Articles(): ReactElement {
           <Search search={changeSearch} setSearch={setChangeSearch} />
         </div>
       </div>
-      <ArticleList articles={articlesFiltered} />
+      {/*<ArticleList articles={articlesFiltered} />*/}
     </div>
   );
 }

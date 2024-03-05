@@ -78,27 +78,6 @@ function ArticlesPage(): ReactElement {
     fetchCompleteArticles();
   }, []);
 
-  const slides = [
-    {
-      id: 1,
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis. Lorem Ipsum",
-      image: "https://www.w3schools.com/w3images/lights.jpg",
-    },
-    {
-      id: 2,
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis. Lorem Ipsum",
-      image: "https://www.w3schools.com/w3images/nature.jpg",
-    },
-    {
-      id: 3,
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis. Lorem Ipsum",
-      image: "https://www.w3schools.com/w3images/mountains.jpg",
-    },
-  ];
-
   return (
     <>
       <div className="flex h-full flex-col justify-between pt-10 sm:pt-0">
