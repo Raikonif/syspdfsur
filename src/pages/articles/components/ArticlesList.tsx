@@ -23,9 +23,9 @@ function ArticlesList({
   const article = {} as Article;
   const { t } = useTranslation();
   useEffect(() => {
+    if (articles.length > 0) setArticlesLength(articles.length);
     setArticlesShow(articles);
-    setArticlesLength(articles.length);
-  }, []);
+  }, [articles]);
   return (
     <>
       {articlesLength == 0 ? (
