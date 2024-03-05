@@ -69,7 +69,11 @@ function ArticlesPage(): ReactElement {
         };
       });
       setArticlesComplete(articlesCompose);
-      console.log("ARTICLES COMPLETE", articlesComplete);
+      console.log("AUTHORS", authorsData);
+      console.log("ARTICLES SLIDES", articlesSlidesData);
+      console.log("ARTICLES", articlesData);
+      // console.log("ARTICLES COMPLETE", articlesComplete);
+      console.log("ARTICLES", articlesCompose);
     };
     fetchCompleteArticles();
   }, []);

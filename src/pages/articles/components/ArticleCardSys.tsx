@@ -27,7 +27,7 @@ function ArticleCardSys({
             {article.title}
           </header>
           <p className="text-sm font-semibold text-slate-500">{article.created_at}</p>
-          <p className="font-semibold">{article.author?.full_name}</p>
+          <p className="font-semibold">{`${article.author?.mention} ${article.author?.full_name}`}</p>
         </div>
         <div className="flex justify-end">
           <button
