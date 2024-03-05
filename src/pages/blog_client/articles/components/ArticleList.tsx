@@ -19,15 +19,15 @@ function ArticleList({ articles }: ArticleListProps) {
         {articlesLength > 0 &&
           articles.map((article: Article) => (
             <li key={article.id} className="mx-2">
-              <ArticleCard
-                id={article.id}
-                title={article.title}
-                author={article.author}
-                content={article.content}
-                date={article.date}
-                images={article.images}
-                type={article.type}
-              />
+              {/*<ArticleCard*/}
+              {/*  id={article.id}*/}
+              {/*  title={article.title}*/}
+              {/*  author={article.author}*/}
+              {/*  content={article.content}*/}
+              {/*  date={article.date}*/}
+              {/*  images={article.images}*/}
+              {/*  type={article.type}*/}
+              {/*/>*/}
             </li>
           ))}
       </ul>
