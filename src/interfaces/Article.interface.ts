@@ -42,5 +42,5 @@ export interface IArticle {
   created_at?: string;
   type: string;
   article_slides: ArticleSlide[];
-  author: Author | unknown;
+  author: Author;
 }
