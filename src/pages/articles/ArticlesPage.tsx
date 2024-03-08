@@ -43,9 +43,6 @@ function ArticlesPage(): ReactElement {
     setShowModal(newState);
   };
 
-  console.log("articles", articles);
-  // console.log("authors", authors);
-  // console.log("slides", slides);
   useEffect(() => {
     const fetchCompleteArticles = async () => {
       const articlesCompose = articles.data.map((article: Article) => {
@@ -58,7 +55,6 @@ function ArticlesPage(): ReactElement {
         };
       });
       setArticlesComplete(articlesCompose);
-      console.log("articlesCompose", articlesCompose);
     };
     fetchCompleteArticles();
   }, [authors, articles, slides]);
@@ -68,9 +64,6 @@ function ArticlesPage(): ReactElement {
       <div className="flex h-full flex-col justify-between pt-10 sm:pt-0">
         <div className="flex flex-col">
           <Header setShowModal={setCreateModal} showModal={createModal} />
-          {/*{articles.data.map((article: Article) => (*/}
-          {/*  <li key={article.id}>{article.title}</li>*/}
-          {/*))}*/}
           <ArticlesList
             articles={articlesComplete}
             showShowModal={setShowModal}

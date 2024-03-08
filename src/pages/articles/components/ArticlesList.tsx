@@ -29,7 +29,7 @@ function ArticlesList({
   return (
     <>
       {articlesLength > 0 ? (
-        <ul className="mt-5 grid content-around px-3 sm:my-2 sm:mt-12 sm:grid-cols-2 lg:mt-5 lg:grid-cols-3 xl:mr-1 xl:grid-cols-4 2xl:mr-0">
+        <ul className="my-5 grid content-around px-3 sm:my-2 sm:mt-12 sm:grid-cols-2 lg:mt-5 lg:grid-cols-3 xl:mr-1 xl:grid-cols-4 2xl:mr-0">
           {articles.map((article: IArticle) => (
             <ArticleCardSys
               key={article.id}
