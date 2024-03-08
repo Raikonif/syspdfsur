@@ -1,13 +1,7 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { createContext, ReactElement, useContext, useEffect, useState } from "react";
 import ModalCreateArticle from "~/pages/articles/components/modals/ModalCreateArticle";
 import ArticlesList from "~/pages/articles/components/ArticlesList";
-import {
-  Article,
-  ArticleSlide,
-  Author,
-  ExtendedArticle,
-  IArticle,
-} from "~/interfaces/Article.interface";
+import { Article, ArticleSlide, Author, IArticle } from "~/interfaces/Article.interface";
 import Header from "~/pages/articles/components/Header";
 import ModalDeleteItem from "~/components/ModalDeleteItem";
 import Paginator from "~/components/Paginator";
@@ -22,14 +16,14 @@ import {
   getArticles,
   getArticlesSlides,
   getArticlesSlidesByArticle,
-  getAuthor,
-  getAuthors,
 } from "~/service/articles.service";
+import { getAuthors } from "~/service/authors.service";
+import DataFetchContext from "~/pages/articles/context/DataFetchContext";
 
 function ArticlesPage(): ReactElement {
-  const [articles, setArticles] = useState<Article[]>([] as Article[]);
-  const [authors, setAuthors] = useState<Author[]>([] as Author[]);
-  const [articleSlides, setArticleSlides] = useState<ArticleSlide[]>([] as ArticleSlide[]);
+  // const [articles, setArticles] = useState<Article[]>([] as Article[]);
+  // const [authors, setAuthors] = useState<Author[]>([] as Author[]);
+  // const [articleSlides, setArticleSlides] = useState<ArticleSlide[]>([] as ArticleSlide[]);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [createModal, setCreateModal] = useState<boolean>(false);
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
@@ -41,48 +35,42 @@ function ArticlesPage(): ReactElement {
   const refModalEdit = React.useRef<HTMLDivElement>(null);
   const [openClose, setOpenClose] = useState<boolean>(false);
   const [articlesComplete, setArticlesComplete] = useState<IArticle[]>([] as IArticle[]);
+  const { articles, authors, slides } = useContext(DataFetchContext);
+
   const handleOpenClose = (newState: boolean) => {
     setEditModal(newState);
     setCreateModal(newState);
     setShowModal(newState);
   };
 
+  console.log("articles", articles);
+  // console.log("authors", authors);
+  // console.log("slides", slides);
   useEffect(() => {
-    const articles = getArticles();
-    const authors = getAuthors();
-    const articleSlides = getArticlesSlides();
     const fetchCompleteArticles = async () => {
-      const [articlesData, authorsData, articlesSlidesData] = await Promise.all([
-        articles,
-        authors,
-        articleSlides,
-      ]);
-      const articlesCompose = articlesData.map((article) => {
-        const author = authorsData.find((author: Author) => author.id === article.id);
-        const slides = articlesSlidesData.filter(
-          (slide: ArticleSlide) => slide.article === article.id,
-        );
+      const articlesCompose = articles.data.map((article: Article) => {
+        const author = authors.data.find((author: Author) => author.id === article.author);
+        const slide = slides.data.filter((slide: ArticleSlide) => slide.article === article.id);
         return {
           ...article,
           author: author || null,
-          article_slides: slides,
+          article_slides: slide,
         };
       });
       setArticlesComplete(articlesCompose);
-      console.log("AUTHORS", authorsData);
-      console.log("ARTICLES SLIDES", articlesSlidesData);
-      console.log("ARTICLES", articlesData);
-      // console.log("ARTICLES COMPLETE", articlesComplete);
-      console.log("ARTICLES", articlesCompose);
+      console.log("articlesCompose", articlesCompose);
     };
     fetchCompleteArticles();
-  }, []);
+  }, [authors, articles, slides]);
 
   return (
     <>
       <div className="flex h-full flex-col justify-between pt-10 sm:pt-0">
         <div className="flex flex-col">
           <Header setShowModal={setCreateModal} showModal={createModal} />
+          {/*{articles.data.map((article: Article) => (*/}
+          {/*  <li key={article.id}>{article.title}</li>*/}
+          {/*))}*/}
           <ArticlesList
             articles={articlesComplete}
             showShowModal={setShowModal}
@@ -115,6 +103,7 @@ function ArticlesPage(): ReactElement {
         <ModalCreateArticle
           onClose={handleOpenClose}
           refModal={refModalCreate}
+          authors={authors}
           create={createModal}
           edit={editModal}
           show={showModal}

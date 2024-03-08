@@ -6,6 +6,7 @@ import PatientsHistory from "~/pages/PatientsHistory";
 import Settings from "~/pages/Settings";
 import DiagnosisProvider from "~/pages/diagnoses/context/DiagnosisProvider";
 import ArticlesPage from "~/pages/articles/ArticlesPage";
+import ArticlesProvider from "~/pages/articles/context";
 
 const GenericRoutes = {
   path: "adm",
@@ -13,7 +14,11 @@ const GenericRoutes = {
   children: [
     {
       path: "",
-      element: <ArticlesPage />,
+      element: (
+        <ArticlesProvider>
+          <ArticlesPage />,
+        </ArticlesProvider>
+      ),
     },
     {
       path: "patients",

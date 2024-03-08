@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { ALL, CITHOLOGY, HISTOPATHOLOGY, PAP } from "~/constants/Blog/blog.constants";
 interface FilterProps {
   selected: string;

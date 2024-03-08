@@ -2,14 +2,14 @@ export interface Article {
   id: number;
   title: string;
   created_at: string;
-  author_id: number;
+  author: number;
   type: string;
 }
 
-export interface ExtendedArticle extends Article {
-  author: Author;
-  article_slides: ArticleSlide[];
-}
+// export interface ExtendedArticle extends Article {
+//   author: Author;
+//   article_slides: ArticleSlide[];
+// }
 
 export interface ArticleSlide {
   id: number;
@@ -28,6 +28,7 @@ export interface Author {
   full_name: string;
   gender: AuthorGender;
   mention: string;
+  speciality: string;
   avatar: string;
   email: string;
   twitter: string;
@@ -38,8 +39,8 @@ export interface Author {
 export interface IArticle {
   id: number;
   title: string;
-  created_at: string;
+  created_at?: string;
   type: string;
   article_slides: ArticleSlide[];
-  author: Author | null;
+  author: Author | unknown;
 }

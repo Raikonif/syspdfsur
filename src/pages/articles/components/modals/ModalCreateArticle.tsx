@@ -1,9 +1,11 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
 import { useTranslation } from "react-i18next";
 import MyDropZone from "~/components/MyDropZone";
 import ImageAndDescription from "~/pages/articles/components/modals/ImageAndDescription";
 import ArticleSliderSwiper from "~/pages/articles/components/ArticleSliderSwiper";
+import SelectAuthor from "~/pages/articles/components/modals/SelectAuthor";
+import { Author, IArticle } from "~/interfaces/Article.interface";
 
 interface IProps {
   onClose: (onClose: boolean) => void;
@@ -11,6 +13,7 @@ interface IProps {
   create: boolean;
   edit: boolean;
   show: boolean;
+  authors: any;
   refModal: React.RefObject<HTMLDivElement>;
 }
 
@@ -21,8 +24,21 @@ function ModalCreateArticle({
   edit,
   show,
   onEdit,
+  authors,
 }: IProps): ReactElement {
+  const [createArticle, setCreateArticle] = useState<IArticle>({
+    id: 0,
+    title: "",
+    type: "",
+    author: {} as Author,
+    article_slides: [],
+  } as IArticle);
+
   const { t } = useTranslation();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(createArticle);
+  };
   const slides = [
     {
       id: 1,
@@ -51,7 +67,10 @@ function ModalCreateArticle({
         customWidth={"w-full lg:w-fit"}
         customHeight={"h-full lg:h-fit"}
       >
-        <form className="flex w-full max-w-sm space-x-3 md:max-w-xl lg:max-w-sm">
+        <form
+          className="flex w-full max-w-sm space-x-3 md:max-w-xl lg:max-w-sm"
+          onSubmit={handleSubmit}
+        >
           <div className="m-auto mt-0 flex w-full max-w-2xl flex-col rounded-lg bg-white px-5 py-10 dark:bg-gray-800 sm:mt-auto">
             <h1 className="text-center text-3xl font-light text-gray-800 dark:text-white sm:mb-6">
               {create && !edit && !show && t("CREATE_ARTICLE")}
@@ -79,15 +98,8 @@ function ModalCreateArticle({
                   />
                 </div>
               </div>
-              <div className="col-span-2 lg:col-span-1">
-                <div className=" relative ">
-                  <input
-                    type={"text"}
-                    id="article-author"
-                    className="w-full flex-1 appearance-none rounded-lg border border-gray-300 border-transparent bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600"
-                    placeholder="Author"
-                  />
-                </div>
+              <div className="col-span-1 lg:col-span-2">
+                <SelectAuthor data={authors} getAuthor={setCreateArticle} />
               </div>
               <div className="col-span-2">
                 <ArticleSliderSwiper slides={slides} />

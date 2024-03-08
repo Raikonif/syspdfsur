@@ -17,7 +17,7 @@ function Articles(): ReactElement {
   };
 
   useEffect(() => {
-    // allArticles().catch((error) => console.error(error));
+    allArticles().catch((error) => console.error(error));
   }, []);
 
   useEffect(() => {

@@ -6,15 +6,6 @@ const getArticles = async (): Promise<Article[]> => {
   return response.data || [];
 };
 
-const getAuthors = async (): Promise<Author[]> => {
-  const response = await serviceAPI.get<Author[]>("/api/v1/authors/");
-  return response.data || [];
-};
-const getAuthor = async (id: number): Promise<Author> => {
-  const response = await serviceAPI.get<Author>(`/api/v1/authors/${id}`);
-  return response.data || {};
-};
-
 const getArticlesSlides = async (): Promise<ArticleSlide[]> => {
   const response = await serviceAPI.get<ArticleSlide[]>("/api/v1/articles_slides/");
   return response.data || [];
@@ -30,11 +21,4 @@ const getArticle = async (id: number): Promise<Article> => {
   return response.data || {};
 };
 
-export {
-  getArticles,
-  getArticle,
-  getAuthors,
-  getArticlesSlides,
-  getAuthor,
-  getArticlesSlidesByArticle,
-};
+export { getArticles, getArticle, getArticlesSlides, getArticlesSlidesByArticle };

@@ -1,10 +1,8 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import HomeMenu from "~/components/blog_menu/HomeMenu";
-import { Article } from "~/interfaces/Article.interface";
 
 function ClientLayout(): ReactElement {
-  const [articles, setArticles] = useState<Article[]>([] as Article[]);
   useEffect(() => {
     document.documentElement.classList.add("dark");
     localStorage.setItem("theme", "dark");
