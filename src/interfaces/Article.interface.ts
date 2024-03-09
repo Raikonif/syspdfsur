@@ -6,11 +6,6 @@ export interface Article {
   type: string;
 }
 
-// export interface ExtendedArticle extends Article {
-//   author: Author;
-//   article_slides: ArticleSlide[];
-// }
-
 export interface ArticleSlide {
   id: number;
   article: number;
@@ -41,6 +36,6 @@ export interface IArticle {
   title: string;
   created_at?: string;
   type: string;
-  article_slides: ArticleSlide[];
-  author: Author;
+  article_slides: ArticleSlide[] | null;
+  author: Author | null;
 }

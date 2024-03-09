@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Article } from "~/interfaces/Article.interface";
 import default_image from "~/assets/default_image.jpg";
-function ArticleCard({ id, title, author_id, created_at, type }: Article) {
+function ArticleCard({ id, title, author, created_at, type }: Article) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [imageSrcLoaded, setImageSrcLoaded] = useState<string>("");
   const slicedContent = " ...";
@@ -34,7 +34,7 @@ function ArticleCard({ id, title, author_id, created_at, type }: Article) {
       <div className="w-full p-5">
         <h2 className="mb-1.5 text-lg font-bold">{title}</h2>
         <div className="flex justify-between">
-          <h3 className="font-semibold text-violet-600 dark:text-fuchsia-500">{author_id}</h3>
+          <h3 className="font-semibold text-violet-600 dark:text-fuchsia-500">{author}</h3>
           <p className="font-semibold text-slate-400 dark:text-slate-300">{created_at}</p>
         </div>
         <p className="mt-1">{slicedContent}</p>
