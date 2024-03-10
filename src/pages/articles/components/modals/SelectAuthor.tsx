@@ -19,8 +19,8 @@ function SelectAuthor({ data }: IProps) {
   const fetchAuthors = async () => {
     try {
       setIsLoading(true);
-      const data = await getAuthors();
-      setAuthors(data);
+      const dataAuthors = await getAuthors();
+      setAuthors(dataAuthors.data);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);

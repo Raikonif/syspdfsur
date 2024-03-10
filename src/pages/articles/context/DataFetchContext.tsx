@@ -4,7 +4,8 @@ import { Article, ArticleSlide, Author } from "~/interfaces/Article.interface";
 export interface FetchState<T> {
   data: T;
   loading: boolean;
-  error: boolean;
+  hasError: boolean;
+  error: null | unknown;
 }
 
 export interface ArticlesProviderData {

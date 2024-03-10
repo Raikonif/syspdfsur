@@ -32,8 +32,8 @@ interface IProps {
 function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
   const [active, setActive] = useState<string>(HISTOPATHOLOGY);
   const [openPDF, setOpenPDF] = useState<boolean>(false);
-  const { data: patients } = useGetData<AxiosResponse<Patient[]>>({ dataToFetch: getPatients });
-  const { data: medics } = useGetData<AxiosResponse<Medic[]>>({ dataToFetch: getMedics });
+  const patients = useGetData<Patient[]>({ dataToFetch: getPatients });
+  const { data: medics } = useGetData<Medic[]>({ dataToFetch: getMedics });
   const [switchButton, setSwitchButton] = useState<boolean>(false);
   const [sampleDate, setSampleDate] = useState<Dates>({
     startDate: null,
@@ -168,7 +168,7 @@ function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
                 <PatientSelect data={patients.data} option={setReport} report={report} />
               </div>
               <div className=" mx-1 flex w-1/2">
-                <MedicSelect data={medics.data} option={setReport} report={report} />
+                <MedicSelect data={medics} option={setReport} report={report} />
               </div>
             </div>
             <div className="flex justify-between p-1">
