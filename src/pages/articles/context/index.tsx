@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode } from "react";
 import { Article, ArticleSlide, Author } from "~/interfaces/Article.interface";
 import DataFetchContext, { ArticlesProviderData } from "~/pages/articles/context/DataFetchContext";
 import useGetData from "~/hooks/useGetData";
