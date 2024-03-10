@@ -50,7 +50,7 @@ function ArticlesPage(): ReactElement {
         <div className="flex flex-col">
           <Header setShowModal={setCreateModal} showModal={createModal} />
           {articles.loading || authors.loading || (slides.loading && <p>{"Loading ..."}</p>)}
-          {articles.error || authors.error || (slides.error && <p>{"Error"}</p>)}
+          {articles.hasError || authors.hasError || (slides.hasError && <p>{"Error"}</p>)}
           {articlesComplete && (
             <ArticlesList
               articles={articlesComplete}

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Header from "~/pages/patients/Header";
 import ModalCreate from "~/pages/patients/modals/ModalCreate";
 import PatientCard from "~/pages/patients/components/PatientCard";
-import { getPatients } from "~/service/patient.service";
+import { getPatients, getPatients2 } from "~/service/patient.service";
 import Patient from "~/interfaces/Patient.type";
 import PatientList from "~/pages/patients/components/PatientList";
 
@@ -15,7 +15,7 @@ function Patients(): JSX.Element {
     setShowModalCreate(newState);
   };
   const getAllPatients = async () => {
-    const patients = await getPatients();
+    const patients = await getPatients2();
     setPatients(patients);
   };
 

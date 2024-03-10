@@ -32,7 +32,7 @@ interface IProps {
 function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
   const [active, setActive] = useState<string>(HISTOPATHOLOGY);
   const [openPDF, setOpenPDF] = useState<boolean>(false);
-  const patients = useGetData<Patient[]>({ dataToFetch: getPatients });
+  const { data: patients } = useGetData<Patient[]>({ dataToFetch: getPatients });
   const { data: medics } = useGetData<Medic[]>({ dataToFetch: getMedics });
   const [switchButton, setSwitchButton] = useState<boolean>(false);
   const [sampleDate, setSampleDate] = useState<Dates>({
@@ -165,7 +165,7 @@ function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
             </div>
             <div className="flex justify-between px-1">
               <div className="mx-1 flex w-1/2">
-                <PatientSelect data={patients.data} option={setReport} report={report} />
+                <PatientSelect data={patients} option={setReport} report={report} />
               </div>
               <div className=" mx-1 flex w-1/2">
                 <MedicSelect data={medics} option={setReport} report={report} />
