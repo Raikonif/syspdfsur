@@ -1,14 +1,14 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import Patient from "~/interfaces/Patient.type";
 import Diagnoses from "~/pages/diagnoses/Diagnoses";
-import { getPatients } from "~/service/patient.service";
+import { getPatients, getPatients2 } from "~/service/patient.service";
 
 function PatientSelect(): ReactElement {
   const [openSelect, setOpenSelect] = useState<boolean>(false);
   const [patients, setPatients] = useState<Patient[]>([] as Patient[]);
   const [selected, setSelected] = useState<Patient>({} as Patient);
   const getAllPatients = async () => {
-    setPatients(await getPatients());
+    setPatients(await getPatients2());
   };
   const selectAndClose = (patient: Patient) => {
     setSelected(patient);
