@@ -2,11 +2,10 @@ import React, { ReactElement, useEffect, useState } from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
 import Histopathology from "~/pages/diagnoses/components/modals/modal_create/subsections/Histopathology";
 import PatientSelect from "~/pages/diagnoses/components/modals/modal_create/components/PatientSelect";
-import { getPatients, getPatients2 } from "~/service/patient.service";
+import { getPatients2 } from "~/service/patient.service";
 import Patient from "~/interfaces/Patient.type";
-import useGetData from "~/hooks/useGetData";
 import MedicSelect from "~/pages/diagnoses/components/modals/modal_create/components/MedicSelect";
-import { getMedics, getMedics2 } from "~/service/medic.service";
+import { getMedics2 } from "~/service/medic.service";
 import Medic from "~/interfaces/Medic.type";
 import { IReportForm, Report } from "~/interfaces/Report.type";
 import { IHistopathologyReportForm } from "~/interfaces/SubReports.interface";
@@ -23,7 +22,6 @@ import Cytology from "~/pages/diagnoses/components/modals/modal_create/subsectio
 import Biopsy from "~/pages/diagnoses/components/modals/modal_create/subsections/Biopsy";
 import ReactPDF, { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import PDFDocument from "~/pages/diagnoses/components/modals/modal_create/components/PDFDocument";
-import { AxiosResponse } from "axios";
 interface IProps {
   onClose: (isOpen: boolean) => void;
   refModal: React.RefObject<HTMLDivElement>;
@@ -36,7 +34,7 @@ function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
   const [medics, setMedics] = useState<Medic[]>([] as Medic[]);
   // const { data: patients } = useGetData<Patient[]>({ dataToFetch: getPatients });
   const getData = async () => {
-    return Promise.all([getMedics2(), getPatients2()]);
+    return await Promise.all([getMedics2(), getPatients2()]);
   };
 
   // const { data: medics } = useGetData<Medic[]>({ dataToFetch: getMedics });

@@ -13,7 +13,7 @@ function Articles(): ReactElement {
   const [articlesFiltered, setArticlesFiltered] = useState<Article[]>(articles);
   const allArticles = async () => {
     const articles = await getArticles();
-    setArticles(articles);
+    setArticles(articles.data);
   };
 
   useEffect(() => {
