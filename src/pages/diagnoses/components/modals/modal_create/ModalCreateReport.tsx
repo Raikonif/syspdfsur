@@ -23,6 +23,7 @@ import Cytology from "~/pages/diagnoses/components/modals/modal_create/subsectio
 import Biopsy from "~/pages/diagnoses/components/modals/modal_create/subsections/Biopsy";
 import ReactPDF, { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import PDFDocument from "~/pages/diagnoses/components/modals/modal_create/components/PDFDocument";
+import { AxiosResponse } from "axios";
 interface IProps {
   onClose: (isOpen: boolean) => void;
   refModal: React.RefObject<HTMLDivElement>;
@@ -31,8 +32,8 @@ interface IProps {
 function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
   const [active, setActive] = useState<string>(HISTOPATHOLOGY);
   const [openPDF, setOpenPDF] = useState<boolean>(false);
-  const { data: patients } = useGetData<Patient[]>({ dataToFetch: getPatients });
-  const { data: medics } = useGetData<Medic[]>({ dataToFetch: getMedics });
+  const { data: patients } = useGetData<AxiosResponse<Patient[]>>({ dataToFetch: getPatients });
+  const { data: medics } = useGetData<AxiosResponse<Medic[]>>({ dataToFetch: getMedics });
   const [switchButton, setSwitchButton] = useState<boolean>(false);
   const [sampleDate, setSampleDate] = useState<Dates>({
     startDate: null,
@@ -164,10 +165,10 @@ function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
             </div>
             <div className="flex justify-between px-1">
               <div className="mx-1 flex w-1/2">
-                <PatientSelect data={patients} option={setReport} report={report} />
+                <PatientSelect data={patients.data} option={setReport} report={report} />
               </div>
               <div className=" mx-1 flex w-1/2">
-                <MedicSelect data={medics} option={setReport} report={report} />
+                <MedicSelect data={medics.data} option={setReport} report={report} />
               </div>
             </div>
             <div className="flex justify-between p-1">
