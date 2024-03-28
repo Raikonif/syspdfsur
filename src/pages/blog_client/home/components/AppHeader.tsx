@@ -1,50 +1,49 @@
 import React from "react";
 
-const links = [
-  {
-    to: "/#features",
-    label: "Features",
-  },
-  {
-    to: "/#solution",
-    label: "Solution",
-  },
-  {
-    to: "/#reviews",
-    label: "Reviews",
-  },
-];
+// let isToggled = false;
+// const navlinks = document.querySelector("#navlinks");
+// const hamburger = document.querySelector("#hamburger");
+// const layer = document.querySelector("#navLayer");
+// const links = [...navlinks.querySelector("ul").children];
 
-let isToggled = false;
-const navlinks = document.querySelector("#navlinks");
-const hamburger = document.querySelector("#hamburger");
-const layer = document.querySelector("#navLayer");
-const links = [...navlinks.querySelector("ul").children];
-
-function toggleNavlinks() {
-  if (isToggled) {
-    navlinks.classList.add("!visible", "!scale-100", "!opacity-100", "!lg:translate-y-0");
-    hamburger.classList.add("toggled");
-    layer.classList.add("origin-top", "scale-y-100");
-  } else {
-    navlinks.classList.remove("!visible", "!scale-100", "!opacity-100", "!lg:translate-y-0");
-    hamburger.classList.remove("toggled");
-    layer.classList.remove("origin-top", "scale-y-100");
-  }
-}
+// function toggleNavlinks() {
+//   if (isToggled) {
+//     navlinks.classList.add("!visible", "!scale-100", "!opacity-100", "!lg:translate-y-0");
+//     hamburger.classList.add("toggled");
+//     layer.classList.add("origin-top", "scale-y-100");
+//   } else {
+//     navlinks.classList.remove("!visible", "!scale-100", "!opacity-100", "!lg:translate-y-0");
+//     hamburger.classList.remove("toggled");
+//     layer.classList.remove("origin-top", "scale-y-100");
+//   }
+// }
 
 function AppHeader() {
-  hamburger.addEventListener("click", () => {
-    isToggled = !isToggled;
-    toggleNavlinks();
-  });
-
-  links.forEach((link) => {
-    link.addEventListener("click", () => {
-      isToggled = !isToggled;
-      toggleNavlinks();
-    });
-  });
+  const links = [
+    {
+      to: "/#features",
+      label: "Features",
+    },
+    {
+      to: "/#solution",
+      label: "Solution",
+    },
+    {
+      to: "/#reviews",
+      label: "Reviews",
+    },
+  ];
+  // hamburger.addEventListener("click", () => {
+  //   isToggled = !isToggled;
+  //   toggleNavlinks();
+  // });
+  //
+  // links.forEach((link) => {
+  //   link.addEventListener("click", () => {
+  //     isToggled = !isToggled;
+  //     toggleNavlinks();
+  //   });
+  // });
   return (
     <header>
       <nav className="absolute z-10 w-full border-b border-black/5 dark:border-white/5 lg:border-transparent">
