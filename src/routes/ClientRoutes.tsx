@@ -5,6 +5,7 @@ import NotFound from "~/pages/NotFound";
 import Articles from "~/pages/blog_client/articles/Articles";
 import About from "~/pages/blog_client/About";
 import Blog from "~/pages/blog_client/Blog";
+import Landing from "~/pages/blog_client/home/Landing";
 
 const ClientRoutes = {
   path: "",
@@ -12,7 +13,7 @@ const ClientRoutes = {
   children: [
     {
       path: "",
-      element: <Home />,
+      element: <Landing />,
     },
     {
       path: "articles",
