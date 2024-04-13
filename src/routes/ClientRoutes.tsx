@@ -5,7 +5,7 @@ import NotFound from "~/pages/NotFound";
 import Articles from "~/pages/blog_client/articles/Articles";
 import About from "~/pages/blog_client/About";
 import Blog from "~/pages/blog_client/Blog";
-import Landing from "~/pages/blog_client/home/Landing";
+import Landing from "~/pages/blog_client/Landing";
 
 const ClientRoutes = {
   path: "",
