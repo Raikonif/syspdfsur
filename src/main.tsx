@@ -4,13 +4,14 @@ import App from "./App";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { NextUIProvider } from "@nextui-org/react";
+import DarkModeProvider from "~/context/DarkModeProvider";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <NextUIProvider>
     <BrowserRouter>
-      <main className="purple-dark bg-background text-foreground">
+      <DarkModeProvider>
         <App />
-      </main>
+      </DarkModeProvider>
     </BrowserRouter>
   </NextUIProvider>,
 );
