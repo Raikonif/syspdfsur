@@ -6,17 +6,22 @@ import Articles from "~/pages/blog_client/articles/Articles";
 import About from "~/pages/blog_client/About";
 import Blog from "~/pages/blog_client/Blog";
 import Landing from "~/pages/blog_client/Landing";
+import ClientProvider from "~/pages/blog_client/context";
 
 const ClientRoutes = {
   path: "",
-  element: <ClientLayout />,
+  element: (
+    <ClientProvider>
+      <ClientLayout />
+    </ClientProvider>
+  ),
   children: [
     {
       path: "",
       element: <Landing />,
     },
     {
-      path: "articles",
+      path: "cases",
       element: <Articles />,
     },
     {

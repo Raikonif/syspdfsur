@@ -3,10 +3,13 @@ import { Divider, Switch } from "@nextui-org/react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import React, { useContext, useState } from "react";
 import DarkModeContext from "~/context/DarkModeContext";
+import ClientContext from "~/pages/blog_client/context/ClientContext";
+import { ABOUT, CASES } from "~/constants";
 
 function Header() {
   const [onOpen, setOnOpen] = useState(false);
   const { setTheme, theme } = useContext(DarkModeContext);
+  const { handleClickOption } = useContext(ClientContext);
   const handleDarkMode = () => {
     if (theme === "dark") {
       setTheme("light");
@@ -31,8 +34,8 @@ function Header() {
               defaultSelected
               size="lg"
               color="secondary"
-              startContent={<FaSun />}
-              endContent={<FaMoon />}
+              startContent={<FaMoon />}
+              endContent={<FaSun />}
               onClick={handleDarkMode}
             />
             <span id="nav-toggle" onClick={() => setOnOpen(!onOpen)}>
@@ -45,12 +48,18 @@ function Header() {
           >
             <ul className="list-reset flex-1 items-center justify-end lg:flex">
               <li className="mr-3">
-                <span className="inline-block px-4 py-2 font-bold text-white no-underline">
+                <span
+                  className="inline-block cursor-pointer px-4 py-2 font-bold text-white no-underline"
+                  onClick={() => handleClickOption(CASES)}
+                >
                   Articles
                 </span>
               </li>
               <li className="mr-3">
-                <span className="inline-block px-4 py-2 font-bold text-white no-underline">
+                <span
+                  className="inline-block cursor-pointer px-4 py-2 font-bold text-white no-underline"
+                  onClick={() => handleClickOption(ABOUT)}
+                >
                   Acerca de mi
                 </span>
               </li>
@@ -59,8 +68,8 @@ function Header() {
               defaultSelected
               size="lg"
               color="default"
-              startContent={<FaSun />}
-              endContent={<FaMoon />}
+              startContent={<FaMoon />}
+              endContent={<FaSun />}
               onClick={handleDarkMode}
             />
           </div>
