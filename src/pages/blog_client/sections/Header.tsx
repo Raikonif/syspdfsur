@@ -34,8 +34,8 @@ function Header() {
               defaultSelected
               size="lg"
               color="secondary"
-              startContent={<FaMoon />}
-              endContent={<FaSun />}
+              startContent={<FaSun />}
+              endContent={<FaMoon />}
               onClick={handleDarkMode}
             />
             <span id="nav-toggle" onClick={() => setOnOpen(!onOpen)}>
@@ -52,7 +52,7 @@ function Header() {
                   className="inline-block cursor-pointer px-4 py-2 font-bold text-white no-underline"
                   onClick={() => handleClickOption(CASES)}
                 >
-                  Articles
+                  Casos
                 </span>
               </li>
               <li className="mr-3">

@@ -24,22 +24,22 @@ function Footer() {
         <div className="flex justify-between gap-6 lg:gap-12">
           <Tooltip content={"Twitter"}>
             <a className="flex flex-col items-center gap-2 rounded-full" href="#">
-              <FaTwitter className="h-16 w-16" />
+              <FaTwitter className="h-16 w-16 hover:text-cyan-400" />
             </a>
           </Tooltip>
           <Tooltip content={"Facebook"}>
             <a className="flex flex-col items-center gap-2" href="#">
-              <FaFacebook className="h-16 w-16" />
+              <FaFacebook className="h-16 w-16 hover:text-blue-600" />
             </a>
           </Tooltip>
           <Tooltip content={"LinkedIn"}>
             <a className="flex flex-col items-center gap-2" href="#">
-              <FaLinkedinIn className="h-16 w-16" />
+              <FaLinkedinIn className="h-16 w-16 hover:text-blue-500" />
             </a>
           </Tooltip>
           <Tooltip content={"Youtube"}>
             <a className="flex flex-col items-center gap-2" href="#">
-              <FaYoutube className="h-16 w-16" />
+              <FaYoutube className="h-16 w-16 hover:text-red-500" />
             </a>
           </Tooltip>
         </div>
