@@ -1,22 +1,27 @@
 import React from "react";
 import ClientLayout from "~/layouts/ClientLayout";
-import Home from "~/pages/blog_client/Home/Home";
+import Home from "~/pages/blog_client/home/Home";
 import NotFound from "~/pages/NotFound";
-import Articles from "~/pages/blog_client/Articles";
+import Articles from "~/pages/blog_client/articles/Articles";
 import About from "~/pages/blog_client/About";
-import Resources from "~/pages/blog_client/Blog";
 import Blog from "~/pages/blog_client/Blog";
+import Landing from "~/pages/blog_client/Landing";
+import ClientProvider from "~/pages/blog_client/context";
 
 const ClientRoutes = {
   path: "",
-  element: <ClientLayout />,
+  element: (
+    <ClientProvider>
+      <ClientLayout />
+    </ClientProvider>
+  ),
   children: [
     {
       path: "",
-      element: <Home />,
+      element: <Landing />,
     },
     {
-      path: "articles",
+      path: "cases",
       element: <Articles />,
     },
     {

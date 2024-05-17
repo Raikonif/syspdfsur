@@ -23,17 +23,17 @@ function GeneralModal({
     <>
       <div
         ref={refModal}
-        className={`fixed flex ${customWidth} ${customHeight} justify-center rounded-xl bg-white shadow-2xl transition-colors`}
+        className={`fixed flex items-center ${customWidth} ${customHeight} justify-center rounded-xl bg-white shadow-2xl transition-colors`}
       >
         {buttonClose && (
           <button
             onClick={onClose}
-            className="absolute right-2 top-2 rounded-lg bg-slate-50 p-1 px-3 text-gray-400 hover:bg-gray-50 hover:text-fuchsia-600"
+            className="absolute right-2 top-2 rounded-lg bg-slate-50 p-1 text-gray-400 hover:bg-gray-50 hover:text-fuchsia-600 sm:px-3"
           >
             X
           </button>
         )}
-        <div className="flex w-full justify-center px-10 py-10 xs:px-4 xs:py-8">{children}</div>
+        <div className="flex w-full items-center justify-center">{children}</div>
       </div>
     </>
   );

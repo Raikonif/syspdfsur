@@ -1,5 +1,5 @@
 const ALL = "ALL";
-const PAP = "PAPS";
+const PAP = "PAP";
 const HISTOPATHOLOGY = "HISTOPATHOLOGY";
 const CITHOLOGY = "CITHOLOGY";
 

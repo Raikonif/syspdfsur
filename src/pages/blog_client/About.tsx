@@ -5,17 +5,17 @@ function About() {
   const { t } = useTranslation();
   return (
     <>
-      <div className="text-semibold flex flex-col items-center p-6 sm:flex-row">
+      <div className="text-semibold flex flex-col items-center px-6 pt-6 sm:pb-0 xl:flex-row">
         <img
           src={profile}
-          className="max-h-[600px] max-w-[400px] items-center rounded-md border-2"
+          className="mb-1 max-h-[600px] max-w-[400px] items-center rounded-md border"
           alt={"profile"}
         />
         <div className="flex flex-col">
-          <h1 className="text-balance my-3 text-center text-2xl font-semibold text-fuchsia-600">
+          <h1 className="text-balance my-3 text-center text-2xl font-semibold text-fuchsia-600 dark:text-fuchsia-500">
             {t("ABOUT").toUpperCase()}
           </h1>
-          <p className="text-pretty my-2 ml-3 flex flex-col text-lg text-slate-700">
+          <p className="text-pretty m-1 ml-3 flex flex-col text-lg text-slate-700 dark:text-white">
             HISTORY, PURPOSE AND USAGE Lorem ipsum, or lipsum as it is sometimes known, is dummy
             text used in laying out print, graphic or web designs. The passage is attributed to an
             unknown typesetter in the 15th century who is thought to have scrambled parts of De
@@ -38,13 +38,13 @@ function About() {
           </p>
         </div>
       </div>
-      <div className="flex w-full items-end justify-end px-6 pb-6 sm:p-6">
-        <div className="my-4 flex w-full flex-col items-center rounded-sm bg-fuchsia-600 p-2 sm:w-fit sm:items-end">
-          <span className="mb-1 text-end font-semibold text-slate-100">
-            - Dra. Nandy Calle Peñaranda
+      <div className="mt-4 flex w-full items-end justify-end px-6 pb-6 sm:p-6">
+        <div className="flex w-full flex-col items-center rounded-sm bg-fuchsia-600 p-2 sm:my-4 sm:w-fit sm:items-end">
+          <span className="mb-1 text-center text-xl font-semibold text-slate-100 sm:text-end">
+            Dra. Nandy Calle Peñaranda
           </span>
-          <span className="text-end font-semibold text-slate-100">
-            Medico en Anatomia Patologica
+          <span className="text-center text-lg font-semibold text-slate-100 sm:text-end">
+            Medico Especialista en Anatomia Patologica
           </span>
         </div>
       </div>
