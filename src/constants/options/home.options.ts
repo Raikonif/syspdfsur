@@ -2,27 +2,33 @@ const homeOptions = {
   menuOptions: [
     {
       id: 1,
-      title: "Pacientes",
-      icon: "fas fa-ClientBlogs",
-      link: "/patients",
+      title: "Artículos",
+      icon: "fas fa-blog",
+      link: "/adm/",
     },
     {
       id: 2,
-      title: "Reportes Diagnóstico",
-      icon: "fas fa-user-injured",
-      link: "/diagnoses",
+      title: "Pacientes",
+      icon: "fas fa-ClientBlogs",
+      link: "/adm/patients",
     },
     {
       id: 3,
-      title: "Historial de Diagnosticos",
-      icon: "fas fa-history",
-      link: "/patients_history",
+      title: "Reportes Diagnóstico",
+      icon: "fas fa-user-injured",
+      link: "/adm/diagnoses",
     },
     {
       id: 4,
+      title: "Historial de Diagnosticos",
+      icon: "fas fa-history",
+      link: "/adm/patients_history",
+    },
+    {
+      id: 5,
       title: "Configuración",
       icon: "fas fa-cog",
-      link: "/settings",
+      link: "/adm/settings",
     },
   ],
   blogOptions: [

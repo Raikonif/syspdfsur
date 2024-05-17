@@ -3,11 +3,11 @@ import AuthLayout from "~/layouts/AuthLayout";
 import Login from "~/pages/login/Login";
 
 const AuthRoutes = {
-  path: "auth",
+  path: "adm",
   element: <AuthLayout />,
   children: [
     {
-      path: "",
+      path: "auth",
       element: <Login />,
     },
   ],

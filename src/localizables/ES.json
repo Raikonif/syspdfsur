@@ -4,5 +4,16 @@
   "ABOUT": "Acerca de mi",
   "BY": "Por",
   "ARTICLE": "Artículo",
-  "ARTICLES_BLOG": "Blog de Articulos"
+  "ARTICLES_BLOG": "Blog de Articulos",
+  "ARTICLES_NOT_FOUND": "No se encontraron Artículos",
+  "SEARCH": "Buscar",
+  "CREATE_ARTICLE": "Crear Artículo",
+  "ARTICLE_VIEW": "Vista del Artículo",
+  "EDIT_ARTICLE": "Editar Artículo",
+  "DELETE_ARTICLE": "Eliminar Artículo",
+  "CANCEL": "Cancelar",
+  "CONFIRM": "Confirmar",
+  "SAVE": "Guardar",
+  "DELETE": "Eliminar",
+  "EDIT": "Editar"
 }

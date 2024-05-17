@@ -1,5 +1,5 @@
 import React from "react";
-import textsConstants from "~/pages/blog_client/Home/constants/texts.constants";
+import textsConstants from "~/pages/blog_client/home/constants/texts.constants";
 import { IMenuArticle } from "~/interfaces/menuInterface";
 import { NavLink } from "react-router-dom";
 function ArticlesMenu(): JSX.Element {
