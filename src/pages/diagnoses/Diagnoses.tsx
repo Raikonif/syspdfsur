@@ -1,16 +1,13 @@
 import React, { ReactElement, useEffect, useRef, useState } from "react";
 import DiagnosisCard from "~/pages/diagnoses/components/DiagnosisCard";
-import GeneralModal from "~/components/modal/GeneralModal";
-import GeneralField from "~/components/GeneralField";
-import GeneralButton from "~/components/GeneralButton";
 import { Report } from "~/interfaces/Report.type";
 import { getReports } from "~/service/report.service";
 import Header from "./components/Header";
-import SearchButton from "~/components/menu/search/SearchButton";
 import ModalDelete from "~/pages/diagnoses/components/modals/ModalDelete";
 import ModalShow from "~/pages/diagnoses/components/modals/ModalShow";
 import ModalEdit from "~/pages/diagnoses/components/modals/ModalEdit";
 import ModalCreateReport from "~/pages/diagnoses/components/modals/modal_create/ModalCreateReport";
+import DiagnosisList from "~/pages/diagnoses/components/DiagnosisList";
 
 function Diagnoses(): ReactElement {
   const [showModalEdit, setShowModalEdit] = useState<boolean>(false);
@@ -23,7 +20,6 @@ function Diagnoses(): ReactElement {
   const refModalDelete = useRef<HTMLDivElement>(null);
   const refModalCreate = useRef<HTMLDivElement>(null);
   const [diagnoses, setDiagnoses] = useState<Report[]>([] as Report[]);
-
   const handleModalCreate = (newState: boolean) => {
     setShowModalCreate(newState);
   };
@@ -37,7 +33,8 @@ function Diagnoses(): ReactElement {
     setShowModalDelete(newState);
   };
   const getAllDiagnoses = async () => {
-    setDiagnoses(await getReports());
+    const reports = await getReports();
+    setDiagnoses(reports);
   };
 
   useEffect(() => {
@@ -55,34 +52,21 @@ function Diagnoses(): ReactElement {
   }, []);
 
   useEffect(() => {
-    getAllDiagnoses();
+    getAllDiagnoses()
+      .catch((error) => console.error(error))
+      .finally(() => setDiagnoses([]));
   }, [showModalDelete, showModalEdit, showModalShow]);
 
-  const description =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae nisl vi elit. Lorem Ipsum dolor sit amet";
-  const objField = {
-    name: "description",
-    id: 1,
-    type: "text",
-    value: description,
-    placeholder: "description",
-  };
   return (
     <>
-      <div className="flex w-full flex-col items-center justify-center">
+      <div className="flex h-full w-full flex-col items-center justify-center">
         <Header setModalCreate={handleModalCreate} />
-
-        <div className="mx-10 mt-20 grid h-auto grid-cols-5 justify-between gap-6 py-4 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md2:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-          {diagnoses.map((diagnosis: Report) => (
-            <DiagnosisCard
-              key={diagnosis.id}
-              diagnosis={diagnosis}
-              setModalEdit={handleModalEdit}
-              setModalShow={handleModalShow}
-              setModalDelete={handleModalDelete}
-            />
-          ))}
-        </div>
+        <DiagnosisList
+          diagnoses={diagnoses}
+          handleModalEdit={handleModalEdit}
+          handleModalShow={handleModalShow}
+          handleModalDelete={handleModalDelete}
+        />
       </div>
       {showModalEdit && <ModalEdit onClose={handleModalEdit} refModal={refModalEdit} />}
       {showModalShow && <ModalShow onClose={handleModalShow} refModal={refModalShow} />}

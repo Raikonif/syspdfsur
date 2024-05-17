@@ -84,13 +84,13 @@ function ModalCreate({ onClose, refModal }: IProps): ReactElement {
               name="gender"
               id="gender"
               value={savePatient.gender}
-              className="m-1 rounded-lg border-4 bg-slate-200 p-2 focus:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-fuchsia-600"
+              className="m-1 rounded-lg border-4 bg-slate-200 p-2 focus:bg-orange-500 focus:text-white focus:outline-none focus:ring-2 focus:ring-fuchsia-600"
               onChange={(e) => setSavePatient({ ...savePatient, gender: e.target.value })}
             >
-              <option value="Male" className="bg-blue-300 hover:bg-blue-300">
+              <option value="Male" className="bg-blue-600 text-white hover:bg-blue-300">
                 Hombre
               </option>
-              <option value="Female" className="bg-pink-300 hover:bg-pink-300">
+              <option value="Female" className="bg-pink-600 text-white hover:bg-pink-300">
                 Mujer
               </option>
             </select>

@@ -4,10 +4,17 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
-import { VITE_BASE_URL_MOCK } from "~/service/service.constants";
+import { VITE_BASE_URL_MOCK, VITE_BASE_URL_API } from "~/service/service.constants";
 
 const serviceJson = axios.create({
   baseURL: VITE_BASE_URL_MOCK,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+const serviceAPI = axios.create({
+  baseURL: VITE_BASE_URL_API,
   headers: {
     "Content-Type": "application/json",
   },
@@ -32,4 +39,7 @@ const onResponseError = (error: AxiosError): Promise<AxiosError> => {
 serviceJson.interceptors.request.use(onRequest, onRequestError);
 serviceJson.interceptors.response.use(onResponse, onResponseError);
 
-export { serviceJson };
+serviceAPI.interceptors.request.use(onRequest, onRequestError);
+serviceAPI.interceptors.response.use(onResponse, onResponseError);
+
+export { serviceJson, serviceAPI };

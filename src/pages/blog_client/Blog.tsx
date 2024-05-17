@@ -2,7 +2,7 @@ import React from "react";
 
 function Blog() {
   return (
-    <div>
+    <div className="dark:text-white">
       <h1>Resources</h1>
     </div>
   );

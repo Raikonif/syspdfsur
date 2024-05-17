@@ -2,11 +2,10 @@ import React, { ReactElement, useEffect, useState } from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
 import Histopathology from "~/pages/diagnoses/components/modals/modal_create/subsections/Histopathology";
 import PatientSelect from "~/pages/diagnoses/components/modals/modal_create/components/PatientSelect";
-import { getPatients } from "~/service/patient.service";
+import { getPatients2 } from "~/service/patient.service";
 import Patient from "~/interfaces/Patient.type";
-import useGetData from "~/hooks/useGetData";
 import MedicSelect from "~/pages/diagnoses/components/modals/modal_create/components/MedicSelect";
-import { getMedics } from "~/service/medic.service";
+import { getMedics2 } from "~/service/medic.service";
 import Medic from "~/interfaces/Medic.type";
 import { IReportForm, Report } from "~/interfaces/Report.type";
 import { IHistopathologyReportForm } from "~/interfaces/SubReports.interface";
@@ -31,8 +30,14 @@ interface IProps {
 function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
   const [active, setActive] = useState<string>(HISTOPATHOLOGY);
   const [openPDF, setOpenPDF] = useState<boolean>(false);
-  const { data: patients } = useGetData<Patient[]>({ dataToFetch: getPatients });
-  const { data: medics } = useGetData<Medic[]>({ dataToFetch: getMedics });
+  const [patients, setPatients] = useState<Patient[]>([] as Patient[]);
+  const [medics, setMedics] = useState<Medic[]>([] as Medic[]);
+  // const { data: patients } = useGetData<Patient[]>({ dataToFetch: getPatients });
+  const getData = async () => {
+    return await Promise.all([getMedics2(), getPatients2()]);
+  };
+
+  // const { data: medics } = useGetData<Medic[]>({ dataToFetch: getMedics });
   const [switchButton, setSwitchButton] = useState<boolean>(false);
   const [sampleDate, setSampleDate] = useState<Dates>({
     startDate: null,
@@ -121,7 +126,12 @@ function ModalCreateReport({ onClose, refModal }: IProps): ReactElement {
   const histoReportCleaned = useCleanOptionalKeys(histoReport);
   const is_valid_report = useValidateReport(report);
   const is_valid_subreport = useValidateReport(histoReportCleaned);
-
+  useEffect(() => {
+    getData().then((data) => {
+      setMedics(data[0]);
+      setPatients(data[1]);
+    });
+  }, []);
   useEffect(() => {
     console.log("report:", reportElaboration);
     console.log("sample:", sampleDate);

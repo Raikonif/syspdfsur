@@ -1,5 +1,5 @@
 import React from "react";
-import textsConstants from "~/pages/blog_client/Home/constants/texts.constants";
+import textsConstants from "~/pages/blog_client/home/constants/texts.constants";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/all";
 
 function PostFooter() {
