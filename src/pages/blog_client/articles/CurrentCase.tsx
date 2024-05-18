@@ -1,5 +1,36 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { Case, CaseSlide } from "~/interfaces/Case.interface";
+import ClientContext from "~/pages/blog_client/context/ClientContext";
+import { useNavigate } from "react-router-dom";
 function CurrentCase() {
+  const [selected, setSelected] = useState<Case>({} as Case);
+  const [slides, setSlides] = useState<CaseSlide[]>([] as CaseSlide[]);
+  const { cases, cases_slides } = useContext(ClientContext);
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const selectCurrentCase = () => {
+    const currentCase = cases.find((currentCase) => currentCase.id === Number(id));
+    if (currentCase) {
+      setSelected(currentCase);
+    } else {
+      navigate("/*");
+    }
+  };
+
+  useEffect(() => {
+    selectCurrentCase();
+  }, []);
+  useEffect(() => {
+    if (selected.id) {
+      const currentSlides = cases_slides.filter((slide) => slide.case_id === selected.id);
+      if (currentSlides) {
+        setSlides(currentSlides);
+      }
+    }
+  }, [selected]);
+
   return (
     <>
       <section className="w-full pt-12 md:pt-24 lg:pt-32">
