@@ -1,8 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import ClientLayout from "~/layouts/ClientLayout";
-import Home from "~/pages/blog_client/home/Home";
 import NotFound from "~/pages/NotFound";
-import Articles from "~/pages/blog_client/articles/Articles";
+import Cases from "~/pages/blog_client/articles/Cases";
 import About from "~/pages/blog_client/About";
 import Blog from "~/pages/blog_client/Blog";
 import Landing from "~/pages/blog_client/Landing";
@@ -25,7 +24,7 @@ const ClientRoutes = {
     },
     {
       path: "cases",
-      element: <Articles />,
+      element: <Cases />,
     },
     {
       path: "cases/*",
