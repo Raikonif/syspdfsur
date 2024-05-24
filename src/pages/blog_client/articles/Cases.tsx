@@ -78,8 +78,7 @@ function Cases(): ReactElement {
                 </h4>
                 <h2 className="w-full px-6 text-xl font-bold text-gray-800">Papanicolau</h2>
                 <p className="mb-5 px-6 text-base text-gray-800">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc
-                  commodo posuere et sit amet ligula.
+                  {_case.description.slice(0, 150) + (_case.description.length > 150 ? "..." : "")}
                 </p>
               </a>
             </div>

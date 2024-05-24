@@ -14,19 +14,22 @@ function ClientProvider({ children }: Props) {
       id: 1,
       title: "Case 1",
       type: "Histophatology",
-      description: "Description 1",
+      description:
+        "La muestra histopatológica es un fragmento de tejido obtenido mediante biopsia, que se examina bajo el microscopio para identificar y caracterizar posibles alteraciones celulares y tisulares. Este análisis permite detectar la presencia de enfermedades como cáncer, inflamaciones o infecciones, y es esencial para el diagnóstico preciso y la planificación del tratamiento adecuado. La muestra se tiñe con diferentes colorantes para resaltar estructuras específicas y facilitar la observación detallada de las células y su organización.",
     },
     {
       id: 2,
       title: "Case 2",
       type: "Cytopathology",
-      description: "Description 2",
+      description:
+        "La muestra histopatológica es un fragmento de tejido obtenido mediante biopsia, que se examina bajo el microscopio para identificar y caracterizar posibles alteraciones celulares y tisulares. Este análisis permite detectar la presencia de enfermedades como cáncer, inflamaciones o infecciones, y es esencial para el diagnóstico preciso y la planificación del tratamiento adecuado. La muestra se tiñe con diferentes colorantes para resaltar estructuras específicas y facilitar la observación detallada de las células y su organización.",
     },
     {
       id: 3,
       title: "Case 3",
       type: "Histophatology",
-      description: "Description 3",
+      description:
+        "La muestra histopatológica es un fragmento de tejido obtenido mediante biopsia, que se examina bajo el microscopio para identificar y caracterizar posibles alteraciones celulares y tisulares. Este análisis permite detectar la presencia de enfermedades como cáncer, inflamaciones o infecciones, y es esencial para el diagnóstico preciso y la planificación del tratamiento adecuado. La muestra se tiñe con diferentes colorantes para resaltar estructuras específicas y facilitar la observación detallada de las células y su organización.",
     },
   ];
 
