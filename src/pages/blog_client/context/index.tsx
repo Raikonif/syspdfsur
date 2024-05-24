@@ -1,27 +1,31 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ClientContext from "~/pages/blog_client/context/ClientContext";
-
+import demo from "~/assets/muestra.jpg";
+import { Case } from "~/interfaces/Case.interface";
 interface Props {
   children: React.ReactNode;
 }
 
 function ClientProvider({ children }: Props) {
   // get cases
-  const cases = [
+  const cases: Case[] = [
     {
       id: 1,
       title: "Case 1",
+      type: "Histophatology",
       description: "Description 1",
     },
     {
       id: 2,
       title: "Case 2",
+      type: "Cytopathology",
       description: "Description 2",
     },
     {
       id: 3,
       title: "Case 3",
+      type: "Histophatology",
       description: "Description 3",
     },
   ];
@@ -30,114 +34,130 @@ function ClientProvider({ children }: Props) {
     {
       id: 1,
       case_id: 1,
-      title: "Slide 1",
-      description: "Description 1",
-      image_url: "https://via.placeholder.com/150",
+      title: "Histopatologica Muestra",
+      description:
+        "La muestra histopatológica es un fragmento de tejido obtenido mediante biopsia, que se examina bajo el microscopio para identificar y caracterizar posibles alteraciones celulares y tisulares. Este análisis permite detectar la presencia de enfermedades como cáncer, inflamaciones o infecciones, y es esencial para el diagnóstico preciso y la planificación del tratamiento adecuado. La muestra se tiñe con diferentes colorantes para resaltar estructuras específicas y facilitar la observación detallada de las células y su organización.",
+      image_url: demo,
     },
     {
       id: 2,
       case_id: 1,
-      title: "Slide 2",
-      description: "Description 2",
-      image_url: "https://via.placeholder.com/150",
+      title: "Histopatologica Muestra",
+      description:
+        "La muestra histopatológica es un fragmento de tejido obtenido mediante biopsia, que se examina bajo el microscopio para identificar y caracterizar posibles alteraciones celulares y tisulares. Este análisis permite detectar la presencia de enfermedades como cáncer, inflamaciones o infecciones, y es esencial para el diagnóstico preciso y la planificación del tratamiento adecuado. La muestra se tiñe con diferentes colorantes para resaltar estructuras específicas y facilitar la observación detallada de las células y su organización.",
+      image_url: demo,
     },
     {
       id: 3,
       case_id: 1,
-      title: "Slide 3",
-      description: "Description 3",
-      image_url: "https://via.placeholder.com/150",
+      title: "Histopatologica Muestra",
+      description:
+        "La muestra histopatológica es un fragmento de tejido obtenido mediante biopsia, que se examina bajo el microscopio para identificar y caracterizar posibles alteraciones celulares y tisulares. Este análisis permite detectar la presencia de enfermedades como cáncer, inflamaciones o infecciones, y es esencial para el diagnóstico preciso y la planificación del tratamiento adecuado. La muestra se tiñe con diferentes colorantes para resaltar estructuras específicas y facilitar la observación detallada de las células y su organización.",
+      image_url: demo,
     },
     {
       id: 4,
       case_id: 2,
-      title: "Slide 4",
-      description: "Description 4",
-      image_url: "https://via.placeholder.com/150",
+      title: "Citopatológica Muestra",
+      description:
+        "La muestra histopatológica es un fragmento de tejido obtenido mediante biopsia, que se examina bajo el microscopio para identificar y caracterizar posibles alteraciones celulares y tisulares. Este análisis permite detectar la presencia de enfermedades como cáncer, inflamaciones o infecciones, y es esencial para el diagnóstico preciso y la planificación del tratamiento adecuado. La muestra se tiñe con diferentes colorantes para resaltar estructuras específicas y facilitar la observación detallada de las células y su organización.",
+      image_url: demo,
     },
     {
       id: 5,
       case_id: 2,
-      title: "Slide 5",
-      description: "Description 5",
-      image_url: "https://via.placeholder.com/150",
+      title: "Citopatológica Muestra",
+      description:
+        "La muestra histopatológica es un fragmento de tejido obtenido mediante biopsia, que se examina bajo el microscopio para identificar y caracterizar posibles alteraciones celulares y tisulares. Este análisis permite detectar la presencia de enfermedades como cáncer, inflamaciones o infecciones, y es esencial para el diagnóstico preciso y la planificación del tratamiento adecuado. La muestra se tiñe con diferentes colorantes para resaltar estructuras específicas y facilitar la observación detallada de las células y su organización.",
+      image_url: demo,
     },
     {
       id: 6,
       case_id: 2,
-      title: "Slide 6",
-      description: "Description 6",
-      image_url: "https://via.placeholder.com/150",
+      title: "Citopatológica Muestra",
+      description:
+        "La muestra histopatológica es un fragmento de tejido obtenido mediante biopsia, que se examina bajo el microscopio para identificar y caracterizar posibles alteraciones celulares y tisulares. Este análisis permite detectar la presencia de enfermedades como cáncer, inflamaciones o infecciones, y es esencial para el diagnóstico preciso y la planificación del tratamiento adecuado. La muestra se tiñe con diferentes colorantes para resaltar estructuras específicas y facilitar la observación detallada de las células y su organización.",
+      image_url: demo,
     },
     {
       id: 7,
       case_id: 3,
-      title: "Slide 7",
-      description: "Description 7",
-      image_url: "https://via.placeholder.com/150",
+      title: "Histopatologica Muestra",
+      description:
+        "La muestra histopatológica es un fragmento de tejido obtenido mediante biopsia, que se examina bajo el microscopio para identificar y caracterizar posibles alteraciones celulares y tisulares. Este análisis permite detectar la presencia de enfermedades como cáncer, inflamaciones o infecciones, y es esencial para el diagnóstico preciso y la planificación del tratamiento adecuado. La muestra se tiñe con diferentes colorantes para resaltar estructuras específicas y facilitar la observación detallada de las células y su organización.",
+      image_url: demo,
     },
     {
       id: 8,
       case_id: 3,
-      title: "Slide 8",
-      description: "Description 8",
-      image_url: "https://via.placeholder.com/150",
+      title: "Histopatologica Muestra",
+      description:
+        "La muestra histopatológica es un fragmento de tejido obtenido mediante biopsia, que se examina bajo el microscopio para identificar y caracterizar posibles alteraciones celulares y tisulares. Este análisis permite detectar la presencia de enfermedades como cáncer, inflamaciones o infecciones, y es esencial para el diagnóstico preciso y la planificación del tratamiento adecuado. La muestra se tiñe con diferentes colorantes para resaltar estructuras específicas y facilitar la observación detallada de las células y su organización.",
+      image_url: demo,
     },
     {
       id: 9,
       case_id: 3,
-      title: "Slide 9",
-      description: "Description 9",
-      image_url: "https://via.placeholder.com/150",
+      title: "Histopatologica Muestra",
+      description:
+        "La muestra histopatológica es un fragmento de tejido obtenido mediante biopsia, que se examina bajo el microscopio para identificar y caracterizar posibles alteraciones celulares y tisulares. Este análisis permite detectar la presencia de enfermedades como cáncer, inflamaciones o infecciones, y es esencial para el diagnóstico preciso y la planificación del tratamiento adecuado. La muestra se tiñe con diferentes colorantes para resaltar estructuras específicas y facilitar la observación detallada de las células y su organización.",
+      image_url: demo,
     },
     {
       id: 10,
       case_id: 3,
-      title: "Slide 10",
-      description: "Description 10",
-      image_url: "https://via.placeholder.com/150",
+      title: "Histopatologica Muestra",
+      description:
+        "La muestra histopatológica es un fragmento de tejido obtenido mediante biopsia, que se examina bajo el microscopio para identificar y caracterizar posibles alteraciones celulares y tisulares. Este análisis permite detectar la presencia de enfermedades como cáncer, inflamaciones o infecciones, y es esencial para el diagnóstico preciso y la planificación del tratamiento adecuado. La muestra se tiñe con diferentes colorantes para resaltar estructuras específicas y facilitar la observación detallada de las células y su organización.",
+      image_url: demo,
     },
     {
       id: 11,
       case_id: 3,
-      title: "Slide 11",
-      description: "Description 11",
-      image_url: "https://via.placeholder.com/150",
+      title: "Histopatologica Muestra",
+      description:
+        "La muestra histopatológica es un fragmento de tejido obtenido mediante biopsia, que se examina bajo el microscopio para identificar y caracterizar posibles alteraciones celulares y tisulares. Este análisis permite detectar la presencia de enfermedades como cáncer, inflamaciones o infecciones, y es esencial para el diagnóstico preciso y la planificación del tratamiento adecuado. La muestra se tiñe con diferentes colorantes para resaltar estructuras específicas y facilitar la observación detallada de las células y su organización.",
+      image_url: demo,
     },
     {
       id: 12,
       case_id: 3,
-      title: "Slide 12",
-      description: "Description 12",
-      image_url: "https://via.placeholder.com/150",
+      title: "Histopatologica Muestra",
+      description:
+        "La muestra histopatológica es un fragmento de tejido obtenido mediante biopsia, que se examina bajo el microscopio para identificar y caracterizar posibles alteraciones celulares y tisulares. Este análisis permite detectar la presencia de enfermedades como cáncer, inflamaciones o infecciones, y es esencial para el diagnóstico preciso y la planificación del tratamiento adecuado. La muestra se tiñe con diferentes colorantes para resaltar estructuras específicas y facilitar la observación detallada de las células y su organización.",
+      image_url: demo,
     },
     {
       id: 13,
       case_id: 3,
-      title: "Slide 13",
-      description: "Description 13",
-      image_url: "https://via.placeholder.com/150",
+      title: "Histopatologica Muestra",
+      description:
+        "La muestra histopatológica es un fragmento de tejido obtenido mediante biopsia, que se examina bajo el microscopio para identificar y caracterizar posibles alteraciones celulares y tisulares. Este análisis permite detectar la presencia de enfermedades como cáncer, inflamaciones o infecciones, y es esencial para el diagnóstico preciso y la planificación del tratamiento adecuado. La muestra se tiñe con diferentes colorantes para resaltar estructuras específicas y facilitar la observación detallada de las células y su organización.",
+      image_url: demo,
     },
     {
       id: 14,
       case_id: 3,
-      title: "Slide 14",
-      description: "Description 14",
-      image_url: "https://via.placeholder.com/150",
+      title: "Histopatologica Muestra",
+      description:
+        "La muestra histopatológica es un fragmento de tejido obtenido mediante biopsia, que se examina bajo el microscopio para identificar y caracterizar posibles alteraciones celulares y tisulares. Este análisis permite detectar la presencia de enfermedades como cáncer, inflamaciones o infecciones, y es esencial para el diagnóstico preciso y la planificación del tratamiento adecuado. La muestra se tiñe con diferentes colorantes para resaltar estructuras específicas y facilitar la observación detallada de las células y su organización.",
+      image_url: demo,
     },
     {
       id: 15,
       case_id: 3,
-      title: "Slide 15",
-      description: "Description 15",
-      image_url: "https://via.placeholder.com/150",
+      title: "Histopatologica Muestra",
+      description:
+        "La muestra histopatológica es un fragmento de tejido obtenido mediante biopsia, que se examina bajo el microscopio para identificar y caracterizar posibles alteraciones celulares y tisulares. Este análisis permite detectar la presencia de enfermedades como cáncer, inflamaciones o infecciones, y es esencial para el diagnóstico preciso y la planificación del tratamiento adecuado. La muestra se tiñe con diferentes colorantes para resaltar estructuras específicas y facilitar la observación detallada de las células y su organización.",
+      image_url: demo,
     },
     {
       id: 16,
       case_id: 3,
-      title: "Slide 16",
-      description: "Description 16",
-      image_url: "https://via.placeholder.com/150",
+      title: "Histopatologica Muestra",
+      description:
+        "La muestra histopatológica es un fragmento de tejido obtenido mediante biopsia, que se examina bajo el microscopio para identificar y caracterizar posibles alteraciones celulares y tisulares. Este análisis permite detectar la presencia de enfermedades como cáncer, inflamaciones o infecciones, y es esencial para el diagnóstico preciso y la planificación del tratamiento adecuado. La muestra se tiñe con diferentes colorantes para resaltar estructuras específicas y facilitar la observación detallada de las células y su organización.",
+      image_url: demo,
     },
   ];
 

@@ -5,6 +5,7 @@ import ClientContext from "~/pages/blog_client/context/ClientContext";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCreative } from "swiper/modules";
+import demo from "~/assets/muestra.jpg";
 
 function CurrentCase() {
   const [selected, setSelected] = useState<Case>({} as Case);
@@ -36,7 +37,7 @@ function CurrentCase() {
 
   return (
     <>
-      <section className="w-full bg-gradient-to-b from-violet-700 from-50% to-white to-100% pb-40 pt-12 dark:to-black md:pt-24 lg:pt-32">
+      <section className="w-full bg-gradient-to-b from-violet-700 from-50% to-white to-100% pb-32 pt-12 dark:to-black md:pt-24 lg:pt-32">
         <div className="container space-y-10 xl:space-y-16">
           <div className="gap-4 px-10 md:gap-16">
             <div className="flex flex-col items-start space-y-4">
@@ -47,7 +48,7 @@ function CurrentCase() {
           </div>
         </div>
       </section>
-      <div className="px-4 py-6 md:px-6 md:py-12 lg:py-16">
+      <div className="flex items-center justify-center px-4 py-6 md:px-6 md:py-12 lg:py-16">
         <Swiper
           grabCursor={true}
           effect={"creative"}
@@ -64,17 +65,26 @@ function CurrentCase() {
             },
           }}
           modules={[EffectCreative]}
-          className="items-center justify-center py-5"
+          className="-mt-28 flex w-2/4 flex-col items-center justify-center"
         >
-          <SwiperSlide className="bg-blue-500 py-32">Slide 1</SwiperSlide>
-          <SwiperSlide className="bg-violet-500 py-10">Slide 2</SwiperSlide>
-          <SwiperSlide className="bg-fuchsia-500 py-10">Slide 3</SwiperSlide>
-          <SwiperSlide className="bg-green-500 py-10">Slide 4</SwiperSlide>
-          <SwiperSlide className="bg-red-500 py-10">Slide 5</SwiperSlide>
-          <SwiperSlide className="bg-slate-500 py-10">Slide 6</SwiperSlide>
-          <SwiperSlide className="bg-orange-500 py-10">Slide 7</SwiperSlide>
-          <SwiperSlide className="bg-brown-500 py-10">Slide 8</SwiperSlide>
-          <SwiperSlide className="bg-indigo-500 py-10">Slide 9</SwiperSlide>
+          {slides.map((slide) => (
+            <SwiperSlide
+              key={slide.id}
+              className="flex flex-col rounded-2xl bg-slate-200 dark:bg-slate-800"
+            >
+              <img
+                src={slide.image_url}
+                alt={slide.title}
+                className="max-h-[400px] rounded-t-2xl"
+              />
+              <div className="px-6 pb-10">
+                <p className=" my-5 text-xl font-semibold text-indigo-700 dark:text-slate-300 sm:text-3xl lg:text-5xl">
+                  {slide.title}
+                </p>
+                <p>{slide.description}</p>
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
         {/*<article className="prose prose-gray dark:prose-invert mx-auto max-w-6xl">*/}
         {/*  <p>*/}
