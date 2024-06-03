@@ -20,7 +20,7 @@
       "~/*": ["src/*"]
     }
   },
-  "include": ["src", "assets", "**/*.ts", "**/*.tsx", "typed-css.d.ts", "vite.config.ts"],
+  "include": ["src"],
   "exclude": [
     "node_modules",
     "dist",
