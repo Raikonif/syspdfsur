@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "~/pages/blog_client/sections/Header";
 
