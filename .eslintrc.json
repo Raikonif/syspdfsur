@@ -32,6 +32,6 @@
     "rules": {
         "quotes": ["error", "double"],
         "import/no-unresolved": "off"
-    }
-//    "ignorePatterns": ["node_modules/", "dist/", "build/", "public/", "scripts/", "coverage/"]
+    },
+    "ignorePatterns": ["node_modules/", "dist/", "build/", "public/", "scripts/", "coverage/"]
 }
