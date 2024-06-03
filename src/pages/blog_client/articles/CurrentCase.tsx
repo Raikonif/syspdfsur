@@ -50,7 +50,7 @@ function CurrentCase() {
         <div className="container space-y-10 xl:space-y-16">
           <div className="gap-4 px-10 md:gap-16">
             <div className="flex flex-col items-start space-y-4">
-              <div className="flex w-full items-center justify-between">
+              <div className="flex flex-col lg:w-full lg:flex-row lg:items-center lg:justify-between">
                 <div className="flex items-center justify-center">
                   <span className="flex cursor-pointer items-center text-sm font-semibold tracking-tighter text-white sm:text-lg lg:text-xl">
                     {"Casos"}{" "}
@@ -60,7 +60,7 @@ function CurrentCase() {
                     {selected.type === "Histophatology" ? "Histopatología" : "Citología"}
                   </span>
                 </div>
-                <div className="flex items-center justify-between space-x-4">
+                <div className="hidden items-center justify-between space-x-4 lg:flex">
                   <div className="flex items-center space-x-4">
                     <div>
                       <p className="text-violet-200">Autor:</p>
@@ -73,6 +73,18 @@ function CurrentCase() {
                     <FaCalendar className="mr-2 h-4 w-4" />
                     June 3, 2024
                   </div>
+                </div>
+              </div>
+              <div className="flex items-center justify-between space-x-4 lg:hidden">
+                <div className="flex items-center space-x-4">
+                  <div>
+                    <p className="text-violet-200">Autor:</p>
+                    <h3 className="text-lg font-semibold text-violet-200">Nandy Calle Peñaranda</h3>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-4 rounded-lg border-2 border-violet-200 p-2 text-violet-200">
+                  <FaCalendar className="mr-2 h-4 w-4" />
+                  June 3, 2024
                 </div>
               </div>
               <h1 className="text-4xl font-bold tracking-tighter text-white sm:text-5xl lg:text-6xl">
