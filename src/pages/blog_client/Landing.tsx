@@ -8,7 +8,6 @@ import Footer from "~/pages/blog_client/sections/Footer";
 function Landing() {
   return (
     <div className="gradient leading-normal tracking-normal text-white">
-      <Header />
       <Hero />
       {/*<BackgroundStyle />*/}
       {/*<Recents />*/}
