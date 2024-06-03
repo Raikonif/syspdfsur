@@ -5,7 +5,8 @@ import { IPostListInterface } from "~/interfaces/IPostInterface";
 import { useNavigate } from "react-router-dom";
 
 function HomeBodyAlt(): ReactElement {
-  const defaultPost: IPostListInterface = textsConstants.body.postsList[0] || {};
+  const defaultPost: IPostListInterface =
+    textsConstants.body.postsList[0] || ({} as IPostListInterface);
   const recentPosts: IPostListInterface[] = textsConstants.body.postsList.slice(1, 5) || [];
   const navigate = useNavigate();
   const handleClick = (link: string) => {
