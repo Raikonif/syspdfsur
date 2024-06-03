@@ -12,7 +12,7 @@ function Search({ search, setSearch }: SearchProps) {
   return (
     <div className="flex w-11/12 items-center justify-between rounded-lg bg-violet-600 sm:mx-2 sm:mt-5 sm:w-full">
       <input
-        className="h-full w-full rounded-l-md border p-3 text-white focus:outline-none dark:border-slate-500 dark:bg-slate-600 dark:text-white"
+        className="h-full w-full rounded-l-md border p-3 focus:outline-none dark:border-slate-500 dark:bg-slate-600 dark:text-white dark:text-white"
         type="text"
         placeholder={t("SEARCH")}
         aria-autocomplete="none"

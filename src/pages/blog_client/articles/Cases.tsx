@@ -64,23 +64,27 @@ function Cases(): ReactElement {
           <div
             className={`${
               _case.type === "Histophatology" ? "border-indigo-700" : "border-cyan-700"
-            } m-6 flex w-full flex-grow flex-col rounded-2xl border-b-8 border-l border-r-8 border-t bg-slate-50 md:w-1/4`}
+            } m-6 flex w-full flex-grow flex-col rounded-2xl border-b-8 border-l border-r-8 border-t bg-slate-50 dark:bg-slate-800 md:w-1/4`}
             key={_case.id}
           >
             <div className="flex-1 overflow-hidden shadow">
-              <a href="#" className="flex flex-wrap no-underline hover:no-underline">
+              <div className="flex flex-wrap no-underline hover:no-underline">
                 <h4
                   className={`${
-                    _case.type === "Histophatology" ? "text-indigo-700" : "text-cyan-700"
+                    _case.type === "Histophatology"
+                      ? "text-indigo-700 dark:text-indigo-400"
+                      : "text-cyan-700 dark:text-cyan-400"
                   } w-full p-6 text-xs text-gray-600 md:text-sm`}
                 >
                   {_case.type === "Histophatology" ? "Histopatológico" : "Citológíco"}
                 </h4>
-                <h2 className="w-full px-6 text-xl font-bold text-gray-800">Papanicolau</h2>
-                <p className="mb-5 px-6 text-base text-gray-800">
+                <h2 className="w-full px-6 text-xl font-bold text-gray-800 dark:text-gray-300">
+                  {_case.title}
+                </h2>
+                <p className="mb-5 px-6 text-base text-gray-800 dark:text-gray-300">
                   {_case.description.slice(0, 150) + (_case.description.length > 150 ? "..." : "")}
                 </p>
-              </a>
+              </div>
             </div>
             <div className="overflow-hidde mt-auto flex-none p-6 shadow">
               <div className="flex items-center justify-end">

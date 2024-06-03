@@ -70,7 +70,7 @@ function CurrentCase() {
           {slides.map((slide) => (
             <SwiperSlide
               key={slide.id}
-              className="flex flex-col rounded-2xl bg-slate-200 dark:bg-slate-800"
+              className="flex flex-col rounded-2xl bg-violet-200 dark:bg-slate-800"
             >
               <img
                 src={slide.image_url}
