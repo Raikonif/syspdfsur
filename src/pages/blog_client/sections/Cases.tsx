@@ -32,7 +32,7 @@ function Cases() {
             <div className="flex items-center justify-end">
               <button
                 className="gradient focus:shadow-outline mx-auto my-6 transform rounded-full bg-violet-600 px-8 py-4 font-bold text-white shadow-lg duration-300 ease-in-out transition hover:scale-105 hover:underline focus:outline-none dark:text-white lg:mx-0"
-                onClick={() => handleClickOption("articles/1")}
+                onClick={() => handleClickOption("cases/1")}
               >
                 Leer mas ...
               </button>
