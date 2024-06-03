@@ -5,6 +5,7 @@ import React, { useContext, useState } from "react";
 import DarkModeContext from "~/context/DarkModeContext";
 import ClientContext from "~/pages/blog_client/context/ClientContext";
 import { ABOUT, CASES } from "~/constants";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
   const [onOpen, setOnOpen] = useState(false);
@@ -17,6 +18,10 @@ function Header() {
       setTheme("dark");
     }
   };
+  const navigate = useNavigate();
+  const returnToLanding = () => {
+    navigate("/");
+  };
 
   return (
     <>
@@ -25,7 +30,10 @@ function Header() {
         className="fixed top-0 z-30 w-full bg-gradient-to-b from-fuchsia-700/80 to-violet-700/80 text-white backdrop-blur"
       >
         <div className="container mx-auto mt-0 flex w-full flex-wrap items-center justify-between py-3 lg:py-5">
-          <div className="flex items-center pl-4">
+          <div
+            className="flex cursor-pointer items-center pl-4 active:text-violet-300"
+            onClick={returnToLanding}
+          >
             <FaMicroscope size={30} />
             <h1 className="ml-4 text-3xl font-bold">Blog de Nandy</h1>
           </div>

@@ -4,8 +4,16 @@ import { Case, CaseSlide } from "~/interfaces/Case.interface";
 import ClientContext from "~/pages/blog_client/context/ClientContext";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCreative } from "swiper/modules";
+import { EffectCreative, Pagination } from "swiper/modules";
 import demo from "~/assets/muestra.jpg";
+import {
+  FaCalendar,
+  FaClock,
+  MdOutlineKeyboardArrowRight,
+  RiArrowRightSFill,
+} from "react-icons/all";
+import { Avatar, Button } from "@nextui-org/react";
+import toast, { Toaster } from "react-hot-toast";
 
 function CurrentCase() {
   const [selected, setSelected] = useState<Case>({} as Case);
@@ -37,19 +45,63 @@ function CurrentCase() {
 
   return (
     <>
-      <section className="w-full bg-gradient-to-b from-violet-700 from-50% to-white to-100% pb-32 pt-12 dark:to-black md:pt-24 lg:pt-32">
+      <Toaster />
+      <section className="w-full bg-gradient-to-b from-violet-700 from-65% to-white to-100% pb-32 pt-16 dark:to-black md:pt-24 lg:pt-32">
         <div className="container space-y-10 xl:space-y-16">
           <div className="gap-4 px-10 md:gap-16">
             <div className="flex flex-col items-start space-y-4">
+              <div className="flex flex-col lg:w-full lg:flex-row lg:items-center lg:justify-between">
+                <div className="flex items-center justify-center">
+                  <span className="flex cursor-pointer items-center text-sm font-semibold tracking-tighter text-white sm:text-lg lg:text-xl">
+                    {"Casos"}{" "}
+                  </span>
+                  <RiArrowRightSFill color={"white"} />
+                  <span className="flex cursor-pointer items-center text-sm font-semibold tracking-tighter text-white sm:text-lg lg:text-xl">
+                    {selected.type === "Histophatology" ? "Histopatología" : "Citología"}
+                  </span>
+                </div>
+                <div className="hidden items-center justify-between space-x-4 lg:flex">
+                  <div className="flex items-center space-x-4">
+                    <div>
+                      <p className="text-violet-200">Autor:</p>
+                      <h3 className="text-lg font-semibold text-violet-200">
+                        Nandy Calle Peñaranda
+                      </h3>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4 rounded-lg border-2 border-violet-200 p-2 text-violet-200">
+                    <FaCalendar className="mr-2 h-4 w-4" />
+                    June 3, 2024
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center justify-between space-x-4 lg:hidden">
+                <div className="flex items-center space-x-4">
+                  <div>
+                    <p className="text-violet-200">Autor:</p>
+                    <h3 className="text-lg font-semibold text-violet-200">Nandy Calle Peñaranda</h3>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-4 rounded-lg border-2 border-violet-200 p-2 text-violet-200">
+                  <FaCalendar className="mr-2 h-4 w-4" />
+                  June 3, 2024
+                </div>
+              </div>
               <h1 className="text-4xl font-bold tracking-tighter text-white sm:text-5xl lg:text-6xl">
-                The Importance of Mindfulness in Daily Life
+                {selected.title}
               </h1>
+              <p className="text-xl font-light tracking-tighter text-white sm:text-xl lg:text-2xl">
+                {selected.description}
+              </p>
             </div>
           </div>
         </div>
       </section>
       <div className="flex items-center justify-center px-4 py-6 md:px-6 md:py-12 lg:py-16">
         <Swiper
+          pagination={{
+            type: "fraction",
+          }}
           grabCursor={true}
           effect={"creative"}
           creativeEffect={{
@@ -64,8 +116,8 @@ function CurrentCase() {
               rotate: [0, 0, 90],
             },
           }}
-          modules={[EffectCreative]}
-          className="-mt-28 flex w-2/4 flex-col items-center justify-center"
+          modules={[EffectCreative, Pagination]}
+          className="-mt-28 flex w-full flex-col items-center justify-center lg:w-2/4"
         >
           {slides.map((slide) => (
             <SwiperSlide
@@ -76,6 +128,7 @@ function CurrentCase() {
                 src={slide.image_url}
                 alt={slide.title}
                 className="max-h-[400px] rounded-t-2xl"
+                onClick={() => toast.success("Click en la imagen")}
               />
               <div className="px-6 pb-10">
                 <p className=" my-5 text-xl font-semibold text-indigo-700 dark:text-slate-300 sm:text-3xl lg:text-5xl">
