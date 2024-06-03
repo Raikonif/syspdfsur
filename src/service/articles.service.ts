@@ -12,12 +12,12 @@ const getArticlesSlides = async (): Promise<AxiosResponse<ArticleSlide[]>> => {
 
 const getArticlesSlidesByArticle = async (id: number): Promise<ArticleSlide[]> => {
   const response = await serviceAPI.get<ArticleSlide[]>(`/api/v1/articles/${id}/articles_slides`);
-  return response.data || [];
+  return response.data || ([] as ArticleSlide[]);
 };
 
 const getArticle = async (id: number): Promise<Article> => {
   const response = await serviceAPI.get<Article>(`/articles/${id}`);
-  return response.data || {};
+  return response.data || ({} as Article);
 };
 
 export { getArticles, getArticle, getArticlesSlides, getArticlesSlidesByArticle };
