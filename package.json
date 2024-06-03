@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.17",
-    "@internationalized/date": "^3.5.4",
     "@nextui-org/react": "^2.4.1",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-switch": "^1.0.3",
