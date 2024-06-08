@@ -2,12 +2,10 @@ import React, { ReactElement, useContext, useEffect, useState } from "react";
 import { Article } from "~/interfaces/Article.interface";
 import { ALL, PAP, CITHOLOGY, HISTOPATHOLOGY } from "~/constants/Blog/blog.constants";
 import { getArticles } from "~/service/articles.service";
-import ArticleList from "~/pages/blog_client/articles/components/ArticleList";
 import Search from "~/pages/blog_client/articles/components/Search";
 import Filter from "~/pages/blog_client/articles/components/Filter";
 import ClientContext from "~/pages/blog_client/context/ClientContext";
 import { Case } from "~/interfaces/Case.interface";
-import { set } from "@internationalized/date/src/manipulation";
 
 function Cases(): ReactElement {
   const [changeFilter, setChangeFilter] = useState<string>(ALL);
@@ -64,7 +62,7 @@ function Cases(): ReactElement {
           <div
             className={`${
               _case.type === "Histophatology" ? "border-indigo-700" : "border-cyan-700"
-            } m-6 flex w-full flex-grow flex-col rounded-2xl border-b-8 border-l border-r-8 border-t bg-slate-50 dark:bg-slate-800 md:w-1/4`}
+            } m-6 flex w-full flex-grow flex-col rounded-2xl border-b-8 bg-slate-50 dark:bg-slate-500/60 md:w-1/4`}
             key={_case.id}
           >
             <div className="flex-1 overflow-hidden shadow">
@@ -72,8 +70,8 @@ function Cases(): ReactElement {
                 <h4
                   className={`${
                     _case.type === "Histophatology"
-                      ? "text-indigo-700 dark:text-indigo-400"
-                      : "text-cyan-700 dark:text-cyan-400"
+                      ? "text-indigo-700 dark:text-indigo-200"
+                      : "text-cyan-700 dark:text-cyan-200"
                   } w-full p-6 text-xs text-gray-600 md:text-sm`}
                 >
                   {_case.type === "Histophatology" ? "Histopatológico" : "Citológíco"}
@@ -89,7 +87,7 @@ function Cases(): ReactElement {
             <div className="overflow-hidde mt-auto flex-none p-6 shadow">
               <div className="flex items-center justify-end">
                 <button
-                  className="gradient focus:shadow-outline mx-auto my-6 transform rounded-full bg-violet-600 px-8 py-4 font-bold text-white shadow-lg duration-300 ease-in-out transition hover:scale-105 hover:underline focus:outline-none dark:text-white lg:mx-0"
+                  className="gradient focus:shadow-outline mx-auto my-6 transform rounded-full bg-violet-600 px-8 py-4 font-bold text-white shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:underline focus:outline-none dark:bg-cyan-700 dark:text-white lg:mx-0"
                   onClick={() => handleClickOption("cases/1")}
                 >
                   Leer mas ...
