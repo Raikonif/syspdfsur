@@ -14,10 +14,10 @@ import { Tooltip } from "@nextui-org/react";
 
 function Footer() {
   return (
-    <section className="flex w-full flex-col items-center justify-center bg-gradient-to-b from-white to-violet-700 py-12 pb-10 dark:from-black dark:to-violet-700 md:py-24 lg:py-32">
+    <section className="flex w-full flex-col items-center justify-center bg-gradient-to-t from-violet-200 to-violet-700 to-70% py-12 pb-10 dark:to-cyan-700 dark:from-violet-700 md:py-24 lg:py-32">
       <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6 lg:gap-10">
         <div className="mb-10">
-          <h2 className="text-3xl font-bold tracking-tighter text-violet-700 dark:text-white sm:text-4xl md:text-5xl">
+          <h2 className="text-3xl font-bold tracking-tighter text-violet-100 dark:text-white sm:text-4xl md:text-5xl">
             Contactame a traves de mis Redes Sociales.
           </h2>
         </div>

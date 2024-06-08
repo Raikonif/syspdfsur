@@ -27,15 +27,17 @@ function Header() {
     <>
       <nav
         id="header"
-        className="fixed top-0 z-30 w-full bg-gradient-to-b from-fuchsia-700/80 to-violet-700/80 text-white backdrop-blur"
+        className="fixed top-0 z-30 w-full bg-gradient-to-b from-fuchsia-700/80 to-violet-700/80 text-white backdrop-blur dark:from-violet-700/80 dark:to-cyan-700/80"
       >
         <div className="container mx-auto mt-0 flex w-full flex-wrap items-center justify-between py-3 lg:py-5">
           <div
             className="flex cursor-pointer items-center pl-4 active:text-violet-300"
             onClick={returnToLanding}
           >
-            <FaMicroscope size={30} />
-            <h1 className="ml-4 text-3xl font-bold">Blog de Nandy</h1>
+            <FaMicroscope size={30} className="text-violet-100" />
+            <h1 className="ml-4 text-xl font-bold text-violet-100 md:text-2xl lg:text-3xl">
+              Blog de Nandy
+            </h1>
           </div>
           <div className="flex pr-4 lg:hidden">
             <Switch
@@ -73,7 +75,6 @@ function Header() {
               </li>
             </ul>
             <Switch
-              defaultSelected
               size="lg"
               color="default"
               startContent={<FaMoon />}
@@ -86,11 +87,11 @@ function Header() {
       <ul
         className={`${
           !onOpen && "hidden"
-        } -mt-14 border-y border-violet-500 bg-violet-800 p-5 text-center`}
+        } mt-12 border-y border-violet-500 bg-violet-800 p-5 text-center`}
       >
-        <li className="px-10 text-2xl font-semibold dark:text-white">Artículos</li>
+        <li className="px-10 pb-3 text-2xl font-semibold dark:text-white">Casos</li>
         <Divider />
-        <li className="px-10 text-2xl font-semibold dark:text-white">Acerca de mi</li>
+        <li className="px-10 pt-3 text-2xl font-semibold dark:text-white">Acerca de mi</li>
       </ul>
     </>
   );
