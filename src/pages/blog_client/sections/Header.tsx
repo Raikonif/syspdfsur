@@ -87,7 +87,7 @@ function Header() {
       <ul
         className={`${
           !onOpen && "hidden"
-        } mt-12 border-y border-violet-500 bg-violet-800 p-5 text-center`}
+        } mt-12 border-y border-violet-500 bg-violet-800 p-5 text-center dark:bg-cyan-700`}
       >
         <li className="px-10 pb-3 text-2xl font-semibold dark:text-white">Casos</li>
         <Divider />
