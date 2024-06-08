@@ -87,11 +87,21 @@ function Header() {
       <ul
         className={`${
           !onOpen && "hidden"
-        } mt-12 border-y border-violet-500 bg-violet-800 p-5 text-center dark:bg-cyan-800`}
+        } mt-12 border-y border-violet-500 bg-violet-800 p-5 text-center dark:bg-cyan-800 lg:hidden`}
       >
-        <li className="px-10 pb-3 text-2xl font-semibold text-white">Casos</li>
+        <li
+          className="px-10 pb-3 text-2xl font-semibold text-white"
+          onClick={() => handleClickOption(CASES)}
+        >
+          Casos
+        </li>
         <Divider />
-        <li className="px-10 pt-3 text-2xl font-semibold text-white">Acerca de mi</li>
+        <li
+          className="px-10 pt-3 text-2xl font-semibold text-white"
+          onClick={() => handleClickOption(ABOUT)}
+        >
+          Acerca de mi
+        </li>
       </ul>
     </>
   );
