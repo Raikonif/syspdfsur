@@ -46,7 +46,7 @@ function CurrentCase() {
   return (
     <>
       <Toaster />
-      <section className="w-full bg-gradient-to-b from-violet-700 from-65% to-white to-100% pb-32 pt-16 dark:to-black md:pt-24 lg:pt-32">
+      <section className="w-full bg-gradient-to-b from-violet-700 from-65% to-white to-100% pb-32 pt-16 dark:from-cyan-700 dark:to-violet-950 md:pt-24 lg:pt-32">
         <div className="container space-y-10 xl:space-y-16">
           <div className="gap-4 px-10 md:gap-16">
             <div className="flex flex-col items-start space-y-4">
@@ -97,7 +97,7 @@ function CurrentCase() {
           </div>
         </div>
       </section>
-      <div className="flex items-center justify-center px-4 py-6 md:px-6 md:py-12 lg:py-16">
+      <div className="flex items-center justify-center px-4 py-6 dark:bg-violet-950 md:px-6 md:py-12 lg:py-16">
         <Swiper
           pagination={{
             type: "fraction",
@@ -122,7 +122,7 @@ function CurrentCase() {
           {slides.map((slide) => (
             <SwiperSlide
               key={slide.id}
-              className="flex flex-col rounded-2xl bg-violet-200 dark:bg-slate-800"
+              className="flex flex-col rounded-2xl bg-violet-200 dark:bg-violet-900"
             >
               <img
                 src={slide.image_url}
@@ -131,10 +131,10 @@ function CurrentCase() {
                 onClick={() => toast.success("Click en la imagen")}
               />
               <div className="px-6 pb-10">
-                <p className=" my-5 text-xl font-semibold text-indigo-700 dark:text-slate-300 sm:text-3xl lg:text-5xl">
+                <p className="my-5 text-xl font-semibold text-indigo-700 dark:text-violet-100 sm:text-3xl lg:text-5xl">
                   {slide.title}
                 </p>
-                <p>{slide.description}</p>
+                <p className="dark:text-violet-100">{slide.description}</p>
               </div>
             </SwiperSlide>
           ))}
