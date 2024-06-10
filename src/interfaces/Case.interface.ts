@@ -1,16 +1,21 @@
 export interface Case {
-  id: number;
+  id: string;
   title: string;
   type: string;
   description: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface CaseSlide {
-  id: number;
+  id: string;
   case_id: number;
   title: string;
   description: string;
   image_url: string;
+  created_at: string;
+  updated_at: string;
+  image_url_webp: string;
 }
 
 export type OperationCase = Partial<Case>;
