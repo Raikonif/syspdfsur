@@ -9,7 +9,7 @@ function CasesRoutes() {
   const { cases } = useContext(ClientContext);
   return (
     <Routes>
-      {cases.map((currentCase: Case) => (
+      {cases.data && cases.data.length > 0 && cases.data.map((currentCase: Case) => (
         <Route
           key={currentCase.id}
           path={"/:id"}
