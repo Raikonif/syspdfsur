@@ -19,3 +19,4 @@ export interface CaseSlide {
 }
 
 export type OperationCase = Partial<Case>;
+export type OperationCaseSlide = Partial<CaseSlide>;

@@ -1,9 +1,10 @@
 import { createContext } from "react";
-import { Case, CaseSlide } from "~/interfaces/Case.interface";
+import { OperationCase, OperationCaseSlide } from "~/interfaces/Case.interface";
+import { UseQueryResult } from "react-query";
 
 interface DataContext {
-  cases: Case[];
-  cases_slides: CaseSlide[];
+  cases: UseQueryResult<any[], unknown>;
+  cases_slides: OperationCaseSlide[];
   handleClickOption: (link: string) => void;
 }
 
