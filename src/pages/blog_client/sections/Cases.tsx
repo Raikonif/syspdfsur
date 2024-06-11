@@ -33,7 +33,7 @@ function Cases() {
               </div>
             )
           }
-          {cases.data.slice(0, 3).map((_case) => (
+          {cases.data && cases.data.slice(0, 3).map((_case) => (
             <div
               className={`${
                 _case.type === "Histophatology" ? "border-indigo-700" : "border-cyan-700"
