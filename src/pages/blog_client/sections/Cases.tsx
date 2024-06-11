@@ -25,7 +25,7 @@ function Cases() {
             </div>
           )}
           {
-            cases.error && (
+            (cases.error || cases.isError) && (
               <div className="flex items-center justify-center w-full h-64 text-center">
                 <h4 className="text-2xl text-violet-200 dark:text-violet-100">
                   No se pudo cargar los casos
