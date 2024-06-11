@@ -1,8 +1,9 @@
 import React from "react";
 import illus_lab from "~/assets/illus_lab.svg";
+import cell_icon from "~/assets/cell-icon.svg";
 function Hero() {
   return (
-    <section className="bg-violet-700 pt-8 lg:pt-5">
+    <section className="bg-gradient-to-b from-violet-700 from-70% to-violet-200 pb-16 pt-44 dark:from-cyan-700 dark:to-violet-900 lg:pt-5">
       <div className="container mx-auto flex flex-col flex-wrap items-center px-3 md:flex-row lg:pt-20">
         {/* <!--Left Col--> */}
         <div className="flex w-full flex-col items-start justify-center text-center text-white md:w-1/2 md:text-left">
@@ -18,8 +19,12 @@ function Hero() {
           </button>
         </div>
         {/* <!--Right Col--> */}
-        <div className="w-full py-6 text-center md:w-1/2">
-          <img className="w-full" src={illus_lab} alt="Ilustracion de Laboratorio" />
+        <div className="hidden w-full py-6 pt-44 text-center md:w-1/2 lg:flex lg:pt-6">
+          <img
+            className="w-full border-violet-500"
+            src={illus_lab}
+            alt="Ilustracion de Laboratorio"
+          />
         </div>
       </div>
     </section>
