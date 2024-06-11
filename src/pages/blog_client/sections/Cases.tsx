@@ -11,14 +11,29 @@ function Cases() {
       id="cases"
     >
       <div className="container mx-auto flex flex-wrap pb-12 pt-4">
-        <h2 className="my-2 w-full px-3 text-center text-5xl font-bold leading-tight text-violet-900 dark:text-violet-100">
+        <h2
+          className="my-2 w-full px-3 text-center text-5xl font-bold leading-tight text-violet-900 dark:text-violet-100">
           Casos de Estudio
         </h2>
         <div className="mb-4 w-full">
           <div className="gradient mx-auto my-0 h-1 w-64 rounded-t py-0 opacity-25"></div>
         </div>
         <div className="flex flex-grow">
-          {cases.slice(0, 3).map((_case) => (
+          {cases.isLoading && (
+            <div className="flex items-center justify-center w-full h-64 text-center">
+              <h4 className="text-2xl text-violet-200 dark:text-violet-100">Cargando ...</h4>
+            </div>
+          )}
+          {
+            cases.error && (
+              <div className="flex items-center justify-center w-full h-64 text-center">
+                <h4 className="text-2xl text-violet-200 dark:text-violet-100">
+                  No se pudo cargar los casos
+                </h4>
+              </div>
+            )
+          }
+          {cases.data.slice(0, 3).map((_case) => (
             <div
               className={`${
                 _case.type === "Histophatology" ? "border-indigo-700" : "border-cyan-700"

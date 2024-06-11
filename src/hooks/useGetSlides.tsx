@@ -1,5 +1,5 @@
 import { getAllSlidesCases } from "~/service/supabase/slides.service";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 const getSlides = async () => {
   const { data, error} = await getAllSlidesCases();
@@ -12,7 +12,7 @@ const getSlides = async () => {
 function useGetSlides(){
   return useQuery(
     {
-      queryKey: "slides",
+      queryKey: ["slides"],
       queryFn: getSlides,
       refetchOnWindowFocus: true,
       staleTime: 1000 * 60 * 5

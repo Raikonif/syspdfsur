@@ -1,10 +1,10 @@
 import { createContext } from "react";
-import { Case, CaseSlide, OperationCaseSlide } from "~/interfaces/Case.interface";
-import { UseQueryResult } from "react-query";
+import { UseQueryResult } from "@tanstack/react-query";
+import { Case, CaseSlide } from "~/interfaces/Case.interface";
 
 interface DataContext {
-  cases: UseQueryResult<Case[], unknown>;
-  slides: UseQueryResult<CaseSlide[], unknown>;
+  cases: UseQueryResult<Case[], Error>;
+  slides: UseQueryResult<CaseSlide[], Error>;
   handleClickOption: (link: string) => void;
 }
 

@@ -1,5 +1,5 @@
 import { getAllCases } from "~/service/supabase/cases.service";
-import { useQuery, UseQueryResult } from "react-query";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
 const getCases = async () => {
   const { data, error } = await getAllCases();
@@ -9,10 +9,10 @@ const getCases = async () => {
   return data;
 };
 
-function useGetCases() {
+function useGetCases(){
   return useQuery(
     {
-      queryKey: "cases",
+      queryKey: ["cases"],
       queryFn: getCases,
       refetchOnWindowFocus: true,
       staleTime: 1000 * 60 * 5
