@@ -9,7 +9,7 @@ export interface Case {
 
 export interface CaseSlide {
   id: string;
-  case_id: number;
+  case_id: string;
   title: string;
   description: string;
   image_url: string;
