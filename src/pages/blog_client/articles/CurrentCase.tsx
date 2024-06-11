@@ -23,7 +23,7 @@ function CurrentCase() {
   const navigate = useNavigate();
 
   const selectCurrentCase = () => {
-    const currentCase = cases.find((currentCase) => currentCase.id === Number(id));
+    const currentCase = cases.find((currentCase) => currentCase.id === id);
     if (currentCase) {
       setSelected(currentCase);
     } else {

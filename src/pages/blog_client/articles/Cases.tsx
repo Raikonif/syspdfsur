@@ -1,7 +1,5 @@
 import React, { ReactElement, useContext, useEffect, useState } from "react";
-import { Article } from "~/interfaces/Article.interface";
 import { ALL, PAP, CITHOLOGY, HISTOPATHOLOGY } from "~/constants/Blog/blog.constants";
-import { getArticles } from "~/service/articles.service";
 import Search from "~/pages/blog_client/articles/components/Search";
 import Filter from "~/pages/blog_client/articles/components/Filter";
 import ClientContext from "~/pages/blog_client/context/ClientContext";
@@ -10,21 +8,12 @@ import { Case } from "~/interfaces/Case.interface";
 function Cases(): ReactElement {
   const [changeFilter, setChangeFilter] = useState<string>(ALL);
   const [changeSearch, setChangeSearch] = useState<string>("");
-  const [articles, setArticles] = useState<Article[]>([] as Article[]);
-  const [articlesFiltered, setArticlesFiltered] = useState<Article[]>(articles);
   const [casesFiltered, setCasesFiltered] = useState<Case[]>({} as Case[]);
-  const allArticles = async () => {
-    const articles = await getArticles();
-    setArticles(articles.data);
-  };
   const { cases, handleClickOption } = useContext(ClientContext);
 
-  useEffect(() => {
-    allArticles().catch((error) => console.error(error));
-  }, []);
 
   useEffect(() => {
-    if (Array.isArray(cases) && cases.length > 0) {
+    if (Array.isArray(cases.data && cases.data.length > 0)) {
       changeSearch !== "" &&
       changeSearch !== undefined &&
       changeSearch !== null &&
@@ -34,17 +23,17 @@ function Cases(): ReactElement {
       changeSearch !== CITHOLOGY &&
       changeSearch !== HISTOPATHOLOGY
         ? setCasesFiltered(
-            cases.filter((_case) => _case.title.toUpperCase().includes(changeSearch.toUpperCase())),
+            cases.data.filter((_case) => _case.title.toUpperCase().includes(changeSearch.toUpperCase())),
           )
-        : setCasesFiltered(cases);
+        : setCasesFiltered(cases.data);
     }
   }, [cases, changeSearch]);
 
   useEffect(() => {
-    if (Array.isArray(cases) && cases.length > 0) {
+    if (Array.isArray(cases.data) && cases.data.length > 0) {
       changeFilter !== ALL
-        ? setCasesFiltered(cases.filter((_case) => _case.type.toUpperCase() === changeFilter))
-        : setCasesFiltered(cases);
+        ? setCasesFiltered(cases.data.filter((_case) => _case.type.toUpperCase() === changeFilter))
+        : setCasesFiltered(cases.data);
     }
   }, [cases, changeFilter]);
 
@@ -56,9 +45,8 @@ function Cases(): ReactElement {
           <Search search={changeSearch} setSearch={setChangeSearch} />
         </div>
       </div>
-      {/*<ArticleList articles={articlesFiltered} />*/}
       <div className="flex flex-grow">
-        {cases.map((_case) => (
+        {cases.data && cases.data.map((_case) => (
           <div
             className={`${
               _case.type === "Histophatology" ? "border-indigo-700" : "border-cyan-700"
@@ -96,6 +84,22 @@ function Cases(): ReactElement {
             </div>
           </div>
         ))}
+        {
+          cases.data && cases.data.length === 0 && (
+            <div className="flex items-center justify-center w-full h-64 text-center">
+              <h4 className="text-2xl text-violet-200 dark:text-violet-100">No se encontraron casos</h4>
+            </div>
+          )
+        }
+        {
+          (cases.error || cases.isError) && (
+            <div className="flex items-center justify-center w-full h-64 text-center">
+              <h4 className="text-2xl text-violet-200 dark:text-violet-100">
+                No se pudo cargar los casos
+              </h4>
+            </div>
+          )
+        }
       </div>
     </div>
   );
