@@ -33,7 +33,7 @@ function Cases() {
               </div>
             )
           }
-          {cases.data && cases.data.slice(0, 3).map((_case) => (
+          {cases.data && cases.data.length > 0 && cases.data.slice(0, 3).map((_case) => (
             <div
               className={`${
                 _case.type === "Histophatology" ? "border-indigo-700" : "border-cyan-700"
@@ -72,6 +72,13 @@ function Cases() {
               </div>
             </div>
           ))}
+          {
+            cases.data && cases.data.length === 0 && (
+              <div className="flex items-center justify-center w-full h-64 text-center">
+                <h4 className="text-2xl text-violet-200 dark:text-violet-100">No se encontraron casos</h4>
+              </div>
+            )
+          }
         </div>
       </div>
       <div

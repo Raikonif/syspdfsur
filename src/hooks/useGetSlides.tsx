@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 const getSlides = async () => {
   const { data, error} = await getAllSlidesCases();
   if (error) {
-    console.log(error.message);
+    throw new Error(error.message);
   }
   return data;
 }

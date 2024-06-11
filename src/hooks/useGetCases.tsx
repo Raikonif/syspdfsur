@@ -1,10 +1,10 @@
 import { getAllCases } from "~/service/supabase/cases.service";
-import { useQuery, UseQueryResult } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 const getCases = async () => {
   const { data, error } = await getAllCases();
   if (error) {
-    console.log(error.message);
+    throw new Error(error.message);
   }
   return data;
 };
