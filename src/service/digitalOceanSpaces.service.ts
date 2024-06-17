@@ -7,4 +7,13 @@ const getGeneratedPresignedUrl = async (bucket_spaces: string, key: string): Pro
   });
 };
 
-export { getGeneratedPresignedUrl };
+const uploadDigitalOceanImg = async (fileUrl: string, file: File) => {
+  return await axios.put(fileUrl, file, {
+    headers: {
+      "Content-Type": file.type,
+      "x-amz-acl": "public-read",
+    },
+  });
+};
+
+export { getGeneratedPresignedUrl, uploadDigitalOceanImg };
