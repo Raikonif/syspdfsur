@@ -7,11 +7,16 @@ import Settings from "~/pages/Settings";
 import DiagnosisProvider from "~/pages/diagnoses/context/DiagnosisProvider";
 import ArticlesPage from "~/pages/articles/ArticlesPage";
 import ArticlesProvider from "~/pages/articles/context";
+import CasesTable from "~/pages/admin/cases/CasesTable";
 
 const GenericRoutes = {
   path: "adm",
   element: <GeneralLayout />,
   children: [
+    {
+      path: "cases",
+      element: <CasesTable />,
+    },
     {
       path: "",
       element: (
