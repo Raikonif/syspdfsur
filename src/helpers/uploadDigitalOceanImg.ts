@@ -6,9 +6,11 @@ import {
 async function UploadDigitalOceanImg(bucket: string, folder: string, name: string, file: File) {
   let publicUrl = undefined;
   const presignedUrl = await getGeneratedPresignedUrl(bucket, `${folder}/${name}`);
-  if (presignedUrl) {
-    const { data } = await uploadDigitalOceanImg(presignedUrl, file);
-    if (data) {
+  console.log(presignedUrl.data, presignedUrl.request.status);
+  if (presignedUrl.data && presignedUrl.request.status === 200) {
+    const digitalImg = await uploadDigitalOceanImg(presignedUrl.data, file);
+    console.log(digitalImg.data, digitalImg.status);
+    if (digitalImg.data && digitalImg.status === 200) {
       publicUrl = presignedUrl;
     } else {
       console.error("Error al subir la imagen");
