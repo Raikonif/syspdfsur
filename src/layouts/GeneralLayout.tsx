@@ -5,6 +5,7 @@ import homeOptions from "~/constants/options/home.options";
 import ProfileCard from "~/components/menu/Profile/ProfileCard";
 import SignOutModal from "~/components/menu/Profile/SignOutModal";
 import toast, { Toaster } from "react-hot-toast";
+import AdminMenu from "~/pages/admin/AdminMenu";
 
 function GeneralLayout(): ReactElement {
   const [mobileMode, setMobileMode] = useState<boolean>(false);
@@ -42,7 +43,8 @@ function GeneralLayout(): ReactElement {
             : "flex h-screen w-screen bg-white"
         }`}
       >
-        <GeneralMenu itemList={homeOptions.menuOptions} modalProfile={setModalProfile} />
+        {/*<GeneralMenu itemList={homeOptions.menuOptions} modalProfile={setModalProfile} />*/}
+        <AdminMenu />
         <div className="flex h-full w-full flex-col">
           <Outlet />
           <Toaster />
