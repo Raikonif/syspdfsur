@@ -1,10 +1,12 @@
 import React from "react";
 import { FaHamburger } from "react-icons/all";
 import { Divider } from "@nextui-org/react";
+import { NavLink, useNavigate } from "react-router-dom";
+import homeOptions from "~/constants/options/home.options";
 
 function AdminMenu() {
   return (
-    <div className="w-[200px] rounded-r-md bg-fuchsia-600 tracking-tighter">
+    <div className="h-screen w-[200px] rounded-r-md bg-fuchsia-600 tracking-tighter">
       <FaHamburger className="flex lg:hidden" onClick={() => console.log("Open Hamburger")} />
       <div className="p-2 text-center text-fuchsia-50">
         <div className="flex w-full justify-center">
@@ -19,10 +21,25 @@ function AdminMenu() {
       </div>
       <div className="flex flex-col">
         <Divider />
-        <div className="py-5 pl-6 text-xl tracking-wide text-fuchsia-50">Cases</div>
-        <Divider />
-        <div className="py-5 pl-6 text-xl tracking-wide text-fuchsia-50">Cases</div>
-        <Divider />
+        {homeOptions.menuOptions.map((item, index) => (
+          <>
+            <Divider />
+            <NavLink
+              key={index}
+              to={item.link}
+              className={({ isActive }): string =>
+                `${
+                  isActive ? "animate-pulse bg-fuchsia-500" : "bg-fuchsia-600"
+                }  flex py-3 pl-6 text-xl tracking-tighter`
+              }
+            >
+              <span className="m-2 p-2 text-fuchsia-50 duration-300 hover:scale-105">
+                {item.title}
+              </span>
+            </NavLink>
+            <Divider />
+          </>
+        ))}
       </div>
     </div>
   );

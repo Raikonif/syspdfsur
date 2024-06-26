@@ -44,7 +44,7 @@ function GeneralLayout(): ReactElement {
         }`}
       >
         {/*<GeneralMenu itemList={homeOptions.menuOptions} modalProfile={setModalProfile} />*/}
-        <AdminMenu />
+        {/*<AdminMenu />*/}
         <div className="flex h-full w-full flex-col">
           <Outlet />
           <Toaster />
