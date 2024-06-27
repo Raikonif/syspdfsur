@@ -5,7 +5,7 @@ import homeOptions from "~/constants/options/home.options";
 import ProfileCard from "~/components/menu/Profile/ProfileCard";
 import SignOutModal from "~/components/menu/Profile/SignOutModal";
 import toast, { Toaster } from "react-hot-toast";
-import AdminMenu from "~/pages/admin/AdminMenu";
+import AdminMenu from "~/pages/admin/components/AdminMenu";
 
 function GeneralLayout(): ReactElement {
   const [mobileMode, setMobileMode] = useState<boolean>(false);
