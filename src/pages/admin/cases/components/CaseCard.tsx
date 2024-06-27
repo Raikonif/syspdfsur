@@ -3,7 +3,7 @@ import { Card, CardBody, CardFooter, CardHeader, Divider, Image } from "@nextui-
 
 function CaseCard() {
   return (
-    <Card className="max-w-[400px]">
+    <Card className="max-w-[400px] cursor-pointer active:bg-fuchsia-200" onPress={() => {}}>
       <CardHeader className="flex gap-3">
         <Image
           alt="nextui logo"

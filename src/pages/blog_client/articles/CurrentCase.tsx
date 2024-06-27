@@ -5,10 +5,8 @@ import ClientContext from "~/pages/blog_client/context/ClientContext";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCreative, Pagination } from "swiper/modules";
-import {
-  FaCalendar,
-  RiArrowRightSFill,
-} from "react-icons/all";
+import { FaCalendar } from "react-icons/fa";
+import { RiArrowRightSFill } from "react-icons/ri";
 import toast, { Toaster } from "react-hot-toast";
 
 function CurrentCase() {

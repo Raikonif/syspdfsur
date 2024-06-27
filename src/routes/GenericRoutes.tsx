@@ -10,10 +10,15 @@ import ArticlesProvider from "~/pages/articles/context";
 import CasesTable from "~/pages/admin/cases/CasesTable";
 import Login from "~/pages/login/Login";
 import AdminPanel from "~/pages/admin/AdminPanel";
+import AdminProvider from "~/pages/admin/context";
 
 const GenericRoutes = {
   path: "adm",
-  element: <GeneralLayout />,
+  element: (
+    <AdminProvider>
+      <GeneralLayout />
+    </AdminProvider>
+  ),
   children: [
     {
       path: "",
@@ -28,28 +33,20 @@ const GenericRoutes = {
           element: <CasesTable />,
         },
         {
-          path: "",
-          element: (
-            <ArticlesProvider>
-              <ArticlesPage />,
-            </ArticlesProvider>
-          ),
+          path: "articles",
+          element: <CasesTable />,
         },
         {
           path: "patients",
-          element: <Patients />,
+          element: <CasesTable />,
         },
         {
           path: "diagnoses",
-          element: (
-            <DiagnosisProvider>
-              <Diagnoses />
-            </DiagnosisProvider>
-          ),
+          element: <CasesTable />,
         },
         {
           path: "patients_history",
-          element: <PatientsHistory />,
+          element: <CasesTable />,
         },
       ],
     },

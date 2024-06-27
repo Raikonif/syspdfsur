@@ -1,5 +1,4 @@
 import React, { ReactElement } from "react";
-import { BiPlusMedical } from "react-icons/all";
 import Search from "~/components/menu/search/Search";
 import { useTranslation } from "react-i18next";
 

@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from "react";
-import { GiHamburgerMenu } from "react-icons/all";
+import { GiHamburgerMenu } from "react-icons/gi";
 import ButtonMenu from "~/components/menu/ButtonMenu";
 import Profile from "~/components/menu/Profile/Profile";
 import { NavLink } from "react-router-dom";

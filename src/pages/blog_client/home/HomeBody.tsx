@@ -3,7 +3,7 @@ import textsConstants from "~/pages/blog_client/home/constants/texts.constants";
 import { NavLink } from "react-router-dom";
 import PostsList from "~/components/posts/PostsList";
 import PostPreviewCard from "~/components/posts/PostPreviewCard";
-import { BiSearchAlt } from "react-icons/all";
+import { BiSearchAlt } from "react-icons/bi";
 import PostFooter from "~/components/posts/PostFooter";
 import IPostInterface from "~/interfaces/IPostInterface";
 import PostContext from "~/pages/blog_client/home/context";

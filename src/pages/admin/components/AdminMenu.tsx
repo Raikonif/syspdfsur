@@ -12,10 +12,10 @@ function AdminMenu() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1024 && !openMenu) {
+      if (window.innerWidth >= 1024 && openMenu === false) {
         setOpenMenu(true);
       }
-      if (window.innerWidth < 1024 && openMenu) {
+      if (window.innerWidth < 1024 && openMenu === true) {
         setOpenMenu(false);
       }
     };
