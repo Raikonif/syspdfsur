@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, CardFooter, CardHeader, Divider , Image} from "@nextui-org/react";
+import { Card, CardBody, CardFooter, CardHeader, Divider, Image } from "@nextui-org/react";
 
 function CaseCard() {
   return (
@@ -23,13 +23,13 @@ function CaseCard() {
       </CardBody>
       <Divider />
       <CardFooter>
-        {/*<href*/}
-        {/*  isExternal*/}
-        {/*  showAnchorIcon*/}
-        {/*  href="https://github.com/nextui-org/nextui"*/}
-        {/*>*/}
-        {/*  Visit source code on GitHub.*/}
-        {/*</href>*/}
+        <a
+          // isExternal
+          // showAnchorIcon
+          href="https://github.com/nextui-org/nextui"
+        >
+          Visit source code on GitHub.
+        </a>
       </CardFooter>
     </Card>
   );

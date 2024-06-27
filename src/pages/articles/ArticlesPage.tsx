@@ -5,7 +5,7 @@ import { Article, ArticleSlide, Author, IArticle } from "~/interfaces/Article.in
 import Header from "~/pages/articles/components/Header";
 import ModalDeleteItem from "~/components/ModalDeleteItem";
 import Paginator from "~/components/Paginator";
-import { BiPlusMedical } from "react-icons/all";
+import { BiPlusMedical } from "react-icons/bi";
 import DataFetchContext from "~/pages/articles/context/DataFetchContext";
 
 function ArticlesPage(): ReactElement {

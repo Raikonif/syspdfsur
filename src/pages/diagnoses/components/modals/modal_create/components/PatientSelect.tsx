@@ -2,7 +2,7 @@ import React, { ReactElement, useState, useEffect } from "react";
 import { AiFillCloseCircle, AiOutlineSearch } from "react-icons/ai";
 import { BiChevronDown } from "react-icons/bi";
 import Patient from "~/interfaces/Patient.type";
-import { BsPersonPlusFill } from "react-icons/all";
+import { BsPersonPlusFill } from "react-icons/bs";
 import { IReportForm } from "~/interfaces/Report.type";
 
 interface IProps {

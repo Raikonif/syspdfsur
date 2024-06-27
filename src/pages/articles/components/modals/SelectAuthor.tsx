@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import { AiFillCloseCircle, AiOutlineSearch } from "react-icons/ai";
 import Medic from "~/interfaces/Medic.type";
-import { FaHandHoldingMedical } from "react-icons/all";
+import { FaHandHoldingMedical } from "react-icons/fa";
 import { Author, IArticle } from "~/interfaces/Article.interface";
 import { getAuthors } from "~/service/authors.service";
 

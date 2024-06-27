@@ -1,7 +1,8 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import Patient from "~/interfaces/Patient.type";
-import { HiOutlineUserAdd, MdEditSquare, RiDeleteBin5Fill } from "react-icons/all";
-
+import { RiDeleteBin5Fill } from "react-icons/ri";
+import { HiOutlineUserAdd } from "react-icons/hi";
+import { MdEditSquare } from "react-icons/md";
 interface IProps {
   patient: Patient;
 }
