@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { GoXCircleFill } from "react-icons/go";
 import { Divider } from "@nextui-org/react";
@@ -6,40 +6,23 @@ import { NavLink } from "react-router-dom";
 import homeOptions from "~/constants/options/home.options";
 import SwitchTheme from "~/pages/admin/components/SwitchTheme";
 import { AnimatePresence, motion } from "framer-motion";
+import AdminContext from "~/pages/admin/context/AdminContext";
 
 function AdminMenu() {
-  const [openMenu, setOpenMenu] = useState(false);
+  const { isOpenMenu, onOpenMenu, onCloseMenu } = useContext(AdminContext);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024 && openMenu === false) {
-        setOpenMenu(true);
-      }
-      if (window.innerWidth < 1024 && openMenu === true) {
-        setOpenMenu(false);
-      }
-    };
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [openMenu]);
   return (
     <div className="fixed left-0 top-0 z-30 w-full flex-col bg-fuchsia-600 tracking-tighter lg:relative lg:flex lg:h-screen lg:w-[200px]">
       <div className="flex w-full justify-between">
-        {!openMenu ? (
-          <FaBars
-            className="my-2 ml-3 flex text-fuchsia-50 lg:hidden"
-            onClick={() => setOpenMenu(!openMenu)}
-          />
+        {!isOpenMenu ? (
+          <FaBars className="my-2 ml-3 flex text-fuchsia-50 lg:hidden" onClick={onOpenMenu} />
         ) : (
           <GoXCircleFill
             className="my-2 ml-3 flex text-fuchsia-50 lg:hidden"
-            onClick={() => setOpenMenu(!openMenu)}
+            onClick={onOpenMenu}
           />
         )}
-        {!openMenu ? (
+        {!isOpenMenu ? (
           <span className="my-2 font-semibold tracking-tighter text-white lg:hidden">
             {"Casos"}
           </span>
@@ -62,7 +45,7 @@ function AdminMenu() {
         <div>Admin</div>
       </div>
       <AnimatePresence>
-        {openMenu && (
+        {isOpenMenu && (
           <motion.div
             className="flex flex-col lg:relative lg:block"
             initial={{ opacity: 0, y: -10 }}
