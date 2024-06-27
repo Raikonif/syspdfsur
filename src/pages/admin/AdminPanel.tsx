@@ -11,8 +11,10 @@ function AdminPanel() {
       <AdminMenu />
       <div className="flex w-full flex-col">
         <Header />
-        <Outlet />
-        <Paginator />
+        <div className="mt-20 lg:mt-0">
+          <Outlet />
+          <Paginator />
+        </div>
       </div>
       <Toaster
         toastOptions={{
