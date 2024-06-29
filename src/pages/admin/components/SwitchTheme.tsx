@@ -21,9 +21,8 @@ function SwitchTheme({ size = "lg" }: Props) {
       size={size}
       onChange={handleDarkMode}
       color="secondary"
-      thumbIcon={({ isSelected, className }) =>
-        isSelected ? <FaSun className={className} /> : <FaMoon className={className} />
-      }
+      startContent={<FaSun />}
+      endContent={<FaMoon />}
     />
   );
 }

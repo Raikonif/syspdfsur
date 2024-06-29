@@ -1,23 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
-import { FaBars, FaMoon, FaSun } from "react-icons/fa";
+import React, { useContext } from "react";
+import { FaBars } from "react-icons/fa";
 import { GoXCircleFill } from "react-icons/go";
-import { Divider, Switch } from "@nextui-org/react";
+import { Divider } from "@nextui-org/react";
 import { NavLink } from "react-router-dom";
 import homeOptions from "~/constants/options/home.options";
 import { AnimatePresence, motion } from "framer-motion";
 import AdminContext from "~/pages/admin/context/AdminContext";
-import useDarkMode from "~/hooks/useDarkMode";
+import SwitchTheme from "~/pages/admin/components/SwitchTheme";
 
 function AdminMenu() {
   const { isOpenMenu, onOpenMenu, onCloseMenu } = useContext(AdminContext);
-  const { theme, setTheme } = useDarkMode();
-  const handleDarkMode = () => {
-    if (theme === "dark") {
-      setTheme("light");
-    } else {
-      setTheme("dark");
-    }
-  };
+
   return (
     <div className="fixed left-0 top-0 z-30 w-full flex-col bg-fuchsia-600 tracking-tighter dark:bg-violet-900 lg:relative lg:flex lg:h-screen lg:w-[200px]">
       <div className="flex w-full justify-between">
@@ -37,14 +30,7 @@ function AdminMenu() {
           <span className="my-2 font-semibold tracking-tighter text-white lg:hidden">{"Menu"}</span>
         )}
         <div className="flex py-1 lg:hidden">
-          <Switch
-            defaultSelected
-            size="sm"
-            color="secondary"
-            startContent={<FaSun />}
-            endContent={<FaMoon />}
-            onClick={handleDarkMode}
-          />
+          <SwitchTheme size="sm" />
         </div>
       </div>
       <div className="hidden p-2 text-center text-fuchsia-50 lg:relative lg:flex lg:flex-col">

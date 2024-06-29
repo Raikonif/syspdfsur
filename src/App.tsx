@@ -4,7 +4,7 @@ import "./i18n";
 import DarkModeContext from "~/context/DarkModeContext";
 
 function App() {
-  const { theme = "dark" } = useContext(DarkModeContext);
+  const { theme } = useContext(DarkModeContext);
   return (
     <main className={`bg-background text-foreground ${theme}`}>
       <RoutesApp />

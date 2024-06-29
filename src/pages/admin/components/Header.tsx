@@ -8,15 +8,8 @@ import useDarkMode from "~/hooks/useDarkMode";
 function Header() {
   const [filterValue, setFilterValue] = useState("");
   const [page, setPage] = useState(1);
-  const { isOpenCase, onOpenCase } = useContext(AdminContext);
-  const { theme, setTheme } = useDarkMode();
-  const handleDarkMode = () => {
-    if (theme === "dark") {
-      setTheme("light");
-    } else {
-      setTheme("dark");
-    }
-  };
+  const { onOpenCase } = useContext(AdminContext);
+  const { theme } = useDarkMode();
 
   const onSearchChange = useCallback((value?: string) => {
     if (value) {
@@ -68,14 +61,7 @@ function Header() {
           <FaPlus />
         </Button>
         <div className="hidden lg:flex">
-          <Switch
-            defaultSelected
-            size="lg"
-            color="secondary"
-            startContent={<FaSun />}
-            endContent={<FaMoon />}
-            onClick={handleDarkMode}
-          />
+          <SwitchTheme />
         </div>
       </div>
     </div>
