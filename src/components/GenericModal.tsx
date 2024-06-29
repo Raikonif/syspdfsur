@@ -1,17 +1,30 @@
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@nextui-org/react";
 import React from "react";
-import { Button } from "@nextui-org/react";
-function GenericModal() {
-  const [isOpen, setOpen] = React.useState(false);
-  const onOpenChange = () => setOpen(!isOpen);
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+} from "@nextui-org/react";
+
+interface Props {
+  children: React.ReactNode;
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+}
+
+function GenericModal({ children, onOpen, isOpen, onClose }: Props) {
   return (
     <>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onClose={onClose} backdrop={"blur"}>
         <ModalContent>
-          {(onClose) => (
+          {(onCloseCase) => (
             <>
               <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
               <ModalBody>
+                {children}
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar risus non
                   risus hendrerit venenatis. Pellentesque sit amet hendrerit risus, sed porttitor
@@ -31,10 +44,10 @@ function GenericModal() {
                 </p>
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
+                <Button color="danger" variant="light" onPress={onCloseCase}>
                   Close
                 </Button>
-                <Button color="primary" onPress={onClose}>
+                <Button color="primary" onPress={onCloseCase}>
                   Action
                 </Button>
               </ModalFooter>
@@ -45,3 +58,5 @@ function GenericModal() {
     </>
   );
 }
+
+export default GenericModal;

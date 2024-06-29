@@ -24,7 +24,7 @@ function LoginCard({ onSubmit }: IProps): JSX.Element {
   return (
     <div className="h-70 w-80">
       <form onSubmit={handleSubmit}>
-        <div className=" rounded-lg bg-white shadow-2xl">
+        <div className=" rounded-lg bg-white shadow-2xl dark:bg-stone-600">
           <h1 className="rounded-t-lg border-b bg-violet-500 p-5 text-center text-xl font-semibold text-white">
             Bienvenida! Pandy Goma
           </h1>
