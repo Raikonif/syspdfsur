@@ -7,6 +7,8 @@ interface AdminContextData {
   isOpenMenu: boolean;
   onOpenMenu: () => void;
   onCloseMenu: () => void;
+  theme: string;
+  setTheme: (theme: "light" | "dark") => void;
 }
 
 const AdminContext = createContext<AdminContextData>({} as AdminContextData);
