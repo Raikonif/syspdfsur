@@ -1,4 +1,4 @@
-import React, { Key, useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import GenericModal from "~/components/GenericModal";
 import { Tab, Tabs } from "@nextui-org/react";

@@ -70,13 +70,7 @@ function ArticlesPage(): ReactElement {
           className="rounded-full bg-violet-600 p-2 text-center text-white"
         />
       </button>
-      {deleteModal && (
-        <ModalDelete
-          onClose={setDeleteModal}
-          refModal={refModalDelete}
-          confirmDelete={setConfirmDelete}
-        />
-      )}
+      {deleteModal && <ModalDelete />}
       {(showModal || createModal || editModal) && (
         <ModalCreateArticle
           onClose={handleOpenClose}
