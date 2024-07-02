@@ -10,12 +10,13 @@ interface AdminContextData {
   isOpenDelete: boolean;
   onOpenDelete: () => void;
   onCloseDelete: () => void;
-  functionDelete: any;
-  setFunctionDelete: (action: () => void) => void;
   nameDelete: string;
   setNameDelete: (name: string) => void;
   selectedKey: Key;
   setSelectedKey: (key: Key) => void;
+  deleteType: "case" | "articles";
+  setDeleteType: (type: "case" | "articles") => void;
+  functionDelete: () => void;
 }
 
 const AdminContext = createContext<AdminContextData>({} as AdminContextData);

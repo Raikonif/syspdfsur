@@ -2,9 +2,10 @@ import React, { useContext } from "react";
 import { Card, CardBody, CardFooter, CardHeader, Divider, Image, Tooltip } from "@nextui-org/react";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 function CaseCard() {
-  const { onOpenCase, onOpenDelete, setNameDelete, setFunctionDelete, setSelectedKey } =
+  const { onOpenCase, onOpenDelete, setNameDelete, setSelectedKey, setDeleteType } =
     useContext(AdminContext);
 
   return (
@@ -40,9 +41,7 @@ function CaseCard() {
               onClick={(event) => {
                 event.stopPropagation();
                 setNameDelete("Caso");
-                setFunctionDelete(async () => {
-                  console.log("delete");
-                });
+                setDeleteType("case");
                 onOpenDelete();
               }}
             >
