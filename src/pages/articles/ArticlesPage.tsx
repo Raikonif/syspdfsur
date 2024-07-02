@@ -3,7 +3,7 @@ import ModalCreateArticle from "~/pages/articles/components/modals/ModalCreateAr
 import ArticlesList from "~/pages/articles/components/ArticlesList";
 import { Article, ArticleSlide, Author, IArticle } from "~/interfaces/Article.interface";
 import Header from "~/pages/articles/components/Header";
-import ModalDeleteItem from "~/components/ModalDeleteItem";
+import ModalDelete from "~/components/ModalDelete";
 import Paginator from "~/components/Paginator";
 import { BiPlusMedical } from "react-icons/bi";
 import DataFetchContext from "~/pages/articles/context/DataFetchContext";
@@ -71,7 +71,7 @@ function ArticlesPage(): ReactElement {
         />
       </button>
       {deleteModal && (
-        <ModalDeleteItem
+        <ModalDelete
           onClose={setDeleteModal}
           refModal={refModalDelete}
           confirmDelete={setConfirmDelete}

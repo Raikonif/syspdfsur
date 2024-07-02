@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import Header from "~/pages/admin/components/Header";
 import Paginator from "~/pages/admin/components/Paginator";
 import ModalCRUDCase from "~/pages/admin/cases/components/ModalCRUDCase";
+import ModalDelete from "~/components/ModalDelete";
 
 function AdminPanel() {
   return (
@@ -17,6 +18,7 @@ function AdminPanel() {
         </div>
       </div>
       <ModalCRUDCase />
+      <ModalDelete />
     </div>
   );
 }

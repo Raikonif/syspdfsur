@@ -4,10 +4,16 @@ import AdminContext from "~/pages/admin/context/AdminContext";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
 function CaseCard() {
-  const { onOpenCase } = useContext(AdminContext);
+  const { onOpenCase, onOpenDelete, setNameDelete, setFunctionDelete, setSelectedKey } =
+    useContext(AdminContext);
 
   return (
-    <div onClick={onOpenCase}>
+    <div
+      onClick={() => {
+        onOpenCase();
+        setSelectedKey("see");
+      }}
+    >
       <Card className="max-w-[400px] cursor-pointer active:bg-fuchsia-200 dark:active:bg-neutral-800">
         <CardHeader className="flex gap-3">
           <Image
@@ -28,15 +34,20 @@ function CaseCard() {
         </CardBody>
         <Divider />
         <CardFooter className="flex justify-end">
-          {/*<Tooltip content="Modificar Caso">*/}
-          {/*  <span className="cursor-pointer px-2 text-end text-lg text-default-400 active:opacity-50">*/}
-          {/*    <FaEdit className="text-fuchsia-600" />*/}
-          {/*  </span>*/}
-          {/*</Tooltip>*/}
           <Tooltip content="Borrar Caso">
-            <span className="cursor-pointer px-2 text-lg text-default-400 active:opacity-50">
-              <FaTrash className="text-slate-400" />
-            </span>
+            <button
+              className="cursor-pointer px-2 text-lg active:opacity-50"
+              onClick={(event) => {
+                event.stopPropagation();
+                setNameDelete("Caso");
+                setFunctionDelete(async () => {
+                  console.log("delete");
+                });
+                onOpenDelete();
+              }}
+            >
+              <FaTrash className="text-red-500" />
+            </button>
           </Tooltip>
         </CardFooter>
       </Card>

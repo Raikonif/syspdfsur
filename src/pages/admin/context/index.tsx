@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Key, useState } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import { useDisclosure } from "@nextui-org/react";
 
@@ -7,9 +7,14 @@ interface Props {
 }
 
 function AdminProvider({ children }: Props) {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [selectedKey, setSelectedKey] = useState<Key>("see");
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  const [functionDelete, setFunctionDelete] = useState(() => {});
+  const [nameDelete, setNameDelete] = useState<string>("");
+
   const { isOpen: isOpenMenu, onOpen: onOpenMenu, onClose: onCloseMenu } = useDisclosure();
   const { isOpen: isOpenCase, onOpen: onOpenCase, onClose: onCloseCase } = useDisclosure();
+  const { isOpen: isOpenDelete, onOpen: onOpenDelete, onClose: onCloseDelete } = useDisclosure();
 
   return (
     <AdminContext.Provider
@@ -20,8 +25,15 @@ function AdminProvider({ children }: Props) {
         isOpenMenu,
         onOpenMenu,
         onCloseMenu,
-        theme,
-        setTheme,
+        isOpenDelete,
+        onOpenDelete,
+        onCloseDelete,
+        functionDelete,
+        setFunctionDelete,
+        nameDelete,
+        setNameDelete,
+        selectedKey,
+        setSelectedKey,
       }}
     >
       {children}
