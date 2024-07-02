@@ -5,28 +5,7 @@ import { Tab, Tabs } from "@nextui-org/react";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 
 function ModalCRUDCase() {
-  const { isOpenCase, onCloseCase, onOpenDelete, selectedKey, setSelectedKey, setDeleteType } =
-    useContext(AdminContext);
-  const [title, setTitle] = useState<string>("Ver Caso");
-  const handleSelectionChange = () => {
-    if (selectedKey === "delete") {
-      onOpenDelete();
-      setTitle("Borrar Caso");
-      setDeleteType("case");
-    }
-    if (selectedKey === "edit") {
-      console.log("edit");
-      setTitle("Editar Caso");
-    }
-    if (selectedKey === "see") {
-      console.log("see");
-      setTitle("Ver Caso");
-    }
-  };
-
-  useEffect(() => {
-    handleSelectionChange();
-  }, [selectedKey]);
+  const { isOpenCase, onCloseCase, selectedKey, setSelectedKey, title } = useContext(AdminContext);
 
   return (
     <GenericModal
