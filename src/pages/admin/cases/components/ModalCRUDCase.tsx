@@ -1,10 +1,8 @@
 import React, { useContext, useState } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import GenericModal from "~/components/GenericModal";
-import { Button, Input, Tab, Tabs } from "@nextui-org/react";
+import { Button, Tab, Tabs } from "@nextui-org/react";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
-import uploadImage from "~/helpers/uploadSupImage";
-import * as events from "node:events";
 
 function ModalCRUDCase() {
   const [imageURL, setImageURL] = useState("");
