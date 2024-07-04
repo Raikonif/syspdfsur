@@ -1,16 +1,19 @@
-import { Button, Input, Switch } from "@nextui-org/react";
-import { FaPlus, FaSearch, FaMoon, FaSun } from "react-icons/fa";
+import { Button, Input } from "@nextui-org/react";
+import { FaPlus, FaSearch } from "react-icons/fa";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import SwitchTheme from "~/pages/admin/components/SwitchTheme";
-import { AnimatePresence, motion } from "framer-motion";
 import AdminContext from "~/pages/admin/context/AdminContext";
-import useDarkMode from "~/hooks/useDarkMode";
+import { Case } from "~/interfaces/Case.interface";
 function Header() {
   const [filterValue, setFilterValue] = useState("");
   const [page, setPage] = useState(1);
-  const { onOpenCase } = useContext(AdminContext);
-  const { theme } = useDarkMode();
+  const { onOpenCase, setSelectedKey, setCaseData } = useContext(AdminContext);
 
+  const handleCreate = () => {
+    onOpenCase();
+    setSelectedKey("create");
+    setCaseData({} as Case);
+  };
   const onSearchChange = useCallback((value?: string) => {
     if (value) {
       setFilterValue(value);
@@ -24,10 +27,6 @@ function Header() {
     setFilterValue("");
     setPage(1);
   }, []);
-
-  useEffect(() => {
-    console.log(theme);
-  }, [theme]);
 
   return (
     <div className="fixed left-0 top-10 z-20 flex w-full items-center justify-between gap-3 bg-fuchsia-600 px-2 pb-3 pt-1 dark:bg-violet-900 lg:relative lg:top-0 lg:justify-between lg:gap-3 lg:space-x-6 lg:p-4">
@@ -43,7 +42,7 @@ function Header() {
       />
       <div className="flex gap-10">
         <Button
-          onPress={onOpenCase}
+          onPress={handleCreate}
           color="secondary"
           variant="shadow"
           className="hidden items-center justify-center lg:flex"
@@ -52,7 +51,7 @@ function Header() {
           Nuevo Caso <FaPlus />
         </Button>
         <Button
-          onClick={onOpenCase}
+          onClick={handleCreate}
           color="secondary"
           variant="shadow"
           className="flex items-center justify-center rounded-xl text-sm text-white lg:hidden"

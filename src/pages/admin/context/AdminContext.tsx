@@ -1,6 +1,11 @@
 import { createContext, Key } from "react";
+import { OpCase, OpCaseSlide } from "~/interfaces/Case.interface";
 
 interface AdminContextData {
+  caseData: OpCase;
+  setCaseData: (data: OpCase) => void;
+  caseSlideData: OpCaseSlide[];
+  setCaseSlideData: (data: OpCaseSlide[]) => void;
   isOpenCase: boolean;
   onOpenCase: () => void;
   onCloseCase: () => void;

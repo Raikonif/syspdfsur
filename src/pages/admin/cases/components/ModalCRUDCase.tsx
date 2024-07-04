@@ -2,14 +2,26 @@ import React, { useContext, useState } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import GenericModal from "~/components/GenericModal";
 import { Button, Tab, Tabs } from "@nextui-org/react";
-import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
+import { FaEdit, FaEye, FaPlus, FaTrash } from "react-icons/fa";
 import uploadDigitalOceanImg from "~/helpers/uploadDigitalOceanImg";
+import { createCase } from "~/service/supabase/cases.service";
+import { Case } from "~/interfaces/Case.interface";
 
 function ModalCRUDCase() {
   const [imageURL, setImageURL] = useState("");
-  const [imageSpaceURL, setImageSpaceURL] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
-  const { isOpenCase, onCloseCase, selectedKey, setSelectedKey, title } = useContext(AdminContext);
+  const {
+    isOpenCase,
+    onCloseCase,
+    selectedKey,
+    setSelectedKey,
+    title,
+    caseData,
+    setCaseData,
+    setCaseSlideData,
+    caseSlideData,
+  } = useContext(AdminContext);
+
   const handleImageChange = (e: any) => {
     const file = e.target.files[0];
     if (file) {
@@ -21,7 +33,16 @@ function ModalCRUDCase() {
     try {
       const response = await uploadDigitalOceanImg(imageFile);
       console.log("response", response);
-      setImageSpaceURL(response.data.file_url);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+  const handleConfirm = async () => {
+    try {
+      const response = await uploadDigitalOceanImg(imageFile);
+      console.log("response", response);
+      await createCase(caseData);
+      setCaseData({} as Case);
     } catch (error) {
       console.error("Error uploading image:", error);
     }
@@ -39,12 +60,22 @@ function ModalCRUDCase() {
           aria-label="Options"
           color="secondary"
           variant="bordered"
-          defaultSelectedKey={"see"}
           selectedKey={selectedKey}
           onSelectionChange={setSelectedKey}
         >
           <Tab
+            key="create"
+            isDisabled={selectedKey !== "create"}
+            title={
+              <div className="flex items-center space-x-2">
+                <FaPlus />
+                <span>Crear</span>
+              </div>
+            }
+          />
+          <Tab
             key="see"
+            isDisabled={selectedKey === "create"}
             title={
               <div className="flex items-center space-x-2">
                 <FaEye />
@@ -54,6 +85,7 @@ function ModalCRUDCase() {
           />
           <Tab
             key="edit"
+            isDisabled={selectedKey === "create"}
             title={
               <div className="flex items-center space-x-2">
                 <FaEdit />
@@ -63,6 +95,7 @@ function ModalCRUDCase() {
           />
           <Tab
             key="delete"
+            isDisabled={selectedKey === "create"}
             title={
               <div className="flex items-center space-x-2">
                 <FaTrash />

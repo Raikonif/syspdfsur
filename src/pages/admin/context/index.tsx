@@ -1,12 +1,15 @@
 import React, { Key, useEffect, useState } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import { useDisclosure } from "@nextui-org/react";
+import { Case, OpCase, OpCaseSlide } from "~/interfaces/Case.interface";
 
 interface Props {
   children: React.ReactNode;
 }
 
 function AdminProvider({ children }: Props) {
+  const [caseData, setCaseData] = useState<OpCase>({} as Case);
+  const [caseSlideData, setCaseSlideData] = useState<OpCaseSlide[]>([] as OpCaseSlide[]);
   const [selectedKey, setSelectedKey] = useState<Key>("see");
   const [title, setTitle] = useState<string>("Ver Caso");
   // delete states
@@ -51,6 +54,10 @@ function AdminProvider({ children }: Props) {
   return (
     <AdminContext.Provider
       value={{
+        caseData,
+        setCaseData,
+        caseSlideData,
+        setCaseSlideData,
         isOpenCase,
         onOpenCase,
         onCloseCase,
