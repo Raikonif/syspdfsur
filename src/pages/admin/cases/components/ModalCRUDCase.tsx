@@ -1,11 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import GenericModal from "~/components/GenericModal";
-import { Tab, Tabs } from "@nextui-org/react";
+import { Button, Input, Tab, Tabs } from "@nextui-org/react";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
+import uploadImage from "~/helpers/uploadSupImage";
+import * as events from "node:events";
 
 function ModalCRUDCase() {
+  const [imageURL, setImageURL] = useState("");
   const { isOpenCase, onCloseCase, selectedKey, setSelectedKey, title } = useContext(AdminContext);
+  const handleImageChange = (e: any) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImageURL(URL.createObjectURL(file));
+    }
+  };
+  const uploadImage = async () => {
+    console.log("Subiendo imagen");
+  };
 
   return (
     <GenericModal
@@ -52,7 +64,17 @@ function ModalCRUDCase() {
           />
         </Tabs>
       </div>
-      <div>MODAL CRUD CASE</div>
+      <div>
+        <input type={"file"} accept="image/*" id="image chooser" onChange={handleImageChange} />
+        {imageURL && <img src={imageURL} alt="image" />}
+        <Button
+          onPress={async () => {
+            await uploadImage();
+          }}
+        >
+          Subir Imagen
+        </Button>
+      </div>
     </GenericModal>
   );
 }
