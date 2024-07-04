@@ -1,12 +1,20 @@
 import axios, { AxiosResponse } from "axios";
-import { VITE_BACKEND_DO_SERVICE } from "~/constants/service/service.constants";
+import {
+  VITE_BACKEND_DO_SERVICE,
+  VITE_BACKEND_DO_SERVICE_MOCK,
+} from "~/constants/service/service.constants";
 
-const uploadDigitalOceanImg = async (formData: any): Promise<AxiosResponse> => {
-  return await axios.post(`${VITE_BACKEND_DO_SERVICE}/upload`, formData, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+const uploadToDOSpaces = async (formData: FormData): Promise<AxiosResponse> => {
+  try {
+    return await axios.post(`${VITE_BACKEND_DO_SERVICE_MOCK}/upload`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  } catch (error) {
+    console.error("Error uploading to DigitalOcean Spaces:", error);
+    throw error;
+  }
 };
 
-export { uploadDigitalOceanImg };
+export { uploadToDOSpaces };

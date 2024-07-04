@@ -3,18 +3,28 @@ import AdminContext from "~/pages/admin/context/AdminContext";
 import GenericModal from "~/components/GenericModal";
 import { Button, Tab, Tabs } from "@nextui-org/react";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
+import uploadDigitalOceanImg from "~/helpers/uploadDigitalOceanImg";
 
 function ModalCRUDCase() {
   const [imageURL, setImageURL] = useState("");
+  const [imageSpaceURL, setImageSpaceURL] = useState("");
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const { isOpenCase, onCloseCase, selectedKey, setSelectedKey, title } = useContext(AdminContext);
   const handleImageChange = (e: any) => {
     const file = e.target.files[0];
     if (file) {
       setImageURL(URL.createObjectURL(file));
+      setImageFile(file);
     }
   };
-  const uploadImage = async () => {
-    console.log("Subiendo imagen");
+  const handleUploadImage = async () => {
+    try {
+      const response = await uploadDigitalOceanImg(imageFile);
+      console.log("response", response);
+      setImageSpaceURL(response.data.file_url);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
   };
 
   return (
@@ -67,7 +77,7 @@ function ModalCRUDCase() {
         {imageURL && <img src={imageURL} alt="image" />}
         <Button
           onPress={async () => {
-            await uploadImage();
+            await handleUploadImage();
           }}
         >
           Subir Imagen
