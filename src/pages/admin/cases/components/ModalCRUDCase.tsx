@@ -1,8 +1,16 @@
 import React, { useContext, useState } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import GenericModal from "~/components/GenericModal";
-import { Autocomplete, AutocompleteItem, Button, Input, Tab, Tabs } from "@nextui-org/react";
-import { FaArrowRight, FaEdit, FaEye, FaPlus, FaTrash } from "react-icons/fa";
+import {
+  Autocomplete,
+  AutocompleteItem,
+  Button,
+  Input,
+  Tab,
+  Tabs,
+  Textarea,
+} from "@nextui-org/react";
+import { FaArrowLeft, FaArrowRight, FaEdit, FaEye, FaPlus, FaTrash } from "react-icons/fa";
 import uploadDigitalOceanImg from "~/helpers/uploadDigitalOceanImg";
 import { createCase } from "~/service/supabase/cases.service";
 import { Case } from "~/interfaces/Case.interface";
@@ -22,6 +30,9 @@ function ModalCRUDCase() {
     setCaseData,
     setCaseSlideData,
     caseSlideData,
+    crudColor,
+    setCrudColor,
+    onOpenDelete,
     changeSection,
     setChangeSection,
   } = useContext(AdminContext);
@@ -42,13 +53,26 @@ function ModalCRUDCase() {
       isOpen={isOpenCase}
       onClose={onCloseCase}
       onClickConfirm={async () => onCloseCase()}
-      size={"4xl"}
+      size={"2xl"}
       title={title}
     >
-      <div className="flex w-full flex-col items-end">
+      <div className="flex w-full justify-end gap-2.5">
+        <div className={`${changeSection ? "flex" : "hidden"} w-full`}>
+          <Button
+            color="default"
+            variant="shadow"
+            className="items-center justify-center lg:flex"
+            size="md"
+            onPress={() => {
+              setChangeSection(false);
+            }}
+          >
+            <FaArrowLeft /> Volver
+          </Button>
+        </div>
         <Tabs
           aria-label="Options"
-          color="secondary"
+          color={crudColor}
           variant="bordered"
           selectedKey={selectedKey}
           onSelectionChange={setSelectedKey}
@@ -83,17 +107,25 @@ function ModalCRUDCase() {
               </div>
             }
           />
-          <Tab
-            key="delete"
-            isDisabled={selectedKey === "create"}
-            title={
-              <div className="flex items-center space-x-2">
-                <FaTrash />
-                <span>Borrar</span>
-              </div>
-            }
-          />
+          {/*<Tab*/}
+          {/*  key="delete"*/}
+          {/*  isDisabled={selectedKey === "create"}*/}
+          {/*  title={*/}
+          {/*    <div className="flex items-center space-x-2">*/}
+          {/*      <FaTrash />*/}
+          {/*      <span>Borrar</span>*/}
+          {/*    </div>*/}
+          {/*  }*/}
+          {/*/>*/}
         </Tabs>
+        <Button
+          variant="shadow"
+          color="danger"
+          className={`${selectedKey === "create" && "hidden"}`}
+          onPress={onOpenDelete}
+        >
+          <FaTrash />
+        </Button>
       </div>
       <div>
         <div className="flex flex-col gap-2.5 space-y-2 lg:grid lg:grid-cols-2 lg:space-y-0">
@@ -105,15 +137,15 @@ function ModalCRUDCase() {
                 size="sm"
                 aria-autocomplete="none"
                 label="Título"
-                className="max-w-md"
+                className="col-span-2"
               />
-              <Input
+              <Textarea
                 isRequired
                 type="text"
                 size="sm"
                 aria-autocomplete="none"
                 label="Descipción"
-                className="max-w-md"
+                className="col-span-2"
               />
               <Autocomplete
                 isRequired
@@ -128,12 +160,25 @@ function ModalCRUDCase() {
               <div className="col-span-2 flex justify-end">
                 <Button
                   variant="bordered"
-                  color="secondary"
+                  color={crudColor}
                   onPress={() => {
                     setChangeSection(true);
                   }}
+                  className={`${selectedKey === "create" ? "flex" : "hidden"}`}
                 >
                   Crear Caso y Continuar Slides <FaArrowRight />
+                </Button>
+                <Button
+                  variant="bordered"
+                  color={crudColor}
+                  onPress={() => {
+                    setChangeSection(true);
+                  }}
+                  className={`${
+                    selectedKey === "edit" || selectedKey === "see" ? "flex" : "hidden"
+                  }`}
+                >
+                  Slides <FaArrowRight />
                 </Button>
               </div>
             </>

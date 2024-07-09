@@ -17,6 +17,10 @@ interface AdminContextData {
   onCloseDelete: () => void;
   nameDelete: string;
   setNameDelete: (name: string) => void;
+  crudColor: "default" | "success" | "warning" | "primary" | "secondary" | "danger";
+  setCrudColor: (
+    color: "default" | "success" | "warning" | "primary" | "secondary" | "danger",
+  ) => void;
   selectedKey: Key;
   setSelectedKey: (key: Key) => void;
   title: string;

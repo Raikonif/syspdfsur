@@ -6,19 +6,23 @@ import AdminContext from "~/pages/admin/context/AdminContext";
 function ModalDelete(): ReactElement {
   const { isOpenDelete, onCloseDelete, functionDelete, onCloseCase } = useContext(AdminContext);
   const { t } = useTranslation();
-  const { nameDelete } = useContext(AdminContext);
+  const { nameDelete, setSelectedKey } = useContext(AdminContext);
 
   const handleDelete = async () => {
     await functionDelete();
     onCloseCase();
   };
+  const handleClose = () => {
+    onCloseDelete();
+    setSelectedKey("see");
+  };
 
   return (
     <GenericModal
-      onClose={onCloseDelete}
+      onClose={handleClose}
       isOpen={isOpenDelete}
       title={"Borrar Registro"}
-      onClickConfirm={handleDelete}
+      onClickConfirm={onCloseDelete}
     >
       <div className="m-auto w-64 rounded-2xl p-4 shadow-lg">
         <div className="h-full w-full text-center">

@@ -8,11 +8,15 @@ interface Props {
 }
 
 function AdminProvider({ children }: Props) {
+  // MODAL CRUD CASE
   const [caseData, setCaseData] = useState<OpCase>({} as Case);
   const [caseSlideData, setCaseSlideData] = useState<OpCaseSlide[]>([] as OpCaseSlide[]);
   const [selectedKey, setSelectedKey] = useState<Key>("see");
   const [changeSection, setChangeSection] = useState(false);
   const [title, setTitle] = useState<string>("Ver Caso");
+  const [crudColor, setCrudColor] = useState<
+    "default" | "success" | "warning" | "primary" | "secondary" | "danger"
+  >("success");
   // delete states
   const [deleteType, setDeleteType] = useState<"case" | "articles">("case");
   const [nameDelete, setNameDelete] = useState<string>("");
@@ -37,14 +41,22 @@ function AdminProvider({ children }: Props) {
       onOpenDelete();
       setTitle("Borrar Caso");
       setDeleteType("case");
+      setCrudColor("danger")
     }
     if (selectedKey === "edit") {
       console.log("edit");
       setTitle("Editar Caso");
+      setCrudColor("warning")
     }
     if (selectedKey === "see") {
       console.log("see");
       setTitle("Ver Caso");
+      setCrudColor("secondary")
+    }
+    if (selectedKey === "create") {
+      console.log("create");
+      setTitle("Nuevo Caso");
+      setCrudColor("success")
     }
   };
 
@@ -70,6 +82,8 @@ function AdminProvider({ children }: Props) {
         onCloseDelete,
         nameDelete,
         setNameDelete,
+        crudColor,
+        setCrudColor,
         selectedKey,
         setSelectedKey,
         title,
