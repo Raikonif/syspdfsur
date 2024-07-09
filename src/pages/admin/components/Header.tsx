@@ -7,12 +7,13 @@ import { Case } from "~/interfaces/Case.interface";
 function Header() {
   const [filterValue, setFilterValue] = useState("");
   const [page, setPage] = useState(1);
-  const { onOpenCase, setSelectedKey, setCaseData } = useContext(AdminContext);
+  const { onOpenCase, setSelectedKey, setCaseData, setChangeSection } = useContext(AdminContext);
 
   const handleCreate = () => {
     onOpenCase();
     setSelectedKey("create");
     setCaseData({} as Case);
+    setChangeSection(false);
   };
   const onSearchChange = useCallback((value?: string) => {
     if (value) {

@@ -23,6 +23,8 @@ interface AdminContextData {
   setTitle: (title: string) => void;
   deleteType: "case" | "articles";
   setDeleteType: (type: "case" | "articles") => void;
+  changeSection: boolean;
+  setChangeSection: (nextSection: boolean) => void;
   functionDelete: () => void;
   handleSelectionChange: () => void;
 }

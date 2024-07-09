@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import GenericModal from "~/components/GenericModal";
-import { Button, Tab, Tabs } from "@nextui-org/react";
-import { FaEdit, FaEye, FaPlus, FaTrash } from "react-icons/fa";
+import { Autocomplete, AutocompleteItem, Button, Input, Tab, Tabs } from "@nextui-org/react";
+import { FaArrowRight, FaEdit, FaEye, FaPlus, FaTrash } from "react-icons/fa";
 import uploadDigitalOceanImg from "~/helpers/uploadDigitalOceanImg";
 import { createCase } from "~/service/supabase/cases.service";
 import { Case } from "~/interfaces/Case.interface";
+import { typeListOptions } from "~/constants/options/typeList.options";
+import SlideForModal from "~/pages/admin/cases/components/SlideForModal";
 
 function ModalCRUDCase() {
   const [imageURL, setImageURL] = useState("");
@@ -20,23 +22,10 @@ function ModalCRUDCase() {
     setCaseData,
     setCaseSlideData,
     caseSlideData,
+    changeSection,
+    setChangeSection,
   } = useContext(AdminContext);
 
-  const handleImageChange = (e: any) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImageURL(URL.createObjectURL(file));
-      setImageFile(file);
-    }
-  };
-  const handleUploadImage = async () => {
-    try {
-      const response = await uploadDigitalOceanImg(imageFile);
-      console.log("response", response);
-    } catch (error) {
-      console.error("Error uploading image:", error);
-    }
-  };
   const handleConfirm = async () => {
     try {
       const response = await uploadDigitalOceanImg(imageFile);
@@ -53,6 +42,7 @@ function ModalCRUDCase() {
       isOpen={isOpenCase}
       onClose={onCloseCase}
       onClickConfirm={async () => onCloseCase()}
+      size={"4xl"}
       title={title}
     >
       <div className="flex w-full flex-col items-end">
@@ -106,15 +96,50 @@ function ModalCRUDCase() {
         </Tabs>
       </div>
       <div>
-        <input type={"file"} accept="image/*" id="image chooser" onChange={handleImageChange} />
-        {imageURL && <img src={imageURL} alt="image" />}
-        <Button
-          onPress={async () => {
-            await handleUploadImage();
-          }}
-        >
-          Subir Imagen
-        </Button>
+        <div className="flex flex-col gap-2.5 space-y-2 lg:grid lg:grid-cols-2 lg:space-y-0">
+          {!changeSection && (
+            <>
+              <Input
+                isRequired
+                type="text"
+                size="sm"
+                aria-autocomplete="none"
+                label="Título"
+                className="max-w-md"
+              />
+              <Input
+                isRequired
+                type="text"
+                size="sm"
+                aria-autocomplete="none"
+                label="Descipción"
+                className="max-w-md"
+              />
+              <Autocomplete
+                isRequired
+                defaultInputValue={"Histopatológico"}
+                placeholder="Selecciona tipo de estudio"
+                defaultItems={typeListOptions}
+                defaultSelectedKey="cat"
+                className="col-span-2"
+              >
+                {(item) => <AutocompleteItem key={item.value}>{item.label}</AutocompleteItem>}
+              </Autocomplete>
+              <div className="col-span-2 flex justify-end">
+                <Button
+                  variant="bordered"
+                  color="secondary"
+                  onPress={() => {
+                    setChangeSection(true);
+                  }}
+                >
+                  Crear Caso y Continuar Slides <FaArrowRight />
+                </Button>
+              </div>
+            </>
+          )}
+        </div>
+        {changeSection && <SlideForModal />}
       </div>
     </GenericModal>
   );

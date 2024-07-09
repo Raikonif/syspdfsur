@@ -5,14 +5,21 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import toast from "react-hot-toast";
 
 function CaseCard() {
-  const { onOpenCase, onOpenDelete, setNameDelete, setSelectedKey, setDeleteType } =
-    useContext(AdminContext);
+  const {
+    onOpenCase,
+    onOpenDelete,
+    setNameDelete,
+    setSelectedKey,
+    setDeleteType,
+    setChangeSection,
+  } = useContext(AdminContext);
 
   return (
     <div
       onClick={() => {
         onOpenCase();
         setSelectedKey("see");
+        setChangeSection(false);
       }}
     >
       <Card className="max-w-[400px] cursor-pointer active:bg-fuchsia-200 dark:active:bg-neutral-800">

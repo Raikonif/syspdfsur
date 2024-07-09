@@ -11,6 +11,7 @@ function AdminProvider({ children }: Props) {
   const [caseData, setCaseData] = useState<OpCase>({} as Case);
   const [caseSlideData, setCaseSlideData] = useState<OpCaseSlide[]>([] as OpCaseSlide[]);
   const [selectedKey, setSelectedKey] = useState<Key>("see");
+  const [changeSection, setChangeSection] = useState(false);
   const [title, setTitle] = useState<string>("Ver Caso");
   // delete states
   const [deleteType, setDeleteType] = useState<"case" | "articles">("case");
@@ -75,6 +76,8 @@ function AdminProvider({ children }: Props) {
         setTitle,
         deleteType,
         setDeleteType,
+        changeSection,
+        setChangeSection,
         functionDelete,
         handleSelectionChange,
       }}

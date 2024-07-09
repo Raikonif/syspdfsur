@@ -12,11 +12,12 @@ interface Props {
   children: React.ReactNode;
   title: string;
   isOpen: boolean;
+  size?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "full" | undefined;
   onClose: () => void;
   onClickConfirm: () => Promise<void>;
 }
 
-function GenericModal({ children, onClickConfirm, isOpen, onClose, title }: Props) {
+function GenericModal({ children, onClickConfirm, isOpen, onClose, title, size }: Props) {
   const handleAction = async () => {
     try {
       await onClickConfirm();
@@ -29,7 +30,7 @@ function GenericModal({ children, onClickConfirm, isOpen, onClose, title }: Prop
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose} backdrop={"blur"}>
+      <Modal isOpen={isOpen} onClose={onClose} backdrop={"blur"} size={size}>
         <ModalContent>
           {(onCloseCase) => (
             <>
