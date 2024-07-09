@@ -12,12 +12,21 @@ interface Props {
   children: React.ReactNode;
   title: string;
   isOpen: boolean;
+  hideButtons?: boolean;
   size?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "full" | undefined;
   onClose: () => void;
   onClickConfirm: () => Promise<void>;
 }
 
-function GenericModal({ children, onClickConfirm, isOpen, onClose, title, size }: Props) {
+function GenericModal({
+  children,
+  onClickConfirm,
+  isOpen,
+  onClose,
+  title,
+  size,
+  hideButtons = false,
+}: Props) {
   const handleAction = async () => {
     try {
       await onClickConfirm();
@@ -36,14 +45,16 @@ function GenericModal({ children, onClickConfirm, isOpen, onClose, title, size }
             <>
               <ModalHeader className="flex flex-col gap-1">{title}</ModalHeader>
               <ModalBody>{children}</ModalBody>
-              <ModalFooter>
-                <Button color="default" variant="light" onPress={onCloseCase}>
-                  Cerrar
-                </Button>
-                <Button color="secondary" onPress={handleAction}>
-                  Confirmar
-                </Button>
-              </ModalFooter>
+              {!hideButtons && (
+                <ModalFooter>
+                  <Button color="default" variant="light" onPress={onCloseCase}>
+                    Cerrar
+                  </Button>
+                  <Button color="secondary" onPress={handleAction}>
+                    Confirmar
+                  </Button>
+                </ModalFooter>
+              )}
             </>
           )}
         </ModalContent>

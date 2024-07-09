@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
 import { Button, Image, Input, Textarea } from "@nextui-org/react";
 import uploadDigitalOceanImg from "~/helpers/uploadDigitalOceanImg";
-import { FaCamera, FaPlus } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaCamera, FaPlus, FaTrash } from "react-icons/fa";
 import toast from "react-hot-toast";
 import AdminContext from "~/pages/admin/context/AdminContext";
 
@@ -56,30 +56,57 @@ function SlideForModal() {
       />
       {imageURL && (
         <div className="col-span-2 flex justify-center">
-          <Image src={imageURL} alt="image" className="col-span-2 max-w-[250px]" isBlurred />
+          <Image
+            src={imageURL}
+            alt="image"
+            className="col-span-2 max-h-[300px] max-w-[250px]"
+            isBlurred
+          />
         </div>
       )}
       <Button
         color={crudColor}
         variant="ghost"
-        className={`${selectedKey === "see" || selectedKey === "delete" ? "hidden" : "col-span-2"}`}
         onPress={handleButtonClick}
+        size={"sm"}
+        className={`${selectedKey === "see" || selectedKey === "delete" ? "hidden" : "col-span-2"}`}
       >
         Cargar Imagen <FaCamera size={20} />
       </Button>
       {!isSlideCreated && (
         <Button
           color={crudColor}
-          className={`${
-            selectedKey === "see" || selectedKey === "delete" ? "hidden" : ""
-          } col-span-2`}
           onPress={async () => {
             await handleUploadImage();
             setIsSlideCreated(true);
             toast.success("Slide creado correctamente");
           }}
+          size={"sm"}
+          className={`${
+            selectedKey === "see" || selectedKey === "delete" || selectedKey === "edit"
+              ? "hidden"
+              : "col-span-2"
+          }`}
         >
           Crear Slide <FaPlus />
+        </Button>
+      )}
+      {!isSlideCreated && (
+        <Button
+          color={crudColor}
+          onPress={async () => {
+            await handleUploadImage();
+            setIsSlideCreated(true);
+            toast.success("Slide modificado correctamente");
+          }}
+          size={"sm"}
+          className={`${
+            selectedKey === "see" || selectedKey === "delete" || selectedKey === "create"
+              ? "hidden"
+              : ""
+          } col-span-1`}
+        >
+          Modificar Slide <FaPlus />
         </Button>
       )}
       {isSlideCreated && (
@@ -92,6 +119,35 @@ function SlideForModal() {
           Nuevo Slide <FaPlus />
         </Button>
       )}
+      <Button
+        onPress={() => setIsSlideCreated(false)}
+        variant="shadow"
+        color="danger"
+        size={"sm"}
+        className={`${
+          selectedKey === "create" ? "hidden" : selectedKey === "edit" ? "col-span-1" : "col-span-2"
+        }`}
+      >
+        Borrar Slide <FaTrash />
+      </Button>
+      <Button
+        onPress={() => setIsSlideCreated(false)}
+        variant="shadow"
+        color="primary"
+        size={"sm"}
+        className={`${selectedKey === "create" && "hidden"} col-span-1`}
+      >
+        <FaArrowLeft /> Anterior
+      </Button>
+      <Button
+        onPress={() => setIsSlideCreated(false)}
+        variant="shadow"
+        color="primary"
+        size={"sm"}
+        className={`${selectedKey === "create" && "hidden"} col-span-1`}
+      >
+        Siguiente <FaArrowRight />
+      </Button>
     </div>
   );
 }
