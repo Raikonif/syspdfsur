@@ -1,14 +1,15 @@
 import { Button, Input } from "@nextui-org/react";
-import { FaPlus, FaSearch } from "react-icons/fa";
+import { FaHome, FaPlus, FaSearch } from "react-icons/fa";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import SwitchTheme from "~/pages/admin/components/SwitchTheme";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import { Case } from "~/interfaces/Case.interface";
+import { useNavigate } from "react-router-dom";
 function Header() {
   const [filterValue, setFilterValue] = useState("");
   const [page, setPage] = useState(1);
   const { onOpenCase, setSelectedKey, setCaseData, setChangeSection } = useContext(AdminContext);
-
+  const navigate = useNavigate();
   const handleCreate = () => {
     onOpenCase();
     setSelectedKey("create");
@@ -44,7 +45,7 @@ function Header() {
       <div className="flex gap-10">
         <Button
           onPress={handleCreate}
-          color="secondary"
+          color="success"
           variant="shadow"
           className="hidden items-center justify-center lg:flex"
           size="md"
@@ -53,15 +54,18 @@ function Header() {
         </Button>
         <Button
           onClick={handleCreate}
-          color="secondary"
+          color="success"
           variant="shadow"
           className="flex items-center justify-center rounded-xl text-sm text-white lg:hidden"
           size="sm"
         >
           <FaPlus />
         </Button>
-        <div className="hidden lg:flex">
+        <div className="hidden gap-4 lg:flex">
           <SwitchTheme />
+          <Button color="success" variant="shadow" onPress={() => navigate("/")}>
+            <FaHome />
+          </Button>
         </div>
       </div>
     </div>
