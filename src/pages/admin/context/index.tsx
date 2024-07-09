@@ -41,22 +41,22 @@ function AdminProvider({ children }: Props) {
       onOpenDelete();
       setTitle("Borrar Caso");
       setDeleteType("case");
-      setCrudColor("danger")
+      setCrudColor("danger");
     }
     if (selectedKey === "edit") {
       console.log("edit");
       setTitle("Editar Caso");
-      setCrudColor("warning")
+      setCrudColor("warning");
     }
     if (selectedKey === "see") {
       console.log("see");
       setTitle("Ver Caso");
-      setCrudColor("secondary")
+      setCrudColor("primary");
     }
     if (selectedKey === "create") {
       console.log("create");
       setTitle("Nuevo Caso");
-      setCrudColor("success")
+      setCrudColor("success");
     }
   };
 

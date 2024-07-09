@@ -121,7 +121,7 @@ function ModalCRUDCase() {
           </Button>
         </div>
       </div>
-      <div>
+      <div className="lg:mb-5">
         <div className="flex flex-col gap-2.5 space-y-2 lg:grid lg:grid-cols-2 lg:space-y-0">
           {!changeSection && (
             <>
