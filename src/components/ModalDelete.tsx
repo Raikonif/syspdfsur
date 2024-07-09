@@ -22,7 +22,7 @@ function ModalDelete(): ReactElement {
       onClose={handleClose}
       isOpen={isOpenDelete}
       title={"Borrar Registro"}
-      onClickConfirm={onCloseDelete}
+      onClickConfirm={async () => onCloseDelete()}
     >
       <div className="m-auto w-64 rounded-2xl p-4 shadow-lg">
         <div className="h-full w-full text-center">

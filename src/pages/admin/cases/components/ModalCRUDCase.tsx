@@ -56,12 +56,11 @@ function ModalCRUDCase() {
       size={"2xl"}
       title={title}
     >
-      <div className="flex w-full justify-end gap-2.5">
-        <div className={`${changeSection ? "flex" : "hidden"} w-full`}>
+      <div className="flex w-full justify-between gap-2.5">
+        <div className={`${changeSection ? "flex" : "invisible"}`}>
           <Button
             color="default"
             variant="shadow"
-            className="items-center justify-center lg:flex"
             size="md"
             onPress={() => {
               setChangeSection(false);
@@ -137,6 +136,7 @@ function ModalCRUDCase() {
                 size="sm"
                 aria-autocomplete="none"
                 label="Título"
+                isReadOnly={selectedKey === "see"}
                 className="col-span-2"
               />
               <Textarea
@@ -145,6 +145,7 @@ function ModalCRUDCase() {
                 size="sm"
                 aria-autocomplete="none"
                 label="Descipción"
+                isReadOnly={selectedKey === "see"}
                 className="col-span-2"
               />
               <Autocomplete
@@ -153,6 +154,7 @@ function ModalCRUDCase() {
                 placeholder="Selecciona tipo de estudio"
                 defaultItems={typeListOptions}
                 defaultSelectedKey="cat"
+                isReadOnly={selectedKey === "see"}
                 className="col-span-2"
               >
                 {(item) => <AutocompleteItem key={item.value}>{item.label}</AutocompleteItem>}

@@ -32,8 +32,20 @@ function SlideForModal() {
   };
   return (
     <div className="flex w-full flex-col gap-2.5 space-y-2 lg:grid lg:grid-cols-2 lg:space-y-0">
-      <Input type="text" placeholder="Título" isRequired className="col-span-2" />
-      <Textarea type="text" placeholder="Descripción" isRequired className="col-span-2" />
+      <Input
+        type="text"
+        placeholder="Título"
+        isRequired
+        className="col-span-2"
+        isReadOnly={selectedKey === "see"}
+      />
+      <Textarea
+        type="text"
+        placeholder="Descripción"
+        isRequired
+        className="col-span-2"
+        isReadOnly={selectedKey === "see"}
+      />
       <input
         type={"file"}
         accept="image/*"
