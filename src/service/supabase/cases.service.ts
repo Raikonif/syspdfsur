@@ -10,7 +10,7 @@ const getCase = async (caseId: string) => {
 };
 
 const createCase = async (data: OpCase) => {
-  return supabase.from("cases").insert(data);
+  return supabase.from("cases").insert(data).select("*");
 };
 
 const updateCase = async (caseId: string, data: Case) => {

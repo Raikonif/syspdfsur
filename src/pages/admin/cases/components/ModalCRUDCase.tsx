@@ -16,6 +16,7 @@ import { createCase } from "~/service/supabase/cases.service";
 import { Case } from "~/interfaces/Case.interface";
 import { typeListOptions } from "~/constants/options/typeList.options";
 import SlideForModal from "~/pages/admin/cases/components/SlideForModal";
+import toast from "react-hot-toast";
 
 function ModalCRUDCase() {
   const [imageURL, setImageURL] = useState("");
@@ -32,6 +33,8 @@ function ModalCRUDCase() {
     caseSlideData,
     crudColor,
     setCrudColor,
+    caseId,
+    setCaseId,
     onOpenDelete,
     changeSection,
     setChangeSection,
@@ -39,9 +42,14 @@ function ModalCRUDCase() {
 
   const handleConfirm = async () => {
     try {
-      const response = await uploadDigitalOceanImg(imageFile);
-      console.log("response", response);
-      await createCase(caseData);
+      const { data, error } = await createCase(caseData);
+      if (data) {
+        toast.success("Caso creado");
+        setCaseId(data[0].id);
+      } else {
+        toast.error("Error al crear el caso");
+        return;
+      }
       setCaseData({} as Case);
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -132,6 +140,7 @@ function ModalCRUDCase() {
                 aria-autocomplete="none"
                 label="Título"
                 isReadOnly={selectedKey === "see"}
+                onChange={(e) => setCaseData({ ...caseData, title: e.target.value })}
                 className="col-span-2"
               />
               <Textarea
@@ -141,6 +150,7 @@ function ModalCRUDCase() {
                 aria-autocomplete="none"
                 label="Descipción"
                 isReadOnly={selectedKey === "see"}
+                onChange={(e) => setCaseData({ ...caseData, description: e.target.value })}
                 className="col-span-2"
               />
               <Autocomplete
@@ -150,6 +160,7 @@ function ModalCRUDCase() {
                 defaultItems={typeListOptions}
                 defaultSelectedKey="cat"
                 isReadOnly={selectedKey === "see"}
+                onChange={(e) => setCaseData({ ...caseData, type: e.target.value })}
                 className="col-span-2"
               >
                 {(item) => <AutocompleteItem key={item.value}>{item.label}</AutocompleteItem>}
@@ -158,13 +169,15 @@ function ModalCRUDCase() {
                 <Button
                   variant="bordered"
                   color={crudColor}
-                  onPress={() => {
+                  onPress={async () => {
+                    await handleConfirm();
                     setChangeSection(true);
                   }}
                   size={"sm"}
                   className={`${selectedKey === "create" ? "flex" : "hidden"}`}
                 >
-                  Crear Caso y Continuar Slides <FaArrowRight />
+                  Crear Caso y Continuar
+                  <FaArrowRight />
                 </Button>
                 <Button
                   variant="shadow"

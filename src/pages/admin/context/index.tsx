@@ -2,6 +2,8 @@ import React, { Key, useEffect, useState } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import { useDisclosure } from "@nextui-org/react";
 import { Case, OpCase, OpCaseSlide } from "~/interfaces/Case.interface";
+import useGetCases from "~/hooks/useGetCases";
+import useGetSlides from "~/hooks/useGetSlides";
 
 interface Props {
   children: React.ReactNode;
@@ -10,6 +12,7 @@ interface Props {
 function AdminProvider({ children }: Props) {
   // MODAL CRUD CASE
   const [caseData, setCaseData] = useState<OpCase>({} as Case);
+  const [caseId, setCaseId] = useState<string>("");
   const [caseSlideData, setCaseSlideData] = useState<OpCaseSlide[]>([] as OpCaseSlide[]);
   const [selectedKey, setSelectedKey] = useState<Key>("see");
   const [changeSection, setChangeSection] = useState(false);
@@ -17,6 +20,8 @@ function AdminProvider({ children }: Props) {
   const [crudColor, setCrudColor] = useState<
     "default" | "success" | "warning" | "primary" | "secondary" | "danger"
   >("success");
+  const cases = useGetCases();
+  const slides = useGetSlides();
   // delete states
   const [deleteType, setDeleteType] = useState<"case" | "articles">("case");
   const [nameDelete, setNameDelete] = useState<string>("");
@@ -67,10 +72,14 @@ function AdminProvider({ children }: Props) {
   return (
     <AdminContext.Provider
       value={{
+        cases,
+        slides,
         caseData,
         setCaseData,
         caseSlideData,
         setCaseSlideData,
+        caseId,
+        setCaseId,
         isOpenCase,
         onOpenCase,
         onCloseCase,

@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import CaseCard from "~/pages/admin/cases/components/CaseCard";
 import { AnimatePresence, motion } from "framer-motion";
+import AdminContext from "~/pages/admin/context/AdminContext";
+import { Case, OpCase } from "~/interfaces/Case.interface";
+
 function CasesTable() {
+  const { cases } = useContext(AdminContext);
   return (
     <AnimatePresence>
       <motion.div
@@ -11,11 +15,12 @@ function CasesTable() {
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 1.5 }}
       >
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item, index) => (
-          <div key={index} className="flex w-full">
-            <CaseCard />
-          </div>
-        ))}
+        {cases.data.length > 0 &&
+          cases.data.map((item: OpCase, index: React.Key) => (
+            <div key={index} className="flex w-full justify-center">
+              <CaseCard data={item} />
+            </div>
+          ))}
       </motion.div>
     </AnimatePresence>
   );

@@ -8,11 +8,11 @@ import ModalDelete from "~/components/ModalDelete";
 
 function AdminPanel() {
   return (
-    <div className="flex flex-col lg:flex-row">
+    <div className="flex w-full flex-col lg:flex-row">
       <AdminMenu />
       <div className="flex w-full flex-col">
         <Header />
-        <div className="mt-20 lg:mt-0">
+        <div className="mt-20 h-full lg:mt-0">
           <Outlet />
           <Paginator />
         </div>

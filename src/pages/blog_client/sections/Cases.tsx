@@ -32,7 +32,7 @@ function Cases() {
           )}
           {cases.data &&
             cases.data.length > 0 &&
-            cases.data.slice(0, 3).map((_case) => (
+            cases.data.map((_case) => (
               <div
                 className={`${
                   _case.type === "Histophatology" ? "border-indigo-700" : "border-cyan-700"
@@ -54,8 +54,7 @@ function Cases() {
                       {_case.title}
                     </h2>
                     <p className="mb-5 px-6 text-base text-gray-800 dark:text-gray-300">
-                      {_case.description.slice(0, 150) +
-                        (_case.description.length > 150 ? "..." : "")}
+                      {_case.description}
                     </p>
                   </div>
                 </div>
@@ -63,7 +62,7 @@ function Cases() {
                   <div className="flex items-center justify-end">
                     <button
                       className="gradient focus:shadow-outline mx-auto my-6 transform rounded-full bg-violet-600 px-8 py-4 font-bold text-white shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:underline focus:outline-none dark:bg-cyan-700 dark:text-white lg:mx-0"
-                      onClick={() => handleClickOption("cases/1")}
+                      onClick={() => handleClickOption(`cases/${_case.id}`)}
                     >
                       Leer mas ...
                     </button>

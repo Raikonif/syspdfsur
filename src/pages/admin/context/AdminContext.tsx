@@ -1,11 +1,16 @@
 import { createContext, Key } from "react";
-import { OpCase, OpCaseSlide } from "~/interfaces/Case.interface";
+import { Case, CaseSlide, OpCase, OpCaseSlide } from "~/interfaces/Case.interface";
+import { UseQueryResult } from "@tanstack/react-query";
 
 interface AdminContextData {
+  cases: UseQueryResult<Case[], Error>;
+  slides: UseQueryResult<CaseSlide[], Error>;
   caseData: OpCase;
   setCaseData: (data: OpCase) => void;
   caseSlideData: OpCaseSlide[];
   setCaseSlideData: (data: OpCaseSlide[]) => void;
+  caseId: string;
+  setCaseId: (id: string) => void;
   isOpenCase: boolean;
   onOpenCase: () => void;
   onCloseCase: () => void;

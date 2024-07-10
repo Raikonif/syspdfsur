@@ -1,17 +1,19 @@
+import { CYTOLOGY, HISTOPATHOLOGY, PAP } from "~/constants";
+
 export const typeListOptions = [
   {
     id: 1,
-    value: "Histopathology",
+    value: HISTOPATHOLOGY,
     label: "Histopatológico",
   },
   {
     id: 2,
-    value: "Papanicolaou",
+    value: PAP,
     label: "Papanicolaou",
   },
   {
     id: 3,
-    value: "Cytology",
+    value: CYTOLOGY,
     label: "Citológico",
   },
 ];

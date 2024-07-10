@@ -1,10 +1,25 @@
 import React, { useContext } from "react";
-import { Card, CardBody, CardFooter, CardHeader, Divider, Image, Tooltip } from "@nextui-org/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Divider,
+  Image,
+  Tooltip,
+} from "@nextui-org/react";
 import AdminContext from "~/pages/admin/context/AdminContext";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaCircle, FaEdit, FaTrash } from "react-icons/fa";
 import toast from "react-hot-toast";
+import { OpCase } from "~/interfaces/Case.interface";
+import { CYTOLOGY, HISTOPATHOLOGY } from "~/constants";
 
-function CaseCard() {
+interface Props {
+  data: OpCase;
+}
+
+function CaseCard({ data }: Props) {
   const {
     onOpenCase,
     onOpenDelete,
@@ -16,44 +31,44 @@ function CaseCard() {
 
   return (
     <div
+      className="w-full cursor-pointer"
       onClick={() => {
         onOpenCase();
         setSelectedKey("see");
         setChangeSection(false);
       }}
     >
-      <Card className="max-w-[400px] cursor-pointer active:bg-fuchsia-200 dark:active:bg-neutral-800">
+      <Card className="cursor-pointer active:bg-fuchsia-200 dark:active:bg-neutral-800">
         <CardHeader className="flex gap-3">
-          <Image
-            alt="nextui logo"
-            height={40}
-            radius="sm"
-            src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
-            width={40}
+          <FaCircle
+            size={20}
+            className={`${
+              data.type === HISTOPATHOLOGY
+                ? "text-violet-700"
+                : data.type === CYTOLOGY
+                ? "text-cyan-700"
+                : "text-blue-500"
+            }`}
           />
           <div className="flex flex-col">
-            <p className="text-md">NextUI</p>
-            <p className="text-small text-default-500">nextui.org</p>
+            <p className="text-md font-semibold ">{data.title}</p>
+            {/*<p className="text-small text-default-500">{data.type}</p>*/}
           </div>
         </CardHeader>
-        <Divider />
-        <CardBody>
-          <p>Make beautiful websites regardless of your design experience.</p>
-        </CardBody>
-        <Divider />
         <CardFooter className="flex justify-end">
           <Tooltip content="Borrar Caso">
-            <button
-              className="cursor-pointer px-2 text-lg active:opacity-50"
-              onClick={(event) => {
-                event.stopPropagation();
+            <Button
+              color="danger"
+              size={"sm"}
+              className="cursor-pointer px-2 active:opacity-50"
+              onPress={() => {
                 setNameDelete("Caso");
                 setDeleteType("case");
                 onOpenDelete();
               }}
             >
-              <FaTrash className="text-red-500" />
-            </button>
+              Borrar <FaTrash />
+            </Button>
           </Tooltip>
         </CardFooter>
       </Card>
