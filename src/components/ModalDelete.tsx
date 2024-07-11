@@ -2,15 +2,19 @@ import React, { ReactElement, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import GenericModal from "~/components/GenericModal";
 import AdminContext from "~/pages/admin/context/AdminContext";
+import { deleteCase } from "~/service/supabase/cases.service";
 
 function ModalDelete(): ReactElement {
   const { isOpenDelete, onCloseDelete, functionDelete, onCloseCase } = useContext(AdminContext);
   const { t } = useTranslation();
-  const { nameDelete, setSelectedKey } = useContext(AdminContext);
+  const { nameDelete, setSelectedKey, caseId } = useContext(AdminContext);
 
   const handleDelete = async () => {
-    await functionDelete();
-    onCloseCase();
+    if (nameDelete === "Caso") {
+      const { data, error } = await deleteCase(caseId);
+      console.log(data, error);
+      onCloseCase();
+    }
   };
   const handleClose = () => {
     onCloseDelete();
@@ -21,8 +25,8 @@ function ModalDelete(): ReactElement {
     <GenericModal
       onClose={handleClose}
       isOpen={isOpenDelete}
-      title={"Borrar Registro"}
-      onClickConfirm={async () => onCloseDelete()}
+      title={`Borrar ${nameDelete}`}
+      onClickConfirm={async () => handleDelete()}
     >
       <div className="m-auto w-64 rounded-2xl p-4">
         <div className="h-full w-full text-center">

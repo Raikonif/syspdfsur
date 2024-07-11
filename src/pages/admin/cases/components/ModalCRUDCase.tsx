@@ -140,6 +140,7 @@ function ModalCRUDCase() {
                 aria-autocomplete="none"
                 label="Título"
                 isReadOnly={selectedKey === "see"}
+                value={caseData.title}
                 onChange={(e) => setCaseData({ ...caseData, title: e.target.value })}
                 className="col-span-2"
               />
@@ -150,6 +151,7 @@ function ModalCRUDCase() {
                 aria-autocomplete="none"
                 label="Descipción"
                 isReadOnly={selectedKey === "see"}
+                value={caseData.description}
                 onChange={(e) => setCaseData({ ...caseData, description: e.target.value })}
                 className="col-span-2"
               />
@@ -160,12 +162,13 @@ function ModalCRUDCase() {
                 defaultItems={typeListOptions}
                 defaultSelectedKey="cat"
                 isReadOnly={selectedKey === "see"}
+                value={caseData.type}
                 onChange={(e) => setCaseData({ ...caseData, type: e.target.value })}
                 className="col-span-2"
               >
                 {(item) => <AutocompleteItem key={item.value}>{item.label}</AutocompleteItem>}
               </Autocomplete>
-              <div className="col-span-2 flex justify-end">
+              <div className="col-span-2 flex justify-end gap-4">
                 <Button
                   variant="bordered"
                   color={crudColor}
@@ -177,6 +180,19 @@ function ModalCRUDCase() {
                   className={`${selectedKey === "create" ? "flex" : "hidden"}`}
                 >
                   Crear Caso y Continuar
+                  <FaArrowRight />
+                </Button>
+                <Button
+                  variant="flat"
+                  color={crudColor}
+                  onPress={async () => {
+                    await handleConfirm();
+                    setChangeSection(true);
+                  }}
+                  size={"sm"}
+                  className={`${selectedKey === "edit" ? "flex" : "hidden"}`}
+                >
+                  Editar y Continuar
                   <FaArrowRight />
                 </Button>
                 <Button
