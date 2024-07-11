@@ -27,7 +27,7 @@ function CaseCard({ data }: Props) {
     setSelectedKey,
     setDeleteType,
     setChangeSection,
-    setCaseId,
+    setCurrentId,
     setCaseData,
   } = useContext(AdminContext);
 
@@ -38,7 +38,7 @@ function CaseCard({ data }: Props) {
         onOpenCase();
         setSelectedKey("see");
         setChangeSection(false);
-        setCaseId(data.id);
+        setCurrentId(data.id);
         setCaseData(data);
       }}
     >
@@ -66,7 +66,7 @@ function CaseCard({ data }: Props) {
                 onPress={() => {
                   setNameDelete("Caso");
                   setDeleteType("case");
-                  setCaseId(data.id);
+                  setCurrentId(data.id);
                   onOpenDelete();
                 }}
               >

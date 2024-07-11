@@ -9,8 +9,8 @@ interface AdminContextData {
   setCaseData: (data: OpCase) => void;
   caseSlideData: OpCaseSlide[];
   setCaseSlideData: (data: OpCaseSlide[]) => void;
-  caseId: string;
-  setCaseId: (id: string) => void;
+  currentId: string;
+  setCurrentId: (id: string) => void;
   isOpenCase: boolean;
   onOpenCase: () => void;
   onCloseCase: () => void;

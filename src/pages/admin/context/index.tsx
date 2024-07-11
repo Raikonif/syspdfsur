@@ -12,7 +12,7 @@ interface Props {
 function AdminProvider({ children }: Props) {
   // MODAL CRUD CASE
   const [caseData, setCaseData] = useState<OpCase>({} as Case);
-  const [caseId, setCaseId] = useState<string>("");
+  const [currentId, setCurrentId] = useState<string>("");
   const [caseSlideData, setCaseSlideData] = useState<OpCaseSlide[]>([] as OpCaseSlide[]);
   const [selectedKey, setSelectedKey] = useState<Key>("see");
   const [changeSection, setChangeSection] = useState(false);
@@ -78,8 +78,8 @@ function AdminProvider({ children }: Props) {
         setCaseData,
         caseSlideData,
         setCaseSlideData,
-        caseId,
-        setCaseId,
+        currentId,
+        setCurrentId,
         isOpenCase,
         onOpenCase,
         onCloseCase,

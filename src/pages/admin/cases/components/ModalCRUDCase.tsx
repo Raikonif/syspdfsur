@@ -12,7 +12,7 @@ import {
 } from "@nextui-org/react";
 import { FaArrowLeft, FaArrowRight, FaEdit, FaEye, FaPlus, FaTrash } from "react-icons/fa";
 import uploadDigitalOceanImg from "~/helpers/uploadDigitalOceanImg";
-import { createCase } from "~/service/supabase/cases.service";
+import { createCase, updateCase } from "~/service/supabase/cases.service";
 import { Case } from "~/interfaces/Case.interface";
 import { typeListOptions } from "~/constants/options/typeList.options";
 import SlideForModal from "~/pages/admin/cases/components/SlideForModal";
@@ -33,21 +33,42 @@ function ModalCRUDCase() {
     caseSlideData,
     crudColor,
     setCrudColor,
-    caseId,
-    setCaseId,
+    setNameDelete,
+    currentId,
+    setCurrentId,
     onOpenDelete,
     changeSection,
     setChangeSection,
   } = useContext(AdminContext);
 
-  const handleConfirm = async () => {
+  const handleCreateConfirm = async () => {
     try {
       const { data, error } = await createCase(caseData);
       if (data) {
         toast.success("Caso creado");
-        setCaseId(data[0].id);
+        setCurrentId(data[0].id);
       } else {
         toast.error("Error al crear el caso");
+        return;
+      }
+      setCaseData({} as Case);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+
+  const handleOpenDelete = () => {
+    onOpenDelete();
+    setCurrentId(caseData.id);
+    setNameDelete("Caso");
+  };
+  const handleEditConfirm = async () => {
+    try {
+      const { data, error } = await updateCase(currentId, caseData);
+      if (data) {
+        toast.success("Caso actualizado");
+      } else {
+        toast.error("Error al actualizar el caso");
         return;
       }
       setCaseData({} as Case);
@@ -121,7 +142,7 @@ function ModalCRUDCase() {
           <Button
             variant="shadow"
             color="danger"
-            onPress={onOpenDelete}
+            onPress={handleOpenDelete}
             size={"sm"}
             className={`${selectedKey === "create" && "hidden"}`}
           >
@@ -173,7 +194,7 @@ function ModalCRUDCase() {
                   variant="bordered"
                   color={crudColor}
                   onPress={async () => {
-                    await handleConfirm();
+                    await handleCreateConfirm();
                     setChangeSection(true);
                   }}
                   size={"sm"}
@@ -186,7 +207,7 @@ function ModalCRUDCase() {
                   variant="flat"
                   color={crudColor}
                   onPress={async () => {
-                    await handleConfirm();
+                    await handleCreateConfirm();
                     setChangeSection(true);
                   }}
                   size={"sm"}

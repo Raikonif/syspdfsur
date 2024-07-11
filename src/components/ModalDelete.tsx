@@ -3,16 +3,21 @@ import { useTranslation } from "react-i18next";
 import GenericModal from "~/components/GenericModal";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import { deleteCase } from "~/service/supabase/cases.service";
+import toast from "react-hot-toast";
 
 function ModalDelete(): ReactElement {
-  const { isOpenDelete, onCloseDelete, functionDelete, onCloseCase } = useContext(AdminContext);
+  const { isOpenDelete, onCloseDelete, onCloseCase } = useContext(AdminContext);
   const { t } = useTranslation();
-  const { nameDelete, setSelectedKey, caseId } = useContext(AdminContext);
+  const { nameDelete, setSelectedKey, currentId } = useContext(AdminContext);
 
   const handleDelete = async () => {
     if (nameDelete === "Caso") {
-      const { data, error } = await deleteCase(caseId);
-      console.log(data, error);
+      const { data, error } = await deleteCase(currentId);
+      if (data) {
+        toast.error("Caso eliminado");
+      } else {
+        toast.error("Error al eliminar el caso");
+      }
       onCloseCase();
     }
   };

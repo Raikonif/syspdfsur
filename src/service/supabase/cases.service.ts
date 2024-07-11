@@ -13,7 +13,7 @@ const createCase = async (data: OpCase) => {
   return supabase.from("cases").insert(data).select("*");
 };
 
-const updateCase = async (caseId: string, data: Case) => {
+const updateCase = async (caseId: string, data: OpCase) => {
   return supabase.from("cases").update(data).eq("id", caseId);
 };
 
