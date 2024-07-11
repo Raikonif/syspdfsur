@@ -2,8 +2,7 @@ import React, { useContext } from "react";
 import CaseCard from "~/pages/admin/cases/components/CaseCard";
 import { AnimatePresence, motion } from "framer-motion";
 import AdminContext from "~/pages/admin/context/AdminContext";
-import { Case, OpCase } from "~/interfaces/Case.interface";
-import { Tooltip } from "@nextui-org/react";
+import { OpCase } from "~/interfaces/Case.interface";
 
 function CasesTable() {
   const { cases } = useContext(AdminContext);
@@ -19,9 +18,9 @@ function CasesTable() {
         {cases.data &&
           cases.data.length > 0 &&
           cases.data.map((item: OpCase, index: React.Key) => (
-            <>
+            <div key={index}>
               <CaseCard data={item} key={index} />
-            </>
+            </div>
           ))}
       </motion.div>
     </AnimatePresence>

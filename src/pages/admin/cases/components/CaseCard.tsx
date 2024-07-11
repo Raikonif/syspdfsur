@@ -66,6 +66,7 @@ function CaseCard({ data }: Props) {
                 onPress={() => {
                   setNameDelete("Caso");
                   setDeleteType("case");
+                  setCaseId(data.id);
                   onOpenDelete();
                 }}
               >
