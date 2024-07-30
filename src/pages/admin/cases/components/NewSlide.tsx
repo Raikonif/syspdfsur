@@ -89,6 +89,7 @@ function NewSlide() {
         placeholder="Título"
         isRequired
         isReadOnly={selectedKey === SEE}
+        value={slidePreview.title}
         onChange={(e) => setSlidePreview({ ...slidePreview, title: e.target.value })}
         className="col-span-2"
       />
@@ -97,6 +98,7 @@ function NewSlide() {
         placeholder="Descripción"
         isRequired
         isReadOnly={selectedKey === SEE}
+        value={slidePreview.description}
         onChange={(e) => setSlidePreview({ ...slidePreview, description: e.target.value })}
         className="col-span-2"
       />
@@ -186,12 +188,20 @@ function NewSlide() {
       )}
       {isSlideCreated && (
         <Button
-          onPress={() => setIsSlideCreated(false)}
+          onPress={() => {
+            setIsSlideCreated(false);
+            setSlidePreview({
+              title: "",
+              description: "",
+              image_url: "",
+              image_file: null,
+            } as SlidePreview);
+          }}
           variant="ghost"
           color="primary"
           className="col-span-2"
         >
-          Nuevo Slide <FaPlus />
+          Agregar otro Slide <FaPlus />
         </Button>
       )}
       <Button
