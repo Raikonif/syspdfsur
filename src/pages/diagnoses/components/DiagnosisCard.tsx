@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { MdEditSquare, RiDeleteBinFill } from "react-icons/all";
+import { MdEditSquare } from "react-icons/md";
+import { RiDeleteBinFill } from "react-icons/ri";
 import { Report } from "~/interfaces/Report.type";
 
 interface IProps {

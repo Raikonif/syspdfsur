@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { BiPlusMedical } from "react-icons/all";
+import { BiPlusMedical } from "react-icons/bi";
 
 interface IProps {
   setModalCreate: (isOpen: boolean) => void;

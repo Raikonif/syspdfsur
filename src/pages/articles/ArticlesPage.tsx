@@ -3,9 +3,9 @@ import ModalCreateArticle from "~/pages/articles/components/modals/ModalCreateAr
 import ArticlesList from "~/pages/articles/components/ArticlesList";
 import { Article, ArticleSlide, Author, IArticle } from "~/interfaces/Article.interface";
 import Header from "~/pages/articles/components/Header";
-import ModalDeleteItem from "~/components/ModalDeleteItem";
+import ModalDelete from "~/components/ModalDelete";
 import Paginator from "~/components/Paginator";
-import { BiPlusMedical } from "react-icons/all";
+import { BiPlusMedical } from "react-icons/bi";
 import DataFetchContext from "~/pages/articles/context/DataFetchContext";
 
 function ArticlesPage(): ReactElement {
@@ -70,13 +70,7 @@ function ArticlesPage(): ReactElement {
           className="rounded-full bg-violet-600 p-2 text-center text-white"
         />
       </button>
-      {deleteModal && (
-        <ModalDeleteItem
-          onClose={setDeleteModal}
-          refModal={refModalDelete}
-          confirmDelete={setConfirmDelete}
-        />
-      )}
+      {deleteModal && <ModalDelete />}
       {(showModal || createModal || editModal) && (
         <ModalCreateArticle
           onClose={handleOpenClose}

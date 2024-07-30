@@ -1,6 +1,6 @@
 import React from "react";
 import GeneralButton from "~/components/GeneralButton";
-import { FaUserEdit } from "react-icons/all";
+import { FaUserEdit } from "react-icons/fa";
 
 interface IProps {
   openModal: (open: boolean) => void;
