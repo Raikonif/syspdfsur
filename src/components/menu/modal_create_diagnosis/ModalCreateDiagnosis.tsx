@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useRef, useState } from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
-import { BsArrowRightCircle } from "react-icons/all";
+import { BsArrowRightCircle } from "react-icons/bs";
 import ModalHistopathology from "~/components/menu/modal_create_diagnosis/ModalHistopathology";
 import PatientSelect from "~/components/menu/modal_create_diagnosis/PatientSelect";
 

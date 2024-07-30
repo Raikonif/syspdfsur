@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import homeOptions from "~/constants/options/home.options";
 import IMenuInterface from "~/interfaces/menuInterface";
 import { NavLink, useNavigate } from "react-router-dom";
-import { GiMicroscope } from "react-icons/all";
+import { GiMicroscope } from "react-icons/gi";
 import { useTranslation } from "react-i18next";
 function HomeMenu(): ReactElement {
   const navigateHome = useNavigate();

@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import GeneralModal from "~/components/modal/GeneralModal";
-import { BsArrowRightCircle } from "react-icons/all";
+import { BsArrowRightCircle } from "react-icons/bs";
 
 interface IProps {
   onClose: () => void;

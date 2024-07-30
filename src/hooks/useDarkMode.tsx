@@ -7,11 +7,11 @@ function useDarkMode() {
   const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
   const docElement = document.documentElement;
 
-  // const onWindowMatch = () => {
-  //   localStorage.theme === "dark" || (!("theme" in localStorage) && darkQuery.matches)
-  //     ? docElement.classList.add("dark")
-  //     : docElement.classList.remove("dark");
-  // };
+  const onWindowMatch = () => {
+    localStorage.theme === "dark" || (!("theme" in localStorage) && darkQuery.matches)
+      ? docElement.classList.add("dark")
+      : docElement.classList.remove("dark");
+  };
 
   useEffect(() => {
     switch (theme) {
@@ -23,14 +23,14 @@ function useDarkMode() {
         docElement.classList.remove("dark");
         localStorage.setItem("theme", "light");
         break;
-      default:
-        docElement.classList.add("dark");
-        localStorage.setItem("theme", "dark");
-        break;
       // default:
-      //   localStorage.removeItem("theme");
-      //   onWindowMatch();
+      //   docElement.classList.add("dark");
+      //   localStorage.setItem("theme", "dark");
       //   break;
+      default:
+        localStorage.removeItem("theme");
+        onWindowMatch();
+        break;
     }
   }, [theme]);
 

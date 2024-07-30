@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ButtonMenu from "~/components/menu/ButtonMenu";
-import { BsFillSearchHeartFill } from "react-icons/all";
+import { BsFillSearchHeartFill } from "react-icons/bs";
 import SearchField from "~/components/menu/search/SearchField";
 
 interface IProps {
