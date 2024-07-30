@@ -1,5 +1,5 @@
 import supabase from "~/service/supabase/supabase.service";
-import { CaseSlide } from "~/interfaces/Case.interface";
+import { CaseSlide, OpCaseSlide } from "~/interfaces/Case.interface";
 
 const getAllSlidesCases = async () => {
   return supabase.from("slides").select();
@@ -13,7 +13,7 @@ const getSlideFromCase = async (caseId: string) => {
   return supabase.from("slides").select().eq("case_id", caseId);
 };
 
-const createSlideCase = async (data: CaseSlide) => {
+const createSlideCase = async (data: OpCaseSlide) => {
   return supabase.from("slides").insert(data);
 };
 

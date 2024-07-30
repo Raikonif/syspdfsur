@@ -9,19 +9,20 @@ import {
   FaPlus,
   FaSave,
   FaTrash,
+  FaUpload,
 } from "react-icons/fa";
 import toast from "react-hot-toast";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import { createSlideCase } from "~/service/supabase/slides.service";
 import { OpCaseSlide, SlidePreview } from "~/interfaces/Case.interface";
 import { DELETE, EDIT, SEE } from "~/constants";
+import image_placeholder from "~/assets/image_placeholder.svg";
+import ImagePlaceholder from "~/pages/admin/cases/components/ImagePlaceholder";
+import { MdImage } from "react-icons/md";
 
-interface Props {
-  data?: SlidePreview;
-}
-function SlideForModal({ data }: Props) {
+function NewSlide() {
   const [isSlideCreated, setIsSlideCreated] = useState(false);
-  const [slidePreview, setSlidePreview] = useState<SlidePreview>(data || ({} as SlidePreview));
+  const [slidePreview, setSlidePreview] = useState<SlidePreview>({} as SlidePreview);
   const [imageURL, setImageURL] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
   const fileInputRef = useRef(null);
@@ -107,6 +108,13 @@ function SlideForModal({ data }: Props) {
         ref={fileInputRef}
         onChange={handleImageChange}
       />
+      <div
+        className="col-span-2 my-1 flex cursor-pointer flex-col justify-center rounded-xl border-2 border-dotted border-green-500 py-2"
+        onClick={handleButtonClick}
+      >
+        <FaCamera size={80} className="col-span-2 flex w-full justify-center text-green-500" />
+        <h2 className="text-center text-green-500">Cargar Imagen</h2>
+      </div>
       {slidePreview.image_url && (
         <div className="col-span-2 flex justify-center">
           <Image
@@ -117,15 +125,15 @@ function SlideForModal({ data }: Props) {
           />
         </div>
       )}
-      <Button
-        color={crudColor}
-        variant="ghost"
-        onPress={handleButtonClick}
-        size={"sm"}
-        className={`${selectedKey === SEE || selectedKey === DELETE ? "hidden" : "col-span-2"}`}
-      >
-        Cargar Imagen <FaCamera size={20} />
-      </Button>
+      {/*<Button*/}
+      {/*  color={crudColor}*/}
+      {/*  variant="ghost"*/}
+      {/*  onPress={handleButtonClick}*/}
+      {/*  size={"sm"}*/}
+      {/*  className={`${selectedKey === SEE || selectedKey === DELETE ? "hidden" : "col-span-2"}`}*/}
+      {/*>*/}
+      {/*  Cargar Imagen <FaCamera size={20} />*/}
+      {/*</Button>*/}
       {!isSlideCreated && (
         <Button
           color={crudColor}
@@ -205,4 +213,4 @@ function SlideForModal({ data }: Props) {
   );
 }
 
-export default SlideForModal;
+export default NewSlide;

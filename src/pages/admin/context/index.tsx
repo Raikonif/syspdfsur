@@ -1,9 +1,10 @@
 import React, { Key, useEffect, useState } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import { useDisclosure } from "@nextui-org/react";
-import { Case, OpCase, OpCaseSlide } from "~/interfaces/Case.interface";
+import { Case, OpCase, OpCaseSlide, OpSlidePreview } from "~/interfaces/Case.interface";
 import useGetCases from "~/hooks/useGetCases";
 import useGetSlides from "~/hooks/useGetSlides";
+import { SEE } from "~/constants";
 
 interface Props {
   children: React.ReactNode;
@@ -11,11 +12,15 @@ interface Props {
 
 function AdminProvider({ children }: Props) {
   // MODAL CRUD CASE
-  const [caseData, setCaseData] = useState<OpCase>({} as Case);
+  const [caseData, setCaseData] = useState<OpCase>({} as OpCase);
   const [currentId, setCurrentId] = useState<string>("");
+  const [isCreated, setIsCreated] = useState<boolean>(false);
+  const [slidePreview, setSlidePreview] = useState<OpSlidePreview>({} as OpSlidePreview);
+  const [listSlidesPreview, setListSlidesPreview] = useState<any[]>([] as any[]);
   const [caseSlideData, setCaseSlideData] = useState<OpCaseSlide[]>([] as OpCaseSlide[]);
-  const [selectedKey, setSelectedKey] = useState<Key>("see");
-  const [changeSection, setChangeSection] = useState(false);
+  const [slideData, setSlideData] = useState<OpCaseSlide>({} as OpCaseSlide);
+  const [selectedKey, setSelectedKey] = useState<Key>(SEE);
+  const [changeSection, setChangeSection] = useState(true);
   const [title, setTitle] = useState<string>("Ver Caso");
   const [crudColor, setCrudColor] = useState<
     "default" | "success" | "warning" | "primary" | "secondary" | "danger"
@@ -62,6 +67,14 @@ function AdminProvider({ children }: Props) {
       console.log("create");
       setTitle("Nuevo Caso");
       setCrudColor("success");
+      setCurrentId("");
+      setCaseData({
+        id: "",
+        title: "",
+        description: "",
+        type: "",
+        updated_at: null,
+      });
     }
   };
 
@@ -74,10 +87,18 @@ function AdminProvider({ children }: Props) {
       value={{
         cases,
         slides,
+        isCreated,
+        setIsCreated,
         caseData,
         setCaseData,
         caseSlideData,
+        slidePreview,
+        setSlidePreview,
+        listSlidesPreview,
+        setListSlidesPreview,
         setCaseSlideData,
+        slideData,
+        setSlideData,
         currentId,
         setCurrentId,
         isOpenCase,

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import GenericModal from "~/components/GenericModal";
 import {
@@ -11,12 +11,12 @@ import {
   Textarea,
 } from "@nextui-org/react";
 import { FaArrowLeft, FaArrowRight, FaEdit, FaEye, FaPlus, FaTrash } from "react-icons/fa";
-import uploadDigitalOceanImg from "~/helpers/uploadDigitalOceanImg";
 import { createCase, updateCase } from "~/service/supabase/cases.service";
-import { Case } from "~/interfaces/Case.interface";
+import { Case, OpCase } from "~/interfaces/Case.interface";
 import { typeListOptions } from "~/constants/options/typeList.options";
-import SlideForModal from "~/pages/admin/cases/components/SlideForModal";
 import toast from "react-hot-toast";
+import SwiperSlides from "~/pages/admin/cases/components/SwiperSlides";
+import { EDIT, SEE } from "~/constants";
 
 function ModalCRUDCase() {
   const [imageURL, setImageURL] = useState("");
@@ -68,14 +68,18 @@ function ModalCRUDCase() {
       if (data) {
         toast.success("Caso actualizado");
       } else {
+        console.log("Error updating case:", error);
         toast.error("Error al actualizar el caso");
         return;
       }
-      setCaseData({} as Case);
+      setCaseData({} as OpCase);
     } catch (error) {
       console.error("Error uploading image:", error);
     }
   };
+  useEffect(() => {
+    console.log("caseData", caseData);
+  }, [caseData]);
 
   return (
     <GenericModal
@@ -139,15 +143,17 @@ function ModalCRUDCase() {
               }
             />
           </Tabs>
-          <Button
-            variant="shadow"
-            color="danger"
-            onPress={handleOpenDelete}
-            size={"sm"}
-            className={`${selectedKey === "create" && "hidden"}`}
-          >
-            Caso y Slides <FaTrash />
-          </Button>
+          <div className="flex w-full justify-end">
+            <Button
+              variant="shadow"
+              color="danger"
+              onPress={handleOpenDelete}
+              size={"sm"}
+              className={`${selectedKey === "create" && "hidden"}`}
+            >
+              Caso y Slides <FaTrash />
+            </Button>
+          </div>
         </div>
       </div>
       <div className="lg:mb-5">
@@ -160,7 +166,7 @@ function ModalCRUDCase() {
                 size="sm"
                 aria-autocomplete="none"
                 label="Título"
-                isReadOnly={selectedKey === "see"}
+                isReadOnly={selectedKey === SEE}
                 value={caseData.title}
                 onChange={(e) => setCaseData({ ...caseData, title: e.target.value })}
                 className="col-span-2"
@@ -171,20 +177,21 @@ function ModalCRUDCase() {
                 size="sm"
                 aria-autocomplete="none"
                 label="Descipción"
-                isReadOnly={selectedKey === "see"}
+                isReadOnly={selectedKey === SEE}
                 value={caseData.description}
                 onChange={(e) => setCaseData({ ...caseData, description: e.target.value })}
                 className="col-span-2"
               />
               <Autocomplete
                 isRequired
-                defaultInputValue={"Histopatológico"}
+                label={"Tipo de estudio"}
                 placeholder="Selecciona tipo de estudio"
                 defaultItems={typeListOptions}
-                defaultSelectedKey="cat"
-                isReadOnly={selectedKey === "see"}
+                isReadOnly={selectedKey === SEE}
                 value={caseData.type}
-                onChange={(e) => setCaseData({ ...caseData, type: e.target.value })}
+                onSelectionChange={(selectedItem) =>
+                  setCaseData({ ...caseData, type: String(selectedItem) })
+                }
                 className="col-span-2"
               >
                 {(item) => <AutocompleteItem key={item.value}>{item.label}</AutocompleteItem>}
@@ -207,7 +214,7 @@ function ModalCRUDCase() {
                   variant="flat"
                   color={crudColor}
                   onPress={async () => {
-                    await handleCreateConfirm();
+                    await handleEditConfirm();
                     setChangeSection(true);
                   }}
                   size={"sm"}
@@ -223,9 +230,7 @@ function ModalCRUDCase() {
                     setChangeSection(true);
                   }}
                   size={"sm"}
-                  className={`${
-                    selectedKey === "edit" || selectedKey === "see" ? "flex" : "hidden"
-                  }`}
+                  className={`${selectedKey === EDIT || selectedKey === SEE ? "flex" : "hidden"}`}
                 >
                   Slides <FaArrowRight />
                 </Button>
@@ -233,7 +238,7 @@ function ModalCRUDCase() {
             </>
           )}
         </div>
-        {changeSection && <SlideForModal />}
+        {changeSection && <SwiperSlides />}
       </div>
     </GenericModal>
   );
