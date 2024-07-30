@@ -1,6 +1,6 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import SlideForModal from "~/pages/admin/cases/components/SlideForModal";
 import { EffectCreative, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -9,27 +9,29 @@ import "swiper/css/effect-creative";
 import { Button } from "@nextui-org/react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import NewSlide from "~/pages/admin/cases/components/NewSlide";
-import { SlidePreview } from "~/interfaces/Case.interface";
+import { list } from "postcss";
 function SwiperSlides() {
-  const { listSlidesPreview, isCreated, setIsCreated, selectedKey } = useContext(AdminContext);
-  const swiperRef = useRef(null);
-
+  const { listSlidesPreview, isCreated, setIsCreated, selectedKey, swiperRef } =
+    useContext(AdminContext);
+  // const swiperRef = useRef(null);
+  const nextSlide = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slideNext();
+    }
+  };
+  const prevSlide = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slidePrev();
+    }
+  };
   const goToLastSlide = () => {
     if (swiperRef.current && swiperRef.current.swiper) {
       swiperRef.current.swiper.slideTo(listSlidesPreview.length);
     }
   };
-  const handleNext = () => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slideNext();
-    }
-  };
-
-  const handlePrev = () => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slidePrev();
-    }
-  };
+  useEffect(() => {
+    console.log("listSlidesPreview", listSlidesPreview);
+  }, [listSlidesPreview]);
   return (
     <div className="flex h-full w-full flex-col py-1">
       {listSlidesPreview.length > 0 && listSlidesPreview ? (
@@ -39,60 +41,47 @@ function SwiperSlides() {
       )}
       <Swiper
         ref={swiperRef}
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
         direction={"horizontal"}
         pagination={{
           type: "fraction",
         }}
         grabCursor={true}
         loop={true}
-        effect={"creative"}
-        creativeEffect={{
-          prev: {
-            shadow: true,
-            translate: [0, 0, -400],
-          },
-          next: {
-            translate: ["100%", 0, 0],
-          },
-        }}
         navigation={true}
-        modules={[EffectCreative, Pagination]}
+        modules={[Pagination]}
         className="flex w-full flex-col items-center justify-center"
       >
-        {/*{listSlidesPreview.length > 0 ? (*/}
-        {/*  listSlidesPreview.map((slide, index) => (*/}
-        {/*    <SwiperSlide key={index}>*/}
-        {/*      <SlideForModal data={slide} />*/}
-        {/*    </SwiperSlide>*/}
-        {/*  ))*/}
-        {/*) : (*/}
+        {listSlidesPreview.length > 0 &&
+          listSlidesPreview &&
+          listSlidesPreview.map((slide, index) => (
+            <SwiperSlide key={index}>
+              <SlideForModal data={slide} />
+            </SwiperSlide>
+          ))}
         <SwiperSlide>
-          {/*<SlideForModal data={{} as SlidePreview} />*/}
           <NewSlide />
         </SwiperSlide>
-        {/*// )}*/}
       </Swiper>
       <div
         className={`${
-          listSlidesPreview.length === 0 ? "hidden" : "flex"
-        } my-2 w-full justify-center gap-1.5`}
+          (listSlidesPreview.length === 0 || !listSlidesPreview) && "hidden"
+        } my-2 flex w-full justify-center gap-1.5`}
       >
         <Button
-          onPress={() => handlePrev()}
+          onPress={() => prevSlide()}
           variant="shadow"
           color="primary"
           size={"sm"}
-          className={`${selectedKey === "create" && "hidden"} col-span-1 w-full`}
+          className={"col-span-1 w-full"}
         >
           <FaArrowLeft /> Anterior
         </Button>
         <Button
-          onPress={() => handleNext()}
+          onPress={() => nextSlide()}
           variant="shadow"
           color="primary"
           size={"sm"}
-          className={`${selectedKey === "create" && "hidden"} col-span-1 w-full`}
+          className={"col-span-1 w-full"}
         >
           Siguiente <FaArrowRight />
         </Button>

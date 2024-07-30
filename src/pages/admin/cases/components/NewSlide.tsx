@@ -9,7 +9,6 @@ import {
   FaPlus,
   FaSave,
   FaTrash,
-  FaUpload,
 } from "react-icons/fa";
 import toast from "react-hot-toast";
 import AdminContext from "~/pages/admin/context/AdminContext";
@@ -122,7 +121,6 @@ function NewSlide() {
               className="col-span-2 max-h-[300px] max-w-[250px] p-2"
               isBlurred
             />
-            {/*<h2 className="text-center text-green-500"></h2>*/}
           </>
         ) : (
           <>
@@ -131,42 +129,32 @@ function NewSlide() {
           </>
         )}
       </div>
-      {/*{slidePreview.image_url && (*/}
-      {/*  <div className="col-span-2 flex justify-center">*/}
-      {/*    <Image*/}
-      {/*      src={slidePreview.image_url}*/}
-      {/*      alt="image"*/}
-      {/*      className="col-span-2 max-h-[300px] max-w-[250px]"*/}
-      {/*      isBlurred*/}
-      {/*    />*/}
-      {/*  </div>*/}
-      {/*)}*/}
-      {/*<Button*/}
-      {/*  color={crudColor}*/}
-      {/*  variant="ghost"*/}
-      {/*  onPress={handleButtonClick}*/}
-      {/*  size={"sm"}*/}
-      {/*  className={`${selectedKey === SEE || selectedKey === DELETE ? "hidden" : "col-span-2"}`}*/}
-      {/*>*/}
-      {/*  Cargar Imagen <FaCamera size={20} />*/}
-      {/*</Button>*/}
       {!isSlideCreated && (
-        <Button
-          color={crudColor}
-          onPress={async () => {
-            await handleSaveConfirm();
-            setIsSlideCreated(true);
-            toast.success("Slide creado correctamente");
-          }}
-          size={"sm"}
-          className={`${
-            selectedKey === SEE || selectedKey === DELETE || selectedKey === EDIT
-              ? "hidden"
-              : "col-span-2"
-          }`}
-        >
-          Guardar Slide <FaSave />
-        </Button>
+        <div className="col-span-2 flex w-full pb-7">
+          <Button
+            color={crudColor}
+            onPress={async () => {
+              await handleSaveConfirm();
+              setIsSlideCreated(true);
+              setSlidePreview({
+                id: "",
+                title: "",
+                description: "",
+                image_url: "",
+                image_file: null,
+              });
+              toast.success("Slide creado correctamente");
+            }}
+            size={"sm"}
+            className={`${
+              selectedKey === SEE || selectedKey === DELETE || selectedKey === EDIT
+                ? "hidden"
+                : "col-span-2 w-full"
+            }`}
+          >
+            Guardar Slide <FaSave />
+          </Button>
+        </div>
       )}
       {!isSlideCreated && (
         <Button
@@ -215,24 +203,24 @@ function NewSlide() {
       >
         Borrar Slide <FaTrash />
       </Button>
-      <Button
-        onPress={() => setIsSlideCreated(false)}
-        variant="shadow"
-        color="primary"
-        size={"sm"}
-        className={`${selectedKey === "create" && "hidden"} col-span-1`}
-      >
-        <FaArrowLeft /> Anterior
-      </Button>
-      <Button
-        onPress={() => setIsSlideCreated(false)}
-        variant="shadow"
-        color="primary"
-        size={"sm"}
-        className={`${selectedKey === "create" && "hidden"} col-span-1`}
-      >
-        Siguiente <FaArrowRight />
-      </Button>
+      {/*<Button*/}
+      {/*  onPress={() => setIsSlideCreated(false)}*/}
+      {/*  variant="shadow"*/}
+      {/*  color="primary"*/}
+      {/*  size={"sm"}*/}
+      {/*  className={`${selectedKey === "create" && "hidden"} col-span-1`}*/}
+      {/*>*/}
+      {/*  <FaArrowLeft /> Anterior*/}
+      {/*</Button>*/}
+      {/*<Button*/}
+      {/*  onPress={() => setIsSlideCreated(false)}*/}
+      {/*  variant="shadow"*/}
+      {/*  color="primary"*/}
+      {/*  size={"sm"}*/}
+      {/*  className={`${selectedKey === "create" && "hidden"} col-span-1`}*/}
+      {/*>*/}
+      {/*  Siguiente <FaArrowRight />*/}
+      {/*</Button>*/}
     </div>
   );
 }
