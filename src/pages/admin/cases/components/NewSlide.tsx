@@ -109,22 +109,36 @@ function NewSlide() {
         onChange={handleImageChange}
       />
       <div
-        className="col-span-2 my-1 flex cursor-pointer flex-col justify-center rounded-xl border-2 border-dotted border-green-500 py-2"
+        className="col-span-2 my-1 flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dotted border-green-500 py-2"
         onClick={handleButtonClick}
       >
-        <FaCamera size={80} className="col-span-2 flex w-full justify-center text-green-500" />
-        <h2 className="text-center text-green-500">Cargar Imagen</h2>
+        {slidePreview.image_url && slidePreview.image_url !== "" ? (
+          <>
+            <Image
+              src={slidePreview.image_url}
+              alt="image"
+              className="col-span-2 max-h-[300px] max-w-[250px] p-2"
+              isBlurred
+            />
+            {/*<h2 className="text-center text-green-500"></h2>*/}
+          </>
+        ) : (
+          <>
+            <FaCamera size={80} className="col-span-2 flex w-full justify-center text-green-500" />
+            <h2 className="text-center text-green-500">Cargar Imagen</h2>
+          </>
+        )}
       </div>
-      {slidePreview.image_url && (
-        <div className="col-span-2 flex justify-center">
-          <Image
-            src={slidePreview.image_url}
-            alt="image"
-            className="col-span-2 max-h-[300px] max-w-[250px]"
-            isBlurred
-          />
-        </div>
-      )}
+      {/*{slidePreview.image_url && (*/}
+      {/*  <div className="col-span-2 flex justify-center">*/}
+      {/*    <Image*/}
+      {/*      src={slidePreview.image_url}*/}
+      {/*      alt="image"*/}
+      {/*      className="col-span-2 max-h-[300px] max-w-[250px]"*/}
+      {/*      isBlurred*/}
+      {/*    />*/}
+      {/*  </div>*/}
+      {/*)}*/}
       {/*<Button*/}
       {/*  color={crudColor}*/}
       {/*  variant="ghost"*/}
