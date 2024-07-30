@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BiPlusMedical } from "react-icons/all";
+import { BiPlusMedical } from "react-icons/bi";
 import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from "react-icons/io";
 interface Props {
   getImage: string;

@@ -18,5 +18,14 @@ export interface CaseSlide {
   image_url_webp: string;
 }
 
-export type OperationCase = Partial<Case>;
-export type OperationCaseSlide = Partial<CaseSlide>;
+export interface SlidePreview {
+  id: string;
+  title: string;
+  description: string;
+  image_url: string;
+  image_file: string;
+}
+
+export type OpCase = Partial<Case>;
+export type OpCaseSlide = Partial<CaseSlide>;
+export type OpSlidePreview = Partial<SlidePreview>;

@@ -1,6 +1,10 @@
 const HISTOPATHOLOGY = "Histopathology";
 const CYTOLOGY = "Cytology";
-const PAP = "PAP";
+const PAP = "Papanicolaou";
 const CASES = "CASES";
 const ABOUT = "ABOUT";
-export { HISTOPATHOLOGY, CYTOLOGY, PAP, CASES, ABOUT };
+const SEE = "see";
+const EDIT = "edit";
+const CREATE = "create";
+const DELETE = "delete";
+export { HISTOPATHOLOGY, CYTOLOGY, PAP, CASES, ABOUT, SEE, EDIT, CREATE, DELETE };

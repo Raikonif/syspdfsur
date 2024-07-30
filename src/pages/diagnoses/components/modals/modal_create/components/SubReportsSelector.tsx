@@ -1,6 +1,5 @@
 import React from "react";
 import { CYTOLOGY, HISTOPATHOLOGY, PAP } from "~/constants";
-import { BsArrowRightCircle } from "react-icons/all";
 import { IReportForm } from "~/interfaces/Report.type";
 
 interface IProps {

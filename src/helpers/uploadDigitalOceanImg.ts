@@ -1,3 +1,16 @@
-function UploadDigitalOceanImg(bucket: string, folder: string, name: string, file: File) {}
+import { uploadToDOSpaces } from "~/service/digitalOceanSpaces.service";
+import { v4 as uuidv4 } from "uuid";
 
-export default UploadDigitalOceanImg;
+async function uploadDigitalOceanImg(file: any) {
+  const randomName = uuidv4();
+  const formData = new FormData();
+  formData.append("file", file, randomName);
+  try {
+    return await uploadToDOSpaces(formData);
+  } catch (error) {
+    console.error("Error in uploadDigitalOceanImg function:", error);
+    throw error;
+  }
+}
+
+export default uploadDigitalOceanImg;
