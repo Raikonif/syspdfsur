@@ -33,10 +33,18 @@ function NewSlide() {
     setListSlidesPreview,
     setCaseData,
     setSlideData,
+    swiperRef,
     slideData,
   } = useContext(AdminContext);
+
   const handleButtonClick = () => {
     fileInputRef.current.click();
+  };
+
+  const goToLastSlide = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slideTo(listSlidesPreview.length);
+    }
   };
 
   const handleImageChange = (e: any) => {
@@ -129,33 +137,33 @@ function NewSlide() {
           </>
         )}
       </div>
-      {!isSlideCreated && (
-        <div className="col-span-2 flex w-full pb-7">
-          <Button
-            color={crudColor}
-            onPress={async () => {
-              await handleSaveConfirm();
-              setIsSlideCreated(true);
-              setSlidePreview({
-                id: "",
-                title: "",
-                description: "",
-                image_url: "",
-                image_file: null,
-              });
-              toast.success("Slide creado correctamente");
-            }}
-            size={"sm"}
-            className={`${
-              selectedKey === SEE || selectedKey === DELETE || selectedKey === EDIT
-                ? "hidden"
-                : "col-span-2 w-full"
-            }`}
-          >
-            Guardar Slide <FaSave />
-          </Button>
-        </div>
-      )}
+
+      <div className="col-span-2 flex w-full pb-7">
+        <Button
+          color={crudColor}
+          onPress={async () => {
+            await handleSaveConfirm();
+            setIsSlideCreated(true);
+            setSlidePreview({
+              id: "",
+              title: "",
+              description: "",
+              image_url: "",
+              image_file: null,
+            });
+            goToLastSlide();
+            toast.success("Slide creado correctamente");
+          }}
+          size={"sm"}
+          className={`${
+            selectedKey === SEE || selectedKey === DELETE || selectedKey === EDIT
+              ? "hidden"
+              : "col-span-2 w-full"
+          }`}
+        >
+          Guardar Slide <FaSave />
+        </Button>
+      </div>
       {!isSlideCreated && (
         <Button
           color={crudColor}
@@ -174,24 +182,24 @@ function NewSlide() {
           Modificar Slide <FaEdit />
         </Button>
       )}
-      {isSlideCreated && (
-        <Button
-          onPress={() => {
-            setIsSlideCreated(false);
-            setSlidePreview({
-              title: "",
-              description: "",
-              image_url: "",
-              image_file: null,
-            } as SlidePreview);
-          }}
-          variant="ghost"
-          color="primary"
-          className="col-span-2"
-        >
-          Agregar otro Slide <FaPlus />
-        </Button>
-      )}
+      {/*{isSlideCreated && (*/}
+      {/*  <Button*/}
+      {/*    onPress={() => {*/}
+      {/*      setIsSlideCreated(false);*/}
+      {/*      setSlidePreview({*/}
+      {/*        title: "",*/}
+      {/*        description: "",*/}
+      {/*        image_url: "",*/}
+      {/*        image_file: null,*/}
+      {/*      } as SlidePreview);*/}
+      {/*    }}*/}
+      {/*    variant="ghost"*/}
+      {/*    color="primary"*/}
+      {/*    className="col-span-2"*/}
+      {/*  >*/}
+      {/*    Agregar otro Slide <FaPlus />*/}
+      {/*  </Button>*/}
+      {/*)}*/}
       <Button
         onPress={() => setIsSlideCreated(false)}
         variant="shadow"

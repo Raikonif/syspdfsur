@@ -118,7 +118,7 @@ function SlideForModal({ data }: Props) {
             <Image
               src={slidePreview.image_url}
               alt="image"
-              className="col-span-2 max-h-[300px] max-w-[250px] p-2"
+              className="col-span-2 max-h-[200px] max-w-[250px] p-2"
               isBlurred
             />
           </>
