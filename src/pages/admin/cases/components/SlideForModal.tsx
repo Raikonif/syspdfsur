@@ -21,7 +21,7 @@ interface Props {
 }
 function SlideForModal({ data }: Props) {
   const [isSlideCreated, setIsSlideCreated] = useState(false);
-  const [slidePreview, setSlidePreview] = useState<SlidePreview>(data || ({} as SlidePreview));
+  const [slidePreview, setSlidePreview] = useState<SlidePreview>(data);
   const [imageURL, setImageURL] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
   const fileInputRef = useRef(null);
@@ -88,6 +88,7 @@ function SlideForModal({ data }: Props) {
         placeholder="Título"
         isRequired
         isReadOnly={selectedKey === SEE}
+        value={slidePreview.title}
         onChange={(e) => setSlidePreview({ ...slidePreview, title: e.target.value })}
         className="col-span-2"
       />
@@ -96,6 +97,7 @@ function SlideForModal({ data }: Props) {
         placeholder="Descripción"
         isRequired
         isReadOnly={selectedKey === SEE}
+        value={slidePreview.description}
         onChange={(e) => setSlidePreview({ ...slidePreview, description: e.target.value })}
         className="col-span-2"
       />
@@ -107,43 +109,44 @@ function SlideForModal({ data }: Props) {
         ref={fileInputRef}
         onChange={handleImageChange}
       />
-      {slidePreview.image_url && (
-        <div className="col-span-2 flex justify-center">
-          <Image
-            src={slidePreview.image_url}
-            alt="image"
-            className="col-span-2 max-h-[300px] max-w-[250px]"
-            isBlurred
-          />
-        </div>
-      )}
-      <Button
-        color={crudColor}
-        variant="ghost"
-        onPress={handleButtonClick}
-        size={"sm"}
-        className={`${selectedKey === SEE || selectedKey === DELETE ? "hidden" : "col-span-2"}`}
+      <div
+        className="col-span-2 my-1 flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dotted border-green-500 py-2"
+        onClick={handleButtonClick}
       >
-        Cargar Imagen <FaCamera size={20} />
-      </Button>
-      {!isSlideCreated && (
-        <Button
-          color={crudColor}
-          onPress={async () => {
-            await handleSaveConfirm();
-            setIsSlideCreated(true);
-            toast.success("Slide creado correctamente");
-          }}
-          size={"sm"}
-          className={`${
-            selectedKey === SEE || selectedKey === DELETE || selectedKey === EDIT
-              ? "hidden"
-              : "col-span-2"
-          }`}
-        >
-          Guardar Slide <FaSave />
-        </Button>
-      )}
+        {slidePreview.image_url && slidePreview.image_url !== "" ? (
+          <>
+            <Image
+              src={slidePreview.image_url}
+              alt="image"
+              className="col-span-2 max-h-[200px] max-w-[250px] p-2"
+              isBlurred
+            />
+          </>
+        ) : (
+          <>
+            <FaCamera size={80} className="col-span-2 flex w-full justify-center text-green-500" />
+            <h2 className="text-center text-green-500">Cargar Imagen</h2>
+          </>
+        )}
+      </div>
+      {/*{!isSlideCreated && (*/}
+      {/*  <Button*/}
+      {/*    color={crudColor}*/}
+      {/*    onPress={async () => {*/}
+      {/*      await handleSaveConfirm();*/}
+      {/*      setIsSlideCreated(true);*/}
+      {/*      toast.success("Slide creado correctamente");*/}
+      {/*    }}*/}
+      {/*    size={"sm"}*/}
+      {/*    className={`${*/}
+      {/*      selectedKey === SEE || selectedKey === DELETE || selectedKey === EDIT*/}
+      {/*        ? "hidden"*/}
+      {/*        : "col-span-2"*/}
+      {/*    }`}*/}
+      {/*  >*/}
+      {/*    Guardar Slide <FaSave />*/}
+      {/*  </Button>*/}
+      {/*)}*/}
       {!isSlideCreated && (
         <Button
           color={crudColor}
