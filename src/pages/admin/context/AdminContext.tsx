@@ -44,6 +44,7 @@ interface AdminContextData {
   setChangeSection: (nextSection: boolean) => void;
   functionDelete: () => void;
   handleSelectionChange: () => void;
+  swiperRef: any;
 }
 
 const AdminContext = createContext<AdminContextData>({} as AdminContextData);

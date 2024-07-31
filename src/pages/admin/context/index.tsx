@@ -1,4 +1,4 @@
-import React, { Key, useEffect, useState } from "react";
+import React, { Key, useEffect, useRef, useState } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import { useDisclosure } from "@nextui-org/react";
 import { Case, OpCase, OpCaseSlide, OpSlidePreview } from "~/interfaces/Case.interface";
@@ -25,12 +25,14 @@ function AdminProvider({ children }: Props) {
   const [crudColor, setCrudColor] = useState<
     "default" | "success" | "warning" | "primary" | "secondary" | "danger"
   >("success");
+  const swiperRef = useRef(null);
   const cases = useGetCases();
   const slides = useGetSlides();
   // delete states
   const [deleteType, setDeleteType] = useState<"case" | "articles">("case");
   const [nameDelete, setNameDelete] = useState<string>("");
 
+  // MODALS
   const { isOpen: isOpenMenu, onOpen: onOpenMenu, onClose: onCloseMenu } = useDisclosure();
   const { isOpen: isOpenCase, onOpen: onOpenCase, onClose: onCloseCase } = useDisclosure();
   const { isOpen: isOpenDelete, onOpen: onOpenDelete, onClose: onCloseDelete } = useDisclosure();
@@ -124,6 +126,7 @@ function AdminProvider({ children }: Props) {
         setChangeSection,
         functionDelete,
         handleSelectionChange,
+        swiperRef,
       }}
     >
       {children}
