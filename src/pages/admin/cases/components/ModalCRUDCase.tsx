@@ -39,6 +39,7 @@ function ModalCRUDCase() {
     onOpenDelete,
     changeSection,
     setChangeSection,
+    listSlidesPreview,
   } = useContext(AdminContext);
 
   const handleCreateConfirm = async () => {
@@ -88,7 +89,7 @@ function ModalCRUDCase() {
       onClickConfirm={async () => onCloseCase()}
       size={"2xl"}
       title={title}
-      hideButtons={true}
+      hideButtons={!(listSlidesPreview.length > 0)}
     >
       <div className="flex w-full gap-2.5 lg:justify-between">
         <div className={`${changeSection ? "flex" : "invisible"}`}>

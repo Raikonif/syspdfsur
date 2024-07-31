@@ -24,11 +24,6 @@ function SwiperSlides() {
       swiperRef.current.swiper.slidePrev();
     }
   };
-  const goToLastSlide = () => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slideTo(listSlidesPreview.length);
-    }
-  };
   useEffect(() => {
     console.log("listSlidesPreview", listSlidesPreview);
   }, [listSlidesPreview]);
