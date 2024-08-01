@@ -58,7 +58,11 @@ function NewSlide() {
   const handleUploadImage = async () => {
     try {
       const response = await uploadDigitalOceanImg(slidePreview.image_file);
-      setSlideData({ ...setSlideData, image_url: response.data.file_url });
+      setSlideData({
+        ...setSlideData,
+        image_url: response.data.file_url,
+        case_id: "80bb97d1-5156-44ec-aedc-801ad7ea65fa",
+      });
       console.log("response", response);
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -67,22 +71,6 @@ function NewSlide() {
 
   const handleSaveConfirm = async () => {
     setListSlidesPreview([...listSlidesPreview, slidePreview]);
-  };
-
-  const handleCreateConfirm = async () => {
-    try {
-      await handleUploadImage();
-      const { data, error } = await createSlideCase(slideData);
-      if (data) {
-        toast.success("Caso creado");
-      } else {
-        toast.error("Error al crear el caso");
-        return;
-      }
-      setSlideData({} as OpCaseSlide);
-    } catch (error) {
-      console.error("Error uploading image:", error);
-    }
   };
 
   useEffect(() => {
@@ -146,6 +134,7 @@ function NewSlide() {
             setIsSlideCreated(true);
             setSlidePreview({
               id: "",
+              case_id: "",
               title: "",
               description: "",
               image_url: "",

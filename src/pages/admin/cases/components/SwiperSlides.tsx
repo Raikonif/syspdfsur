@@ -7,13 +7,17 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-creative";
 import { Button } from "@nextui-org/react";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaRegSave, FaSave } from "react-icons/fa";
 import NewSlide from "~/pages/admin/cases/components/NewSlide";
 import { list } from "postcss";
+import { createSlideCase } from "~/service/supabase/slides.service";
+import toast from "react-hot-toast";
+import { CaseSlide, OpCaseSlide } from "~/interfaces/Case.interface";
+import uploadDigitalOceanImg from "~/helpers/uploadDigitalOceanImg";
 function SwiperSlides() {
-  const { listSlidesPreview, isCreated, setIsCreated, selectedKey, swiperRef } =
+  const { listSlidesPreview, swiperRef, setCaseSlideData, caseSlideData } =
     useContext(AdminContext);
-  // const swiperRef = useRef(null);
+
   const nextSlide = () => {
     if (swiperRef.current && swiperRef.current.swiper) {
       swiperRef.current.swiper.slideNext();
@@ -24,9 +28,59 @@ function SwiperSlides() {
       swiperRef.current.swiper.slidePrev();
     }
   };
+  const handleUploadImage = async (imagePreview: File, index: number) => {
+    try {
+      const response = await uploadDigitalOceanImg(imagePreview);
+      console.log("response", response);
+      caseSlideData[index].image_url = response.data.file_url;
+      // const newImageUrl = response.data.file_url;
+      // setCaseSlideData([...caseSlideData]);
+      setCaseSlideData((prevSlides) =>
+        prevSlides.map((item, idx) =>
+          idx === index ? { ...item, image_url: response.data.image_url } : item,
+        ),
+      );
+      console.log("case slide", caseSlideData);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+
+  const uploadSlides = async () => {
+    listSlidesPreview.map((slide, index) => handleUploadImage(slide.image_file, index));
+    // const { data, error } = await createSlideCase(caseSlideData);
+    // if (data) {
+    //   toast.success("Slides creados");
+    // } else {
+    //   toast.error("Error al crear los slides");
+    //   return;
+    // }
+  };
+
+  // const handleCreateConfirm = async (slideData: any) => {
+  //   try {
+  //     await handleUploadImage();
+  //     const { data, error } = await createSlideCase(slideData);
+  //     if (data) {
+  //       toast.success("Caso creado");
+  //     } else {
+  //       toast.error("Error al crear el caso");
+  //       return;
+  //     }
+  //     setSlideData({} as OpCaseSlide);
+  //   } catch (error) {
+  //     console.error("Error uploading image:", error);
+  //   }
+  // };
+
   useEffect(() => {
     console.log("listSlidesPreview", listSlidesPreview);
   }, [listSlidesPreview]);
+
+  useEffect(() => {
+    console.log("caseSlideData", caseSlideData);
+  }, [caseSlideData]);
+
   return (
     <div className="flex h-full w-full flex-col py-1">
       {listSlidesPreview.length > 0 && listSlidesPreview ? (
@@ -57,6 +111,16 @@ function SwiperSlides() {
           <NewSlide />
         </SwiperSlide>
       </Swiper>
+      {listSlidesPreview.length > 0 && (
+        <Button
+          color="secondary"
+          size={"sm"}
+          variant={"shadow"}
+          onPress={async () => uploadSlides()}
+        >
+          Guardar todos los Slides <FaSave />
+        </Button>
+      )}
       <div
         className={`${
           (listSlidesPreview.length === 0 || !listSlidesPreview) && "hidden"
@@ -69,7 +133,7 @@ function SwiperSlides() {
           size={"sm"}
           className={"col-span-1 w-full"}
         >
-          <FaArrowLeft /> Anterior
+          <FaArrowLeft /> Anterior Slide
         </Button>
         <Button
           onPress={() => nextSlide()}
@@ -78,7 +142,7 @@ function SwiperSlides() {
           size={"sm"}
           className={"col-span-1 w-full"}
         >
-          Siguiente <FaArrowRight />
+          Siguiente Slide <FaArrowRight />
         </Button>
       </div>
     </div>

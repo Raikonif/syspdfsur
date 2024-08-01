@@ -13,7 +13,7 @@ const getSlideFromCase = async (caseId: string) => {
   return supabase.from("slides").select().eq("case_id", caseId);
 };
 
-const createSlideCase = async (data: OpCaseSlide) => {
+const createSlideCase = async (data: any) => {
   return supabase.from("slides").insert(data);
 };
 

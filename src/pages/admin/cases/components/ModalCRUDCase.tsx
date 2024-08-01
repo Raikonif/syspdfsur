@@ -89,7 +89,7 @@ function ModalCRUDCase() {
       onClickConfirm={async () => onCloseCase()}
       size={"2xl"}
       title={title}
-      hideButtons={!(listSlidesPreview.length > 0)}
+      hideButtons={true}
     >
       <div className="flex w-full gap-2.5 lg:justify-between">
         <div className={`${changeSection ? "flex" : "invisible"}`}>
