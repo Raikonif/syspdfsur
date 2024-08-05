@@ -1,16 +1,20 @@
 import React, { Key, useEffect, useRef, useState } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import { useDisclosure } from "@nextui-org/react";
-import { Case, OpCase, OpCaseSlide, OpSlidePreview } from "~/interfaces/Case.interface";
+import { OpCase, OpCaseSlide, OpSlidePreview } from "~/interfaces/Case.interface";
 import useGetCases from "~/hooks/useGetCases";
 import useGetSlides from "~/hooks/useGetSlides";
 import { SEE } from "~/constants";
+import useUploadSlides from "~/hooks/useUploadSlides";
 
 interface Props {
   children: React.ReactNode;
 }
 
 function AdminProvider({ children }: Props) {
+  //loading general
+  const [loading, setLoading] = useState<boolean>(false);
+
   // MODAL CRUD CASE
   const [caseData, setCaseData] = useState<OpCase>({} as OpCase);
   const [currentId, setCurrentId] = useState<string>("");
@@ -25,9 +29,11 @@ function AdminProvider({ children }: Props) {
   const [crudColor, setCrudColor] = useState<
     "default" | "success" | "warning" | "primary" | "secondary" | "danger"
   >("success");
+  //hooks modal CRUD
   const swiperRef = useRef(null);
   const cases = useGetCases();
   const slides = useGetSlides();
+
   // delete states
   const [deleteType, setDeleteType] = useState<"case" | "articles">("case");
   const [nameDelete, setNameDelete] = useState<string>("");
@@ -101,6 +107,8 @@ function AdminProvider({ children }: Props) {
         setCaseSlideData,
         slideData,
         setSlideData,
+        loading,
+        setLoading,
         currentId,
         setCurrentId,
         isOpenCase,

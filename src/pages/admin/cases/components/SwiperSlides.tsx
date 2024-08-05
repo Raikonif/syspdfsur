@@ -12,10 +12,14 @@ import NewSlide from "~/pages/admin/cases/components/NewSlide";
 import { list } from "postcss";
 import { createSlideCase } from "~/service/supabase/slides.service";
 import toast from "react-hot-toast";
-import { CaseSlide, OpCaseSlide } from "~/interfaces/Case.interface";
+import { OpSlidePreview } from "~/interfaces/Case.interface";
 import uploadDigitalOceanImg from "~/helpers/uploadDigitalOceanImg";
+import convertToWebp from "~/helpers/convertToWebp";
+import ProgressCircle from "~/components/ProgressCircle";
+import fillPreviewSlides from "~/helpers/fillPreviewSlides";
+import useUploadSlidesData from "~/hooks/useUploadSlidesData";
 function SwiperSlides() {
-  const { listSlidesPreview, swiperRef, setCaseSlideData, caseSlideData } =
+  const { listSlidesPreview, swiperRef, setCaseSlideData, caseSlideData, loading, setLoading } =
     useContext(AdminContext);
 
   const nextSlide = () => {
@@ -28,50 +32,70 @@ function SwiperSlides() {
       swiperRef.current.swiper.slidePrev();
     }
   };
-  const handleUploadImage = async (imagePreview: File, index: number) => {
+
+  const handleFillSlideData = async (slide: OpSlidePreview) => {
     try {
-      const response = await uploadDigitalOceanImg(imagePreview);
-      console.log("response", response);
-      caseSlideData[index].image_url = response.data.file_url;
-      // const newImageUrl = response.data.file_url;
-      // setCaseSlideData([...caseSlideData]);
-      setCaseSlideData((prevSlides) =>
-        prevSlides.map((item, idx) =>
-          idx === index ? { ...item, image_url: response.data.image_url } : item,
-        ),
-      );
-      console.log("case slide", caseSlideData);
+      const webpFile = await convertToWebp(slide.image_file);
+      const imageFullQuality = await uploadDigitalOceanImg(slide.image_file);
+      const imageLowQuality = await uploadDigitalOceanImg(webpFile);
+      console.log("response", imageFullQuality, imageLowQuality);
+      if (imageFullQuality.data.image_url && imageLowQuality.data.image_url) {
+        setTimeout(() => {
+          setCaseSlideData([
+            ...caseSlideData,
+            {
+              case_id: "80bb97d1-5156-44ec-aedc-801ad7ea65fa",
+              image_url: imageFullQuality.data.image_url,
+              image_url_webp: imageLowQuality.data.image_url_webp,
+              title: slide.title,
+              description: slide.description,
+            },
+          ]);
+        }, 1000);
+        console.log("case slide updated");
+      }
     } catch (error) {
       console.error("Error uploading image:", error);
     }
   };
 
-  const uploadSlides = async () => {
-    listSlidesPreview.map((slide, index) => handleUploadImage(slide.image_file, index));
-    // const { data, error } = await createSlideCase(caseSlideData);
-    // if (data) {
-    //   toast.success("Slides creados");
-    // } else {
-    //   toast.error("Error al crear los slides");
-    //   return;
-    // }
+  const upSlides = async () => {
+    await Promise.all(listSlidesPreview.map((slide) => useUploadSlidesData(slide)));
   };
 
-  // const handleCreateConfirm = async (slideData: any) => {
-  //   try {
-  //     await handleUploadImage();
-  //     const { data, error } = await createSlideCase(slideData);
-  //     if (data) {
-  //       toast.success("Caso creado");
-  //     } else {
-  //       toast.error("Error al crear el caso");
-  //       return;
-  //     }
-  //     setSlideData({} as OpCaseSlide);
-  //   } catch (error) {
-  //     console.error("Error uploading image:", error);
-  //   }
-  // };
+  const uploadSlides = async () => {
+    setLoading(true);
+    // await Promise.all(listSlidesPreview.map((slide) => handleFillSlideData(slide)));
+    try {
+      const { data, error } = await fillPreviewSlides(listSlidesPreview);
+      if (data) {
+        toast.success("Slides creados");
+        console.log("response slides uploaded", data);
+      } else {
+        toast.error("Error al crear los slides");
+        console.log("Error response", error);
+      }
+      // if (slideLists.length > 0) {
+      //   setCaseSlideData(slideLists);
+      //   console.log("cases slides to Upload: ", slideLists);
+      //
+      //   // Uploading the slide data after setting the state
+      //   const { data, error } = await createSlideCase(slideLists);
+      //   if (data) {
+      //     toast.success("Slides creados");
+      //     console.log("response slides uploaded", data);
+      //   } else {
+      //     toast.error("Error al crear los slides");
+      //     console.log("Error response", error);
+      //   }
+      // }
+    } catch (error) {
+      console.error("Error uploading slides:", error);
+      toast.error("Error durante la subida de slides");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     console.log("listSlidesPreview", listSlidesPreview);
@@ -83,6 +107,7 @@ function SwiperSlides() {
 
   return (
     <div className="flex h-full w-full flex-col py-1">
+      {loading && <ProgressCircle text={"Subiendo Slides"} color={"secondary"} />}
       {listSlidesPreview.length > 0 && listSlidesPreview ? (
         <h2 className="py-3 text-center text-xl font-semibold">Slides</h2>
       ) : (
@@ -116,7 +141,7 @@ function SwiperSlides() {
           color="secondary"
           size={"sm"}
           variant={"shadow"}
-          onPress={async () => uploadSlides()}
+          onPress={async () => await uploadSlides()}
         >
           Guardar todos los Slides <FaSave />
         </Button>

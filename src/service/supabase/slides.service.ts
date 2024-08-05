@@ -14,7 +14,7 @@ const getSlideFromCase = async (caseId: string) => {
 };
 
 const createSlideCase = async (data: any) => {
-  return supabase.from("slides").insert(data);
+  return supabase.from("slides").insert(data).select();
 };
 
 const updateSlideCase = async (slideId: string, data: CaseSlide) => {

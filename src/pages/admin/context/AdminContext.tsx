@@ -15,8 +15,10 @@ interface AdminContextData {
   setSlidePreview: (data: OpSlidePreview) => void;
   listSlidesPreview: any[];
   setListSlidesPreview: (data: any[]) => void;
-  caseSlideData: any[];
-  setCaseSlideData: (updateFn: (prevSlides: OpCaseSlide[]) => OpCaseSlide[]) => void;
+  caseSlideData: OpCaseSlide[];
+  setCaseSlideData: (data: OpCaseSlide[]) => void;
+  loading: boolean;
+  setLoading: (loading: boolean) => void;
   currentId: string;
   setCurrentId: (id: string) => void;
   isOpenCase: boolean;
