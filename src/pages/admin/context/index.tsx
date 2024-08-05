@@ -5,7 +5,6 @@ import { OpCase, OpCaseSlide, OpSlidePreview } from "~/interfaces/Case.interface
 import useGetCases from "~/hooks/useGetCases";
 import useGetSlides from "~/hooks/useGetSlides";
 import { SEE } from "~/constants";
-import useUploadSlides from "~/hooks/useUploadSlides";
 
 interface Props {
   children: React.ReactNode;

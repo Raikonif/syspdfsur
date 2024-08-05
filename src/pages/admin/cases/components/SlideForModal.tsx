@@ -1,15 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Button, Image, Input, Textarea } from "@nextui-org/react";
-import uploadDigitalOceanImg from "~/helpers/uploadDigitalOceanImg";
-import {
-  FaArrowLeft,
-  FaArrowRight,
-  FaCamera,
-  FaEdit,
-  FaPlus,
-  FaSave,
-  FaTrash,
-} from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaCamera, FaEdit, FaPlus, FaTrash } from "react-icons/fa";
 import toast from "react-hot-toast";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import { createSlideCase } from "~/service/supabase/slides.service";
@@ -18,23 +9,14 @@ import { DELETE, EDIT, SEE } from "~/constants";
 
 interface Props {
   data?: SlidePreview;
+  index: number;
 }
-function SlideForModal({ data }: Props) {
+function SlideForModal({ data, index }: Props) {
   const [isSlideCreated, setIsSlideCreated] = useState(false);
   const [slidePreview, setSlidePreview] = useState<SlidePreview>(data);
-  const [imageURL, setImageURL] = useState("");
-  const [imageFile, setImageFile] = useState<File | null>(null);
   const fileInputRef = useRef(null);
-  const {
-    crudColor,
-    selectedKey,
-    setCaseSlideData,
-    listSlidesPreview,
-    setListSlidesPreview,
-    setCaseData,
-    setSlideData,
-    slideData,
-  } = useContext(AdminContext);
+  const { crudColor, selectedKey, setListSlidesPreview, listSlidesPreview } =
+    useContext(AdminContext);
   const handleButtonClick = () => {
     fileInputRef.current.click();
   };
@@ -43,42 +25,14 @@ function SlideForModal({ data }: Props) {
     const file = e.target.files[0];
     if (file) {
       setSlidePreview({ ...slidePreview, image_url: URL.createObjectURL(file), image_file: file });
-      // setImageURL(URL.createObjectURL(file))
-      // setImageFile(file);
-    }
-  };
-  const handleUploadImage = async () => {
-    try {
-      const response = await uploadDigitalOceanImg(slidePreview.image_file);
-      setSlideData({ ...setSlideData, image_url: response.data.file_url });
-      console.log("response", response);
-    } catch (error) {
-      console.error("Error uploading image:", error);
-    }
-  };
-
-  const handleSaveConfirm = async () => {
-    setListSlidesPreview([...listSlidesPreview, slidePreview]);
-  };
-
-  const handleCreateConfirm = async () => {
-    try {
-      await handleUploadImage();
-      const { data, error } = await createSlideCase(slideData);
-      if (data) {
-        toast.success("Caso creado");
-      } else {
-        toast.error("Error al crear el caso");
-        return;
-      }
-      setSlideData({} as OpCaseSlide);
-    } catch (error) {
-      console.error("Error uploading image:", error);
     }
   };
 
   useEffect(() => {
-    console.log("slideData", slidePreview);
+    console.log("slide preview", slidePreview);
+    const newArray = [...listSlidesPreview];
+    newArray[index] = slidePreview;
+    setListSlidesPreview(newArray);
   }, [slidePreview]);
 
   return (
@@ -129,29 +83,10 @@ function SlideForModal({ data }: Props) {
           </>
         )}
       </div>
-      {/*{!isSlideCreated && (*/}
-      {/*  <Button*/}
-      {/*    color={crudColor}*/}
-      {/*    onPress={async () => {*/}
-      {/*      await handleSaveConfirm();*/}
-      {/*      setIsSlideCreated(true);*/}
-      {/*      toast.success("Slide creado correctamente");*/}
-      {/*    }}*/}
-      {/*    size={"sm"}*/}
-      {/*    className={`${*/}
-      {/*      selectedKey === SEE || selectedKey === DELETE || selectedKey === EDIT*/}
-      {/*        ? "hidden"*/}
-      {/*        : "col-span-2"*/}
-      {/*    }`}*/}
-      {/*  >*/}
-      {/*    Guardar Slide <FaSave />*/}
-      {/*  </Button>*/}
-      {/*)}*/}
       {!isSlideCreated && (
         <Button
           color={crudColor}
           onPress={async () => {
-            await handleUploadImage();
             setIsSlideCreated(true);
             toast.success("Slide modificado correctamente");
           }}
