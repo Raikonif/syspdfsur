@@ -13,17 +13,23 @@ interface Props {
 function AdminProvider({ children }: Props) {
   //loading general
   const [loading, setLoading] = useState<boolean>(false);
+  const [loadingAttributes, setLoadingAttributes] = useState({
+    message: "",
+    color: "",
+  });
 
   // MODAL CRUD CASE
   const [caseData, setCaseData] = useState<OpCase>({} as OpCase);
   const [currentId, setCurrentId] = useState<string>("");
   const [isCreated, setIsCreated] = useState<boolean>(false);
   const [slidePreview, setSlidePreview] = useState<OpSlidePreview>({} as OpSlidePreview);
-  const [listSlidesPreview, setListSlidesPreview] = useState<any[]>([] as any[]);
+  const [listSlidesPreview, setListSlidesPreview] = useState<OpSlidePreview[]>(
+    [] as OpSlidePreview[],
+  );
   const [caseSlideData, setCaseSlideData] = useState<OpCaseSlide[]>([] as OpCaseSlide[]);
   const [slideData, setSlideData] = useState<OpCaseSlide>({} as OpCaseSlide);
   const [selectedKey, setSelectedKey] = useState<Key>(SEE);
-  const [changeSection, setChangeSection] = useState(true);
+  const [changeSection, setChangeSection] = useState(false);
   const [title, setTitle] = useState<string>("Ver Caso");
   const [crudColor, setCrudColor] = useState<
     "default" | "success" | "warning" | "primary" | "secondary" | "danger"
@@ -76,7 +82,6 @@ function AdminProvider({ children }: Props) {
       setCrudColor("success");
       setCurrentId("");
       setCaseData({
-        id: "",
         title: "",
         description: "",
         type: "",
@@ -108,6 +113,8 @@ function AdminProvider({ children }: Props) {
         setSlideData,
         loading,
         setLoading,
+        loadingAttributes,
+        setLoadingAttributes,
         currentId,
         setCurrentId,
         isOpenCase,

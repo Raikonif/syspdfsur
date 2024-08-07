@@ -3,7 +3,7 @@ import convertToWebp from "~/helpers/convertToWebp";
 import uploadDigitalOceanImg from "~/helpers/uploadDigitalOceanImg";
 import { createSlideCase } from "~/service/supabase/slides.service";
 
-async function processAndUploadSlides(listSlidesPreview: OpSlidePreview[]) {
+async function processAndUploadSlides(listSlidesPreview: OpSlidePreview[], caseId: string) {
   let tempCaseSlideData: OpCaseSlide[] = [];
 
   async function verifyUrls(
@@ -15,7 +15,7 @@ async function processAndUploadSlides(listSlidesPreview: OpSlidePreview[]) {
       tempCaseSlideData = [
         ...tempCaseSlideData,
         {
-          case_id: "80bb97d1-5156-44ec-aedc-801ad7ea65fa",
+          case_id: caseId,
           image_url: imageFullQuality,
           image_url_webp: imageLowQuality,
           title: slide.title,

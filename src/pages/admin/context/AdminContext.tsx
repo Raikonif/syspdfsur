@@ -13,12 +13,14 @@ interface AdminContextData {
   setSlideData: (data: OpCaseSlide) => void;
   slidePreview: OpSlidePreview;
   setSlidePreview: (data: OpSlidePreview) => void;
-  listSlidesPreview: any[];
-  setListSlidesPreview: (data: any[]) => void;
+  listSlidesPreview: OpSlidePreview[];
+  setListSlidesPreview: (data: OpSlidePreview[]) => void;
   caseSlideData: OpCaseSlide[];
   setCaseSlideData: (data: OpCaseSlide[]) => void;
   loading: boolean;
   setLoading: (loading: boolean) => void;
+  loadingAttributes: any;
+  setLoadingAttributes: (obj: any) => void;
   currentId: string;
   setCurrentId: (id: string) => void;
   isOpenCase: boolean;

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import GenericModal from "~/components/GenericModal";
 import {
@@ -12,15 +12,14 @@ import {
 } from "@nextui-org/react";
 import { FaArrowLeft, FaArrowRight, FaEdit, FaEye, FaPlus, FaTrash } from "react-icons/fa";
 import { createCase, updateCase } from "~/service/supabase/cases.service";
-import { Case, OpCase } from "~/interfaces/Case.interface";
+import { Case, OpCase, OpSlidePreview } from "~/interfaces/Case.interface";
 import { typeListOptions } from "~/constants/options/typeList.options";
 import toast from "react-hot-toast";
 import SwiperSlides from "~/pages/admin/cases/components/SwiperSlides";
 import { EDIT, SEE } from "~/constants";
+import ProgressCircle from "~/components/ProgressCircle";
 
 function ModalCRUDCase() {
-  const [imageURL, setImageURL] = useState("");
-  const [imageFile, setImageFile] = useState<File | null>(null);
   const {
     isOpenCase,
     onCloseCase,
@@ -29,20 +28,26 @@ function ModalCRUDCase() {
     title,
     caseData,
     setCaseData,
-    setCaseSlideData,
-    caseSlideData,
+    setListSlidesPreview,
     crudColor,
-    setCrudColor,
     setNameDelete,
     currentId,
     setCurrentId,
     onOpenDelete,
     changeSection,
     setChangeSection,
-    listSlidesPreview,
+    loadingAttributes,
+    setLoadingAttributes,
+    loading,
+    setLoading,
   } = useContext(AdminContext);
 
   const handleCreateConfirm = async () => {
+    setLoadingAttributes({
+      message: "Creando caso",
+      color: "primary",
+    });
+    setLoading(true);
     try {
       const { data, error } = await createCase(caseData);
       if (data) {
@@ -50,12 +55,16 @@ function ModalCRUDCase() {
         setCurrentId(data[0].id);
       } else {
         toast.error("Error al crear el caso");
+        console.log("Error response", error);
         return;
       }
       setCaseData({} as Case);
     } catch (error) {
       console.error("Error uploading image:", error);
     }
+    setLoading(false);
+    setChangeSection(false);
+    setListSlidesPreview([] as OpSlidePreview[]);
   };
 
   const handleOpenDelete = () => {
@@ -92,6 +101,9 @@ function ModalCRUDCase() {
       hideButtons={true}
     >
       <div className="flex w-full gap-2.5 lg:justify-between">
+        {loading && (
+          <ProgressCircle text={loadingAttributes.message} color={loadingAttributes.color} />
+        )}
         <div className={`${changeSection ? "flex" : "invisible"}`}>
           <Button
             color="default"

@@ -15,15 +15,10 @@ import AdminContext from "~/pages/admin/context/AdminContext";
 import { createSlideCase } from "~/service/supabase/slides.service";
 import { OpCaseSlide, SlidePreview } from "~/interfaces/Case.interface";
 import { DELETE, EDIT, SEE } from "~/constants";
-import image_placeholder from "~/assets/image_placeholder.svg";
-import ImagePlaceholder from "~/pages/admin/cases/components/ImagePlaceholder";
-import { MdImage } from "react-icons/md";
 
 function NewSlide() {
   const [isSlideCreated, setIsSlideCreated] = useState(false);
   const [slidePreview, setSlidePreview] = useState<SlidePreview>({} as SlidePreview);
-  const [imageURL, setImageURL] = useState("");
-  const [imageFile, setImageFile] = useState<File | null>(null);
   const fileInputRef = useRef(null);
   const {
     crudColor,
@@ -35,6 +30,7 @@ function NewSlide() {
     setSlideData,
     swiperRef,
     slideData,
+    currentId,
   } = useContext(AdminContext);
 
   const handleButtonClick = () => {
@@ -61,7 +57,11 @@ function NewSlide() {
       setSlideData({
         ...setSlideData,
         image_url: response.data.file_url,
-        case_id: "80bb97d1-5156-44ec-aedc-801ad7ea65fa",
+        case_id: currentId,
+      });
+      setSlidePreview({
+        ...slidePreview,
+        case_id: currentId,
       });
       console.log("response", response);
     } catch (error) {
@@ -72,10 +72,6 @@ function NewSlide() {
   const handleSaveConfirm = async () => {
     setListSlidesPreview([...listSlidesPreview, slidePreview]);
   };
-
-  useEffect(() => {
-    console.log("slideData", slidePreview);
-  }, [slidePreview]);
 
   return (
     <div className="flex w-full flex-col gap-2.5 space-y-2 bg-white dark:bg-neutral-900 lg:grid lg:grid-cols-2 lg:space-y-0">

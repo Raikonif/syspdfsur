@@ -14,7 +14,6 @@ function Header() {
     onOpenCase();
     setSelectedKey("create");
     setCaseData({} as Case);
-    setChangeSection(true);
   };
   const onSearchChange = useCallback((value?: string) => {
     if (value) {

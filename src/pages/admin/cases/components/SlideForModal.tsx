@@ -3,17 +3,16 @@ import { Button, Image, Input, Textarea } from "@nextui-org/react";
 import { FaArrowLeft, FaArrowRight, FaCamera, FaEdit, FaPlus, FaTrash } from "react-icons/fa";
 import toast from "react-hot-toast";
 import AdminContext from "~/pages/admin/context/AdminContext";
-import { createSlideCase } from "~/service/supabase/slides.service";
-import { OpCaseSlide, SlidePreview } from "~/interfaces/Case.interface";
+import { OpSlidePreview } from "~/interfaces/Case.interface";
 import { DELETE, EDIT, SEE } from "~/constants";
 
 interface Props {
-  data?: SlidePreview;
+  data?: OpSlidePreview;
   index: number;
 }
 function SlideForModal({ data, index }: Props) {
   const [isSlideCreated, setIsSlideCreated] = useState(false);
-  const [slidePreview, setSlidePreview] = useState<SlidePreview>(data);
+  const [slidePreview, setSlidePreview] = useState<OpSlidePreview>(data);
   const fileInputRef = useRef(null);
   const { crudColor, selectedKey, setListSlidesPreview, listSlidesPreview } =
     useContext(AdminContext);
@@ -29,7 +28,6 @@ function SlideForModal({ data, index }: Props) {
   };
 
   useEffect(() => {
-    console.log("slide preview", slidePreview);
     const newArray = [...listSlidesPreview];
     newArray[index] = slidePreview;
     setListSlidesPreview(newArray);

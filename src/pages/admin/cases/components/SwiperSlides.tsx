@@ -10,11 +10,11 @@ import { Button } from "@nextui-org/react";
 import { FaArrowLeft, FaArrowRight, FaSave } from "react-icons/fa";
 import NewSlide from "~/pages/admin/cases/components/NewSlide";
 import toast from "react-hot-toast";
-import ProgressCircle from "~/components/ProgressCircle";
 import processAndUploadSlides from "~/helpers/processAndUploadSlides";
 
 function SwiperSlides() {
-  const { listSlidesPreview, swiperRef, loading, setLoading } = useContext(AdminContext);
+  const { listSlidesPreview, swiperRef, currentId, setLoading, setLoadingAttributes, onCloseCase } =
+    useContext(AdminContext);
 
   const nextSlide = () => {
     if (swiperRef.current && swiperRef.current.swiper) {
@@ -28,9 +28,13 @@ function SwiperSlides() {
   };
 
   const uploadSlides = async () => {
+    setLoadingAttributes({
+      message: "Subiendo slides",
+      color: "secondary",
+    });
     setLoading(true);
     try {
-      const { data, error } = await processAndUploadSlides(listSlidesPreview);
+      const { data, error } = await processAndUploadSlides(listSlidesPreview, currentId);
       if (data) {
         toast.success("Slides creados");
         console.log("response slides uploaded", data);
@@ -48,7 +52,6 @@ function SwiperSlides() {
 
   return (
     <div className="flex h-full w-full flex-col py-1">
-      {loading && <ProgressCircle text={"Subiendo Slides"} color={"secondary"} />}
       {listSlidesPreview.length > 0 && listSlidesPreview ? (
         <h2 className="py-3 text-center text-xl font-semibold">Slides</h2>
       ) : (
@@ -82,7 +85,10 @@ function SwiperSlides() {
           color="secondary"
           size={"sm"}
           variant={"shadow"}
-          onPress={async () => await uploadSlides()}
+          onPress={async () => {
+            await uploadSlides();
+            onCloseCase();
+          }}
         >
           Guardar los Slides <FaSave />
         </Button>
