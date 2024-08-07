@@ -11,10 +11,19 @@ import { FaArrowLeft, FaArrowRight, FaSave } from "react-icons/fa";
 import NewSlide from "~/pages/admin/cases/components/NewSlide";
 import toast from "react-hot-toast";
 import processAndUploadSlides from "~/helpers/processAndUploadSlides";
+import { OpSlidePreview } from "~/interfaces/Case.interface";
 
 function SwiperSlides() {
-  const { listSlidesPreview, swiperRef, currentId, setLoading, setLoadingAttributes, onCloseCase } =
-    useContext(AdminContext);
+  const {
+    listSlidesPreview,
+    setListSlidesPreview,
+    swiperRef,
+    currentId,
+    setLoading,
+    setLoadingAttributes,
+    onCloseCase,
+    setChangeSection,
+  } = useContext(AdminContext);
 
   const nextSlide = () => {
     if (swiperRef.current && swiperRef.current.swiper) {
@@ -46,6 +55,8 @@ function SwiperSlides() {
       console.error("Error uploading slides:", error);
       toast.error("Error durante la subida de slides");
     } finally {
+      setListSlidesPreview([] as OpSlidePreview[]);
+      setChangeSection(false);
       setLoading(false);
     }
   };
