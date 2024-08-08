@@ -5,6 +5,7 @@ import { UseQueryResult } from "@tanstack/react-query";
 interface AdminContextData {
   cases: UseQueryResult<Case[], Error>;
   slides: UseQueryResult<CaseSlide[], Error>;
+  slidesFromCase: UseQueryResult<CaseSlide[], Error>;
   isCreated: boolean;
   setIsCreated: (created: boolean) => void;
   caseData: OpCase;

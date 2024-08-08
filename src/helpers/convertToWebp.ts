@@ -26,7 +26,7 @@ async function convertToWebp(file: File): Promise<File> {
             resolve(webpFile);
           },
           "image/webp",
-          1.0,
+          0.75,
         ); // Puedes ajustar la calidad aquí (0 a 1)
       };
     };

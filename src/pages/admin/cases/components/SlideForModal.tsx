@@ -124,24 +124,6 @@ function SlideForModal({ data, index }: Props) {
       >
         Borrar Slide <FaTrash />
       </Button>
-      <Button
-        onPress={() => setIsSlideCreated(false)}
-        variant="shadow"
-        color="primary"
-        size={"sm"}
-        className={`${selectedKey === "create" && "hidden"} col-span-1`}
-      >
-        <FaArrowLeft /> Anterior
-      </Button>
-      <Button
-        onPress={() => setIsSlideCreated(false)}
-        variant="shadow"
-        color="primary"
-        size={"sm"}
-        className={`${selectedKey === "create" && "hidden"} col-span-1`}
-      >
-        Siguiente <FaArrowRight />
-      </Button>
     </div>
   );
 }

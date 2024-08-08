@@ -5,6 +5,8 @@ import { OpCase, OpCaseSlide, OpSlidePreview } from "~/interfaces/Case.interface
 import useGetCases from "~/hooks/useGetCases";
 import useGetSlides from "~/hooks/useGetSlides";
 import { SEE } from "~/constants";
+import { getSlideFromCase } from "~/service/supabase/slides.service";
+import useGetSlidesFromCase from "~/hooks/useGetSlidesFromCase";
 
 interface Props {
   children: React.ReactNode;
@@ -20,7 +22,9 @@ function AdminProvider({ children }: Props) {
 
   // MODAL CRUD CASE
   const [caseData, setCaseData] = useState<OpCase>({} as OpCase);
+  // case
   const [currentId, setCurrentId] = useState<string>("");
+
   const [isCreated, setIsCreated] = useState<boolean>(false);
   const [slidePreview, setSlidePreview] = useState<OpSlidePreview>({} as OpSlidePreview);
   const [listSlidesPreview, setListSlidesPreview] = useState<OpSlidePreview[]>(
@@ -38,6 +42,7 @@ function AdminProvider({ children }: Props) {
   const swiperRef = useRef(null);
   const cases = useGetCases();
   const slides = useGetSlides();
+  const slidesFromCase = useGetSlidesFromCase();
 
   // delete states
   const [deleteType, setDeleteType] = useState<"case" | "articles">("case");
@@ -55,6 +60,15 @@ function AdminProvider({ children }: Props) {
     }
     if (deleteType === "articles") {
       console.log("Borrar articulo");
+    }
+  };
+
+  const handleSlideFromCase = async () => {
+    const { data, error } = await getSlideFromCase(currentId);
+    if (data) {
+      setListSlidesPreview(data);
+    } else {
+      console.error("Error getting slides", error);
     }
   };
 
@@ -99,6 +113,7 @@ function AdminProvider({ children }: Props) {
       value={{
         cases,
         slides,
+        slidesFromCase,
         isCreated,
         setIsCreated,
         caseData,
