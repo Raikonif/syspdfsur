@@ -42,29 +42,38 @@ function ModalCRUDCase() {
     setLoading,
   } = useContext(AdminContext);
 
+  const validatingData = () => {
+    return !(!caseData.title || !caseData.description || !caseData.type);
+  };
+
   const handleCreateConfirm = async () => {
-    setLoadingAttributes({
-      message: "Creando caso",
-      color: "primary",
-    });
-    setLoading(true);
-    try {
-      const { data, error } = await createCase(caseData);
-      if (data) {
-        toast.success("Caso creado");
-        setCurrentId(data[0].id);
-      } else {
-        toast.error("Error al crear el caso");
-        console.log("Error response", error);
-        return;
+    if (validatingData()) {
+      setLoadingAttributes({
+        message: "Creando caso",
+        color: "primary",
+      });
+      setLoading(true);
+      try {
+        const { data, error } = await createCase(caseData);
+        setChangeSection(true);
+        if (data) {
+          toast.success("Caso creado");
+          setCurrentId(data[0].id);
+        } else {
+          toast.error("Error al crear el caso");
+          console.log("Error response", error);
+          return;
+        }
+        setCaseData({} as Case);
+      } catch (error) {
+        console.error("Error uploading image:", error);
       }
-      setCaseData({} as Case);
-    } catch (error) {
-      console.error("Error uploading image:", error);
+      setLoading(false);
+      setListSlidesPreview([] as OpSlidePreview[]);
+    } else {
+      toast.error("Completa todos los campos");
+      return;
     }
-    setLoading(false);
-    setChangeSection(false);
-    setListSlidesPreview([] as OpSlidePreview[]);
   };
 
   const handleOpenDelete = () => {
@@ -215,7 +224,6 @@ function ModalCRUDCase() {
                   color={crudColor}
                   onPress={async () => {
                     await handleCreateConfirm();
-                    setChangeSection(true);
                   }}
                   size={"sm"}
                   className={`${selectedKey === "create" ? "flex" : "hidden"}`}

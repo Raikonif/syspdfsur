@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Button,
   Card,
@@ -14,12 +14,15 @@ import { FaCircle, FaDisease, FaEdit, FaFirstOrderAlt, FaTrash } from "react-ico
 import toast from "react-hot-toast";
 import { OpCase } from "~/interfaces/Case.interface";
 import { CYTOLOGY, HISTOPATHOLOGY } from "~/constants";
+import { getSlideFromCase } from "~/service/supabase/slides.service";
 
 interface Props {
   data: OpCase;
 }
 
 function CaseCard({ data }: Props) {
+  const [countSlides, setCountSlides] = useState(0);
+
   const {
     onOpenCase,
     onOpenDelete,
@@ -30,6 +33,17 @@ function CaseCard({ data }: Props) {
     setCurrentId,
     setCaseData,
   } = useContext(AdminContext);
+
+  const handleSlides = async () => {
+    const { data: case_data, error } = await getSlideFromCase(data.id);
+    if (case_data) {
+      setCountSlides(case_data.length);
+    }
+  };
+
+  useEffect(() => {
+    handleSlides();
+  }, []);
 
   return (
     <div
@@ -57,6 +71,7 @@ function CaseCard({ data }: Props) {
             />
             <div className="flex flex-col">
               <p className="text-md text-muted-foreground font-semibold">{data.title}</p>
+              <p className="text-md text-muted-foreground font-semibold">{countSlides}</p>
             </div>
             <Tooltip content="Borrar Caso">
               <Button

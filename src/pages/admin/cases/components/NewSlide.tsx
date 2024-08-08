@@ -68,9 +68,14 @@ function NewSlide() {
       console.error("Error uploading image:", error);
     }
   };
+  const validatingInputs = () => {
+    return !(!slidePreview.title || !slidePreview.description || !slidePreview.image_url);
+  };
 
   const handleSaveConfirm = async () => {
-    setListSlidesPreview([...listSlidesPreview, slidePreview]);
+    validatingInputs()
+      ? setListSlidesPreview([...listSlidesPreview, slidePreview])
+      : toast.error("Faltan campos por llenar");
   };
 
   return (

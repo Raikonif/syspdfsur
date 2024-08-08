@@ -16,6 +16,7 @@ function SlideForModal({ data, index }: Props) {
   const fileInputRef = useRef(null);
   const { crudColor, selectedKey, setListSlidesPreview, listSlidesPreview } =
     useContext(AdminContext);
+
   const handleButtonClick = () => {
     fileInputRef.current.click();
   };
@@ -25,6 +26,9 @@ function SlideForModal({ data, index }: Props) {
     if (file) {
       setSlidePreview({ ...slidePreview, image_url: URL.createObjectURL(file), image_file: file });
     }
+  };
+  const validatingInputs = () => {
+    return !(!slidePreview.title || !slidePreview.description || !slidePreview.image_url);
   };
 
   useEffect(() => {
@@ -38,7 +42,7 @@ function SlideForModal({ data, index }: Props) {
       <Input
         type="text"
         placeholder="Título"
-        isRequired
+        isRequired={true}
         isReadOnly={selectedKey === SEE}
         value={slidePreview.title}
         onChange={(e) => setSlidePreview({ ...slidePreview, title: e.target.value })}
@@ -47,7 +51,7 @@ function SlideForModal({ data, index }: Props) {
       <Textarea
         type="text"
         placeholder="Descripción"
-        isRequired
+        isRequired={true}
         isReadOnly={selectedKey === SEE}
         value={slidePreview.description}
         onChange={(e) => setSlidePreview({ ...slidePreview, description: e.target.value })}
@@ -59,6 +63,7 @@ function SlideForModal({ data, index }: Props) {
         className="hidden"
         id="image chooser"
         ref={fileInputRef}
+        required={true}
         onChange={handleImageChange}
       />
       <div
