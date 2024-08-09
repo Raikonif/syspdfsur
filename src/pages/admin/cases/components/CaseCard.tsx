@@ -12,7 +12,6 @@ interface Props {
 
 function CaseCard({ caseData }: Props) {
   const [countSlides, setCountSlides] = useState(0);
-  const [slidesFromCase, setSlidesFromCase] = useState<OpCaseSlide[]>([] as OpCaseSlide[]);
   const {
     onOpenCase,
     onOpenDelete,
@@ -47,7 +46,6 @@ function CaseCard({ caseData }: Props) {
 
   useEffect(() => {
     handleSlides();
-    console.log("slidesFromCase", slidesFromCase);
   }, []);
 
   return (

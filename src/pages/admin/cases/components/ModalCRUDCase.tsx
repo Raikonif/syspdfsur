@@ -81,6 +81,7 @@ function ModalCRUDCase() {
     setCurrentId(caseData.id);
     setNameDelete("Caso");
   };
+
   const handleEditConfirm = async () => {
     try {
       const { data, error } = await updateCase(currentId, caseData);
@@ -125,7 +126,7 @@ function ModalCRUDCase() {
             <FaArrowLeft /> Volver
           </Button>
         </div>
-        <div className="flex flex-col items-center justify-center gap-2.5 lg:flex-row">
+        <div className="flex flex-col items-center justify-center gap-2.5 sm:flex-row">
           <Tabs
             aria-label="Options"
             color={crudColor}

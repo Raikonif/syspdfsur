@@ -33,6 +33,10 @@ const deleteSlideFromCase = async (caseId: string) => {
   return supabase.from("slides").delete().eq("case_id", caseId);
 };
 
+const deleteAllSlidesFromCase = async (slidesIDs: string[]) => {
+  return supabase.from("slides").delete().in("id", slidesIDs);
+};
+
 export {
   getAllSlidesCases,
   getSlideCase,
@@ -42,4 +46,5 @@ export {
   updateSlideFromCase,
   deleteSlideCase,
   deleteSlideFromCase,
+  deleteAllSlidesFromCase,
 };

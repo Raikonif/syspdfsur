@@ -4,6 +4,12 @@ import GenericModal from "~/components/GenericModal";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import { deleteCase } from "~/service/supabase/cases.service";
 import toast from "react-hot-toast";
+import {
+  deleteAllSlidesFromCase,
+  deleteSlideFromCase,
+  getSlideFromCase,
+} from "~/service/supabase/slides.service";
+import { deleteImageFromDOSpaces } from "~/service/digitalOceanSpaces.service";
 
 function ModalDelete(): ReactElement {
   const { isOpenDelete, onCloseDelete, onCloseCase } = useContext(AdminContext);
@@ -11,7 +17,26 @@ function ModalDelete(): ReactElement {
   const { nameDelete, setSelectedKey, currentId } = useContext(AdminContext);
 
   const handleDelete = async () => {
+    console.log("current id", currentId);
     if (nameDelete === "Caso") {
+      const getSlides = await getSlideFromCase(currentId);
+      console.log("getSlides", getSlides);
+      if (getSlides.data.length > 0) {
+        getSlides.data.map(async (slide) => {
+          const nameImg = slide.image.split("/").pop();
+          console.log("nameImg", nameImg);
+          await deleteImageFromDOSpaces(nameImg);
+        });
+
+        const respondeSlideDelete = await deleteSlideFromCase(currentId);
+        console.log("respondeSlideDelete", respondeSlideDelete);
+        if (respondeSlideDelete.data) {
+          toast.error("Slides eliminados");
+        } else {
+          toast.error("Error al eliminar los slides");
+        }
+      }
+
       const { data, error } = await deleteCase(currentId);
       if (data) {
         toast.error("Caso eliminado");
@@ -31,7 +56,7 @@ function ModalDelete(): ReactElement {
       onClose={handleClose}
       isOpen={isOpenDelete}
       title={`Borrar ${nameDelete}`}
-      onClickConfirm={async () => handleDelete()}
+      onClickConfirm={async () => await handleDelete()}
     >
       <div className="m-auto w-64 rounded-2xl p-4">
         <div className="h-full w-full text-center">
