@@ -27,17 +27,10 @@ function ModalDelete(): ReactElement {
           const nameImgWebp = slide.image_url_webp.split("/").pop();
           await deleteImageFromDOSpaces(nameImg);
           await deleteImageFromDOSpaces(nameImgWebp);
+          await deleteSlideFromCase(currentId);
         });
-
-        const respondeSlideDelete = await deleteSlideFromCase(currentId);
-        console.log("respondeSlideDelete", respondeSlideDelete);
-        if (respondeSlideDelete.data) {
-          toast.error("Slides eliminados");
-        } else {
-          toast.error("Error al eliminar los slides");
-        }
+        toast.error("Slides Eliminados");
       }
-
       const { data, error } = await deleteCase(currentId);
       if (data) {
         toast.error("Caso eliminado");
