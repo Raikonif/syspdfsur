@@ -16,7 +16,11 @@ const uploadToDOSpaces = async (formData: FormData): Promise<AxiosResponse> => {
 
 const deleteImageFromDOSpaces = async (filename: string): Promise<AxiosResponse> => {
   try {
-    return await axios.delete(`${VITE_BACKEND_DO_SERVICE}/delete/${filename}`);
+    return await axios.post(`${VITE_BACKEND_DO_SERVICE}/delete/`, null, {
+      params: {
+        filename,
+      },
+    });
   } catch (error) {
     console.error("Error deleting image from DigitalOcean Spaces:", error);
     throw error;

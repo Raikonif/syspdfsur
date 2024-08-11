@@ -14,7 +14,7 @@ import { deleteImageFromDOSpaces } from "~/service/digitalOceanSpaces.service";
 function ModalDelete(): ReactElement {
   const { isOpenDelete, onCloseDelete, onCloseCase } = useContext(AdminContext);
   const { t } = useTranslation();
-  const { nameDelete, setSelectedKey, currentId } = useContext(AdminContext);
+  const { nameDelete, setSelectedKey, currentId, listSlidesPreview } = useContext(AdminContext);
 
   const handleDelete = async () => {
     console.log("current id", currentId);
@@ -23,9 +23,10 @@ function ModalDelete(): ReactElement {
       console.log("getSlides", getSlides);
       if (getSlides.data.length > 0) {
         getSlides.data.map(async (slide) => {
-          const nameImg = slide.image.split("/").pop();
-          console.log("nameImg", nameImg);
+          const nameImg = slide.image_url.split("/").pop();
+          const nameImgWebp = slide.image_url_webp.split("/").pop();
           await deleteImageFromDOSpaces(nameImg);
+          await deleteImageFromDOSpaces(nameImgWebp);
         });
 
         const respondeSlideDelete = await deleteSlideFromCase(currentId);
