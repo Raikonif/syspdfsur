@@ -1,33 +1,51 @@
 import React, { Key, useEffect, useRef, useState } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import { useDisclosure } from "@nextui-org/react";
-import { Case, OpCase, OpCaseSlide, OpSlidePreview } from "~/interfaces/Case.interface";
+import { OpCase, OpCaseSlide, OpSlidePreview } from "~/interfaces/Case.interface";
 import useGetCases from "~/hooks/useGetCases";
 import useGetSlides from "~/hooks/useGetSlides";
 import { SEE } from "~/constants";
+import { getSlideFromCase } from "~/service/supabase/slides.service";
+import useGetSlidesFromCase from "~/hooks/useGetSlidesFromCase";
 
 interface Props {
   children: React.ReactNode;
 }
 
 function AdminProvider({ children }: Props) {
+  //loading general
+  const [loading, setLoading] = useState<boolean>(false);
+  const [loadingAttributes, setLoadingAttributes] = useState({
+    message: "",
+    color: "",
+  });
+
   // MODAL CRUD CASE
   const [caseData, setCaseData] = useState<OpCase>({} as OpCase);
+  // case
   const [currentId, setCurrentId] = useState<string>("");
+
   const [isCreated, setIsCreated] = useState<boolean>(false);
   const [slidePreview, setSlidePreview] = useState<OpSlidePreview>({} as OpSlidePreview);
-  const [listSlidesPreview, setListSlidesPreview] = useState<any[]>([] as any[]);
+  const [listSlidesPreview, setListSlidesPreview] = useState<OpSlidePreview[]>(
+    [] as OpSlidePreview[],
+  );
   const [caseSlideData, setCaseSlideData] = useState<OpCaseSlide[]>([] as OpCaseSlide[]);
   const [slideData, setSlideData] = useState<OpCaseSlide>({} as OpCaseSlide);
   const [selectedKey, setSelectedKey] = useState<Key>(SEE);
-  const [changeSection, setChangeSection] = useState(true);
+  const [changeSection, setChangeSection] = useState(false);
   const [title, setTitle] = useState<string>("Ver Caso");
   const [crudColor, setCrudColor] = useState<
     "default" | "success" | "warning" | "primary" | "secondary" | "danger"
   >("success");
+
+  //hooks modal CRUD
+        
   const swiperRef = useRef(null);
   const cases = useGetCases();
   const slides = useGetSlides();
+  const slidesFromCase = useGetSlidesFromCase();
+
   // delete states
   const [deleteType, setDeleteType] = useState<"case" | "articles">("case");
   const [nameDelete, setNameDelete] = useState<string>("");
@@ -44,6 +62,15 @@ function AdminProvider({ children }: Props) {
     }
     if (deleteType === "articles") {
       console.log("Borrar articulo");
+    }
+  };
+
+  const handleSlideFromCase = async () => {
+    const { data, error } = await getSlideFromCase(currentId);
+    if (data) {
+      setListSlidesPreview(data);
+    } else {
+      console.error("Error getting slides", error);
     }
   };
 
@@ -71,7 +98,6 @@ function AdminProvider({ children }: Props) {
       setCrudColor("success");
       setCurrentId("");
       setCaseData({
-        id: "",
         title: "",
         description: "",
         type: "",
@@ -89,6 +115,7 @@ function AdminProvider({ children }: Props) {
       value={{
         cases,
         slides,
+        slidesFromCase,
         isCreated,
         setIsCreated,
         caseData,
@@ -101,6 +128,10 @@ function AdminProvider({ children }: Props) {
         setCaseSlideData,
         slideData,
         setSlideData,
+        loading,
+        setLoading,
+        loadingAttributes,
+        setLoadingAttributes,
         currentId,
         setCurrentId,
         isOpenCase,
