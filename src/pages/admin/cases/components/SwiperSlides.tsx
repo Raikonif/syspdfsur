@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import SlideForModal from "~/pages/admin/cases/components/SlideForModal";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
@@ -24,7 +24,6 @@ function SwiperSlides() {
     onCloseCase,
     setChangeSection,
   } = useContext(AdminContext);
-
   const nextSlide = () => {
     if (swiperRef.current && swiperRef.current.swiper) {
       swiperRef.current.swiper.slideNext();
@@ -60,7 +59,6 @@ function SwiperSlides() {
       setLoading(false);
     }
   };
-
   return (
     <div className="flex h-full w-full flex-col py-1">
       {listSlidesPreview.length > 0 && listSlidesPreview ? (

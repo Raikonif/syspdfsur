@@ -38,7 +38,9 @@ function AdminProvider({ children }: Props) {
   const [crudColor, setCrudColor] = useState<
     "default" | "success" | "warning" | "primary" | "secondary" | "danger"
   >("success");
+
   //hooks modal CRUD
+        
   const swiperRef = useRef(null);
   const cases = useGetCases();
   const slides = useGetSlides();
