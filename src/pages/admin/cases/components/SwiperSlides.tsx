@@ -34,7 +34,6 @@ function SwiperSlides() {
       swiperRef.current.swiper.slidePrev();
     }
   };
-
   const uploadSlides = async () => {
     setLoadingAttributes({
       message: "Subiendo slides",
@@ -59,6 +58,9 @@ function SwiperSlides() {
       setLoading(false);
     }
   };
+  useEffect(() => {
+    console.log("listSlidesPreview", listSlidesPreview);
+  }, [listSlidesPreview]);
   return (
     <div className="flex h-full w-full flex-col py-1">
       {listSlidesPreview.length > 0 && listSlidesPreview ? (
