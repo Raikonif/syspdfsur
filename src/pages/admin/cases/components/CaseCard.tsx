@@ -1,25 +1,17 @@
-import React, { useContext } from "react";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Divider,
-  Image,
-  Tooltip,
-} from "@nextui-org/react";
+import React, { useContext, useEffect, useState } from "react";
+import { Button, Card, CardBody, Tooltip } from "@nextui-org/react";
 import AdminContext from "~/pages/admin/context/AdminContext";
-import { FaCircle, FaDisease, FaEdit, FaFirstOrderAlt, FaTrash } from "react-icons/fa";
-import toast from "react-hot-toast";
-import { OpCase } from "~/interfaces/Case.interface";
+import { FaDisease, FaTrash } from "react-icons/fa";
+import { OpCase, OpCaseSlide } from "~/interfaces/Case.interface";
 import { CYTOLOGY, HISTOPATHOLOGY } from "~/constants";
+import { getSlideFromCase } from "~/service/supabase/slides.service";
 
 interface Props {
-  data: OpCase;
+  caseData: OpCase;
 }
 
-function CaseCard({ data }: Props) {
+function CaseCard({ caseData }: Props) {
+  const [countSlides, setCountSlides] = useState(0);
   const {
     onOpenCase,
     onOpenDelete,
@@ -27,36 +19,63 @@ function CaseCard({ data }: Props) {
     setSelectedKey,
     setDeleteType,
     setChangeSection,
+    currentId,
     setCurrentId,
+    setListSlidesPreview,
+    listSlidesPreview,
     setCaseData,
   } = useContext(AdminContext);
+
+  const handleSlides = async () => {
+    const { data, error } = await getSlideFromCase(caseData.id);
+    if (data) {
+      setCountSlides(data.length);
+    } else {
+      console.error("Error getting slides", error);
+    }
+  };
+
+  const getCurrentSlides = async () => {
+    const { data, error } = await getSlideFromCase(caseData.id);
+    if (data) {
+      setListSlidesPreview(data);
+    } else {
+      console.error("Error getting slides", error);
+    }
+  };
+
+  useEffect(() => {
+    handleSlides();
+  }, []);
 
   return (
     <div
       className="w-full max-w-sm cursor-pointer"
-      onClick={() => {
+      onClick={async () => {
         onOpenCase();
         setSelectedKey("see");
         setChangeSection(false);
-        setCurrentId(data.id);
-        setCaseData(data);
+        setCurrentId(caseData.id);
+        setCaseData(caseData);
+        await getCurrentSlides();
       }}
     >
-      <Card className="cursor-pointer active:bg-violet-200 dark:active:bg-neutral-800">
+      <Card className="h-[150px] w-[250px] cursor-pointer border-t-2 border-violet-600 active:bg-violet-200 dark:active:bg-neutral-800">
         <CardBody>
           <div className="flex items-center justify-between">
             <FaDisease
               size={40}
               className={`${
-                data.type === HISTOPATHOLOGY
+                caseData.type === HISTOPATHOLOGY
                   ? "rounded-lg bg-violet-700 text-violet-50"
-                  : data.type === CYTOLOGY
+                  : caseData.type === CYTOLOGY
                   ? "rounded-lg bg-cyan-700 text-cyan-50"
                   : "rounded-2xl bg-fuchsia-700 p-1 text-fuchsia-50"
               }`}
             />
             <div className="flex flex-col">
-              <p className="text-md text-muted-foreground font-semibold">{data.title}</p>
+              <p className="text-md text-muted-foreground font-semibold">{caseData.title}</p>
+              <p className="text-md text-muted-foreground font-semibold">{countSlides}</p>
             </div>
             <Tooltip content="Borrar Caso">
               <Button
@@ -66,7 +85,7 @@ function CaseCard({ data }: Props) {
                 onPress={() => {
                   setNameDelete("Caso");
                   setDeleteType("case");
-                  setCurrentId(data.id);
+                  setCurrentId(caseData.id);
                   onOpenDelete();
                 }}
               >

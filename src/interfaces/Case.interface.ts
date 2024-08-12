@@ -20,10 +20,11 @@ export interface CaseSlide {
 
 export interface SlidePreview {
   id?: string;
+  case_id: string;
   title: string;
   description: string;
   image_url: string;
-  image_file: string;
+  image_file: File;
 }
 
 export type OpCase = Partial<Case>;

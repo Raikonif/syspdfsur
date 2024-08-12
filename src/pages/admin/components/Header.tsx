@@ -5,16 +5,17 @@ import SwitchTheme from "~/pages/admin/components/SwitchTheme";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import { Case } from "~/interfaces/Case.interface";
 import { useNavigate } from "react-router-dom";
+
 function Header() {
   const [filterValue, setFilterValue] = useState("");
   const [page, setPage] = useState(1);
   const { onOpenCase, setSelectedKey, setCaseData, setChangeSection } = useContext(AdminContext);
   const navigate = useNavigate();
+
   const handleCreate = () => {
     onOpenCase();
     setSelectedKey("create");
     setCaseData({} as Case);
-    setChangeSection(true);
   };
   const onSearchChange = useCallback((value?: string) => {
     if (value) {

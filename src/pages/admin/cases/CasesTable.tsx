@@ -5,7 +5,7 @@ import AdminContext from "~/pages/admin/context/AdminContext";
 import { OpCase } from "~/interfaces/Case.interface";
 
 function CasesTable() {
-  const { cases } = useContext(AdminContext);
+  const { cases, slides } = useContext(AdminContext);
   return (
     <AnimatePresence>
       <motion.div
@@ -19,7 +19,7 @@ function CasesTable() {
           cases.data.length > 0 &&
           cases.data.map((item: OpCase, index: React.Key) => (
             <div key={index}>
-              <CaseCard data={item} key={index} />
+              <CaseCard caseData={item} key={index} />
             </div>
           ))}
       </motion.div>

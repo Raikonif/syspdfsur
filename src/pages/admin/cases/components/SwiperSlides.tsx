@@ -1,19 +1,29 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import SlideForModal from "~/pages/admin/cases/components/SlideForModal";
-import { EffectCreative, Pagination } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-creative";
 import { Button } from "@nextui-org/react";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaSave } from "react-icons/fa";
 import NewSlide from "~/pages/admin/cases/components/NewSlide";
-import { list } from "postcss";
+import toast from "react-hot-toast";
+import processAndUploadSlides from "~/helpers/processAndUploadSlides";
+import { OpSlidePreview } from "~/interfaces/Case.interface";
+
 function SwiperSlides() {
-  const { listSlidesPreview, isCreated, setIsCreated, selectedKey, swiperRef } =
-    useContext(AdminContext);
-  // const swiperRef = useRef(null);
+  const {
+    listSlidesPreview,
+    setListSlidesPreview,
+    swiperRef,
+    currentId,
+    setLoading,
+    setLoadingAttributes,
+    onCloseCase,
+    setChangeSection,
+  } = useContext(AdminContext);
   const nextSlide = () => {
     if (swiperRef.current && swiperRef.current.swiper) {
       swiperRef.current.swiper.slideNext();
@@ -24,9 +34,28 @@ function SwiperSlides() {
       swiperRef.current.swiper.slidePrev();
     }
   };
-  const goToLastSlide = () => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slideTo(listSlidesPreview.length);
+  const uploadSlides = async () => {
+    setLoadingAttributes({
+      message: "Subiendo slides",
+      color: "secondary",
+    });
+    setLoading(true);
+    try {
+      const { data, error } = await processAndUploadSlides(listSlidesPreview, currentId);
+      if (data) {
+        toast.success("Slides creados");
+        console.log("response slides uploaded", data);
+      } else {
+        toast.error("Error al crear los slides");
+        console.log("Error response", error);
+      }
+    } catch (error) {
+      console.error("Error uploading slides:", error);
+      toast.error("Error durante la subida de slides");
+    } finally {
+      setListSlidesPreview([] as OpSlidePreview[]);
+      setChangeSection(false);
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -55,13 +84,26 @@ function SwiperSlides() {
           listSlidesPreview &&
           listSlidesPreview.map((slide, index) => (
             <SwiperSlide key={index}>
-              <SlideForModal data={slide} />
+              <SlideForModal data={slide} index={index} />
             </SwiperSlide>
           ))}
         <SwiperSlide>
           <NewSlide />
         </SwiperSlide>
       </Swiper>
+      {listSlidesPreview.length > 0 && (
+        <Button
+          color="secondary"
+          size={"sm"}
+          variant={"shadow"}
+          onPress={async () => {
+            await uploadSlides();
+            onCloseCase();
+          }}
+        >
+          Guardar los Slides <FaSave />
+        </Button>
+      )}
       <div
         className={`${
           (listSlidesPreview.length === 0 || !listSlidesPreview) && "hidden"
@@ -74,7 +116,7 @@ function SwiperSlides() {
           size={"sm"}
           className={"col-span-1 w-full"}
         >
-          <FaArrowLeft /> Anterior
+          <FaArrowLeft /> Anterior Slide
         </Button>
         <Button
           onPress={() => nextSlide()}
@@ -83,7 +125,7 @@ function SwiperSlides() {
           size={"sm"}
           className={"col-span-1 w-full"}
         >
-          Siguiente <FaArrowRight />
+          Siguiente Slide <FaArrowRight />
         </Button>
       </div>
     </div>

@@ -15,15 +15,10 @@ import AdminContext from "~/pages/admin/context/AdminContext";
 import { createSlideCase } from "~/service/supabase/slides.service";
 import { OpCaseSlide, SlidePreview } from "~/interfaces/Case.interface";
 import { DELETE, EDIT, SEE } from "~/constants";
-import image_placeholder from "~/assets/image_placeholder.svg";
-import ImagePlaceholder from "~/pages/admin/cases/components/ImagePlaceholder";
-import { MdImage } from "react-icons/md";
 
 function NewSlide() {
   const [isSlideCreated, setIsSlideCreated] = useState(false);
   const [slidePreview, setSlidePreview] = useState<SlidePreview>({} as SlidePreview);
-  const [imageURL, setImageURL] = useState("");
-  const [imageFile, setImageFile] = useState<File | null>(null);
   const fileInputRef = useRef(null);
   const {
     crudColor,
@@ -35,6 +30,7 @@ function NewSlide() {
     setSlideData,
     swiperRef,
     slideData,
+    currentId,
   } = useContext(AdminContext);
 
   const handleButtonClick = () => {
@@ -58,36 +54,29 @@ function NewSlide() {
   const handleUploadImage = async () => {
     try {
       const response = await uploadDigitalOceanImg(slidePreview.image_file);
-      setSlideData({ ...setSlideData, image_url: response.data.file_url });
+      setSlideData({
+        ...setSlideData,
+        image_url: response.data.file_url,
+        case_id: currentId,
+      });
+      setSlidePreview({
+        ...slidePreview,
+        case_id: currentId,
+      });
       console.log("response", response);
     } catch (error) {
       console.error("Error uploading image:", error);
     }
   };
+  const validatingInputs = () => {
+    return !(!slidePreview.title || !slidePreview.description || !slidePreview.image_url);
+  };
 
   const handleSaveConfirm = async () => {
-    setListSlidesPreview([...listSlidesPreview, slidePreview]);
+    validatingInputs()
+      ? setListSlidesPreview([...listSlidesPreview, slidePreview])
+      : toast.error("Faltan campos por llenar");
   };
-
-  const handleCreateConfirm = async () => {
-    try {
-      await handleUploadImage();
-      const { data, error } = await createSlideCase(slideData);
-      if (data) {
-        toast.success("Caso creado");
-      } else {
-        toast.error("Error al crear el caso");
-        return;
-      }
-      setSlideData({} as OpCaseSlide);
-    } catch (error) {
-      console.error("Error uploading image:", error);
-    }
-  };
-
-  useEffect(() => {
-    console.log("slideData", slidePreview);
-  }, [slidePreview]);
 
   return (
     <div className="flex w-full flex-col gap-2.5 space-y-2 bg-white dark:bg-neutral-900 lg:grid lg:grid-cols-2 lg:space-y-0">
@@ -146,6 +135,7 @@ function NewSlide() {
             setIsSlideCreated(true);
             setSlidePreview({
               id: "",
+              case_id: "",
               title: "",
               description: "",
               image_url: "",

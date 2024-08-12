@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import GenericModal from "~/components/GenericModal";
 import {
@@ -12,15 +12,14 @@ import {
 } from "@nextui-org/react";
 import { FaArrowLeft, FaArrowRight, FaEdit, FaEye, FaPlus, FaTrash } from "react-icons/fa";
 import { createCase, updateCase } from "~/service/supabase/cases.service";
-import { Case, OpCase } from "~/interfaces/Case.interface";
+import { Case, OpCase, OpSlidePreview } from "~/interfaces/Case.interface";
 import { typeListOptions } from "~/constants/options/typeList.options";
 import toast from "react-hot-toast";
 import SwiperSlides from "~/pages/admin/cases/components/SwiperSlides";
 import { EDIT, SEE } from "~/constants";
+import ProgressCircle from "~/components/ProgressCircle";
 
 function ModalCRUDCase() {
-  const [imageURL, setImageURL] = useState("");
-  const [imageFile, setImageFile] = useState<File | null>(null);
   const {
     isOpenCase,
     onCloseCase,
@@ -29,31 +28,51 @@ function ModalCRUDCase() {
     title,
     caseData,
     setCaseData,
-    setCaseSlideData,
-    caseSlideData,
+    setListSlidesPreview,
     crudColor,
-    setCrudColor,
     setNameDelete,
     currentId,
     setCurrentId,
     onOpenDelete,
     changeSection,
     setChangeSection,
+    loadingAttributes,
+    setLoadingAttributes,
+    loading,
+    setLoading,
   } = useContext(AdminContext);
 
+  const validatingData = () => {
+    return !(!caseData.title || !caseData.description || !caseData.type);
+  };
+
   const handleCreateConfirm = async () => {
-    try {
-      const { data, error } = await createCase(caseData);
-      if (data) {
-        toast.success("Caso creado");
-        setCurrentId(data[0].id);
-      } else {
-        toast.error("Error al crear el caso");
-        return;
+    if (validatingData()) {
+      setLoadingAttributes({
+        message: "Creando caso",
+        color: "primary",
+      });
+      setLoading(true);
+      try {
+        const { data, error } = await createCase(caseData);
+        setChangeSection(true);
+        if (data) {
+          toast.success("Caso creado");
+          setCurrentId(data[0].id);
+        } else {
+          toast.error("Error al crear el caso");
+          console.log("Error response", error);
+          return;
+        }
+        setCaseData({} as Case);
+      } catch (error) {
+        console.error("Error uploading image:", error);
       }
-      setCaseData({} as Case);
-    } catch (error) {
-      console.error("Error uploading image:", error);
+      setLoading(false);
+      setListSlidesPreview([] as OpSlidePreview[]);
+    } else {
+      toast.error("Completa todos los campos");
+      return;
     }
   };
 
@@ -62,6 +81,7 @@ function ModalCRUDCase() {
     setCurrentId(caseData.id);
     setNameDelete("Caso");
   };
+
   const handleEditConfirm = async () => {
     try {
       const { data, error } = await updateCase(currentId, caseData);
@@ -91,6 +111,9 @@ function ModalCRUDCase() {
       hideButtons={true}
     >
       <div className="flex w-full gap-2.5 lg:justify-between">
+        {loading && (
+          <ProgressCircle text={loadingAttributes.message} color={loadingAttributes.color} />
+        )}
         <div className={`${changeSection ? "flex" : "invisible"}`}>
           <Button
             color="default"
@@ -103,7 +126,7 @@ function ModalCRUDCase() {
             <FaArrowLeft /> Volver
           </Button>
         </div>
-        <div className="flex flex-col items-center justify-center gap-2.5 lg:flex-row">
+        <div className="flex flex-col items-center justify-center gap-2.5 sm:flex-row">
           <Tabs
             aria-label="Options"
             color={crudColor}
@@ -202,7 +225,6 @@ function ModalCRUDCase() {
                   color={crudColor}
                   onPress={async () => {
                     await handleCreateConfirm();
-                    setChangeSection(true);
                   }}
                   size={"sm"}
                   className={`${selectedKey === "create" ? "flex" : "hidden"}`}
