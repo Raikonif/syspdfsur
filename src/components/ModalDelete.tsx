@@ -4,7 +4,11 @@ import GenericModal from "~/components/GenericModal";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import { deleteCase } from "~/service/supabase/cases.service";
 import toast from "react-hot-toast";
-import { deleteSlideFromCase, getSlideFromCase } from "~/service/supabase/slides.service";
+import {
+  deleteSlideCase,
+  deleteSlideFromCase,
+  getSlideFromCase,
+} from "~/service/supabase/slides.service";
 import { deleteImageFromDOSpaces } from "~/service/digitalOceanSpaces.service";
 
 function ModalDelete(): ReactElement {
@@ -22,10 +26,12 @@ function ModalDelete(): ReactElement {
         getSlides.data.map(async (slide) => {
           const nameImg = slide.image_url.split("/").pop();
           const nameImgWebp = slide.image_url_webp.split("/").pop();
-          await deleteImageFromDOSpaces(nameImg);
-          await deleteImageFromDOSpaces(nameImgWebp);
-          await deleteSlideFromCase(currentId);
+          const responseImg = await deleteImageFromDOSpaces(nameImg);
+          console.log("responseImg", responseImg);
+          const responseWebp = await deleteImageFromDOSpaces(nameImgWebp);
+          console.log("responseWebp", responseWebp);
         });
+        getSlides.data.map(async (slide) => await deleteSlideCase(slide.id));
         toast.error("Slides Eliminados");
       }
       const { data, error } = await deleteCase(currentId);
