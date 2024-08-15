@@ -220,6 +220,7 @@ function ModalCRUDCase() {
                 defaultItems={typeListOptions}
                 isReadOnly={selectedKey === SEE}
                 value={caseData.type}
+                defaultSelectedKey={caseData.type}
                 onSelectionChange={(selectedItem) =>
                   setCaseData({ ...caseData, type: String(selectedItem) })
                 }
