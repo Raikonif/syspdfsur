@@ -4,20 +4,17 @@ import GenericModal from "~/components/GenericModal";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import { deleteCase } from "~/service/supabase/cases.service";
 import toast from "react-hot-toast";
-import {
-  deleteAllSlidesFromCase,
-  deleteSlideFromCase,
-  getSlideFromCase,
-} from "~/service/supabase/slides.service";
+import { deleteSlideFromCase, getSlideFromCase } from "~/service/supabase/slides.service";
 import { deleteImageFromDOSpaces } from "~/service/digitalOceanSpaces.service";
 
 function ModalDelete(): ReactElement {
   const { isOpenDelete, onCloseDelete, onCloseCase } = useContext(AdminContext);
   const { t } = useTranslation();
-  const { nameDelete, setSelectedKey, currentId, listSlidesPreview } = useContext(AdminContext);
+  const { nameDelete, setSelectedKey, currentId, setLoading, setLoadingAttributes, getCasesData } =
+    useContext(AdminContext);
 
   const handleDelete = async () => {
-    console.log("current id", currentId);
+    setLoading(true);
     if (nameDelete === "Caso") {
       const getSlides = await getSlideFromCase(currentId);
       console.log("getSlides", getSlides);
@@ -37,6 +34,8 @@ function ModalDelete(): ReactElement {
       } else {
         toast.error("Error al eliminar el caso");
       }
+      await getCasesData();
+      setLoading(false);
       onCloseCase();
     }
   };

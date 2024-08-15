@@ -10,6 +10,9 @@ interface AdminContextData {
   setIsCreated: (created: boolean) => void;
   caseData: OpCase;
   setCaseData: (data: OpCase) => void;
+  casesList: OpCase[];
+  setCasesList: (data: OpCase[]) => void;
+  getCasesData: () => Promise<void>;
   slideData: OpCaseSlide;
   setSlideData: (data: OpCaseSlide) => void;
   slidePreview: OpSlidePreview;

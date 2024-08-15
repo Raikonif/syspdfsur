@@ -12,6 +12,8 @@ import NewSlide from "~/pages/admin/cases/components/NewSlide";
 import toast from "react-hot-toast";
 import processAndUploadSlides from "~/helpers/processAndUploadSlides";
 import { OpSlidePreview } from "~/interfaces/Case.interface";
+import { getAllSlidesCases } from "~/service/supabase/slides.service";
+import { getAllCases } from "~/service/supabase/cases.service";
 
 function SwiperSlides() {
   const {
@@ -57,6 +59,8 @@ function SwiperSlides() {
       setListSlidesPreview([] as OpSlidePreview[]);
       setChangeSection(false);
       setLoading(false);
+      await getAllSlidesCases();
+      await getAllCases();
     }
   };
   return (
