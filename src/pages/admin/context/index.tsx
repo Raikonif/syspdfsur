@@ -1,12 +1,13 @@
-import React, { Key, useEffect, useRef, useState } from "react";
+import React, { Key, useCallback, useEffect, useRef, useState } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import { useDisclosure } from "@nextui-org/react";
 import { OpCase, OpCaseSlide, OpSlidePreview } from "~/interfaces/Case.interface";
 import useGetCases from "~/hooks/useGetCases";
 import useGetSlides from "~/hooks/useGetSlides";
 import { SEE } from "~/constants";
-import { getSlideFromCase } from "~/service/supabase/slides.service";
+import { getAllSlidesCases, getSlideFromCase } from "~/service/supabase/slides.service";
 import useGetSlidesFromCase from "~/hooks/useGetSlidesFromCase";
+import { getAllCases } from "~/service/supabase/cases.service";
 
 interface Props {
   children: React.ReactNode;
@@ -22,6 +23,7 @@ function AdminProvider({ children }: Props) {
 
   // MODAL CRUD CASE
   const [caseData, setCaseData] = useState<OpCase>({} as OpCase);
+  const [casesList, setCasesList] = useState<OpCase[]>([] as OpCase[]);
   // case
   const [currentId, setCurrentId] = useState<string>("");
 
@@ -104,6 +106,22 @@ function AdminProvider({ children }: Props) {
     }
   };
 
+  const getCasesData = useCallback(async () => {
+    setLoading(true);
+    const { data, error } = await getAllCases();
+    if (error) {
+      setLoading(false);
+      console.log("Error al obtener los perfiles");
+      return;
+    }
+    setLoading(false);
+    setCasesList(data);
+  }, [casesList]);
+
+  useEffect(() => {
+    getCasesData();
+  }, []);
+
   useEffect(() => {
     handleSelectionChange();
   }, [selectedKey]);
@@ -118,6 +136,9 @@ function AdminProvider({ children }: Props) {
         setIsCreated,
         caseData,
         setCaseData,
+        casesList,
+        setCasesList,
+        getCasesData,
         caseSlideData,
         slidePreview,
         setSlidePreview,

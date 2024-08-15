@@ -1,5 +1,5 @@
 import supabase from "~/service/supabase/supabase.service";
-import { CaseSlide, OpCaseSlide } from "~/interfaces/Case.interface";
+import { CaseSlide } from "~/interfaces/Case.interface";
 
 const getAllSlidesCases = async () => {
   return supabase.from("slides").select();
