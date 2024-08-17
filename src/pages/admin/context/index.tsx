@@ -1,7 +1,7 @@
 import React, { Key, useCallback, useEffect, useRef, useState } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import { useDisclosure } from "@nextui-org/react";
-import { OpCase, OpCaseSlide, OpSlidePreview } from "~/interfaces/Case.interface";
+import { OpCase, OpCaseSlide, OpSlidePreview, SlidePreview } from "~/interfaces/Case.interface";
 import useGetCases from "~/hooks/useGetCases";
 import useGetSlides from "~/hooks/useGetSlides";
 import { SEE } from "~/constants";
@@ -27,6 +27,10 @@ function AdminProvider({ children }: Props) {
   // case
   const [currentId, setCurrentId] = useState<string>("");
 
+  //slide
+  const [currentSlideInfo, setCurrentSlideInfo] = useState<OpSlidePreview>({} as OpSlidePreview);
+  const [slidesList, setSlidesList] = useState<OpSlidePreview[]>([] as OpSlidePreview[]);
+
   const [isCreated, setIsCreated] = useState<boolean>(false);
   const [slidePreview, setSlidePreview] = useState<OpSlidePreview>({} as OpSlidePreview);
   const [listSlidesPreview, setListSlidesPreview] = useState<OpSlidePreview[]>(
@@ -42,7 +46,7 @@ function AdminProvider({ children }: Props) {
   >("success");
 
   //hooks modal CRUD
-        
+
   const swiperRef = useRef(null);
   const cases = useGetCases();
   const slides = useGetSlides();
@@ -108,6 +112,18 @@ function AdminProvider({ children }: Props) {
     }
   };
 
+  const getSlidesData = useCallback(async () => {
+    setLoading(true);
+    const { data, error } = await getAllSlidesCases();
+    if (error) {
+      setLoading(false);
+      console.log("Error al obtener los slides");
+      return;
+    }
+    setLoading(false);
+    setSlidesList(data);
+  }, [slidesList]);
+
   const getCasesData = useCallback(async () => {
     setLoading(true);
     const { data, error } = await getAllCases();
@@ -142,6 +158,8 @@ function AdminProvider({ children }: Props) {
         setCasesList,
         getCasesData,
         caseSlideData,
+        currentSlideInfo,
+        setCurrentSlideInfo,
         slidePreview,
         setSlidePreview,
         listSlidesPreview,
@@ -149,6 +167,9 @@ function AdminProvider({ children }: Props) {
         setCaseSlideData,
         slideData,
         setSlideData,
+        slidesList,
+        setSlidesList,
+        getSlidesData,
         loading,
         setLoading,
         loadingAttributes,

@@ -76,8 +76,6 @@ function ModalCRUDCase() {
       await getCasesData();
       setLoading(false);
       setListSlidesPreview([] as OpSlidePreview[]);
-      const casesData = useGetCases();
-      console.log("casesData", casesData);
     } else {
       toast.error("Completa todos los campos");
       return;
