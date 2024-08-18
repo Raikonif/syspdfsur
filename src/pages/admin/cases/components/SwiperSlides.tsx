@@ -101,14 +101,37 @@ function SwiperSlides() {
     }
   };
 
+  const editSlides = async () => {
+    setLoadingAttributes({
+      message: "Editando slides",
+      color: "primary",
+    });
+    setLoading(true);
+    try {
+      const { data, error } = await processAndUploadSlides(listSlidesPreview, currentId);
+      if (data) {
+        toast.success("Slides editados");
+        console.log("response slides edited", data);
+      } else {
+        toast.error("Error al editar los slides");
+        console.log("Error response", error);
+      }
+    } catch (error) {
+      console.error("Error uploading slides:", error);
+      toast.error("Error durante la edición de slides");
+    } finally {
+      setListSlidesPreview([] as OpSlidePreview[]);
+      setChangeSection(false);
+      setLoading(false);
+      await getAllSlidesCases();
+      await getAllCases();
+    }
+  };
+
   const handleOpenDelete = () => {
     onOpenDelete();
     setNameDelete("Slide");
   };
-
-  // useEffect(() => {
-  //   getCurrentSlides();
-  // }, [listSlidesPreview]);
 
   return (
     <div className="flex h-full w-full flex-col py-1">
@@ -149,20 +172,6 @@ function SwiperSlides() {
         } my-2 flex w-full flex-col justify-center gap-1.5`}
       >
         <Button
-          color={crudColor}
-          onPress={async () => {
-            toast.success("Slide modificado correctamente");
-          }}
-          size={"sm"}
-          className={`${
-            selectedKey === "see" || selectedKey === "delete" || selectedKey === "create"
-              ? "hidden"
-              : ""
-          } w-full`}
-        >
-          Modificar Slide <FaEdit />
-        </Button>
-        <Button
           onPress={handleOpenDelete}
           variant="shadow"
           color="danger"
@@ -197,7 +206,7 @@ function SwiperSlides() {
         </Button>
       </div>
       <Button
-        color="secondary"
+        color={crudColor}
         size={"sm"}
         variant={"shadow"}
         className={`${selectedKey === SEE || listSlidesPreview.length === 0 ? "hidden" : ""}`}
