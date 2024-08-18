@@ -98,7 +98,7 @@ function ModalCRUDCase() {
         toast.error("Error al actualizar el caso");
         return;
       }
-      setCaseData({} as OpCase);
+      await getCasesData();
     } catch (error) {
       console.error("Error uploading image:", error);
     }
