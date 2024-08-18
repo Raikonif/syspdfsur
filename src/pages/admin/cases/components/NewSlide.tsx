@@ -12,26 +12,14 @@ import {
 } from "react-icons/fa";
 import toast from "react-hot-toast";
 import AdminContext from "~/pages/admin/context/AdminContext";
-import { createSlideCase } from "~/service/supabase/slides.service";
-import { OpCaseSlide, SlidePreview } from "~/interfaces/Case.interface";
+import { SlidePreview } from "~/interfaces/Case.interface";
 import { DELETE, EDIT, SEE } from "~/constants";
 
 function NewSlide() {
-  const [isSlideCreated, setIsSlideCreated] = useState(false);
   const [slidePreview, setSlidePreview] = useState<SlidePreview>({} as SlidePreview);
   const fileInputRef = useRef(null);
-  const {
-    crudColor,
-    selectedKey,
-    setCaseSlideData,
-    listSlidesPreview,
-    setListSlidesPreview,
-    setCaseData,
-    setSlideData,
-    swiperRef,
-    slideData,
-    currentId,
-  } = useContext(AdminContext);
+  const { crudColor, selectedKey, listSlidesPreview, setListSlidesPreview, swiperRef } =
+    useContext(AdminContext);
 
   const handleButtonClick = () => {
     fileInputRef.current.click();
@@ -51,31 +39,29 @@ function NewSlide() {
       // setImageFile(file);
     }
   };
-  const handleUploadImage = async () => {
-    try {
-      const response = await uploadDigitalOceanImg(slidePreview.image_file);
-      setSlideData({
-        ...setSlideData,
-        image_url: response.data.file_url,
-        case_id: currentId,
-      });
-      setSlidePreview({
-        ...slidePreview,
-        case_id: currentId,
-      });
-      console.log("response", response);
-    } catch (error) {
-      console.error("Error uploading image:", error);
-    }
-  };
+
   const validatingInputs = () => {
     return !(!slidePreview.title || !slidePreview.description || !slidePreview.image_url);
   };
 
   const handleSaveConfirm = async () => {
-    validatingInputs()
-      ? setListSlidesPreview([...listSlidesPreview, slidePreview])
-      : toast.error("Faltan campos por llenar");
+    if (validatingInputs()) {
+      setListSlidesPreview([...listSlidesPreview, slidePreview]);
+      fileInputRef.current.value = null;
+      setSlidePreview({
+        id: "",
+        case_id: "",
+        title: "",
+        description: "",
+        image_url_webp: "",
+        image_url: "",
+        image_file: undefined,
+      });
+      goToLastSlide();
+      toast.success("Slide guardado");
+    } else {
+      toast.error("Faltan campos por llenar");
+    }
   };
 
   return (
@@ -130,20 +116,7 @@ function NewSlide() {
       <div className="col-span-2 flex w-full pb-7">
         <Button
           color={crudColor}
-          onPress={async () => {
-            await handleSaveConfirm();
-            setIsSlideCreated(true);
-            setSlidePreview({
-              id: "",
-              case_id: "",
-              title: "",
-              description: "",
-              image_url: "",
-              image_file: null,
-            });
-            goToLastSlide();
-            toast.success("Slide creado correctamente");
-          }}
+          onPress={handleSaveConfirm}
           size={"sm"}
           className={`${
             selectedKey === SEE || selectedKey === DELETE || selectedKey === EDIT

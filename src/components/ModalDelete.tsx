@@ -6,6 +6,7 @@ import { deleteCase } from "~/service/supabase/cases.service";
 import toast from "react-hot-toast";
 import { deleteSlideCase, getSlideFromCase } from "~/service/supabase/slides.service";
 import { deleteImageFromDOSpaces } from "~/service/digitalOceanSpaces.service";
+import ProgressCircle from "~/components/ProgressCircle";
 
 function ModalDelete(): ReactElement {
   const { isOpenDelete, onCloseDelete, onCloseCase } = useContext(AdminContext);
@@ -15,7 +16,9 @@ function ModalDelete(): ReactElement {
     setSelectedKey,
     currentId,
     currentSlideInfo,
+    loading,
     setLoading,
+    loadingAttributes,
     setLoadingAttributes,
     getCasesData,
     getSlidesData,
@@ -24,6 +27,10 @@ function ModalDelete(): ReactElement {
   const handleDelete = async () => {
     setLoading(true);
     if (nameDelete === "Caso") {
+      setLoadingAttributes({
+        message: "Eliminando caso",
+        color: "danger",
+      });
       const getSlides = await getSlideFromCase(currentId);
       console.log("getSlides", getSlides);
       if (getSlides.data.length > 0) {
@@ -49,6 +56,16 @@ function ModalDelete(): ReactElement {
       onCloseCase();
     }
     if (nameDelete === "Slide") {
+      setLoadingAttributes({
+        message: "Eliminando slide",
+        color: "danger",
+      });
+      const nameImg = currentSlideInfo.image_url.split("/").pop();
+      const nameImgWebp = currentSlideInfo.image_url_webp.split("/").pop();
+      const responseImg = await deleteImageFromDOSpaces(nameImg);
+      console.log("responseImg", responseImg);
+      const responseWebp = await deleteImageFromDOSpaces(nameImgWebp);
+      console.log("responseWebp", responseWebp);
       const { data, error } = await deleteSlideCase(currentSlideInfo.id);
       if (data) {
         toast.error("Slide eliminado");
@@ -73,6 +90,9 @@ function ModalDelete(): ReactElement {
       onClickConfirm={async () => await handleDelete()}
     >
       <div className="m-auto w-64 rounded-2xl p-4">
+        {loading && (
+          <ProgressCircle text={loadingAttributes.message} color={loadingAttributes.color} />
+        )}
         <div className="h-full w-full text-center">
           <div className="flex h-full flex-col justify-between">
             <svg

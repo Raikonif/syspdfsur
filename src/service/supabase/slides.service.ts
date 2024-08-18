@@ -26,7 +26,7 @@ const updateSlideFromCase = async (caseId: string, data: object) => {
 };
 
 const deleteSlideCase = async (slideId: string) => {
-  return supabase.from("slides").delete().eq("id", slideId);
+  return supabase.from("slides").delete().eq("id", slideId).select();
 };
 
 const deleteSlideFromCase = async (caseId: string) => {

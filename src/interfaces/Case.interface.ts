@@ -24,6 +24,7 @@ export interface SlidePreview {
   title: string;
   description: string;
   image_url: string;
+  image_url_webp: string;
   image_file: File;
 }
 
