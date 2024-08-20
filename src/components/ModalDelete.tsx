@@ -22,6 +22,8 @@ function ModalDelete(): ReactElement {
     setLoadingAttributes,
     getCasesData,
     getSlidesData,
+    listSlidesPreview,
+    setListSlidesPreview,
   } = useContext(AdminContext);
 
   const handleDelete = async () => {
@@ -69,12 +71,13 @@ function ModalDelete(): ReactElement {
       const { data, error } = await deleteSlideCase(currentSlideInfo.id);
       if (data) {
         toast.error("Slide eliminado");
+        const newList = listSlidesPreview.filter((slide) => slide.id !== currentSlideInfo.id);
+        setListSlidesPreview(newList);
       } else {
         toast.error("Error al eliminar el slide");
       }
       await getSlidesData();
       setLoading(false);
-      onCloseCase();
     }
   };
   const handleClose = () => {

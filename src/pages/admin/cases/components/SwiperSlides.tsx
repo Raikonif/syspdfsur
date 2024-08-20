@@ -18,8 +18,9 @@ import {
   getSlideFromCase,
 } from "~/service/supabase/slides.service";
 import { getAllCases } from "~/service/supabase/cases.service";
-import { CREATE, SEE } from "~/constants";
+import { CREATE, EDIT, SEE } from "~/constants";
 import { list } from "postcss";
+import listComparations from "~/helpers/listComparations";
 
 function SwiperSlides() {
   const {
@@ -34,9 +35,9 @@ function SwiperSlides() {
     selectedKey,
     crudColor,
     setCurrentSlideInfo,
-    currentSlideInfo,
     onOpenDelete,
     setNameDelete,
+    listSlidesToCompare,
   } = useContext(AdminContext);
 
   const nextSlide = () => {
@@ -58,19 +59,6 @@ function SwiperSlides() {
       if (currentSlide) {
         setCurrentSlideInfo(currentSlide);
       }
-      console.log("currentSlide", currentSlideInfo.id);
-      console.log("currentIndex", currentSlide);
-    } else {
-      console.log("no swiperRef");
-    }
-  };
-
-  const getCurrentSlides = async () => {
-    const { data, error } = await getSlideFromCase(currentId);
-    if (data) {
-      setListSlidesPreview(data);
-    } else {
-      console.error("Error getting slides", error);
     }
   };
 
@@ -84,13 +72,10 @@ function SwiperSlides() {
       const { data, error } = await processAndUploadSlides(listSlidesPreview, currentId);
       if (data) {
         toast.success("Slides creados");
-        console.log("response slides uploaded", data);
       } else {
         toast.error("Error al crear los slides");
-        console.log("Error response", error);
       }
     } catch (error) {
-      console.error("Error uploading slides:", error);
       toast.error("Error durante la subida de slides");
     } finally {
       setListSlidesPreview([] as OpSlidePreview[]);
@@ -108,14 +93,12 @@ function SwiperSlides() {
     });
     setLoading(true);
     try {
-      const { data, error } = await processAndUploadSlides(listSlidesPreview, currentId);
-      if (data) {
-        toast.success("Slides editados");
-        console.log("response slides edited", data);
-      } else {
-        toast.error("Error al editar los slides");
-        console.log("Error response", error);
-      }
+      await listComparations({
+        comparationList: listSlidesToCompare,
+        originalList: listSlidesPreview,
+        caseId: currentId,
+      });
+      toast.success("Slides editados satisfactoriamente");
     } catch (error) {
       console.error("Error uploading slides:", error);
       toast.error("Error durante la edición de slides");
@@ -128,10 +111,23 @@ function SwiperSlides() {
     }
   };
 
+  const handleUploadSelection = async () => {
+    if (selectedKey === EDIT) {
+      await editSlides();
+    }
+    if (selectedKey === CREATE) {
+      await uploadSlides();
+    }
+  };
+
   const handleOpenDelete = () => {
     onOpenDelete();
     setNameDelete("Slide");
   };
+
+  useEffect(() => {
+    console.log("listSlidesPreview", listSlidesPreview);
+  }, [listSlidesPreview]);
 
   return (
     <div className="flex h-full w-full flex-col py-1">
@@ -211,7 +207,7 @@ function SwiperSlides() {
         variant={"shadow"}
         className={`${selectedKey === SEE || listSlidesPreview.length === 0 ? "hidden" : ""}`}
         onPress={async () => {
-          await uploadSlides();
+          await handleUploadSelection();
           onCloseCase();
         }}
       >

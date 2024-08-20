@@ -8,6 +8,7 @@ import { SEE } from "~/constants";
 import { getAllSlidesCases, getSlideFromCase } from "~/service/supabase/slides.service";
 import useGetSlidesFromCase from "~/hooks/useGetSlidesFromCase";
 import { getAllCases } from "~/service/supabase/cases.service";
+import { list } from "postcss";
 
 interface Props {
   children: React.ReactNode;
@@ -30,12 +31,15 @@ function AdminProvider({ children }: Props) {
   //slide
   const [currentSlideInfo, setCurrentSlideInfo] = useState<OpSlidePreview>({} as OpSlidePreview);
   const [slidesList, setSlidesList] = useState<OpSlidePreview[]>([] as OpSlidePreview[]);
-
   const [isCreated, setIsCreated] = useState<boolean>(false);
   const [slidePreview, setSlidePreview] = useState<OpSlidePreview>({} as OpSlidePreview);
   const [listSlidesPreview, setListSlidesPreview] = useState<OpSlidePreview[]>(
     [] as OpSlidePreview[],
   );
+  const [listSlidesToCompare, setListSlidesToCompare] = useState<OpSlidePreview[]>(
+    [] as OpSlidePreview[],
+  );
+
   const [caseSlideData, setCaseSlideData] = useState<OpCaseSlide[]>([] as OpCaseSlide[]);
   const [slideData, setSlideData] = useState<OpCaseSlide>({} as OpCaseSlide);
   const [selectedKey, setSelectedKey] = useState<Key>(SEE);
@@ -92,6 +96,9 @@ function AdminProvider({ children }: Props) {
       console.log("edit");
       setTitle("Editar Caso");
       setCrudColor("warning");
+      if (listSlidesPreview.length > 0) {
+        setListSlidesToCompare(listSlidesPreview);
+      }
     }
     if (selectedKey === "see") {
       console.log("see");
@@ -164,6 +171,8 @@ function AdminProvider({ children }: Props) {
         setSlidePreview,
         listSlidesPreview,
         setListSlidesPreview,
+        listSlidesToCompare,
+        setListSlidesToCompare,
         setCaseSlideData,
         slideData,
         setSlideData,

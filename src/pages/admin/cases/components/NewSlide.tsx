@@ -115,13 +115,11 @@ function NewSlide() {
 
       <div className="col-span-2 flex w-full pb-7">
         <Button
-          color={crudColor}
+          color={"success"}
           onPress={handleSaveConfirm}
           size={"sm"}
           className={`${
-            selectedKey === SEE || selectedKey === DELETE || selectedKey === EDIT
-              ? "hidden"
-              : "col-span-2 w-full"
+            selectedKey === SEE || selectedKey === DELETE ? "hidden" : "col-span-2 w-full"
           }`}
         >
           Guardar Slide <FaSave />

@@ -28,6 +28,8 @@ interface AdminContextData {
   setSlidePreview: (data: OpSlidePreview) => void;
   listSlidesPreview: OpSlidePreview[];
   setListSlidesPreview: (data: OpSlidePreview[]) => void;
+  listSlidesToCompare: OpSlidePreview[];
+  setListSlidesToCompare: (data: OpSlidePreview[]) => void;
   caseSlideData: OpCaseSlide[];
   setCaseSlideData: (data: OpCaseSlide[]) => void;
   slidesList: OpSlidePreview[];
