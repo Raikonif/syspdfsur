@@ -50,7 +50,6 @@ function AdminProvider({ children }: Props) {
   >("success");
 
   //hooks modal CRUD
-
   const swiperRef = useRef(null);
   const cases = useGetCases();
   const slides = useGetSlides();
