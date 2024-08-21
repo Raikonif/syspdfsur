@@ -1,9 +1,5 @@
 import { OpSlidePreview } from "~/interfaces/Case.interface";
-import {
-  createSlideCase,
-  deleteSlideCase,
-  updateSlideCase,
-} from "~/service/supabase/slides.service";
+import { createSlideCase, updateSlideCase } from "~/service/supabase/slides.service";
 import uploadDigitalOceanImg from "~/helpers/uploadDigitalOceanImg";
 import convertToWebp from "~/helpers/convertToWebp";
 import { deleteImageFromDOSpaces } from "~/service/digitalOceanSpaces.service";
@@ -21,11 +17,7 @@ function areTheSameAttributesAndValues(obj1: OpSlidePreview, obj2: OpSlidePrevie
   );
 }
 
-function isTheSameLength(list1: OpSlidePreview[], list2: OpSlidePreview[]) {
-  return list1.length === list2.length;
-}
-
-async function listComparations({ originalList, comparationList, caseId }: Props) {
+async function listComparativesAndUpdate({ originalList, comparationList, caseId }: Props) {
   if (originalList.length > 0 && comparationList.length === 0) {
     await processAndUploadSlides(originalList, caseId);
   }
@@ -73,17 +65,8 @@ async function listComparations({ originalList, comparationList, caseId }: Props
           }
         }
       }
-      // else if (slide.id === "" || slide.id === undefined) {
-      //   await createSlideCase({
-      //     case_id: caseId,
-      //     title: slide.title,
-      //     description: slide.description,
-      //     image_url: slide.image_url,
-      //     image_url_webp: slide.image_url_webp,
-      //   });
-      // }
     }
   }
 }
 
-export default listComparations;
+export default listComparativesAndUpdate;

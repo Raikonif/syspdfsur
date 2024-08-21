@@ -7,20 +7,15 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-creative";
 import { Button } from "@nextui-org/react";
-import { FaArrowLeft, FaArrowRight, FaEdit, FaSave, FaTrash } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaSave, FaTrash } from "react-icons/fa";
 import NewSlide from "~/pages/admin/cases/components/NewSlide";
 import toast from "react-hot-toast";
 import processAndUploadSlides from "~/helpers/processAndUploadSlides";
 import { OpSlidePreview } from "~/interfaces/Case.interface";
-import {
-  deleteSlideCase,
-  getAllSlidesCases,
-  getSlideFromCase,
-} from "~/service/supabase/slides.service";
+import { getAllSlidesCases } from "~/service/supabase/slides.service";
 import { getAllCases } from "~/service/supabase/cases.service";
 import { CREATE, EDIT, SEE } from "~/constants";
-import { list } from "postcss";
-import listComparations from "~/helpers/listComparations";
+import listComparativesAndUpdate from "~/helpers/listComparativesAndUpdate";
 
 function SwiperSlides() {
   const {
@@ -74,6 +69,7 @@ function SwiperSlides() {
         toast.success("Slides creados");
       } else {
         toast.error("Error al crear los slides");
+        console.error("Error uploading slides:", error);
       }
     } catch (error) {
       toast.error("Error durante la subida de slides");
@@ -93,7 +89,7 @@ function SwiperSlides() {
     });
     setLoading(true);
     try {
-      await listComparations({
+      await listComparativesAndUpdate({
         comparationList: listSlidesToCompare,
         originalList: listSlidesPreview,
         caseId: currentId,
