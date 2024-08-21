@@ -8,9 +8,10 @@ import DiagnosisProvider from "~/pages/diagnoses/context/DiagnosisProvider";
 import ArticlesPage from "~/pages/articles/ArticlesPage";
 import ArticlesProvider from "~/pages/articles/context";
 import CasesTable from "~/pages/admin/cases/CasesTable";
-import Login from "~/pages/login/Login";
+import Login from "~/pages/admin/authentication/Login";
 import AdminPanel from "~/pages/admin/AdminPanel";
 import AdminProvider from "~/pages/admin/context";
+import ProtectedRoutes from "~/routes/ProtectedRoutes";
 
 const GenericRoutes = {
   path: "adm",
@@ -26,7 +27,11 @@ const GenericRoutes = {
     },
     {
       path: "",
-      element: <AdminPanel />,
+      element: (
+        <ProtectedRoutes>
+          <AdminPanel />
+        </ProtectedRoutes>
+      ),
       children: [
         {
           path: "cases",

@@ -7,4 +7,5 @@ const SEE = "see";
 const EDIT = "edit";
 const CREATE = "create";
 const DELETE = "delete";
-export { HISTOPATHOLOGY, CYTOLOGY, PAP, CASES, ABOUT, SEE, EDIT, CREATE, DELETE };
+const HOME = "https://syspdfsur.vercel.app/";
+export { HISTOPATHOLOGY, CYTOLOGY, PAP, CASES, ABOUT, SEE, EDIT, CREATE, DELETE, HOME };

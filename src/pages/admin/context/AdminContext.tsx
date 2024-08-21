@@ -10,6 +10,7 @@ import {
 import { UseQueryResult } from "@tanstack/react-query";
 
 interface AdminContextData {
+  user: any;
   cases: UseQueryResult<Case[], Error>;
   slides: UseQueryResult<CaseSlide[], Error>;
   slidesFromCase: UseQueryResult<CaseSlide[], Error>;
