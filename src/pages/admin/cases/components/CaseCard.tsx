@@ -19,6 +19,7 @@ function CaseCard({ caseData }: Props) {
     setSelectedKey,
     setDeleteType,
     setChangeSection,
+    currentId,
     setCurrentId,
     setListSlidesPreview,
     setCaseData,

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import SlideForModal from "~/pages/admin/cases/components/SlideForModal";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
@@ -158,6 +158,19 @@ function SwiperSlides() {
           </SwiperSlide>
         )}
       </Swiper>
+      {listSlidesPreview.length > 0 && (
+        <Button
+          color="secondary"
+          size={"sm"}
+          variant={"shadow"}
+          onPress={async () => {
+            await uploadSlides();
+            onCloseCase();
+          }}
+        >
+          Guardar los Slides <FaSave />
+        </Button>
+      )}
       <div
         className={`${
           listSlidesPreview.length <= 1 && selectedKey === SEE && "hidden"
