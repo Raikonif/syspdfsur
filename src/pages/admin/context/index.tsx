@@ -9,12 +9,16 @@ import { getAllSlidesCases, getSlideFromCase } from "~/service/supabase/slides.s
 import useGetSlidesFromCase from "~/hooks/useGetSlidesFromCase";
 import { getAllCases } from "~/service/supabase/cases.service";
 import { list } from "postcss";
+import supabase from "~/service/supabase/supabase.service";
 
 interface Props {
   children: React.ReactNode;
 }
 
 function AdminProvider({ children }: Props) {
+  // authentication
+  const [user, setUser] = useState(null);
+
   //loading general
   const [loading, setLoading] = useState<boolean>(false);
   const [loadingAttributes, setLoadingAttributes] = useState({
@@ -151,9 +155,32 @@ function AdminProvider({ children }: Props) {
     handleSelectionChange();
   }, [selectedKey]);
 
+  // authentication
+  useEffect(() => {
+    const checkUser = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      setUser(session?.user || null);
+    };
+
+    checkUser();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session);
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+
   return (
     <AdminContext.Provider
       value={{
+        user,
         cases,
         slides,
         slidesFromCase,
