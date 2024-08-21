@@ -31,12 +31,15 @@ async function listComparations({ originalList, comparationList, caseId }: Props
   }
   for (const slide of originalList) {
     if (slide.id === "" || slide.id === undefined) {
+      const webpImg = await convertToWebp(slide.image_file);
+      const imgURL = await uploadDigitalOceanImg(slide.image_file);
+      const webpURL = await uploadDigitalOceanImg(webpImg);
       await createSlideCase({
         case_id: caseId,
         title: slide.title,
         description: slide.description,
-        image_url: slide.image_url,
-        image_url_webp: slide.image_url_webp,
+        image_url: imgURL.data.file_url,
+        image_url_webp: webpURL.data.file_url,
       });
       return;
     }
