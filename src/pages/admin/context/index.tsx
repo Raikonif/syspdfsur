@@ -8,7 +8,6 @@ import { SEE } from "~/constants";
 import { getAllSlidesCases, getSlideFromCase } from "~/service/supabase/slides.service";
 import useGetSlidesFromCase from "~/hooks/useGetSlidesFromCase";
 import { getAllCases } from "~/service/supabase/cases.service";
-import { list } from "postcss";
 import supabase from "~/service/supabase/supabase.service";
 
 interface Props {

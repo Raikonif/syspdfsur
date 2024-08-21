@@ -1,5 +1,12 @@
 import { createContext, Key } from "react";
-import { Case, CaseSlide, OpCase, OpCaseSlide, OpSlidePreview } from "~/interfaces/Case.interface";
+import {
+  Case,
+  CaseSlide,
+  OpCase,
+  OpCaseSlide,
+  OpSlidePreview,
+  SlidePreview,
+} from "~/interfaces/Case.interface";
 import { UseQueryResult } from "@tanstack/react-query";
 
 interface AdminContextData {
