@@ -17,7 +17,7 @@ const createSlideCase = async (data: any) => {
   return supabase.from("slides").insert(data).select();
 };
 
-const updateSlideCase = async (slideId: string, data: CaseSlide) => {
+const updateSlideCase = async (slideId: string, data: OpCaseSlide) => {
   return supabase.from("slides").update(data).eq("id", slideId);
 };
 
@@ -26,7 +26,7 @@ const updateSlideFromCase = async (caseId: string, data: object) => {
 };
 
 const deleteSlideCase = async (slideId: string) => {
-  return supabase.from("slides").delete().eq("id", slideId);
+  return supabase.from("slides").delete().eq("id", slideId).select();
 };
 
 const deleteSlideFromCase = async (caseId: string) => {

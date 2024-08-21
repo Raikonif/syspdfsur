@@ -22,7 +22,6 @@ function CaseCard({ caseData }: Props) {
     currentId,
     setCurrentId,
     setListSlidesPreview,
-    listSlidesPreview,
     setCaseData,
   } = useContext(AdminContext);
 
@@ -46,7 +45,7 @@ function CaseCard({ caseData }: Props) {
 
   useEffect(() => {
     handleSlides();
-  }, []);
+  }, [countSlides, caseData]);
 
   return (
     <div
@@ -75,7 +74,7 @@ function CaseCard({ caseData }: Props) {
             />
             <div className="flex flex-col">
               <p className="text-md text-muted-foreground font-semibold">{caseData.title}</p>
-              <p className="text-md text-muted-foreground font-semibold">{countSlides}</p>
+              {/*<p className="text-md text-muted-foreground font-semibold">{countSlides}</p>*/}
             </div>
             <Tooltip content="Borrar Caso">
               <Button

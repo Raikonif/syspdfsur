@@ -86,44 +86,6 @@ function SlideForModal({ data, index }: Props) {
           </>
         )}
       </div>
-      {!isSlideCreated && (
-        <Button
-          color={crudColor}
-          onPress={async () => {
-            setIsSlideCreated(true);
-            toast.success("Slide modificado correctamente");
-          }}
-          size={"sm"}
-          className={`${
-            selectedKey === "see" || selectedKey === "delete" || selectedKey === "create"
-              ? "hidden"
-              : ""
-          } col-span-1`}
-        >
-          Modificar Slide <FaEdit />
-        </Button>
-      )}
-      {isSlideCreated && (
-        <Button
-          onPress={() => setIsSlideCreated(false)}
-          variant="ghost"
-          color="primary"
-          className="col-span-2"
-        >
-          Nuevo Slide <FaPlus />
-        </Button>
-      )}
-      <Button
-        onPress={() => setIsSlideCreated(false)}
-        variant="shadow"
-        color="danger"
-        size={"sm"}
-        className={`${
-          selectedKey === "create" ? "hidden" : selectedKey === "edit" ? "col-span-1" : "col-span-2"
-        }`}
-      >
-        Borrar Slide <FaTrash />
-      </Button>
     </div>
   );
 }

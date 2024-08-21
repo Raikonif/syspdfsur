@@ -3,19 +3,27 @@ import { FaHome, FaPlus, FaSearch } from "react-icons/fa";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import SwitchTheme from "~/pages/admin/components/SwitchTheme";
 import AdminContext from "~/pages/admin/context/AdminContext";
-import { Case } from "~/interfaces/Case.interface";
+import { Case, OpCase, OpSlidePreview } from "~/interfaces/Case.interface";
 import { useNavigate } from "react-router-dom";
 
 function Header() {
   const [filterValue, setFilterValue] = useState("");
   const [page, setPage] = useState(1);
-  const { onOpenCase, setSelectedKey, setCaseData, setChangeSection } = useContext(AdminContext);
+  const { onOpenCase, setSelectedKey, setCaseData, setListSlidesPreview, setChangeSection } =
+    useContext(AdminContext);
   const navigate = useNavigate();
 
   const handleCreate = () => {
     onOpenCase();
     setSelectedKey("create");
-    setCaseData({} as Case);
+    setChangeSection(false);
+    setCaseData({
+      id: "",
+      title: "",
+      type: "",
+      description: "",
+    } as OpCase);
+    setListSlidesPreview([] as OpSlidePreview[]);
   };
   const onSearchChange = useCallback((value?: string) => {
     if (value) {

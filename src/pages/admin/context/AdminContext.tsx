@@ -1,5 +1,12 @@
 import { createContext, Key } from "react";
-import { Case, CaseSlide, OpCase, OpCaseSlide, OpSlidePreview } from "~/interfaces/Case.interface";
+import {
+  Case,
+  CaseSlide,
+  OpCase,
+  OpCaseSlide,
+  OpSlidePreview,
+  SlidePreview,
+} from "~/interfaces/Case.interface";
 import { UseQueryResult } from "@tanstack/react-query";
 
 interface AdminContextData {
@@ -10,14 +17,24 @@ interface AdminContextData {
   setIsCreated: (created: boolean) => void;
   caseData: OpCase;
   setCaseData: (data: OpCase) => void;
+  casesList: OpCase[];
+  setCasesList: (data: OpCase[]) => void;
+  getCasesData: () => Promise<void>;
   slideData: OpCaseSlide;
   setSlideData: (data: OpCaseSlide) => void;
+  currentSlideInfo: OpSlidePreview;
+  setCurrentSlideInfo: (data: OpSlidePreview) => void;
   slidePreview: OpSlidePreview;
   setSlidePreview: (data: OpSlidePreview) => void;
   listSlidesPreview: OpSlidePreview[];
   setListSlidesPreview: (data: OpSlidePreview[]) => void;
+  listSlidesToCompare: OpSlidePreview[];
+  setListSlidesToCompare: (data: OpSlidePreview[]) => void;
   caseSlideData: OpCaseSlide[];
   setCaseSlideData: (data: OpCaseSlide[]) => void;
+  slidesList: OpSlidePreview[];
+  setSlidesList: (data: OpSlidePreview[]) => void;
+  getSlidesData: () => Promise<void>;
   loading: boolean;
   setLoading: (loading: boolean) => void;
   loadingAttributes: any;

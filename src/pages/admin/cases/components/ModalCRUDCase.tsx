@@ -11,13 +11,16 @@ import {
   Textarea,
 } from "@nextui-org/react";
 import { FaArrowLeft, FaArrowRight, FaEdit, FaEye, FaPlus, FaTrash } from "react-icons/fa";
-import { createCase, updateCase } from "~/service/supabase/cases.service";
+import { createCase, getAllCases, updateCase } from "~/service/supabase/cases.service";
 import { Case, OpCase, OpSlidePreview } from "~/interfaces/Case.interface";
 import { typeListOptions } from "~/constants/options/typeList.options";
 import toast from "react-hot-toast";
 import SwiperSlides from "~/pages/admin/cases/components/SwiperSlides";
 import { EDIT, SEE } from "~/constants";
 import ProgressCircle from "~/components/ProgressCircle";
+import useGetSlides from "~/hooks/useGetSlides";
+import useGetCases from "~/hooks/useGetCases";
+import { getAllSlidesCases } from "~/service/supabase/slides.service";
 
 function ModalCRUDCase() {
   const {
@@ -40,6 +43,8 @@ function ModalCRUDCase() {
     setLoadingAttributes,
     loading,
     setLoading,
+    cases,
+    getCasesData,
   } = useContext(AdminContext);
 
   const validatingData = () => {
@@ -68,6 +73,7 @@ function ModalCRUDCase() {
       } catch (error) {
         console.error("Error uploading image:", error);
       }
+      await getCasesData();
       setLoading(false);
       setListSlidesPreview([] as OpSlidePreview[]);
     } else {
@@ -92,7 +98,7 @@ function ModalCRUDCase() {
         toast.error("Error al actualizar el caso");
         return;
       }
-      setCaseData({} as OpCase);
+      await getCasesData();
     } catch (error) {
       console.error("Error uploading image:", error);
     }
@@ -212,6 +218,7 @@ function ModalCRUDCase() {
                 defaultItems={typeListOptions}
                 isReadOnly={selectedKey === SEE}
                 value={caseData.type}
+                defaultSelectedKey={caseData.type}
                 onSelectionChange={(selectedItem) =>
                   setCaseData({ ...caseData, type: String(selectedItem) })
                 }

@@ -4,31 +4,47 @@ import GenericModal from "~/components/GenericModal";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import { deleteCase } from "~/service/supabase/cases.service";
 import toast from "react-hot-toast";
-import {
-  deleteAllSlidesFromCase,
-  deleteSlideFromCase,
-  getSlideFromCase,
-} from "~/service/supabase/slides.service";
+import { deleteSlideCase, getSlideFromCase } from "~/service/supabase/slides.service";
 import { deleteImageFromDOSpaces } from "~/service/digitalOceanSpaces.service";
+import ProgressCircle from "~/components/ProgressCircle";
 
 function ModalDelete(): ReactElement {
   const { isOpenDelete, onCloseDelete, onCloseCase } = useContext(AdminContext);
   const { t } = useTranslation();
-  const { nameDelete, setSelectedKey, currentId, listSlidesPreview } = useContext(AdminContext);
+  const {
+    nameDelete,
+    setSelectedKey,
+    currentId,
+    currentSlideInfo,
+    loading,
+    setLoading,
+    loadingAttributes,
+    setLoadingAttributes,
+    getCasesData,
+    getSlidesData,
+    listSlidesPreview,
+    setListSlidesPreview,
+  } = useContext(AdminContext);
 
   const handleDelete = async () => {
-    console.log("current id", currentId);
+    setLoading(true);
     if (nameDelete === "Caso") {
+      setLoadingAttributes({
+        message: "Eliminando caso",
+        color: "danger",
+      });
       const getSlides = await getSlideFromCase(currentId);
       console.log("getSlides", getSlides);
       if (getSlides.data.length > 0) {
         getSlides.data.map(async (slide) => {
           const nameImg = slide.image_url.split("/").pop();
           const nameImgWebp = slide.image_url_webp.split("/").pop();
-          await deleteImageFromDOSpaces(nameImg);
-          await deleteImageFromDOSpaces(nameImgWebp);
-          await deleteSlideFromCase(currentId);
+          const responseImg = await deleteImageFromDOSpaces(nameImg);
+          console.log("responseImg", responseImg);
+          const responseWebp = await deleteImageFromDOSpaces(nameImgWebp);
+          console.log("responseWebp", responseWebp);
         });
+        getSlides.data.map(async (slide) => await deleteSlideCase(slide.id));
         toast.error("Slides Eliminados");
       }
       const { data, error } = await deleteCase(currentId);
@@ -37,7 +53,31 @@ function ModalDelete(): ReactElement {
       } else {
         toast.error("Error al eliminar el caso");
       }
+      await getCasesData();
+      setLoading(false);
       onCloseCase();
+    }
+    if (nameDelete === "Slide") {
+      setLoadingAttributes({
+        message: "Eliminando slide",
+        color: "danger",
+      });
+      const nameImg = currentSlideInfo.image_url.split("/").pop();
+      const nameImgWebp = currentSlideInfo.image_url_webp.split("/").pop();
+      const responseImg = await deleteImageFromDOSpaces(nameImg);
+      console.log("responseImg", responseImg);
+      const responseWebp = await deleteImageFromDOSpaces(nameImgWebp);
+      console.log("responseWebp", responseWebp);
+      const { data, error } = await deleteSlideCase(currentSlideInfo.id);
+      if (data) {
+        toast.error("Slide eliminado");
+        const newList = listSlidesPreview.filter((slide) => slide.id !== currentSlideInfo.id);
+        setListSlidesPreview(newList);
+      } else {
+        toast.error("Error al eliminar el slide");
+      }
+      await getSlidesData();
+      setLoading(false);
     }
   };
   const handleClose = () => {
@@ -53,6 +93,9 @@ function ModalDelete(): ReactElement {
       onClickConfirm={async () => await handleDelete()}
     >
       <div className="m-auto w-64 rounded-2xl p-4">
+        {loading && (
+          <ProgressCircle text={loadingAttributes.message} color={loadingAttributes.color} />
+        )}
         <div className="h-full w-full text-center">
           <div className="flex h-full flex-col justify-between">
             <svg

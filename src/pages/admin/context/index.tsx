@@ -1,12 +1,14 @@
-import React, { Key, useEffect, useRef, useState } from "react";
+import React, { Key, useCallback, useEffect, useRef, useState } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import { useDisclosure } from "@nextui-org/react";
-import { OpCase, OpCaseSlide, OpSlidePreview } from "~/interfaces/Case.interface";
+import { OpCase, OpCaseSlide, OpSlidePreview, SlidePreview } from "~/interfaces/Case.interface";
 import useGetCases from "~/hooks/useGetCases";
 import useGetSlides from "~/hooks/useGetSlides";
 import { SEE } from "~/constants";
-import { getSlideFromCase } from "~/service/supabase/slides.service";
+import { getAllSlidesCases, getSlideFromCase } from "~/service/supabase/slides.service";
 import useGetSlidesFromCase from "~/hooks/useGetSlidesFromCase";
+import { getAllCases } from "~/service/supabase/cases.service";
+import { list } from "postcss";
 
 interface Props {
   children: React.ReactNode;
@@ -22,14 +24,22 @@ function AdminProvider({ children }: Props) {
 
   // MODAL CRUD CASE
   const [caseData, setCaseData] = useState<OpCase>({} as OpCase);
+  const [casesList, setCasesList] = useState<OpCase[]>([] as OpCase[]);
   // case
   const [currentId, setCurrentId] = useState<string>("");
 
+  //slide
+  const [currentSlideInfo, setCurrentSlideInfo] = useState<OpSlidePreview>({} as OpSlidePreview);
+  const [slidesList, setSlidesList] = useState<OpSlidePreview[]>([] as OpSlidePreview[]);
   const [isCreated, setIsCreated] = useState<boolean>(false);
   const [slidePreview, setSlidePreview] = useState<OpSlidePreview>({} as OpSlidePreview);
   const [listSlidesPreview, setListSlidesPreview] = useState<OpSlidePreview[]>(
     [] as OpSlidePreview[],
   );
+  const [listSlidesToCompare, setListSlidesToCompare] = useState<OpSlidePreview[]>(
+    [] as OpSlidePreview[],
+  );
+
   const [caseSlideData, setCaseSlideData] = useState<OpCaseSlide[]>([] as OpCaseSlide[]);
   const [slideData, setSlideData] = useState<OpCaseSlide>({} as OpCaseSlide);
   const [selectedKey, setSelectedKey] = useState<Key>(SEE);
@@ -40,7 +50,6 @@ function AdminProvider({ children }: Props) {
   >("success");
 
   //hooks modal CRUD
-        
   const swiperRef = useRef(null);
   const cases = useGetCases();
   const slides = useGetSlides();
@@ -86,6 +95,9 @@ function AdminProvider({ children }: Props) {
       console.log("edit");
       setTitle("Editar Caso");
       setCrudColor("warning");
+      if (listSlidesPreview.length > 0) {
+        setListSlidesToCompare(listSlidesPreview);
+      }
     }
     if (selectedKey === "see") {
       console.log("see");
@@ -106,6 +118,34 @@ function AdminProvider({ children }: Props) {
     }
   };
 
+  const getSlidesData = useCallback(async () => {
+    setLoading(true);
+    const { data, error } = await getAllSlidesCases();
+    if (error) {
+      setLoading(false);
+      console.log("Error al obtener los slides");
+      return;
+    }
+    setLoading(false);
+    setSlidesList(data);
+  }, [slidesList]);
+
+  const getCasesData = useCallback(async () => {
+    setLoading(true);
+    const { data, error } = await getAllCases();
+    if (error) {
+      setLoading(false);
+      console.log("Error al obtener los perfiles");
+      return;
+    }
+    setLoading(false);
+    setCasesList(data);
+  }, [casesList]);
+
+  useEffect(() => {
+    getCasesData();
+  }, []);
+
   useEffect(() => {
     handleSelectionChange();
   }, [selectedKey]);
@@ -120,14 +160,24 @@ function AdminProvider({ children }: Props) {
         setIsCreated,
         caseData,
         setCaseData,
+        casesList,
+        setCasesList,
+        getCasesData,
         caseSlideData,
+        currentSlideInfo,
+        setCurrentSlideInfo,
         slidePreview,
         setSlidePreview,
         listSlidesPreview,
         setListSlidesPreview,
+        listSlidesToCompare,
+        setListSlidesToCompare,
         setCaseSlideData,
         slideData,
         setSlideData,
+        slidesList,
+        setSlidesList,
+        getSlidesData,
         loading,
         setLoading,
         loadingAttributes,
