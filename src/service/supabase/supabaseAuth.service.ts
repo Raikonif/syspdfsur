@@ -5,7 +5,8 @@ const supabaseAuth = async (email: string) => {
   return await supabase.auth.signInWithOtp({
     email: email,
     options: {
-      emailRedirectTo: `${"https://syspdfsur.vercel.app/"}adm/cases`,
+      emailRedirectTo: "https://syspdfsur.vercel.app/adm/cases",
+      shouldCreateUser: false,
     },
   });
 };

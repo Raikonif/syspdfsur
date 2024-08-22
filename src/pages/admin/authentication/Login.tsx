@@ -7,7 +7,9 @@ function Login() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { error } = await supabaseAuth(email);
+    const { data, error } = await supabaseAuth(email);
+    data && console.log("data", data);
+    error && console.log("error", error);
     error
       ? toast.error("Error al enviar el magic Link")
       : toast.success(`Magic Link enviado a tu correo ${email}`);
@@ -26,17 +28,15 @@ function Login() {
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Correo electrónico
+                Correo Electrónico:
               </label>
               <div className="mt-1">
                 <input
                   id="email"
                   name="email"
                   type="email"
-                  autoComplete="email"
                   required
                   className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                  placeholder="tu@ejemplo.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
