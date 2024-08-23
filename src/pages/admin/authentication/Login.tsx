@@ -24,7 +24,7 @@ function Login() {
       error,
     } = await supabaseVerifyCodeOTP(authVerify.email, authVerify.token);
     if (session) {
-      setUser(session.user);
+      setUser(session);
       toast.success("Logged!!!");
       console.log("session", session);
       console.log("user", user);
