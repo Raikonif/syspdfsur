@@ -187,6 +187,7 @@ function AdminProvider({ children }: Props) {
       } = await supabaseVerifyCodeOTP(authVerify.email, authVerify.token);
       setUser(session?.user || null);
     };
+
     handleSession();
 
     const {
@@ -204,6 +205,7 @@ function AdminProvider({ children }: Props) {
     <AdminContext.Provider
       value={{
         user,
+        setUser,
         authVerify,
         setAuthVerify,
         cases,
