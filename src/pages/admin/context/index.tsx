@@ -199,7 +199,7 @@ function AdminProvider({ children }: Props) {
     return () => {
       subscription.unsubscribe();
     };
-  }, []);
+  }, [user]);
 
   return (
     <AdminContext.Provider
