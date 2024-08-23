@@ -6,19 +6,17 @@ import { motion } from "framer-motion";
 import AdminContext from "~/pages/admin/context/AdminContext";
 
 function Login() {
-  const [email, setEmail] = useState("");
   const [enableCode, setEnableCode] = useState(true);
-  const [code, setCode] = useState("");
 
   const { authVerify, setAuthVerify, setUser } = useContext(AdminContext);
 
   const handleSubmit = async () => {
-    const { data, error } = await supabaseAuth(email);
+    const { data, error } = await supabaseAuth(authVerify.email);
     data && setEnableCode(true);
     error && console.log("error", error);
     error
       ? toast.error("Error al enviar el magic Link")
-      : toast.success(`Magic Link enviado a tu correo ${email}`);
+      : toast.success(`Magic Link enviado a tu correo ${authVerify.email}`);
   };
   const handleSubmitToken = async () => {
     const {
