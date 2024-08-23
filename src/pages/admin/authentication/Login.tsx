@@ -7,14 +7,13 @@ import AdminContext from "~/pages/admin/context/AdminContext";
 
 function Login() {
   const [email, setEmail] = useState("");
-  const [enableCode, setEnableCode] = useState(true);
+  const [enableCode, setEnableCode] = useState(false);
   const [code, setCode] = useState("");
 
-  const { authVerify, setAuthVerify, setUser } = useContext(AdminContext);
+  const { authVerify, setAuthVerify, setUser, user } = useContext(AdminContext);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const { data, error } = await supabaseAuth(email);
+  const handleSubmit = async () => {
+    const { data, error } = await supabaseAuth(authVerify.email);
     data && setEnableCode(true);
     error && console.log("error", error);
     error
@@ -29,8 +28,10 @@ function Login() {
     if (session) {
       setUser(session.user);
       toast.success("logged!!!");
+      console.log("user", user);
     } else {
       toast.error("no se pudo enviar correctamente");
+      console.log("error", error);
     }
   };
   return (
@@ -55,14 +56,14 @@ function Login() {
                   type="email"
                   required
                   className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                  value={email}
+                  value={authVerify.email}
                   onChange={(e) => setAuthVerify({ ...authVerify, email: e.target.value })}
                 />
               </div>
             </div>
             <div>
               <Button
-                type="submit"
+                onPress={async () => await handleSubmit()}
                 className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 Enviar Magic Link
@@ -86,7 +87,7 @@ function Login() {
                   required
                   placeholder={"XXXXXX"}
                   className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                  value={code}
+                  value={authVerify.token}
                   onChange={(e) => setAuthVerify({ ...authVerify, token: e.target.value })}
                 />
               </div>
@@ -94,7 +95,7 @@ function Login() {
                 color={"secondary"}
                 variant={"shadow"}
                 className="w-full"
-                onPress={() => handleSubmitToken()}
+                onPress={async () => await handleSubmitToken()}
               >
                 {"Verificar Codigo e Ingresar"}
               </Button>
