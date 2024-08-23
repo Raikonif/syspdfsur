@@ -11,6 +11,8 @@ import { UseQueryResult } from "@tanstack/react-query";
 
 interface AdminContextData {
   user: any;
+  authVerify: { email: string; token: string };
+  setAuthVerify: (auth: { email: string; token: string }) => void;
   cases: UseQueryResult<Case[], Error>;
   slides: UseQueryResult<CaseSlide[], Error>;
   slidesFromCase: UseQueryResult<CaseSlide[], Error>;

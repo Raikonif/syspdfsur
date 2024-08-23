@@ -9,6 +9,7 @@ import { getAllSlidesCases, getSlideFromCase } from "~/service/supabase/slides.s
 import useGetSlidesFromCase from "~/hooks/useGetSlidesFromCase";
 import { getAllCases } from "~/service/supabase/cases.service";
 import supabase from "~/service/supabase/supabase.service";
+import { supabaseVerifyCodeOTP } from "~/service/supabase/supabaseAuth.service";
 
 interface Props {
   children: React.ReactNode;
@@ -17,7 +18,10 @@ interface Props {
 function AdminProvider({ children }: Props) {
   // authentication
   const [user, setUser] = useState(null);
-
+  const [authVerify, setAuthVerify] = useState<{ email: string; token: string }>({
+    email: "",
+    token: "",
+  });
   //loading general
   const [loading, setLoading] = useState<boolean>(false);
   const [loadingAttributes, setLoadingAttributes] = useState({
@@ -154,15 +158,36 @@ function AdminProvider({ children }: Props) {
   }, [selectedKey]);
 
   // authentication
+  // useEffect(() => {
+  //   const checkUser = async () => {
+  //     const {
+  //       data: { session },
+  //     } = await supabase.auth.getSession();
+  //     setUser(session?.user || null);
+  //   };
+  //
+  //   checkUser();
+  //
+  //   const {
+  //     data: { subscription },
+  //   } = supabase.auth.onAuthStateChange((_event, session) => {
+  //     setUser(session);
+  //   });
+  //
+  //   return () => {
+  //     subscription.unsubscribe();
+  //   };
+  // }, [user]);
+
   useEffect(() => {
-    const checkUser = async () => {
+    const handleSession = async () => {
       const {
         data: { session },
-      } = await supabase.auth.getSession();
+        error,
+      } = await supabaseVerifyCodeOTP(authVerify.email, authVerify.token);
       setUser(session?.user || null);
     };
-
-    checkUser();
+    handleSession();
 
     const {
       data: { subscription },
@@ -179,6 +204,8 @@ function AdminProvider({ children }: Props) {
     <AdminContext.Provider
       value={{
         user,
+        authVerify,
+        setAuthVerify,
         cases,
         slides,
         slidesFromCase,
