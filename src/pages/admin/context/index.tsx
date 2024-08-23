@@ -158,37 +158,15 @@ function AdminProvider({ children }: Props) {
   }, [selectedKey]);
 
   // authentication
-  // useEffect(() => {
-  //   const checkUser = async () => {
-  //     const {
-  //       data: { session },
-  //     } = await supabase.auth.getSession();
-  //     setUser(session?.user || null);
-  //   };
-  //
-  //   checkUser();
-  //
-  //   const {
-  //     data: { subscription },
-  //   } = supabase.auth.onAuthStateChange((_event, session) => {
-  //     setUser(session);
-  //   });
-  //
-  //   return () => {
-  //     subscription.unsubscribe();
-  //   };
-  // }, [user]);
-
   useEffect(() => {
-    const handleSession = async () => {
+    const checkUser = async () => {
       const {
         data: { session },
-        error,
-      } = await supabaseVerifyCodeOTP(authVerify.email, authVerify.token);
+      } = await supabase.auth.getSession();
       setUser(session?.user || null);
     };
 
-    handleSession();
+    checkUser();
 
     const {
       data: { subscription },
@@ -200,6 +178,28 @@ function AdminProvider({ children }: Props) {
       subscription.unsubscribe();
     };
   }, [user]);
+
+  // useEffect(() => {
+  //   const handleSession = async () => {
+  //     const {
+  //       data: { session },
+  //       error,
+  //     } = await supabaseVerifyCodeOTP(authVerify.email, authVerify.token);
+  //     setUser(session?.user || null);
+  //   };
+  //
+  //   handleSession();
+  //
+  //   const {
+  //     data: { subscription },
+  //   } = supabase.auth.onAuthStateChange((_event, session) => {
+  //     setUser(session);
+  //   });
+  //
+  //   return () => {
+  //     subscription.unsubscribe();
+  //   };
+  // }, [user]);
 
   return (
     <AdminContext.Provider
