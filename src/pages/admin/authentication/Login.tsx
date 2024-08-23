@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 import AdminContext from "~/pages/admin/context/AdminContext";
 
 function Login() {
-  const [enableCode, setEnableCode] = useState(true);
+  const [enableCode, setEnableCode] = useState(false);
 
-  const { authVerify, setAuthVerify, setUser } = useContext(AdminContext);
+  const { authVerify, setAuthVerify, setUser, user } = useContext(AdminContext);
 
   const handleSubmit = async () => {
     const { data, error } = await supabaseAuth(authVerify.email);
@@ -24,9 +24,10 @@ function Login() {
       error,
     } = await supabaseVerifyCodeOTP(authVerify.email, authVerify.token);
     if (session) {
-      setUser(session.user);
+      setUser(session.access_token);
       toast.success("Logged!!!");
       console.log("session", session);
+      console.log("user", user);
     } else {
       toast.error("no se pudo enviar correctamente");
       console.log("error", error);
