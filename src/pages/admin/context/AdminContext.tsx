@@ -1,21 +1,16 @@
 import { createContext, Key } from "react";
-import {
-  Case,
-  CaseSlide,
-  OpCase,
-  OpCaseSlide,
-  OpSlidePreview,
-  SlidePreview,
-} from "~/interfaces/Case.interface";
+import { Case, CaseSlide, OpCase, OpCaseSlide, OpSlidePreview } from "~/interfaces/Case.interface";
 import { UseQueryResult } from "@tanstack/react-query";
+import AuthEP from "~/interfaces/AuthEP";
 
 interface AdminContextData {
+  cases: UseQueryResult<Case[], Error>;
+  slides: UseQueryResult<CaseSlide[], Error>;
+  authData: (user: AuthEP) => Promise<boolean>;
   user: any;
   setUser: (any) => void;
   authVerify: { email: string; token: string };
   setAuthVerify: (auth: { email: string; token: string }) => void;
-  cases: UseQueryResult<Case[], Error>;
-  slides: UseQueryResult<CaseSlide[], Error>;
   slidesFromCase: UseQueryResult<CaseSlide[], Error>;
   isCreated: boolean;
   setIsCreated: (created: boolean) => void;

@@ -1,14 +1,16 @@
 import React, { useContext, useState } from "react";
-import { supabaseAuth, supabaseVerifyCodeOTP } from "~/service/supabase/supabaseAuth.service";
+import { supabaseAuth } from "~/service/supabase/supabaseAuth.service";
 import toast from "react-hot-toast";
 import { Button, Input } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import AdminContext from "~/pages/admin/context/AdminContext";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [enableCode, setEnableCode] = useState(false);
 
-  const { authVerify, setAuthVerify, setUser, user } = useContext(AdminContext);
+  const { authVerify, setAuthVerify, setLoading, authData } = useContext(AdminContext);
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     const { data, error } = await supabaseAuth(authVerify.email);
@@ -18,21 +20,23 @@ function Login() {
       ? toast.error("Error al enviar el magic Link")
       : toast.success(`Magic Link enviado a tu correo ${authVerify.email}`);
   };
+
   const handleSubmitToken = async () => {
-    const {
-      data: { session },
-      error,
-    } = await supabaseVerifyCodeOTP(authVerify.email, authVerify.token);
-    if (session) {
-      setUser(session);
-      toast.success("Logged!!!");
-      console.log("session", session);
-      console.log("user", user);
-    } else {
-      toast.error("no se pudo enviar correctamente");
-      console.log("error", error);
+    try {
+      const canLogin = await authData(authVerify);
+      if (canLogin) {
+        setLoading(false);
+        navigate("/adm/cases");
+      } else {
+        setLoading(false);
+        toast.error("no se pudo enviar correctamente");
+      }
+    } catch (error) {
+      setLoading(false);
+      toast.error("Error inesperado al iniciar sesión");
     }
   };
+
   return (
     <div className="flex min-h-screen w-full flex-col justify-center bg-gray-100 py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
