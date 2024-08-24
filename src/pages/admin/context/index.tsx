@@ -1,14 +1,14 @@
 import React, { Key, useCallback, useEffect, useRef, useState } from "react";
 import AdminContext from "~/pages/admin/context/AdminContext";
 import { useDisclosure } from "@nextui-org/react";
-import { OpCase, OpCaseSlide, OpSlidePreview, SlidePreview } from "~/interfaces/Case.interface";
+import { OpCase, OpCaseSlide, OpSlidePreview } from "~/interfaces/Case.interface";
 import useGetCases from "~/hooks/useGetCases";
 import useGetSlides from "~/hooks/useGetSlides";
 import { SEE } from "~/constants";
 import { getAllSlidesCases, getSlideFromCase } from "~/service/supabase/slides.service";
 import useGetSlidesFromCase from "~/hooks/useGetSlidesFromCase";
 import { getAllCases } from "~/service/supabase/cases.service";
-import supabase from "~/service/supabase/supabase.service";
+import AuthEP from "~/interfaces/AuthEP";
 import { supabaseVerifyCodeOTP } from "~/service/supabase/supabaseAuth.service";
 
 interface Props {
@@ -17,11 +17,12 @@ interface Props {
 
 function AdminProvider({ children }: Props) {
   // authentication
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<object | null>({});
   const [authVerify, setAuthVerify] = useState<{ email: string; token: string }>({
     email: "",
     token: "",
   });
+
   //loading general
   const [loading, setLoading] = useState<boolean>(false);
   const [loadingAttributes, setLoadingAttributes] = useState({
@@ -149,6 +150,18 @@ function AdminProvider({ children }: Props) {
     setCasesList(data);
   }, [casesList]);
 
+  const authData = async (userAuth: AuthEP) => {
+    const { data, error } = await supabaseVerifyCodeOTP(userAuth.email, userAuth.token);
+    if (error) {
+      console.error(error);
+      return false;
+    }
+    setUser(data.session);
+    localStorage.setItem("authState", JSON.stringify({ auth: true, session: data }));
+    console.log(data);
+    return true;
+  };
+
   useEffect(() => {
     getCasesData();
   }, []);
@@ -157,59 +170,16 @@ function AdminProvider({ children }: Props) {
     handleSelectionChange();
   }, [selectedKey]);
 
-  // authentication
-  // useEffect(() => {
-  //   const checkUser = async () => {
-  //     const {
-  //       data: { session },
-  //     } = await supabase.auth.getSession();
-  //     setUser(session?.user || null);
-  //   };
-  //
-  //   checkUser();
-  //
-  //   const {
-  //     data: { subscription },
-  //   } = supabase.auth.onAuthStateChange((_event, session) => {
-  //     setUser(session);
-  //   });
-  //
-  //   return () => {
-  //     subscription.unsubscribe();
-  //   };
-  // }, [user]);
-
-  useEffect(() => {
-    const handleSession = async () => {
-      const {
-        data: { session },
-        error,
-      } = await supabaseVerifyCodeOTP(authVerify.email, authVerify.token);
-      setUser(session?.user || null);
-    };
-
-    handleSession();
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session);
-    });
-
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, [user]);
-
   return (
     <AdminContext.Provider
       value={{
+        cases,
+        slides,
+        authData,
         user,
         setUser,
         authVerify,
         setAuthVerify,
-        cases,
-        slides,
         slidesFromCase,
         isCreated,
         setIsCreated,
