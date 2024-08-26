@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import React, { useContext, useEffect, useState } from "react";
-import { CYTOLOGY, HISTOPATHOLOGY } from "~/constants";
+import { CASES, CYTOLOGY, HISTOPATHOLOGY } from "~/constants";
 import { Case } from "~/interfaces/Case.interface";
 import ClientContext from "~/pages/blog_client/context/ClientContext";
 import { typeListOptions } from "~/constants/options/typeList.options";
@@ -72,7 +72,7 @@ function CasePostList() {
         </div>
         <div className="my-5 inline-flex w-full justify-end">
           <Button
-            onPress={() => {}}
+            onPress={() => handleClickOption(CASES)}
             className="inline-flex items-center justify-end bg-purple-800 font-medium text-yellow-400 transition-colors hover:text-yellow-500"
           >
             Ir a Casos <FaArrowRight className="ml-1 h-3 w-3" />

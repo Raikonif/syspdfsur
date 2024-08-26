@@ -6,6 +6,7 @@ import CasePostList from "~/pages/blog_client/sections2/CasePostList";
 import Suscribe from "~/pages/blog_client/sections2/Suscribe";
 import Footer from "~/pages/blog_client/sections2/Footer";
 import { FaChevronDown } from "react-icons/fa";
+import About from "~/pages/blog_client/sections2/About";
 
 function Landing2() {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -28,6 +29,7 @@ function Landing2() {
       <main className="flex-1">
         <Hero />
         <CasePostList />
+        <About />
         <Suscribe />
         <Footer />
       </main>
