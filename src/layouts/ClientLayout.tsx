@@ -7,7 +7,7 @@ function ClientLayout(): ReactElement {
     <>
       <div className="w-full items-center justify-center bg-gradient-to-b from-violet-700 from-70% to-white dark:from-cyan-700 dark:to-violet-950">
         <div className="min-h-screen">
-          <Header />
+          {/*<Header />*/}
           <Outlet />
         </div>
       </div>
