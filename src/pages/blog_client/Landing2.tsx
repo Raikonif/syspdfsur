@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import {
-  ChevronDown,
-} from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import Header from "~/pages/blog_client/sections2/Header";
 import Hero from "~/pages/blog_client/sections2/Hero";
 import CasePostList from "~/pages/blog_client/sections2/CasePostList";
 import Suscribe from "~/pages/blog_client/sections2/Suscribe";
 import Footer from "~/pages/blog_client/sections2/Footer";
+import { FaChevronDown } from "react-icons/fa";
 
 function Landing2() {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -29,7 +28,6 @@ function Landing2() {
       <main className="flex-1">
         <Hero />
         <CasePostList />
-        <CasePostList />
         <Suscribe />
         <Footer />
       </main>
@@ -38,7 +36,7 @@ function Landing2() {
         style={{ opacity: scrollPosition > 200 ? 1 : 0 }}
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       >
-        <ChevronDown className="h-6 w-6 rotate-180 transform" />
+        <FaChevronDown className="h-6 w-6 rotate-180 transform" />
       </div>
     </div>
   );

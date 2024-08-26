@@ -8,10 +8,10 @@ function Hero() {
           <div className="flex flex-col justify-center space-y-4">
             <div className="space-y-2">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                Exploring the Digital Frontier
+                Blog Profesional de Patologia
               </h1>
               <p className="max-w-[600px] text-gray-400 md:text-xl">
-                Join me on a journey through technology, design, and personal growth.
+                Publicación de casos y articulos de la Dra. Nandy Calle Peñaranda
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -19,13 +19,13 @@ function Hero() {
                 href="#"
                 className="inline-flex h-10 items-center justify-center rounded-md bg-yellow-400 px-8 text-sm font-medium text-purple-950 shadow transition-colors hover:bg-yellow-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-yellow-500"
               >
-                Read Latest Post
+                Leer el Último Caso
               </a>
               <a
                 href="#"
                 className="inline-flex h-10 items-center justify-center rounded-md border border-gray-700 bg-purple-950 px-8 text-sm font-medium text-white shadow-sm transition-colors hover:bg-purple-900 hover:text-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-700"
               >
-                About Me
+                Acerca de Mí
               </a>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import { BookOpen, Menu, X } from "lucide-react";
 import React, { useState } from "react";
+import { FaMicroscope } from "react-icons/fa";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -7,8 +8,8 @@ function Header() {
   return (
     <header className="fixed z-50 flex h-16 w-full items-center bg-purple-950/80 px-4 backdrop-blur-md lg:px-6">
       <a className="flex items-center justify-center" href="#">
-        <BookOpen className="h-6 w-6 text-yellow-400" />
-        <span className="ml-2 text-xl font-bold text-white">Jane Doe</span>
+        <FaMicroscope size={30} className="text-yellow-400" />
+        <h1 className="ml-4 font-bold text-violet-100 md:text-xl lg:text-2xl">Blog de Nandy</h1>
       </a>
       <nav
         className={`ml-auto flex gap-4 sm:gap-6 ${
@@ -19,25 +20,25 @@ function Header() {
           className="text-sm font-medium text-gray-300 transition-colors hover:text-yellow-400"
           href="#"
         >
-          Home
+          Inicio
         </a>
         <a
           className="text-sm font-medium text-gray-300 transition-colors hover:text-yellow-400"
           href="#"
         >
-          Blog
+          Casos
         </a>
         <a
           className="text-sm font-medium text-gray-300 transition-colors hover:text-yellow-400"
           href="#"
         >
-          About
+          Acerca de mi
         </a>
         <a
           className="text-sm font-medium text-gray-300 transition-colors hover:text-yellow-400"
           href="#"
         >
-          Contact
+          Contacto
         </a>
       </nav>
       <button

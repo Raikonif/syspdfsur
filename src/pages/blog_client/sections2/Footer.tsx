@@ -1,5 +1,5 @@
-import { Github, Linkedin, Twitter } from "lucide-react";
 import React from "react";
+import { FaGithub, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
 function Footer() {
   return (
@@ -8,13 +8,13 @@ function Footer() {
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <div className="flex space-x-4">
             <a href="#" className="text-gray-300 transition-colors hover:text-yellow-400">
-              <Twitter className="h-5 w-5" />
+              <FaTwitter className="h-5 w-5" />
             </a>
             <a href="#" className="text-gray-300 transition-colors hover:text-yellow-400">
-              <Github className="h-5 w-5" />
+              <FaGithub className="h-5 w-5" />
             </a>
             <a href="#" className="text-gray-300 transition-colors hover:text-yellow-400">
-              <Linkedin className="h-5 w-5" />
+              <FaLinkedinIn className="h-5 w-5" />
             </a>
           </div>
           <p className="text-xs text-gray-400">© 2023 Jane Doe. All rights reserved.</p>
