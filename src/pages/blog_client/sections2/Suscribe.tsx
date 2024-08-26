@@ -7,11 +7,10 @@ function Suscribe() {
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
             <h2 className="text-3xl font-bold tracking-tighter text-purple-950 sm:text-4xl md:text-5xl">
-              Join the Journey
+              Contáctame
             </h2>
             <p className="mx-auto max-w-[600px] text-purple-900 md:text-xl/relaxed">
-              Subscribe to my newsletter for exclusive insights and tips on tech, design, and
-              personal growth.
+              Sigueme a traves de mi correo o mis redes sociales
             </p>
           </div>
           <div className="w-full max-w-sm space-y-2">
@@ -25,12 +24,12 @@ function Suscribe() {
                 className="h-10 rounded-md bg-purple-950 px-8 text-sm font-medium text-yellow-400 hover:bg-purple-900 focus:outline-none focus:ring-2 focus:ring-purple-950 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 type="submit"
               >
-                Subscribe
+                Enviame un Mensaje
               </button>
             </form>
-            <p className="text-xs text-purple-900">
-              I respect your privacy. Unsubscribe at any time.
-            </p>
+            {/*<p className="text-xs text-purple-900">*/}
+            {/*  I respect your privacy. Unsubscribe at any time.*/}
+            {/*</p>*/}
           </div>
         </div>
       </div>

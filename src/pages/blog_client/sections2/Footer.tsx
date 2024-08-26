@@ -17,7 +17,7 @@ function Footer() {
               <FaLinkedinIn className="h-5 w-5" />
             </a>
           </div>
-          <p className="text-xs text-gray-400">© 2023 Jane Doe. All rights reserved.</p>
+          <p className="text-xs text-gray-400">© 2024 Raikonif. All rights reserved.</p>
           <nav className="flex gap-4 sm:gap-6">
             <a
               className="text-xs text-gray-400 underline-offset-4 hover:text-gray-200 hover:underline"
