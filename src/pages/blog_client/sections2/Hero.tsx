@@ -2,7 +2,7 @@ import React from "react";
 
 function Hero() {
   return (
-    <section className="relative w-full overflow-hidden py-12 md:py-24 lg:py-32 xl:py-48">
+    <section className="relative w-full overflow-hidden py-12 md:py-24 lg:py-32 xl:py-48 xl:pt-60">
       <div className="container relative z-10 mx-auto px-4 md:px-6">
         <div className="grid items-center gap-6 lg:grid-cols-[2fr_1fr]">
           <div className="flex flex-col justify-center space-y-4">

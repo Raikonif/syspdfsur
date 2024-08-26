@@ -70,7 +70,7 @@ function CasePostList() {
             </div>
           )}
         </div>
-        <div className="my-5 inline-flex w-full justify-end">
+        <div className="mt-10 inline-flex w-full justify-end">
           <Button
             onPress={() => handleClickOption(CASES)}
             className="inline-flex items-center justify-end bg-purple-800 font-medium text-yellow-400 transition-colors hover:text-yellow-500"
