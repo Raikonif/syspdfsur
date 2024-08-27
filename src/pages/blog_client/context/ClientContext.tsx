@@ -6,6 +6,7 @@ interface DataContext {
   cases: UseQueryResult<Case[], Error>;
   slides: UseQueryResult<CaseSlide[], Error>;
   handleClickOption: (link: string) => void;
+  scrollToSection: (section: string) => void;
 }
 
 const ClientContext = createContext<DataContext>({} as DataContext);

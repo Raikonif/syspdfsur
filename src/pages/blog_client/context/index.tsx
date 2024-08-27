@@ -18,8 +18,12 @@ function ClientProvider({ children }: Props) {
     navigate(link);
   };
 
+  const scrollToSection = (sectionId: string) => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <ClientContext.Provider value={{ handleClickOption, cases, slides }}>
+    <ClientContext.Provider value={{ handleClickOption, scrollToSection, cases, slides }}>
       {children}
     </ClientContext.Provider>
   );
