@@ -10,6 +10,7 @@ const CasesRoutes = lazy(() => import("~/routes/CasesRoutes"));
 // import CasesRoutes from "~/routes/CasesRoutes";
 import ProgressCircle from "~/components/ProgressCircle";
 import Landing2 from "~/pages/blog_client/Landing2";
+import CaseListPage from "~/pages/blog_client/articles/CaseListPage";
 
 const ClientRoutes = {
   path: "",
@@ -25,7 +26,7 @@ const ClientRoutes = {
     },
     {
       path: "cases",
-      element: <Cases />,
+      element: <CaseListPage />,
     },
     {
       path: "cases/*",
