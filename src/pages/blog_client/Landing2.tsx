@@ -3,7 +3,7 @@ import { ChevronDown } from "lucide-react";
 import Header from "~/pages/blog_client/sections2/Header";
 import Hero from "~/pages/blog_client/sections2/Hero";
 import CasePostList from "~/pages/blog_client/sections2/CasePostList";
-import Suscribe from "~/pages/blog_client/sections2/Suscribe";
+import Contact from "~/pages/blog_client/sections2/Contact";
 import Footer from "~/pages/blog_client/sections2/Footer";
 import { FaChevronDown } from "react-icons/fa";
 import About from "~/pages/blog_client/sections2/About";
@@ -30,7 +30,7 @@ function Landing2() {
         <Hero />
         <CasePostList />
         <About />
-        <Suscribe />
+        <Contact />
         <Footer />
       </main>
       <div

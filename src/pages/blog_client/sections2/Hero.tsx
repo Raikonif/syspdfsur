@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import ClientContext from "~/pages/blog_client/context/ClientContext";
+import { ABOUT, CASES } from "~/constants";
 
 function Hero() {
+  const { scrollToSection } = useContext(ClientContext);
+
   return (
-    <section className="relative w-full overflow-hidden py-12 md:py-24 lg:py-32 xl:py-48 xl:pt-60">
+    <section
+      id="hero"
+      className="relative w-full overflow-hidden py-12 pt-20 md:py-24 lg:py-32 xl:py-48 xl:pt-60"
+    >
       <div className="container relative z-10 mx-auto px-4 md:px-6">
         <div className="grid items-center gap-6 lg:grid-cols-[2fr_1fr]">
           <div className="flex flex-col justify-center space-y-4">
@@ -15,18 +22,18 @@ function Hero() {
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
-              <a
-                href="#"
+              <span
+                onClick={() => scrollToSection("cases")}
                 className="inline-flex h-10 items-center justify-center rounded-md bg-yellow-400 px-8 text-sm font-medium text-purple-950 shadow transition-colors hover:bg-yellow-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-yellow-500"
               >
                 Leer el Último Caso
-              </a>
-              <a
-                href="#"
+              </span>
+              <span
+                onClick={() => scrollToSection("about")}
                 className="inline-flex h-10 items-center justify-center rounded-md border border-gray-700 bg-purple-950 px-8 text-sm font-medium text-white shadow-sm transition-colors hover:bg-purple-900 hover:text-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-700"
               >
                 Acerca de Mí
-              </a>
+              </span>
             </div>
           </div>
           <div className="relative h-[300px] lg:h-[400px]">

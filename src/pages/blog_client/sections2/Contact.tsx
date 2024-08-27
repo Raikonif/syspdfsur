@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Button, Input, Textarea } from "@nextui-org/react";
 
-function Suscribe() {
+function Contact() {
   const [emailSent, setEmailSent] = useState({
     email: "",
     message: "",
   });
 
   return (
-    <section className="w-full bg-yellow-400 py-12 md:py-24 lg:py-32">
+    <section id="contact" className="w-full bg-yellow-400 py-12 md:py-24 lg:py-32">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
@@ -48,4 +48,4 @@ function Suscribe() {
   );
 }
 
-export default Suscribe;
+export default Contact;

@@ -12,7 +12,7 @@ import { FaUserDoctor } from "react-icons/fa6";
 
 function About() {
   return (
-    <section className="w-full bg-purple-950 py-12 md:py-24 lg:py-32">
+    <section id="about" className="w-full bg-purple-950 py-12 md:py-24 lg:py-32">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid items-center gap-6 lg:grid-cols-[1fr_400px]">
           <div className="space-y-4">
