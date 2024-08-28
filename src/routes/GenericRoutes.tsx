@@ -1,12 +1,12 @@
-import React, { Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import GeneralLayout from "~/layouts/GeneralLayout";
 import Settings from "~/pages/Settings";
-import CasesTable from "~/pages/admin/cases/CasesTable";
-import Login from "~/pages/admin/authentication/Login";
-import AdminPanel from "~/pages/admin/AdminPanel";
 import AdminProvider from "~/pages/admin/context";
 import ProtectedRoutes from "~/routes/ProtectedRoutes";
 import ProgressCircle from "~/components/ProgressCircle";
+const Login = lazy(() => import("~/pages/admin/authentication/Login"));
+const AdminPanel = lazy(() => import("~/pages/admin/AdminPanel"));
+const CasesTable = lazy(() => import("~/pages/admin/cases/CasesTable"));
 
 const GenericRoutes = {
   path: "adm",

@@ -14,7 +14,7 @@ import { Case, CaseSlide } from "~/interfaces/Case.interface";
 import ClientContext from "~/pages/blog_client/context/ClientContext";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
-import Header from "~/pages/blog_client/sections2/Header";
+import Header from "~/pages/blog_client/sections/Header";
 
 const blogImages = [
   {
