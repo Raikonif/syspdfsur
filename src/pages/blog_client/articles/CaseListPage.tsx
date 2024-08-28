@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { BookOpen, Menu, X, Search, Filter, ChevronDown } from "lucide-react";
 import { CASES, CYTOLOGY, HISTOPATHOLOGY, PAP } from "~/constants";
 import ClientContext from "~/pages/blog_client/context/ClientContext";
-import Header from "~/pages/blog_client/sections2/Header";
+import Header from "~/pages/blog_client/sections/Header";
 
 const cases = [
   {

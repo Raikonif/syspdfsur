@@ -9,7 +9,6 @@ import ClientProvider from "~/pages/blog_client/context";
 const CasesRoutes = lazy(() => import("~/routes/CasesRoutes"));
 // import CasesRoutes from "~/routes/CasesRoutes";
 import ProgressCircle from "~/components/ProgressCircle";
-import Landing2 from "~/pages/blog_client/Landing2";
 import CaseListPage from "~/pages/blog_client/articles/CaseListPage";
 
 const ClientRoutes = {
@@ -22,7 +21,7 @@ const ClientRoutes = {
   children: [
     {
       path: "",
-      element: <Landing2 />,
+      element: <Landing />,
     },
     {
       path: "cases",

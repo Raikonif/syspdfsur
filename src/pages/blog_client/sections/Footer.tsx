@@ -1,50 +1,41 @@
 import React from "react";
-import {
-  FaFacebook,
-  FaFacebookSquare,
-  FaInstagramSquare,
-  FaLinkedinIn,
-  FaTable,
-  FaTwitter,
-  FaTwitterSquare,
-  FaYoutube,
-  FaYoutubeSquare,
-} from "react-icons/fa";
-import { Tooltip } from "@nextui-org/react";
+import { FaGithub, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
 function Footer() {
   return (
-    <section className="flex w-full flex-col items-center justify-center bg-gradient-to-t from-violet-200 to-violet-700 to-70% py-12 pb-10 dark:from-violet-700 dark:to-cyan-700 md:py-24 lg:py-32">
-      <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6 lg:gap-10">
-        <div className="mb-10">
-          <h2 className="text-3xl font-bold tracking-tighter text-violet-100 dark:text-white sm:text-4xl md:text-5xl">
-            Contactame a traves de mis Redes Sociales.
-          </h2>
-        </div>
-        <div className="flex justify-between gap-6 lg:gap-12">
-          <Tooltip content={"Twitter"}>
-            <a className="flex flex-col items-center gap-2 rounded-full" href="#">
-              <FaTwitter className="h-16 w-16 hover:text-cyan-400" />
+    <footer id="footer" className="w-full border-t border-purple-800 bg-purple-950 py-6">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+          <div className="flex space-x-4">
+            <a
+              href={"https://x.com/Raikonif"}
+              target={"_blank"}
+              className="text-gray-300 transition-colors hover:text-yellow-400"
+              rel="noreferrer"
+            >
+              <FaTwitter className="h-5 w-5" />
             </a>
-          </Tooltip>
-          <Tooltip content={"Facebook"}>
-            <a className="flex flex-col items-center gap-2" href="#">
-              <FaFacebook className="h-16 w-16 hover:text-blue-600" />
+            <a
+              href={"https://github.com/Raikonif"}
+              target={"_blank"}
+              className="text-gray-300 transition-colors hover:text-yellow-400"
+              rel="noreferrer"
+            >
+              <FaGithub className="h-5 w-5" />
             </a>
-          </Tooltip>
-          <Tooltip content={"LinkedIn"}>
-            <a className="flex flex-col items-center gap-2" href="#">
-              <FaLinkedinIn className="h-16 w-16 hover:text-blue-500" />
+            <a
+              href={"https://www.linkedin.com/in/raikonif/"}
+              target={"_blank"}
+              className="text-gray-300 transition-colors hover:text-yellow-400"
+              rel="noreferrer"
+            >
+              <FaLinkedinIn className="h-5 w-5" />
             </a>
-          </Tooltip>
-          <Tooltip content={"Youtube"}>
-            <a className="flex flex-col items-center gap-2" href="#">
-              <FaYoutube className="h-16 w-16 hover:text-red-500" />
-            </a>
-          </Tooltip>
+          </div>
+          <p className="text-xs text-gray-400">© 2024 Raikonif. All rights reserved.</p>
         </div>
       </div>
-    </section>
+    </footer>
   );
 }
 
