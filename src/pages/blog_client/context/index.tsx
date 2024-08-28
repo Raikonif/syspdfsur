@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ClientContext from "~/pages/blog_client/context/ClientContext";
 import useGetCases from "~/hooks/useGetCases";
@@ -8,7 +8,9 @@ interface Props {
 }
 
 function ClientProvider({ children }: Props) {
-  // get cases
+  // loading
+  const [loading, setLoading] = useState(false);
+  // get cases slides
   const cases = useGetCases();
   const slides = useGetSlides();
 
@@ -23,7 +25,9 @@ function ClientProvider({ children }: Props) {
   };
 
   return (
-    <ClientContext.Provider value={{ handleClickOption, scrollToSection, cases, slides }}>
+    <ClientContext.Provider
+      value={{ handleClickOption, scrollToSection, cases, slides, loading, setLoading }}
+    >
       {children}
     </ClientContext.Provider>
   );

@@ -7,6 +7,7 @@ import Contact from "~/pages/blog_client/sections2/Contact";
 import Footer from "~/pages/blog_client/sections2/Footer";
 import { FaChevronDown } from "react-icons/fa";
 import About from "~/pages/blog_client/sections2/About";
+import ProgressCircle from "~/components/ProgressCircle";
 
 function Landing2() {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -25,6 +26,7 @@ function Landing2() {
 
   return (
     <div className="flex min-h-screen flex-col bg-purple-950 text-white">
+      <ProgressCircle text={"Cargando"} color={"secondary"} />
       <Header />
       <main className="flex-1">
         <Hero />

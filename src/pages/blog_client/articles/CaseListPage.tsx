@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BookOpen, Menu, X, Search, Filter, ChevronDown } from "lucide-react";
+import { CASES, CYTOLOGY, HISTOPATHOLOGY, PAP } from "~/constants";
+import ClientContext from "~/pages/blog_client/context/ClientContext";
+import Header from "~/pages/blog_client/sections2/Header";
 
 const cases = [
   {
@@ -60,67 +63,25 @@ const cases = [
   },
 ];
 
-const categories = ["Todos", "Cybersecurity", "Financial Crime", "Corporate Espionage"];
-const statuses = ["Todos", "Open", "In Progress", "Closed"];
+const categories = ["Todos", HISTOPATHOLOGY, CYTOLOGY, PAP];
 
 function CaseListPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("Todos");
-  const [selectedStatus, setSelectedStatus] = useState("Todos");
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredCases = cases.filter(
+  const { cases, handleClickOption } = useContext(ClientContext);
+
+  const filteredCases = cases.data.filter(
     (caseItem) =>
-      (selectedCategory === "Todos" || caseItem.category === selectedCategory) &&
-      (selectedStatus === "Todos" || caseItem.status === selectedStatus) &&
+      (selectedCategory === "Todos" || caseItem.type === selectedCategory) &&
       (caseItem.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        caseItem.category.toLowerCase().includes(searchTerm.toLowerCase())),
+        caseItem.type.toLowerCase().includes(searchTerm.toLowerCase())),
   );
 
   return (
     <div className="flex min-h-screen flex-col bg-purple-950 text-white">
-      <header className="fixed z-50 flex h-16 w-full items-center bg-purple-950/80 px-4 backdrop-blur-md lg:px-6">
-        <a className="flex items-center justify-center" href="#">
-          <BookOpen className="h-6 w-6 text-yellow-400" />
-          <span className="ml-2 text-xl font-bold text-white">Case Management</span>
-        </a>
-        <nav
-          className={`ml-auto flex gap-4 sm:gap-6 ${
-            isMenuOpen ? "flex" : "hidden"
-          } absolute left-0 right-0 top-16 flex-col bg-purple-950 p-4 md:relative md:top-0 md:flex md:flex-row md:bg-transparent md:p-0`}
-        >
-          <a
-            className="text-sm font-medium text-gray-300 transition-colors hover:text-yellow-400"
-            href="#"
-          >
-            Dashboard
-          </a>
-          <a
-            className="text-sm font-medium text-gray-300 transition-colors hover:text-yellow-400"
-            href="#"
-          >
-            Cases
-          </a>
-          <a
-            className="text-sm font-medium text-gray-300 transition-colors hover:text-yellow-400"
-            href="#"
-          >
-            Reports
-          </a>
-          <a
-            className="text-sm font-medium text-gray-300 transition-colors hover:text-yellow-400"
-            href="#"
-          >
-            Settings
-          </a>
-        </nav>
-        <button
-          className="ml-auto rounded-md p-2 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400 md:hidden"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
-      </header>
+      <Header />
       <main className="flex-1 pt-16">
         <section className="container mx-auto px-4 py-8">
           <h1 className="mb-8 text-3xl font-bold tracking-tighter text-yellow-400 sm:text-4xl md:text-5xl lg:text-6xl">
@@ -152,44 +113,45 @@ function CaseListPage() {
                 </select>
                 <ChevronDown className="pointer-events-none absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
               </div>
-              <div className="relative">
-                <select
-                  className="appearance-none rounded-md bg-purple-900 py-2 pl-4 pr-10 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                  value={selectedStatus}
-                  onChange={(e) => setSelectedStatus(e.target.value)}
-                >
-                  {statuses.map((status) => (
-                    <option key={status} value={status}>
-                      {status}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown className="pointer-events-none absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
-              </div>
+              {/*<div className="relative">*/}
+              {/*  <select*/}
+              {/*    className="appearance-none rounded-md bg-purple-900 py-2 pl-4 pr-10 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"*/}
+              {/*    value={selectedStatus}*/}
+              {/*    onChange={(e) => setSelectedStatus(e.target.value)}*/}
+              {/*  >*/}
+              {/*    {statuses.map((status) => (*/}
+              {/*      <option key={status} value={status}>*/}
+              {/*        {status}*/}
+              {/*      </option>*/}
+              {/*    ))}*/}
+              {/*  </select>*/}
+              {/*  <ChevronDown className="pointer-events-none absolute right-3 top-2.5 h-5 w-5 text-gray-400" />*/}
+              {/*</div>*/}
             </div>
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filteredCases.map((caseItem) => (
               <div
                 key={caseItem.id}
-                className="overflow-hidden rounded-lg bg-purple-900 shadow-lg transition-shadow hover:shadow-xl"
+                className="cursor-pointer overflow-hidden rounded-lg bg-purple-900 shadow-lg transition-shadow hover:shadow-xl"
+                onClick={() => handleClickOption(`${CASES}/${caseItem.id}`)}
               >
                 <div className="p-6">
                   <h3 className="mb-2 text-xl font-bold text-white">{caseItem.title}</h3>
-                  <p className="mb-4 text-gray-300">Category: {caseItem.category}</p>
+                  <p className="mb-4 text-gray-300">Category: {caseItem.type}</p>
                   <div className="flex items-center justify-between">
                     <span
                       className={`rounded-full px-2 py-1 text-sm font-semibold ${
-                        caseItem.status === "Open"
+                        caseItem.type === HISTOPATHOLOGY
                           ? "bg-green-500 text-green-900"
-                          : caseItem.status === "In Progress"
+                          : caseItem.type === CYTOLOGY
                           ? "bg-yellow-500 text-yellow-900"
                           : "bg-red-500 text-red-900"
                       }`}
                     >
-                      {caseItem.status}
+                      {caseItem.type}
                     </span>
-                    <span className="text-sm text-gray-400">{caseItem.date}</span>
+                    <span className="text-sm text-gray-400">{caseItem.created_at}</span>
                   </div>
                 </div>
               </div>
