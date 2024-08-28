@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   BookOpen,
   Mail,
@@ -10,6 +10,11 @@ import {
   ArrowLeft,
   ArrowRight,
 } from "lucide-react";
+import { Case, CaseSlide } from "~/interfaces/Case.interface";
+import ClientContext from "~/pages/blog_client/context/ClientContext";
+import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
+import Header from "~/pages/blog_client/sections2/Header";
 
 const blogImages = [
   {
@@ -51,112 +56,96 @@ const blogImages = [
 
 function CasePost() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(blogImages[0]);
+  const [selected, setSelected] = useState<Case>({} as Case);
+  const [slidesCases, setSlidesCases] = useState<CaseSlide[]>([] as CaseSlide[]);
+  const [selectedImage, setSelectedImage] = useState(
+    slidesCases[0] || {
+      image_url: "/placeholder.svg?height=400&width=600",
+      id: "default",
+      description: "No hay Descripcion",
+    },
+  );
+  const { cases, slides, setLoading, loading } = useContext(ClientContext);
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const selectCurrentCase = () => {
+    setLoading(true);
+    const currentCase = cases.data.find((currentCase) => currentCase.id === id);
+    if (currentCase) {
+      setSelected(currentCase);
+    } else {
+      navigate("/*");
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    selectCurrentCase();
+  }, []);
+
+  useEffect(() => {
+    setLoading(true);
+    if (selected.id) {
+      const currentSlides = slides.data.filter((slide) => slide.case_id === selected.id);
+      if (currentSlides.length > 0) {
+        setSlidesCases(currentSlides);
+        setSelectedImage(currentSlides[0]); // Establece el primer slide como el seleccionado por defecto
+      }
+    }
+    setLoading(false);
+  }, [selected, slides]);
 
   return (
     <div className="flex min-h-screen flex-col bg-purple-950 text-white">
-      <header className="fixed z-50 flex h-16 w-full items-center bg-purple-950/80 px-4 backdrop-blur-md lg:px-6">
-        <a className="flex items-center justify-center" href="#">
-          <BookOpen className="h-6 w-6 text-yellow-400" />
-          <span className="ml-2 text-xl font-bold text-white">Jane Doe</span>
-        </a>
-        <nav
-          className={`ml-auto flex gap-4 sm:gap-6 ${
-            isMenuOpen ? "flex" : "hidden"
-          } absolute left-0 right-0 top-16 flex-col bg-purple-950 p-4 md:relative md:top-0 md:flex md:flex-row md:bg-transparent md:p-0`}
-        >
-          <a
-            className="text-sm font-medium text-gray-300 transition-colors hover:text-yellow-400"
-            href="#"
-          >
-            Home
-          </a>
-          <a
-            className="text-sm font-medium text-gray-300 transition-colors hover:text-yellow-400"
-            href="#"
-          >
-            Blog
-          </a>
-          <a
-            className="text-sm font-medium text-gray-300 transition-colors hover:text-yellow-400"
-            href="#"
-          >
-            About
-          </a>
-          <a
-            className="text-sm font-medium text-gray-300 transition-colors hover:text-yellow-400"
-            href="#"
-          >
-            Contact
-          </a>
-        </nav>
-        <button
-          className="ml-auto rounded-md p-2 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400 md:hidden"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
-      </header>
+      <Header />
       <main className="flex-1 pt-16">
-        <article className="container mx-auto px-4 py-8">
-          <h1 className="mb-4 text-3xl font-bold tracking-tighter text-yellow-400 sm:text-4xl md:text-5xl lg:text-6xl">
-            The Art of AI: A Visual Journey
-          </h1>
-          <div className="flex flex-col gap-8 md:flex-row">
-            <div className="md:w-3/4">
-              <div className="overflow-hidden rounded-lg bg-purple-900 shadow-lg">
-                <img
-                  src={selectedImage.src}
-                  alt={selectedImage.alt}
-                  className="h-auto w-full object-cover"
-                />
-                <div className="p-6">
-                  <p className="text-lg text-gray-300">{selectedImage.description}</p>
+        {loading && <h1>CARGANDO ...</h1>}
+        {!loading && slidesCases && slides && (
+          <article className="container mx-auto px-4 py-8">
+            <h1 className="mb-4 text-3xl font-bold tracking-tighter text-yellow-400 sm:text-4xl md:text-5xl lg:text-6xl">
+              {selected.title}
+            </h1>
+            <div className="prose prose-invert mt-8 max-w-none">
+              <p>{selected.description}</p>
+            </div>
+            <div className="flex flex-col gap-8 md:flex-row">
+              <div className="md:w-3/4">
+                <div className="overflow-hidden rounded-lg bg-purple-900 shadow-lg">
+                  <img
+                    src={selectedImage?.image_url || ""}
+                    alt={selectedImage?.id || ""}
+                    className="h-auto w-full object-cover"
+                  />
+                  <div className="p-6">
+                    <p className="text-lg text-gray-300">
+                      {selectedImage?.description || "No hay Descripcion"}
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div className="prose prose-invert mt-8 max-w-none">
-                <p>
-                  Artificial Intelligence has revolutionized many fields, and art is no exception.
-                  This collection showcases the incredible potential of AI in creating visually
-                  stunning and thought-provoking pieces that challenge our perception of creativity
-                  and machine capabilities.
-                </p>
-                <p>
-                  Each image in this series was generated using state-of-the-art AI algorithms,
-                  trained on vast datasets of human-created art. The results are a fascinating blend
-                  of familiar artistic styles and completely novel visual concepts that push the
-                  boundaries of what we consider possible in art creation.
-                </p>
-                <p>
-                  As you explore these images, consider the implications of AI in the art world. How
-                  does this technology change our understanding of creativity? What role will human
-                  artists play in a future where AI can generate stunning visuals in seconds? These
-                  are just some of the questions we must grapple with as we stand at the
-                  intersection of technology and art.
-                </p>
+              <div className="md:w-1/4">
+                <h2 className="mb-4 text-xl font-bold text-yellow-400">Image Gallery</h2>
+                <ul className="space-y-2">
+                  {slidesCases.map((image) => (
+                    <li key={image.id}>
+                      <button
+                        onClick={() => setSelectedImage(image)}
+                        className={`w-full rounded-md p-2 text-left transition-colors ${
+                          selectedImage?.id === image?.id
+                            ? "bg-yellow-400 text-purple-950"
+                            : "bg-purple-800 text-white hover:bg-purple-700"
+                        }`}
+                      >
+                        {image?.title}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
-            <div className="md:w-1/4">
-              <h2 className="mb-4 text-xl font-bold text-yellow-400">Image Gallery</h2>
-              <ul className="space-y-2">
-                {blogImages.map((image) => (
-                  <li key={image.id}>
-                    <button
-                      onClick={() => setSelectedImage(image)}
-                      className={`w-full rounded-md p-2 text-left transition-colors ${
-                        selectedImage.id === image.id
-                          ? "bg-yellow-400 text-purple-950"
-                          : "bg-purple-800 text-white hover:bg-purple-700"
-                      }`}
-                    >
-                      {image.alt}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </article>
+          </article>
+        )}
       </main>
       <footer className="w-full border-t border-purple-800 bg-purple-950 py-6">
         <div className="container mx-auto px-4 md:px-6">
@@ -172,21 +161,9 @@ function CasePost() {
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
-            <p className="text-xs text-gray-400">© 2023 Jane Doe. All rights reserved.</p>
-            <nav className="flex gap-4 sm:gap-6">
-              <a
-                className="text-xs text-gray-400 underline-offset-4 hover:text-gray-200 hover:underline"
-                href="#"
-              >
-                Terms of Service
-              </a>
-              <a
-                className="text-xs text-gray-400 underline-offset-4 hover:text-gray-200 hover:underline"
-                href="#"
-              >
-                Privacy
-              </a>
-            </nav>
+            <p className="text-center text-xs text-gray-400">
+              © 2024 Raikonif. All rights reserved.
+            </p>
           </div>
         </div>
       </footer>
