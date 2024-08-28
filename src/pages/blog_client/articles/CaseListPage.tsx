@@ -4,65 +4,7 @@ import { CASES, CYTOLOGY, HISTOPATHOLOGY, PAP } from "~/constants";
 import ClientContext from "~/pages/blog_client/context/ClientContext";
 import Header from "~/pages/blog_client/sections/Header";
 import { Case } from "~/interfaces/Case.interface";
-
-const cases = [
-  {
-    id: 1,
-    title: "Data Breach Investigation",
-    category: "Cybersecurity",
-    status: "Open",
-    date: "2023-05-15",
-  },
-  {
-    id: 2,
-    title: "Corporate Fraud Analysis",
-    category: "Financial Crime",
-    status: "Closed",
-    date: "2023-04-22",
-  },
-  {
-    id: 3,
-    title: "Intellectual Property Theft",
-    category: "Corporate Espionage",
-    status: "Open",
-    date: "2023-06-01",
-  },
-  {
-    id: 4,
-    title: "Money Laundering Detection",
-    category: "Financial Crime",
-    status: "In Progress",
-    date: "2023-05-10",
-  },
-  {
-    id: 5,
-    title: "Insider Trading Investigation",
-    category: "Financial Crime",
-    status: "Open",
-    date: "2023-06-05",
-  },
-  {
-    id: 6,
-    title: "Ransomware Attack Analysis",
-    category: "Cybersecurity",
-    status: "Closed",
-    date: "2023-03-18",
-  },
-  {
-    id: 7,
-    title: "Supply Chain Disruption",
-    category: "Corporate Espionage",
-    status: "In Progress",
-    date: "2023-05-28",
-  },
-  {
-    id: 8,
-    title: "Phishing Campaign Investigation",
-    category: "Cybersecurity",
-    status: "Open",
-    date: "2023-06-10",
-  },
-];
+import { FaChevronDown } from "react-icons/fa";
 
 const categories = ["Todos", HISTOPATHOLOGY, CYTOLOGY, PAP];
 
@@ -117,37 +59,40 @@ function CaseListPage() {
                     </option>
                   ))}
                 </select>
-                <ChevronDown className="pointer-events-none absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
+                <FaChevronDown className="pointer-events-none absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
               </div>
             </div>
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {filteredCases.map((caseItem) => (
-              <div
-                key={caseItem.id}
-                className="cursor-pointer overflow-hidden rounded-lg bg-purple-900 shadow-lg transition-shadow hover:shadow-xl"
-                onClick={() => handleClickOption(`${CASES}/${caseItem.id}`)}
-              >
-                <div className="p-6">
-                  <h3 className="mb-2 text-xl font-bold text-white">{caseItem.title}</h3>
-                  <p className="mb-4 text-gray-300">Category: {caseItem.type}</p>
-                  <div className="flex items-center justify-between">
-                    <span
-                      className={`rounded-full px-2 py-1 text-sm font-semibold ${
-                        caseItem.type === HISTOPATHOLOGY
-                          ? "bg-green-500 text-green-900"
-                          : caseItem.type === CYTOLOGY
-                          ? "bg-yellow-500 text-yellow-900"
-                          : "bg-red-500 text-red-900"
-                      }`}
-                    >
-                      {caseItem.type}
-                    </span>
-                    <span className="text-sm text-gray-400">{caseItem.created_at}</span>
+            {filteredCases.length === 0 && <h2>{"No hay Casos Disponibles"}</h2>}
+            {cases.data &&
+              cases.data.length > 0 &&
+              filteredCases.map((caseItem) => (
+                <div
+                  key={caseItem.id}
+                  className="cursor-pointer overflow-hidden rounded-lg bg-purple-900 shadow-lg transition-shadow hover:shadow-xl"
+                  onClick={() => handleClickOption(`${CASES}/${caseItem.id}`)}
+                >
+                  <div className="p-6">
+                    <h3 className="mb-2 text-xl font-bold text-white">{caseItem.title}</h3>
+                    <p className="mb-4 text-gray-300">Category: {caseItem.type}</p>
+                    <div className="flex items-center justify-between">
+                      <span
+                        className={`rounded-full px-2 py-1 text-sm font-semibold ${
+                          caseItem.type === HISTOPATHOLOGY
+                            ? "bg-green-500 text-green-900"
+                            : caseItem.type === CYTOLOGY
+                            ? "bg-yellow-500 text-yellow-900"
+                            : "bg-red-500 text-red-900"
+                        }`}
+                      >
+                        {caseItem.type}
+                      </span>
+                      <span className="text-sm text-gray-400">{caseItem.created_at}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </section>
       </main>

@@ -8,6 +8,9 @@ import Header from "~/pages/blog_client/sections/Header";
 import { FaArrowLeft, FaArrowRight, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { CASES } from "~/constants";
 import Footer from "~/pages/blog_client/sections/Footer";
+import { getSlideFromCase } from "~/service/supabase/slides.service";
+import ProgressCircle from "~/components/ProgressCircle";
+import { motion } from "framer-motion";
 
 function CasePost() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,24 +40,46 @@ function CasePost() {
     setLoading(false);
   };
 
-  const nextPost = () => {
-    if (currentIndex + 1 < cases.data.length) {
-      setSelected(cases.data[currentIndex + 1]);
-      setCurrentIndex(currentIndex + 1);
-    }
-    if (currentIndex + 1 >= cases.data.length) {
-      setSelected(cases.data[0]);
-      setCurrentIndex(0);
+  const findAndFillSlides = async () => {
+    if (selected.id && slides?.data) {
+      const { data, error } = await getSlideFromCase(selected.id);
+      if (data.length > 0) {
+        setSlidesCases(data);
+        setSelectedImage(data[0]); // Establece el primer slide como el seleccionado por defecto
+      } else {
+        setSlidesCases([]);
+      }
     }
   };
 
-  const prevPost = () => {
+  const nextPost = async () => {
+    setLoading(true);
+    if (currentIndex + 1 < cases.data.length) {
+      navigate(`/${CASES}/${cases.data[currentIndex + 1].id}`);
+      setSelected(cases.data[currentIndex + 1]);
+      setCurrentIndex(currentIndex + 1);
+      await findAndFillSlides();
+    }
+    if (currentIndex + 1 >= cases.data.length) {
+      navigate(`/cases/${cases.data[0].id}`);
+      setSelected(cases.data[0]);
+      setCurrentIndex(0);
+      await findAndFillSlides();
+    }
+    setLoading(false);
+  };
+
+  const prevPost = async () => {
     if (currentIndex - 1 >= 0) {
+      navigate(`/cases/${cases.data[currentIndex - 1].id}`);
       setSelected(cases.data[currentIndex - 1]);
       setCurrentIndex(currentIndex - 1);
+      await findAndFillSlides();
     } else if (currentIndex - 1 < 0) {
+      navigate(`/cases/${cases.data[cases.data.length - 1].id}`);
       setSelected(cases.data[cases.data.length - 1]);
       setCurrentIndex(cases.data.length - 1);
+      await findAndFillSlides();
     }
   };
 
@@ -64,21 +89,28 @@ function CasePost() {
 
   useEffect(() => {
     setLoading(true);
-    if (selected.id) {
-      const currentSlides = slides.data.filter((slide) => slide.case_id === selected.id);
-      if (currentSlides.length > 0) {
-        setSlidesCases(currentSlides);
-        setSelectedImage(currentSlides[0]); // Establece el primer slide como el seleccionado por defecto
+    const fun = async () => {
+      if (selected.id && slides.data) {
+        // const currentSlides = slides.data.filter((slide) => slide.case_id === selected.id);
+        const { data, error } = await getSlideFromCase(selected.id);
+        if (data.length > 0) {
+          setSlidesCases(data);
+          setSelectedImage(data[0]); // Establece el primer slide como el seleccionado por defecto
+        } else {
+          setSlidesCases([]);
+          setSelectedImage({} as CaseSlide);
+        }
       }
-    }
+    };
+    fun();
     setLoading(false);
   }, [selected, slides]);
 
   return (
     <div className="flex min-h-screen flex-col bg-purple-950 text-white">
-      <Header />
+      {/*<Header />*/}
       <main className="flex-1 pt-16">
-        {loading && <h1>CARGANDO ...</h1>}
+        {loading && <ProgressCircle text={"Cargando"} color={"primary"} />}
         {!loading && slidesCases && slides && (
           <article className="container mx-auto px-4 py-8">
             <h1 className="mb-4 text-3xl font-bold tracking-tighter text-yellow-400 sm:text-4xl md:text-5xl lg:text-6xl">
@@ -87,7 +119,13 @@ function CasePost() {
             <div className="prose prose-invert mt-8 max-w-none">
               <p>{selected.description}</p>
             </div>
-            <div className="flex flex-col gap-8 md:flex-row">
+            <motion.div
+              className="flex flex-col gap-8 md:flex-row"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 1.5 }}
+            >
               <div className="md:w-3/4">
                 <div className="overflow-hidden rounded-lg bg-purple-900 shadow-lg">
                   <img
@@ -102,7 +140,13 @@ function CasePost() {
                   </div>
                 </div>
               </div>
-              <div className="md:w-1/4">
+              <motion.div
+                className="md:w-1/4"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 1.5 }}
+              >
                 <h2 className="mb-4 text-xl font-bold text-yellow-400">Image Gallery</h2>
                 <ul className="space-y-2">
                   {slidesCases.map((image) => (
@@ -120,8 +164,8 @@ function CasePost() {
                     </li>
                   ))}
                 </ul>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </article>
         )}
       </main>
