@@ -1,8 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BookOpen, Menu, X, Search, Filter, ChevronDown } from "lucide-react";
 import { CASES, CYTOLOGY, HISTOPATHOLOGY, PAP } from "~/constants";
 import ClientContext from "~/pages/blog_client/context/ClientContext";
 import Header from "~/pages/blog_client/sections/Header";
+import { Case } from "~/interfaces/Case.interface";
 
 const cases = [
   {
@@ -69,19 +70,24 @@ function CaseListPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [searchTerm, setSearchTerm] = useState("");
-
+  const [filteredCases, setFilteredCases] = useState([] as Case[]);
   const { cases, handleClickOption } = useContext(ClientContext);
 
-  const filteredCases = cases.data.filter(
-    (caseItem) =>
-      (selectedCategory === "Todos" || caseItem.type === selectedCategory) &&
-      (caseItem.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        caseItem.type.toLowerCase().includes(searchTerm.toLowerCase())),
-  );
+  useEffect(() => {
+    if (cases && cases.data) {
+      const filterCases = cases.data.filter(
+        (caseItem) =>
+          (selectedCategory === "Todos" || caseItem.type === selectedCategory) &&
+          (caseItem.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            caseItem.type.toLowerCase().includes(searchTerm.toLowerCase())),
+      );
+      setFilteredCases(filterCases);
+    }
+  }, [selectedCategory, searchTerm, cases]);
 
   return (
     <div className="flex min-h-screen flex-col bg-purple-950 text-white">
-      <Header />
+      {/*<Header />*/}
       <main className="flex-1 pt-16">
         <section className="container mx-auto px-4 py-8">
           <h1 className="mb-8 text-3xl font-bold tracking-tighter text-yellow-400 sm:text-4xl md:text-5xl lg:text-6xl">
@@ -113,20 +119,6 @@ function CaseListPage() {
                 </select>
                 <ChevronDown className="pointer-events-none absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
               </div>
-              {/*<div className="relative">*/}
-              {/*  <select*/}
-              {/*    className="appearance-none rounded-md bg-purple-900 py-2 pl-4 pr-10 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"*/}
-              {/*    value={selectedStatus}*/}
-              {/*    onChange={(e) => setSelectedStatus(e.target.value)}*/}
-              {/*  >*/}
-              {/*    {statuses.map((status) => (*/}
-              {/*      <option key={status} value={status}>*/}
-              {/*        {status}*/}
-              {/*      </option>*/}
-              {/*    ))}*/}
-              {/*  </select>*/}
-              {/*  <ChevronDown className="pointer-events-none absolute right-3 top-2.5 h-5 w-5 text-gray-400" />*/}
-              {/*</div>*/}
             </div>
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

@@ -39,7 +39,7 @@ function Hero() {
           <div className="relative h-[300px] lg:h-[400px]">
             <div className="absolute inset-0 animate-pulse rounded-full bg-gradient-to-br from-yellow-400 to-purple-600"></div>
             <img
-              alt="Jane Doe"
+              alt="Nandy"
               className="absolute inset-0 h-full w-full rounded-full object-cover object-center mix-blend-overlay"
               height="400"
               src={illus_lab}
