@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import ClientContext from "~/pages/blog_client/context/ClientContext";
 import { ABOUT, CASES } from "~/constants";
-
+import illus_lab from "~/assets/illus_lab.svg";
 function Hero() {
   const { scrollToSection } = useContext(ClientContext);
 
@@ -42,7 +42,7 @@ function Hero() {
               alt="Jane Doe"
               className="absolute inset-0 h-full w-full rounded-full object-cover object-center mix-blend-overlay"
               height="400"
-              src="/placeholder.svg?height=400&width=400"
+              src={illus_lab}
               width="400"
             />
           </div>
