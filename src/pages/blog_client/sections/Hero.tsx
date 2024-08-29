@@ -1,9 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ClientContext from "~/pages/blog_client/context/ClientContext";
+import illus_lab from "~/assets/illus_lab.svg";
 import { ABOUT, CASES } from "~/constants";
+import { Case } from "~/interfaces/Case.interface";
 
 function Hero() {
-  const { scrollToSection } = useContext(ClientContext);
+  const [lastPost, setLastPost] = useState<Case>({} as Case);
+  const { scrollToSection, cases, handleClickOption } = useContext(ClientContext);
+
+  useEffect(() => {
+    if (cases && cases.data) {
+      setLastPost(cases.data[0]);
+    }
+  }, [cases]);
 
   return (
     <section
@@ -23,13 +32,13 @@ function Hero() {
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
               <span
-                onClick={() => scrollToSection("cases")}
+                onClick={() => handleClickOption(`${CASES}/${lastPost.id}`)}
                 className="inline-flex h-10 items-center justify-center rounded-md bg-yellow-400 px-8 text-sm font-medium text-purple-950 shadow transition-colors hover:bg-yellow-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-yellow-500"
               >
                 Leer el Último Caso
               </span>
               <span
-                onClick={() => scrollToSection("about")}
+                onClick={() => scrollToSection(ABOUT)}
                 className="inline-flex h-10 items-center justify-center rounded-md border border-gray-700 bg-purple-950 px-8 text-sm font-medium text-white shadow-sm transition-colors hover:bg-purple-900 hover:text-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-700"
               >
                 Acerca de Mí
@@ -39,10 +48,10 @@ function Hero() {
           <div className="relative h-[300px] lg:h-[400px]">
             <div className="absolute inset-0 animate-pulse rounded-full bg-gradient-to-br from-yellow-400 to-purple-600"></div>
             <img
-              alt="Jane Doe"
+              alt="Nandy"
               className="absolute inset-0 h-full w-full rounded-full object-cover object-center mix-blend-overlay"
               height="400"
-              src="/placeholder.svg?height=400&width=400"
+              src={illus_lab}
               width="400"
             />
           </div>

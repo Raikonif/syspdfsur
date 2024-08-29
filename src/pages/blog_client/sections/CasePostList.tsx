@@ -9,11 +9,15 @@ import { Button } from "@nextui-org/react";
 
 function CasePostList() {
   const [lastPosts, setLastPosts] = useState([] as Case[]);
-
   const { cases, handleClickOption } = useContext(ClientContext);
   useEffect(() => {
     if (cases && cases.data) {
-      setLastPosts(cases.data);
+      if (cases.data.length > 3) {
+        const getLastPosts = cases.data.slice(0, 3);
+        setLastPosts(getLastPosts);
+      } else {
+        setLastPosts(cases.data);
+      }
     }
   }, [cases]);
 
@@ -47,10 +51,7 @@ function CasePostList() {
                       : typeListOptions[1].label}
                   </div>
                   <h3 className="mb-2 text-lg font-bold text-white">{post.title}</h3>
-                  <p className="mb-4 text-gray-300">
-                    {post.description} {post.type.toLowerCase()}
-                    ...
-                  </p>
+                  <p className="mb-4 text-gray-300">{post.description.slice(0, 40)} ...</p>
                   <div className="flex w-full justify-end">
                     <Button
                       onPress={() => handleClickOption(`cases/${post.id}`)}

@@ -9,6 +9,7 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { FaUserDoctor } from "react-icons/fa6";
+import illus_lab from "~/assets/illus_lab.svg";
 
 function About() {
   return (
@@ -49,7 +50,7 @@ function About() {
               alt="Nandy Trabajando"
               className="absolute inset-0 h-full w-full rounded-lg object-cover object-center mix-blend-overlay"
               height="400"
-              src="/placeholder.svg?height=400&width=300"
+              src={illus_lab}
               width="300"
             />
           </div>

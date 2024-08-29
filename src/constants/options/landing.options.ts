@@ -20,3 +20,16 @@ export const menuOptions = [
     name: "Contacto",
   },
 ];
+
+export const subInternalMenuOptions = [
+  {
+    id: 1,
+    section: "/",
+    name: "Inicio",
+  },
+  {
+    id: 1,
+    section: "cases",
+    name: "Casos",
+  },
+];

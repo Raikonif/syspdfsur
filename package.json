@@ -13,6 +13,7 @@
     "test": "vitest tests/*.js"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@heroicons/react": "^2.0.17",
     "@nextui-org/react": "^2.4.2",
     "@radix-ui/react-label": "^2.0.2",

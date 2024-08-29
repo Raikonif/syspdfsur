@@ -158,19 +158,19 @@ function SwiperSlides() {
           </SwiperSlide>
         )}
       </Swiper>
-      {listSlidesPreview.length > 0 && (
-        <Button
-          color="secondary"
-          size={"sm"}
-          variant={"shadow"}
-          onPress={async () => {
-            await uploadSlides();
-            onCloseCase();
-          }}
-        >
-          Guardar los Slides <FaSave />
-        </Button>
-      )}
+      {/*{listSlidesPreview.length > 0 && (*/}
+      {/*  <Button*/}
+      {/*    color="secondary"*/}
+      {/*    size={"sm"}*/}
+      {/*    variant={"shadow"}*/}
+      {/*    onPress={async () => {*/}
+      {/*      await uploadSlides();*/}
+      {/*      onCloseCase();*/}
+      {/*    }}*/}
+      {/*  >*/}
+      {/*    Guardar los Slides <FaSave />*/}
+      {/*  </Button>*/}
+      {/*)}*/}
       <div
         className={`${
           listSlidesPreview.length <= 1 && selectedKey === SEE && "hidden"

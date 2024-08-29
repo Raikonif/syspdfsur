@@ -34,7 +34,6 @@ function Landing() {
         <CasePostList />
         <About />
         <Contact />
-        <Footer />
       </main>
       <div
         className="fixed bottom-4 right-4 cursor-pointer rounded-full bg-yellow-400 p-2 text-purple-950 transition-opacity duration-300 hover:bg-yellow-500"
