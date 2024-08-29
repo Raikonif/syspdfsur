@@ -5,15 +5,24 @@ import ClientContext from "~/pages/blog_client/context/ClientContext";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 import Header from "~/pages/blog_client/sections/Header";
-import { FaArrowLeft, FaArrowRight, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import {
+  FaArrowLeft,
+  FaArrowRight,
+  FaGithub,
+  FaLinkedin,
+  FaMicroscope,
+  FaTwitter,
+} from "react-icons/fa";
 import { CASES } from "~/constants";
 import Footer from "~/pages/blog_client/sections/Footer";
 import { getSlideFromCase } from "~/service/supabase/slides.service";
 import ProgressCircle from "~/components/ProgressCircle";
 import { motion } from "framer-motion";
+import { menuOptions, subInternalMenuOptions } from "~/constants/options/landing.options";
 
 function CasePost() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [active, setActive] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState<Case>({} as Case);
   const [slidesCases, setSlidesCases] = useState<CaseSlide[]>([] as CaseSlide[]);
@@ -24,7 +33,8 @@ function CasePost() {
       description: "No hay Descripcion",
     },
   );
-  const { cases, slides, setLoading, loading } = useContext(ClientContext);
+  const { cases, slides, setLoading, loading, handleClickOption, scrollToSection } =
+    useContext(ClientContext);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -108,7 +118,37 @@ function CasePost() {
 
   return (
     <div className="flex min-h-screen flex-col bg-purple-950 text-white">
-      {/*<Header />*/}
+      <header
+        id="hero"
+        className="fixed z-50 flex h-16 w-full items-center bg-purple-950/80 px-4 backdrop-blur-md lg:px-6"
+      >
+        <span
+          className="flex cursor-pointer items-center justify-center"
+          onClick={() => handleClickOption("/")}
+        >
+          <FaMicroscope size={30} className="text-yellow-400" />
+          <h1 className="ml-4 font-bold text-violet-100 md:text-xl lg:text-2xl">Blog de Nandy</h1>
+        </span>
+        <nav
+          className={`ml-auto flex gap-4 sm:gap-6 ${
+            isMenuOpen ? "flex" : "hidden"
+          } absolute left-0 right-0 top-16 flex-col bg-purple-950 p-4 md:relative md:top-0 md:flex md:flex-row md:bg-transparent md:p-0`}
+        >
+          <span
+            className="cursor-pointer text-sm font-medium text-gray-300 transition-colors hover:text-yellow-400"
+            aria-current="page"
+            onClick={() => handleClickOption("/cases")}
+          >
+            {"Casos"}
+          </span>
+        </nav>
+        <button
+          className="ml-auto rounded-md p-2 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400 md:hidden"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
+      </header>
       <main className="flex-1 pt-16">
         {loading && <ProgressCircle text={"Cargando"} color={"primary"} />}
         {!loading && slidesCases && slides && (
@@ -128,16 +168,18 @@ function CasePost() {
             >
               <div className="md:w-3/4">
                 <div className="overflow-hidden rounded-lg bg-purple-900 shadow-lg">
-                  <img
-                    src={selectedImage?.image_url || ""}
-                    alt={selectedImage?.id || ""}
-                    className="h-auto w-full object-cover"
-                  />
-                  <div className="p-6">
-                    <p className="text-lg text-gray-300">
-                      {selectedImage?.description || "No hay Descripcion"}
-                    </p>
+                  <div className="flex items-center justify-center">
+                    <img
+                      src={selectedImage?.image_url || ""}
+                      alt={selectedImage?.id || ""}
+                      className="h-auto max-h-[550px] w-auto object-cover object-center"
+                    />
                   </div>
+                </div>
+                <div className="mt-2 border-t-2 border-yellow-400 p-6">
+                  <p className="text-lg text-gray-300">
+                    {selectedImage?.description || "No hay Descripcion"}
+                  </p>
                 </div>
               </div>
               <motion.div

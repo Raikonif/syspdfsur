@@ -4,16 +4,18 @@ import { CASES, CYTOLOGY, HISTOPATHOLOGY, PAP } from "~/constants";
 import ClientContext from "~/pages/blog_client/context/ClientContext";
 import Header from "~/pages/blog_client/sections/Header";
 import { Case } from "~/interfaces/Case.interface";
-import { FaChevronDown } from "react-icons/fa";
+import { FaChevronDown, FaMicroscope } from "react-icons/fa";
+import { menuOptions, subInternalMenuOptions } from "~/constants/options/landing.options";
 
 const categories = ["Todos", HISTOPATHOLOGY, CYTOLOGY, PAP];
 
 function CaseListPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [active, setActive] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredCases, setFilteredCases] = useState([] as Case[]);
-  const { cases, handleClickOption } = useContext(ClientContext);
+  const { cases, handleClickOption, scrollToSection } = useContext(ClientContext);
 
   useEffect(() => {
     if (cases && cases.data) {
@@ -29,7 +31,18 @@ function CaseListPage() {
 
   return (
     <div className="flex min-h-screen flex-col bg-purple-950 text-white">
-      {/*<Header />*/}
+      <header
+        id="hero"
+        className="fixed z-50 flex h-16 w-full items-center bg-purple-950/80 px-4 backdrop-blur-md lg:px-6"
+      >
+        <span
+          className="flex cursor-pointer items-center justify-center"
+          onClick={() => handleClickOption("/")}
+        >
+          <FaMicroscope size={30} className="text-yellow-400" />
+          <h1 className="ml-4 font-bold text-violet-100 md:text-xl lg:text-2xl">Blog de Nandy</h1>
+        </span>
+      </header>
       <main className="flex-1 pt-16">
         <section className="container mx-auto px-4 py-8">
           <h1 className="mb-8 text-3xl font-bold tracking-tighter text-yellow-400 sm:text-4xl md:text-5xl lg:text-6xl">

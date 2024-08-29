@@ -30,7 +30,7 @@ function Header() {
         {menuOptions.map((option, index) => (
           <>
             <span
-              key={option.id}
+              key={index}
               className={`${
                 active === index && "text-yellow-400"
               } cursor-pointer text-sm font-medium text-gray-300 transition-colors hover:text-yellow-400`}
