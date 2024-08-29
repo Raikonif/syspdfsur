@@ -1,21 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import { BookOpen, Menu, X, Search, Filter, ChevronDown } from "lucide-react";
 import { CASES, CYTOLOGY, HISTOPATHOLOGY, PAP } from "~/constants";
 import ClientContext from "~/pages/blog_client/context/ClientContext";
-import Header from "~/pages/blog_client/sections/Header";
 import { Case } from "~/interfaces/Case.interface";
-import { FaChevronDown, FaMicroscope } from "react-icons/fa";
-import { menuOptions, subInternalMenuOptions } from "~/constants/options/landing.options";
+import { FaChevronDown, FaMicroscope, FaSearch } from "react-icons/fa";
 
 const categories = ["Todos", HISTOPATHOLOGY, CYTOLOGY, PAP];
 
 function CaseListPage() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [active, setActive] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredCases, setFilteredCases] = useState([] as Case[]);
-  const { cases, handleClickOption, scrollToSection } = useContext(ClientContext);
+  const { cases, handleClickOption } = useContext(ClientContext);
 
   useEffect(() => {
     if (cases && cases.data) {
@@ -57,7 +52,7 @@ function CaseListPage() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
-              <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+              <FaSearch className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
             </div>
             <div className="flex gap-4">
               <div className="relative">
@@ -109,29 +104,6 @@ function CaseListPage() {
           </div>
         </section>
       </main>
-      <footer className="w-full border-t border-purple-800 bg-purple-950 py-6">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <p className="text-xs text-gray-400">
-              © 2023 Case Management System. All rights reserved.
-            </p>
-            <nav className="flex gap-4 sm:gap-6">
-              <a
-                className="text-xs text-gray-400 underline-offset-4 hover:text-gray-200 hover:underline"
-                href="#"
-              >
-                Terms of Service
-              </a>
-              <a
-                className="text-xs text-gray-400 underline-offset-4 hover:text-gray-200 hover:underline"
-                href="#"
-              >
-                Privacy Policy
-              </a>
-            </nav>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

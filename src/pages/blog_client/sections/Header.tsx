@@ -1,7 +1,8 @@
-import { BookOpen, Menu, X } from "lucide-react";
 import React, { useState } from "react";
 import { FaMicroscope } from "react-icons/fa";
 import { menuOptions } from "~/constants/options/landing.options";
+import { FiMenu } from "react-icons/fi";
+import { IoClose } from "react-icons/io5";
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [active, setActive] = useState(0);
@@ -28,7 +29,7 @@ function Header() {
         } absolute left-0 right-0 top-16 flex-col bg-purple-950 p-4 md:relative md:top-0 md:flex md:flex-row md:bg-transparent md:p-0`}
       >
         {menuOptions.map((option, index) => (
-          <>
+          <li key={index}>
             <span
               key={index}
               className={`${
@@ -42,14 +43,14 @@ function Header() {
             >
               {option.name}
             </span>
-          </>
+          </li>
         ))}
       </nav>
       <button
         className="ml-auto rounded-md p-2 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400 md:hidden"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
-        {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        {isMenuOpen ? <IoClose className="h-6 w-6" /> : <FiMenu className="h-6 w-6" />}
       </button>
     </header>
   );

@@ -1,24 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Github, Twitter, Linkedin, Menu, X, ArrowLeft, ArrowRight } from "lucide-react";
 import { Case, CaseSlide } from "~/interfaces/Case.interface";
 import ClientContext from "~/pages/blog_client/context/ClientContext";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
-import Header from "~/pages/blog_client/sections/Header";
-import {
-  FaArrowLeft,
-  FaArrowRight,
-  FaGithub,
-  FaLinkedin,
-  FaMicroscope,
-  FaTwitter,
-} from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaList, FaMicroscope } from "react-icons/fa";
 import { CASES } from "~/constants";
 import Footer from "~/pages/blog_client/sections/Footer";
 import { getSlideFromCase } from "~/service/supabase/slides.service";
 import ProgressCircle from "~/components/ProgressCircle";
 import { motion } from "framer-motion";
-import { menuOptions, subInternalMenuOptions } from "~/constants/options/landing.options";
+import { FiMenu } from "react-icons/fi";
+import { IoClose } from "react-icons/io5";
 
 function CasePost() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,6 +22,7 @@ function CasePost() {
     slidesCases[0] || {
       image_url: "/placeholder.svg?height=400&width=600",
       id: "default",
+      title: "No hay titulo",
       description: "No hay Descripcion",
     },
   );
@@ -101,11 +94,10 @@ function CasePost() {
     setLoading(true);
     const fun = async () => {
       if (selected.id && slides.data) {
-        // const currentSlides = slides.data.filter((slide) => slide.case_id === selected.id);
         const { data, error } = await getSlideFromCase(selected.id);
         if (data.length > 0) {
           setSlidesCases(data);
-          setSelectedImage(data[0]); // Establece el primer slide como el seleccionado por defecto
+          setSelectedImage(data[0]);
         } else {
           setSlidesCases([]);
           setSelectedImage({} as CaseSlide);
@@ -132,7 +124,7 @@ function CasePost() {
         <nav
           className={`ml-auto flex gap-4 sm:gap-6 ${
             isMenuOpen ? "flex" : "hidden"
-          } absolute left-0 right-0 top-16 flex-col bg-purple-950 p-4 md:relative md:top-0 md:flex md:flex-row md:bg-transparent md:p-0`}
+          } absolute left-0 right-0 top-16 flex-col border-b-2 border-yellow-400 bg-purple-950 p-4 md:relative md:top-0 md:flex md:flex-row md:bg-transparent md:p-0`}
         >
           <span
             className="cursor-pointer text-sm font-medium text-gray-300 transition-colors hover:text-yellow-400"
@@ -146,7 +138,7 @@ function CasePost() {
           className="ml-auto rounded-md p-2 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400 md:hidden"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
-          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {isMenuOpen ? <IoClose className="h-6 w-6" /> : <FiMenu className="h-6 w-6" />}
         </button>
       </header>
       <main className="flex-1 pt-16">
@@ -168,15 +160,16 @@ function CasePost() {
             >
               <div className="md:w-3/4">
                 <div className="overflow-hidden rounded-lg bg-purple-900 shadow-lg">
-                  <div className="flex items-center justify-center">
+                  <div className="flex h-[300px] items-center justify-center lg:h-[500px]">
                     <img
                       src={selectedImage?.image_url || ""}
                       alt={selectedImage?.id || ""}
-                      className="h-auto max-h-[550px] w-auto object-cover object-center"
+                      className="h-auto max-h-[300px] w-auto object-cover object-center lg:max-h-[500px]"
                     />
                   </div>
                 </div>
                 <div className="mt-2 border-t-2 border-yellow-400 p-6">
+                  <h2 className="text-2xl font-bold capitalize">{selectedImage.title}</h2>
                   <p className="text-lg text-gray-300">
                     {selectedImage?.description || "No hay Descripcion"}
                   </p>
@@ -189,7 +182,7 @@ function CasePost() {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 1.5 }}
               >
-                <h2 className="mb-4 text-xl font-bold text-yellow-400">Image Gallery</h2>
+                <h2 className="mb-4 text-xl font-bold text-yellow-400">Lista de Láminas:</h2>
                 <ul className="space-y-2">
                   {slidesCases.map((image) => (
                     <li key={image.id}>
@@ -211,7 +204,6 @@ function CasePost() {
           </article>
         )}
       </main>
-      <Footer />
       <div className="fixed bottom-10 left-4 right-4 flex justify-between">
         <button
           className="animate-pulse rounded-md bg-yellow-400 px-4 py-2 text-purple-700 transition-colors hover:bg-yellow-800"
