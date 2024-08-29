@@ -3,9 +3,8 @@ import { Case, CaseSlide } from "~/interfaces/Case.interface";
 import ClientContext from "~/pages/blog_client/context/ClientContext";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
-import { FaArrowLeft, FaArrowRight, FaList, FaMicroscope } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaMicroscope } from "react-icons/fa";
 import { CASES } from "~/constants";
-import Footer from "~/pages/blog_client/sections/Footer";
 import { getSlideFromCase } from "~/service/supabase/slides.service";
 import ProgressCircle from "~/components/ProgressCircle";
 import { motion } from "framer-motion";
@@ -14,7 +13,6 @@ import { IoClose } from "react-icons/io5";
 
 function CasePost() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [active, setActive] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState<Case>({} as Case);
   const [slidesCases, setSlidesCases] = useState<CaseSlide[]>([] as CaseSlide[]);
